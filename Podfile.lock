@@ -1,0 +1,40 @@
+PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - MJRefresh (3.1.15.3)
+  - SDWebImage (4.4.1):
+    - SDWebImage/Core (= 4.4.1)
+  - SDWebImage/Core (4.4.1)
+
+DEPENDENCIES:
+  - AFNetworking
+  - MJRefresh
+  - SDWebImage
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - MJRefresh
+    - SDWebImage
+
+SPEC CHECKSUMS:
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
+  SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
+
+PODFILE CHECKSUM: c495a792f156f65218e67374cb813c27e9d58a68
+
+COCOAPODS: 1.5.3
