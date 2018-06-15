@@ -1,15 +1,7 @@
-//
-//  Foundation+WYChineseLog.m
-//  WYBasisKit
-//
-//  Created by jacke-xu on 2018/5/27.
-//  Copyright © 2018年 jacke-xu. All rights reserved.
-//
 
 #import <Foundation/Foundation.h>
 
-@implementation NSDictionary (WYChineseLog)
-
+@implementation NSDictionary (Log)
 - (NSString *)descriptionWithLocale:(id)locale
 {
     NSMutableString *str = [NSMutableString string];
@@ -57,5 +49,4 @@
     
     return str;
 }
-
 @end
