@@ -62,7 +62,7 @@
     UIViewController *vc = [[UIViewController alloc]init];
     vc.view.backgroundColor = randomColor;
     
-    [vc.view addSubview:[UIView createBackNavWithTitle:@"WYBasisKit" target:self selector:@selector(goBack)]];
+    [vc.view addSubview:[UIView createBackNavWithTitle:@"basisKitTest" target:self selector:@selector(goBack)]];
     
     return vc;
 }
