@@ -78,6 +78,7 @@
 - (void)textDidChange {
     
     //重绘
+    [self characterTruncation];
     [self setNeedsDisplay];
 }
 
@@ -109,12 +110,6 @@
         
         [self setContentInset:UIEdgeInsetsMake(0, 0, 25, 0)];
         
-        //字符截取
-        if(self.text.length >= self.maximumLimit) {
-            
-            self.text = [self characterTruncation];
-        }
-        
         NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
         paragraphStyle.alignment = NSTextAlignmentRight;
         
@@ -143,12 +138,16 @@
 - (NSString *)characterTruncation {
     
     NSString *result = self.text;
-    
-    const char *res = [result substringToIndex:self.maximumLimit].UTF8String;
-    if (res == NULL) {
-        result = [result substringToIndex:self.maximumLimit - 1];
-    }else{
-        result = [result substringToIndex:self.maximumLimit];
+    //字符截取
+    if((result.length >= self.maximumLimit) && (self.maximumLimit)) {
+        
+        const char *res = [result substringToIndex:self.maximumLimit].UTF8String;
+        if (res == NULL) {
+            result = [result substringToIndex:self.maximumLimit - 1];
+        }else{
+            result = [result substringToIndex:self.maximumLimit];
+        }
+        self.text = result;
     }
     
     return result;

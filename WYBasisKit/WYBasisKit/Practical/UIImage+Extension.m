@@ -606,7 +606,7 @@
     }
     return CGSizeZero;
 }
-+(CGSize)downloadGIFImageSizeWithRequest:(NSMutableURLRequest*)request
++ (CGSize)downloadGIFImageSizeWithRequest:(NSMutableURLRequest*)request
 {
     [request setValue:@"bytes=6-9" forHTTPHeaderField:@"Range"];
     NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
@@ -689,6 +689,21 @@
     UIImage *videoImage = [[UIImage alloc] initWithCGImage:image];
     CGImageRelease(image);
     return videoImage;
+}
+
++ (UIImage *)createImage:(UIColor *)imageColor {
+    
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [imageColor CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
 }
 
 @end

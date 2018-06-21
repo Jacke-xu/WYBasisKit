@@ -26,6 +26,8 @@
 #import "UIColor+Extension.h"
 #import "NSString+Extension.h"
 #import "UIImage+Extension.h"
+#import "UIViewController+Extension.h"
+#import "UINavigationController+Extension.h"
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.

@@ -208,4 +208,7 @@
 /** 根据视频url获取第一帧图片*/
 + (UIImage *)videoPreViewImage:(NSURL *)path;
 
+/** 根据给定的颜生成图片*/
++ (UIImage *)createImage:(UIColor *)imageColor;
+
 @end
