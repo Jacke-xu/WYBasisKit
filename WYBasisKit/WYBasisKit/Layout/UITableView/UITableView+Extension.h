@@ -11,13 +11,13 @@
 @interface UITableView (Extension)
 
 /** 设置tableView头部或尾部背景色 */
-- (void)layoutTableViewHeaderFooterView:(UIView *)view color:(UIColor *)color;
+- (void)rendererHeaderFooterViewBackgroundColor:(UIView *)view color:(UIColor *)color;
 
 /** 设置tableView滚动时无粘性 */
-- (void)layoutTableHeaderFooterViewForScroll:(UIScrollView *)scrollView height:(CGFloat)height;
+- (void)scrollWithoutPasting:(UIScrollView *)scrollView height:(CGFloat)height;
 
-/** 设置tableViewCell顶头 */
-- (void)layoutTableViewCell:(UITableViewCell *)cell;
+/** 设置tableViewCell分割线顶头 */
+- (void)cellCutOffLineFromZeroPoint:(UITableViewCell *)cell;
 
 /** 禁用 Self-Sizing */
 - (void)forbiddenSelfSizing;

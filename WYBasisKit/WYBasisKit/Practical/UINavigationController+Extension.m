@@ -59,6 +59,7 @@ static NSString *const barReturnButtonDelegate = @"barReturnButtonDelegate";
 
 - (void)navigationBarOpaque {
     
+    self.navigationBar.translucent = NO;
     [self.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     [self.navigationBar setShadowImage:nil];
 }
@@ -100,7 +101,6 @@ static NSString *const barReturnButtonDelegate = @"barReturnButtonDelegate";
 - (void)setBarBackgroundColor:(UIColor *)barBackgroundColor {
     
     objc_setAssociatedObject(self, &@selector(barBackgroundColor), barBackgroundColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    self.navigationBar.translucent = NO;
     [self.navigationBar setBackgroundImage:[UIImage createImage:barBackgroundColor] forBarMetrics:UIBarMetricsDefault];
 }
 
@@ -114,7 +114,6 @@ static NSString *const barReturnButtonDelegate = @"barReturnButtonDelegate";
 - (void)setBarBackgroundImage:(UIImage *)barBackgroundImage {
 
     objc_setAssociatedObject(self, &@selector(barBackgroundImage), barBackgroundImage, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    self.navigationBar.translucent = NO;
     [self.navigationBar setBackgroundImage:barBackgroundImage forBarMetrics:UIBarMetricsDefault];
 }
 

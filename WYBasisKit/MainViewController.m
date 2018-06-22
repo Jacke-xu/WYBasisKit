@@ -10,6 +10,7 @@
 #import "TestLableViewController.h"
 #import "TestWebViewViewController.h"
 #import "TestTextViewViewController.h"
+#import "TestTextFieldViewController.h"
 
 @interface MainViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -26,6 +27,7 @@
     self.navigationController.titleColor = [UIColor yellowColor];
     self.navigationController.titleFont = [UIFont boldSystemFontOfSize:20];
     self.navigationController.barBackgroundColor = [UIColor greenColor];
+    //self.navigationController.barBackgroundImage = [UIImage imageNamed:@"test"];
     self.navigationController.barReturnButtonImage = [UIImage imageNamed:@"返回按钮"];
     self.navigationController.barReturnButtonColor = [UIColor whiteColor];
     [self.navigationController pushControllerBarReturnButtonTitle:@"上一页" navigationItem:self.navigationItem];
@@ -68,7 +70,7 @@
     if(cell == nil)
     {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIndentifier];
-        [tableView layoutTableViewCell:cell];
+        [tableView cellCutOffLineFromZeroPoint:cell];
     }
     cell.backgroundColor = [UIColor whiteColor];
     cell.textLabel.text = [self sectionTitle:indexPath.row];
@@ -92,6 +94,10 @@
     else if (indexPath.row == 2) {
         
         vc = [[TestTextViewViewController alloc]init];
+    }
+    else if (indexPath.row == 3) {
+        
+        vc = [[TestTextFieldViewController alloc]init];
     }
     vc.navigationItem.title = [self sectionTitle:indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];

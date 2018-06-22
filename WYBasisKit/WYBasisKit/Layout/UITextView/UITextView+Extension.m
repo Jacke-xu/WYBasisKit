@@ -61,7 +61,7 @@
     
     objc_setAssociatedObject(self, &@selector(maximumLimit), [NSNumber numberWithInteger:maximumLimit], OBJC_ASSOCIATION_ASSIGN);
     
-    // setNeedsDisplay会在下一个消息循环时刻，调用drawRect:
+    //setNeedsDisplay会在下一个消息循环时刻，调用drawRect:
     [self addTextChangeNoti];
     [self setNeedsDisplay];
 }
@@ -79,12 +79,6 @@
     
     //重绘
     [self characterTruncation];
-    [self setNeedsDisplay];
-}
-
-- (void)setText:(NSString *)text {
-    
-    // setNeedsDisplay会在下一个消息循环时刻，调用drawRect:
     [self setNeedsDisplay];
 }
 
@@ -116,7 +110,7 @@
         NSMutableDictionary *maximumLimitAttributes = [attributes mutableCopy];
         maximumLimitAttributes[NSParagraphStyleAttributeName] = paragraphStyle;
         
-        NSString *limitStr = [NSString stringWithFormat:@"%ld/%ld",self.text.length,self.maximumLimit];
+        NSString *limitStr = [NSString stringWithFormat:@"%lu/%ld",(unsigned long)self.text.length,(long)self.maximumLimit];
         
         [limitStr drawInRect:CGRectMake(x, rect.size.height-20+self.contentOffset.y, width, 20) withAttributes:maximumLimitAttributes];
     }
@@ -135,22 +129,18 @@
     [self.placeholderStr drawInRect:placeholderRect withAttributes:attributes];
 }
 
-- (NSString *)characterTruncation {
+- (void)characterTruncation {
     
-    NSString *result = self.text;
     //字符截取
-    if((result.length >= self.maximumLimit) && (self.maximumLimit)) {
+    if((self.text.length > self.maximumLimit) && (self.maximumLimit)) {
         
-        const char *res = [result substringToIndex:self.maximumLimit].UTF8String;
+        const char *res = [self.text substringToIndex:self.maximumLimit].UTF8String;
         if (res == NULL) {
-            result = [result substringToIndex:self.maximumLimit - 1];
+            self.text = [self.text substringToIndex:self.maximumLimit - 1];
         }else{
-            result = [result substringToIndex:self.maximumLimit];
+            self.text = [self.text substringToIndex:self.maximumLimit];
         }
-        self.text = result;
     }
-    
-    return result;
 }
 
 - (void)addTextChangeNoti {

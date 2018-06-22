@@ -10,13 +10,13 @@
 
 @implementation UITableView (Extension)
 
-- (void)layoutTableViewHeaderFooterView:(UIView *)view color:(UIColor *)color {
+- (void)rendererHeaderFooterViewBackgroundColor:(UIView *)view color:(UIColor *)color {
     
     UITableViewHeaderFooterView *headerFooterView = (UITableViewHeaderFooterView *)view;
     headerFooterView.tintColor = color;
 }
 
-- (void)layoutTableHeaderFooterViewForScroll:(UIScrollView *)scrollView height:(CGFloat)height {
+- (void)scrollWithoutPasting:(UIScrollView *)scrollView height:(CGFloat)height {
     
     if (scrollView == self)
     {
@@ -28,7 +28,7 @@
     }
 }
 
-- (void)layoutTableViewCell:(UITableViewCell *)cell {
+- (void)cellCutOffLineFromZeroPoint:(UITableViewCell *)cell {
     
     if ([self respondsToSelector:@selector(setSeparatorInset:)]) {
         

@@ -260,8 +260,8 @@
         NSTimeInterval duration = [noti.userInfo[UIKeyboardAnimationDurationUserInfoKey]doubleValue];
         
         CGFloat bottom = [self.superview convertPoint:self.frame.origin toView:self.mainView].y+self.frame.size.height;
-        
-        if(bottom > keyboardFrame.origin.y) {
+        CGFloat extraHeight = [self hasSystemNavigationBarExtraHeight];
+        if((bottom+extraHeight) > keyboardFrame.origin.y) {
             
             __weak typeof(self) textFieldSelf = self;
             [UIView animateWithDuration:duration delay:0 options:option animations:^{
@@ -283,20 +283,41 @@
     __weak typeof(self) textFieldSelf = self;
     [UIView animateWithDuration:duration delay:0 options:option animations:^{
         
-        textFieldSelf.mainView.frame = textFieldSelf.mainViewFrame;
+        CGFloat extraHeight = [self hasSystemNavigationBarExtraHeight];
+        textFieldSelf.mainView.frame = CGRectMake(textFieldSelf.mainViewFrame.origin.x, textFieldSelf.mainViewFrame.origin.y+extraHeight, textFieldSelf.mainViewFrame.size.width, textFieldSelf.mainViewFrame.size.height);
         
     } completion:nil];
     //为了显示动画
     [self layoutIfNeeded];
 }
 
+//计算键盘弹出时的额外高度
+- (CGFloat)hasSystemNavigationBarExtraHeight {
+    
+    //相对于导航栏高度开始的 如果设置了导航栏的translucent = YES这时在添加子视图的坐标原点相对屏幕坐标是(0,0).如果设置了translucent = NO这时添加子视图的坐标原点相对屏幕坐标就是(0, navViewHeight)
+    if(([self belongsViewController].navigationController != nil) && ([self belongsViewController].navigationController.navigationBar.hidden == NO) && ([self belongsViewController].navigationController.navigationBar.translucent == NO)) {
+        
+        //判断是否隐藏的电池条
+        if([UIApplication sharedApplication].statusBarHidden == NO) {
+            
+            return [[UIApplication sharedApplication] statusBarFrame].size.height+[self belongsViewController].navigationController.navigationBar.frame.size.height;
+            
+        }else {
+            
+            return [self belongsViewController].navigationController.navigationBar.frame.size.height;
+        }
+    }
+    //相对于零点开始的
+    return 0.0;
+}
+
 - (void)gestureHidingkeyboard {
     
-    UITapGestureRecognizer *tableViewGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide)];
-    tableViewGesture.numberOfTapsRequired = 1;
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide)];
+    gesture.numberOfTapsRequired = 1;
     //设置成NO表示当前控件响应后会传播到其他控件上，默认为YES。
-    tableViewGesture.cancelsTouchesInView = NO;
-    [self addGestureRecognizer:tableViewGesture];
+    gesture.cancelsTouchesInView = NO;
+    [self addGestureRecognizer:gesture];
 }
 
 - (void)keyboardHide {

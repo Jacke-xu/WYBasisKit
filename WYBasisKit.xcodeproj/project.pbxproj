@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0EF83125CC678A935E00F2B3 /* libPods-WYBasisKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B031672422552F5538E4614 /* libPods-WYBasisKit.a */; };
+		1F1E415220DCA6E900C61107 /* TestTextFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1E415120DCA6E900C61107 /* TestTextFieldViewController.m */; };
 		1F28302F20D3B9B700624C76 /* Countdown.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FB320D3B9B600624C76 /* Countdown.m */; };
 		1F28303020D3B9B700624C76 /* Loading.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1F282FB520D3B9B600624C76 /* Loading.bundle */; };
 		1F28303120D3B9B700624C76 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FB720D3B9B600624C76 /* LoadingView.m */; };
@@ -72,6 +73,8 @@
 /* Begin PBXFileReference section */
 		0B75358EB85F4ECBE048F1E3 /* Pods-WYBasisKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYBasisKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WYBasisKit/Pods-WYBasisKit.debug.xcconfig"; sourceTree = "<group>"; };
 		1B031672422552F5538E4614 /* libPods-WYBasisKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WYBasisKit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F1E415020DCA6E900C61107 /* TestTextFieldViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestTextFieldViewController.h; sourceTree = "<group>"; };
+		1F1E415120DCA6E900C61107 /* TestTextFieldViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestTextFieldViewController.m; sourceTree = "<group>"; };
 		1F282FB220D3B9B600624C76 /* Countdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Countdown.h; sourceTree = "<group>"; };
 		1F282FB320D3B9B600624C76 /* Countdown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Countdown.m; sourceTree = "<group>"; };
 		1F282FB520D3B9B600624C76 /* Loading.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Loading.bundle; sourceTree = "<group>"; };
@@ -525,6 +528,8 @@
 				1FA9267520DA46A500C5D12B /* TestLableViewController.m */,
 				1F3360F220DB40D9009BD7AB /* TestTextViewViewController.h */,
 				1F3360F320DB40D9009BD7AB /* TestTextViewViewController.m */,
+				1F1E415020DCA6E900C61107 /* TestTextFieldViewController.h */,
+				1F1E415120DCA6E900C61107 /* TestTextFieldViewController.m */,
 			);
 			path = TestController;
 			sourceTree = "<group>";
@@ -737,6 +742,7 @@
 				1F28304F20D3B9B700624C76 /* UITextView+Extension.m in Sources */,
 				1F28303520D3B9B700624C76 /* LLSimpleCamera+Helper.m in Sources */,
 				1F28305520D3B9B700624C76 /* NSString+MD5Encryption.m in Sources */,
+				1F1E415220DCA6E900C61107 /* TestTextFieldViewController.m in Sources */,
 				1F28304820D3B9B700624C76 /* UIButton+Extension.m in Sources */,
 				1F28304720D3B9B700624C76 /* CALayer+Extension.m in Sources */,
 				1F28305320D3B9B700624C76 /* BoolJudge.m in Sources */,

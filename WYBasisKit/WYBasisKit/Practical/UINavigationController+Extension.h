@@ -20,10 +20,10 @@
 /** 导航栏标题字号 */
 @property (nonatomic, strong) UIFont *titleFont;
 
-/** 导航栏背景色，会设置translucent = NO */
+/** 导航栏背景色 */
 @property (nonatomic, strong) UIColor *barBackgroundColor;
 
-/** 导航栏背景图片，会设置translucent = NO */
+/** 导航栏背景图片 */
 @property (nonatomic, strong) UIImage *barBackgroundImage;
 
 /** 导航栏左侧返回按钮背景图片 */
@@ -35,7 +35,7 @@
 /** 设置导航栏完全透明  会设置translucent = YES */
 - (void)navigationBarTransparent;
 
-/** 让导航栏完全不透明 */
+/** 让导航栏完全不透明 会设置translucent = NO */
 - (void)navigationBarOpaque;
 
 /** 设置导航栏上滑收起,下滑显示(iOS8及以后有效) */
