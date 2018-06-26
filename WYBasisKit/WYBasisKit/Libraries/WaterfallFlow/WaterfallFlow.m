@@ -11,7 +11,7 @@
 
 @implementation WaterfallFlow
 
-+ (CGSize)zoomImageSizeFromImage:(UIImage *)image PlaceholderSize:(CGSize)placeholderSize {
++ (CGSize)zoomImageSizeFromImage:(UIImage *)image placeholderSize:(CGSize)placeholderSize {
     
     CGSize size = CGSizeMake(placeholderSize.width, placeholderSize.height);
     CGSize originalSize = image.size;
@@ -30,7 +30,7 @@
     return size;
 }
 
-+ (CGSize)zoomImageSizeFromUrl:(NSString *)imageUrl PlaceholderSize:(CGSize)placeholderSize {
++ (CGSize)zoomImageSizeFromUrl:(NSString *)imageUrl placeholderSize:(CGSize)placeholderSize {
     
     CGSize size = CGSizeMake(placeholderSize.width, placeholderSize.height);
     UIImage *cacaeImage = [[SDImageCache sharedImageCache]imageFromDiskCacheForKey:imageUrl];
@@ -53,7 +53,7 @@
     return size;
 }
 
-+ (void)downloadImageFromUrl:(NSString *)imageUrl ReloadView:(UIView *)reloadView ImageView:(UIImageView *)imageView PlaceholderImage:(UIImage *)placeholderImage Progress:(void (^)(NSInteger, NSInteger))progress completed:(void (^)(UIImage *, NSString *))completed {
++ (void)downloadImageFromUrl:(NSString *)imageUrl reloadView:(UIView *)reloadView imageView:(UIImageView *)imageView placeholderImage:(UIImage *)placeholderImage progress:(void (^)(NSInteger, NSInteger))progress completed:(void (^)(UIImage *, NSString *))completed {
     
     UIImage *cacaeImage = [[SDImageCache sharedImageCache]imageFromDiskCacheForKey:imageUrl];
     if(cacaeImage == nil) {
@@ -68,7 +68,7 @@
             
         } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
             
-            [weakself completedWithImage:image ImageUrl:imageURL ReloadView:reloadView completed:completed];
+            [weakself completedWithImage:image imageUrl:imageURL reloadView:reloadView completed:completed];
         }];
     }else {
         
@@ -80,7 +80,7 @@
     }
 }
 
-+ (void)completedWithImage:(UIImage *)image ImageUrl:(NSURL *)imageUrl ReloadView:(UIView *)reloadView completed:(void(^)(UIImage *image, NSString *imageURL))completed {
++ (void)completedWithImage:(UIImage *)image imageUrl:(NSURL *)imageUrl reloadView:(UIView *)reloadView completed:(void(^)(UIImage *image, NSString *imageURL))completed {
     
     GCD_mainThread(^{
         

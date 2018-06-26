@@ -76,7 +76,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <Photos/PHPhotoLibrary.h>
 #import <AVFoundation/AVFoundation.h>
-#import "NetWorkingStatus.h"
+#import "NetworkMonitoring.h"
 
 @implementation BoolJudge
 
@@ -124,7 +124,7 @@
 /** 判断6-18位字母或数字组合：位数可更改 */
 + (BOOL)combinationOfLettersOrNumbers:(NSString *)string {
     
-    NSString *regex = @"^[A-Za-z0-9]{6,20}+$";
+    NSString *regex = @"^[A-Za-z0-9]{6,18}+$";
     
     return [self isValidateByRegex:regex Object:string];
 }
@@ -793,7 +793,7 @@
     
     else  {
         
-        if([NetWorkingStatus internetStatus] == noNetwork) {
+        if([NetworkMonitoring sharedNetworkMonitoring].networkStatus == NetworkStatusNotReachable) {
             
             [self showAlertStr:@"网络连接错误，请检查您的网络设置!" superController:superController];
             return NO;

@@ -12,9 +12,9 @@
 
 
 typedef enum : NSInteger {
-	NotReachable = 0,//没有网络
-	ReachableViaWiFi,//wifi
-	ReachableViaWWAN//蜂窝网络
+	NotReachable = 0,
+	ReachableViaWiFi,
+	ReachableViaWWAN
 } NetworkStatus;
 
 #pragma mark IPv6 Support

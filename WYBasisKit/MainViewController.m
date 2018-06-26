@@ -11,6 +11,7 @@
 #import "TestWebViewViewController.h"
 #import "TestTextViewViewController.h"
 #import "TestTextFieldViewController.h"
+#import "TestTUIButtonViewController.h"
 
 @interface MainViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -44,7 +45,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 5;
+    return [self section].count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -73,7 +74,7 @@
         [tableView cellCutOffLineFromZeroPoint:cell];
     }
     cell.backgroundColor = [UIColor whiteColor];
-    cell.textLabel.text = [self sectionTitle:indexPath.row];
+    cell.textLabel.text = [self section][indexPath.row];
     
     return cell;
 }
@@ -99,15 +100,19 @@
         
         vc = [[TestTextFieldViewController alloc]init];
     }
-    vc.navigationItem.title = [self sectionTitle:indexPath.row];
+    else if (indexPath.row == 4) {
+        
+        vc = [[TestTUIButtonViewController alloc]init];
+    }
+    vc.navigationItem.title = [self section][indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (NSString *)sectionTitle:(NSInteger)row {
+- (NSArray *)section {
     
-    NSString *str = @[@"WKWebView",@"UILable",@"UITextView",@"UITextField",@""][row];
+    NSArray *sectionTitleAry = @[@"WKWebView",@"UILable",@"UITextView",@"UITextField",@"UIButton",@"网络请求"];
     
-    return str;
+    return sectionTitleAry;
 }
 
 - (UITableView *)tableView {

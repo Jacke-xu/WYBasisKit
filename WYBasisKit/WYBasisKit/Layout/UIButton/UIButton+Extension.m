@@ -70,45 +70,6 @@
     return [self titleColorForState:UIControlStateSelected];
 }
 
-- (void)setBg_nColor:(UIColor *)bg_nColor {
-    
-    if(self.state == UIControlStateNormal) {
-        
-        [self setBackgroundColor:bg_nColor];
-    }
-}
-
-- (UIColor *)bg_nColor {
-    
-    return self.bg_nColor;
-}
-
-- (void)setBg_hColor:(UIColor *)bg_hColor {
-    
-    if(self.state == UIControlStateHighlighted) {
-        
-        [self setBackgroundColor:bg_hColor];
-    }
-}
-
-- (UIColor *)bg_hColor {
-    
-    return self.bg_hColor;
-}
-
-- (void)setBg_sColor:(UIColor *)bg_sColor {
-    
-    if(self.state == UIControlStateSelected) {
-        
-        [self setBackgroundColor:bg_sColor];
-    }
-}
-
-- (UIColor *)bg_sColor {
-    
-    return self.bg_sColor;
-}
-
 - (void)setNImage:(UIImage *)nImage {
     
     [self setImage:nImage forState:UIControlStateNormal];

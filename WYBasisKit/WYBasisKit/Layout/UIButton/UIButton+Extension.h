@@ -27,14 +27,6 @@
 @property (nonatomic, strong) UIColor *title_sColor;//按钮选中状态文字颜色
 
 
-//设置按钮背景颜色
-@property (nonatomic, strong) UIColor *bg_nColor;//按钮正常状态背景颜色
-
-@property (nonatomic, strong) UIColor *bg_hColor;//按钮高亮状态背景颜色
-
-@property (nonatomic, strong) UIColor *bg_sColor;//按钮选中状态背景颜色
-
-
 //设置按钮图片
 @property (nonatomic, strong) UIImage *nImage;//按钮正常状态图片
 

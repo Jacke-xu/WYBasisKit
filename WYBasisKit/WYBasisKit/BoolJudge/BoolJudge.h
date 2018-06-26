@@ -58,7 +58,7 @@ typedef NS_ENUM(NSInteger, PermissionType) {
 /** 验证手机号 非严谨:1开头11位纯数字 */
 + (BOOL)isMobileNumber:(NSString *)string;
 
-/** 验证手机号 严谨:运营商号段 */
+/** 验证手机号 严谨:运营商号段，正则号段可能有不全，自己可以添加 */
 + (BOOL)isPhoneNumber:(NSString *)string;
 
 /** 验证运营商:移动 */
@@ -161,7 +161,7 @@ typedef NS_ENUM(NSInteger, PermissionType) {
 + (BOOL)matchesRegex:(NSString *)regex options:(NSRegularExpressionOptions)options content:(NSString *)string;
 
 /**
- 根据传入的媒体类型进行权限判断
+ 根据传入的媒体类型进行权限判断，如果没有相应权限，会自动弹出友情提示窗
 
  @param mediaType 要判断的权限的类型
  @param superController 控制器
