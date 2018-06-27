@@ -15,4 +15,9 @@
  */
 @property (nonatomic, strong) UIColor *placeholderColor;
 
+/**
+ *  文本最大支持多少个字符，设置后会自动根据该属性截取文本字符长度
+ */
+@property (nonatomic, assign) NSInteger maximumLimit;
+
 @end

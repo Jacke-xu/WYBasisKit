@@ -36,6 +36,7 @@
     textField2.placeholder = @"这个是加载在子view上的";
     textField2.backgroundColor = [UIColor greenColor];
     [textField2 automaticFollowKeyboard:self.view];
+    textField2.maximumLimit = 5;
     [superView addSubview:textField2];
 }
 

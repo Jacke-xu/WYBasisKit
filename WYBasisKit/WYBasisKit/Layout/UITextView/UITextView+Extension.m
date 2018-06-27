@@ -155,7 +155,10 @@
 
 - (void)dealloc {
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextViewTextDidChangeNotification object:nil];
+    if(self.addNoti == YES) {
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextViewTextDidChangeNotification object:nil];
+    }
 }
 
 @end

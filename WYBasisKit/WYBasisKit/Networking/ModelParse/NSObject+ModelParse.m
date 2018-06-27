@@ -51,7 +51,7 @@
                 obj = [array copy];
             }
         }
-        
+        //[anyObj setValue:[self emptyStr:obj] forKey:key];
         [anyObj setValue:obj forKey:key];
     }];
     return anyObj;
@@ -76,5 +76,14 @@
 
 //此方法只有子类重写才生效
 + (NSDictionary *)objectClassInArray {return nil;}
+
+////确保每个value都不会为空
+//+ (NSString *)emptyStr:(NSString *)str {
+//
+//    if (!str || [str isEqual:[NSNull null]] || str == nil || [str isEqualToString:@"null"] || [str isEqualToString:@"NULL"] || [str isEqualToString:@"Null"] || [str isEqualToString:@"nil"]) {
+//        str = @"";
+//    }
+//    return str;
+//}
 
 @end

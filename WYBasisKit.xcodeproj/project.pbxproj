@@ -10,6 +10,7 @@
 		0EF83125CC678A935E00F2B3 /* libPods-WYBasisKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B031672422552F5538E4614 /* libPods-WYBasisKit.a */; };
 		1F0A182920E1D24500532AA3 /* NetworkMonitoring.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0A182720E1D24500532AA3 /* NetworkMonitoring.m */; };
 		1F0A182A20E1D24500532AA3 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0A182820E1D24500532AA3 /* Reachability.m */; };
+		1F0A182F20E216B000532AA3 /* WYNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0A182E20E216B000532AA3 /* WYNetworking.m */; };
 		1F1E415220DCA6E900C61107 /* TestTextFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1E415120DCA6E900C61107 /* TestTextFieldViewController.m */; };
 		1F28302F20D3B9B700624C76 /* Countdown.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FB320D3B9B600624C76 /* Countdown.m */; };
 		1F28303020D3B9B700624C76 /* Loading.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1F282FB520D3B9B600624C76 /* Loading.bundle */; };
@@ -79,6 +80,8 @@
 		1F0A182620E1D24500532AA3 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		1F0A182720E1D24500532AA3 /* NetworkMonitoring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkMonitoring.m; sourceTree = "<group>"; };
 		1F0A182820E1D24500532AA3 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		1F0A182D20E216B000532AA3 /* WYNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYNetworking.h; sourceTree = "<group>"; };
+		1F0A182E20E216B000532AA3 /* WYNetworking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYNetworking.m; sourceTree = "<group>"; };
 		1F1E415020DCA6E900C61107 /* TestTextFieldViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestTextFieldViewController.h; sourceTree = "<group>"; };
 		1F1E415120DCA6E900C61107 /* TestTextFieldViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestTextFieldViewController.m; sourceTree = "<group>"; };
 		1F282FB220D3B9B600624C76 /* Countdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Countdown.h; sourceTree = "<group>"; };
@@ -212,6 +215,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F0A182C20E2167600532AA3 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				1F0A182D20E216B000532AA3 /* WYNetworking.h */,
+				1F0A182E20E216B000532AA3 /* WYNetworking.m */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		1F282FB120D3B9B600624C76 /* Countdown */ = {
 			isa = PBXGroup;
 			children = (
@@ -498,6 +510,7 @@
 		1F28302920D3B9B700624C76 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				1F0A182C20E2167600532AA3 /* Networking */,
 				1FC5FDAE20DCF8BE0092CED8 /* ModelParse */,
 				1F28302A20D3B9B700624C76 /* NetWorkingStatus */,
 			);
@@ -763,6 +776,7 @@
 				1F28305520D3B9B700624C76 /* NSString+MD5Encryption.m in Sources */,
 				1F1E415220DCA6E900C61107 /* TestTextFieldViewController.m in Sources */,
 				1F28304720D3B9B700624C76 /* CALayer+Extension.m in Sources */,
+				1F0A182F20E216B000532AA3 /* WYNetworking.m in Sources */,
 				1FC5FDA920DCE70F0092CED8 /* UIButton+Extension.m in Sources */,
 				1F28305320D3B9B700624C76 /* BoolJudge.m in Sources */,
 				1FC5FDAD20DCE75B0092CED8 /* TestTUIButtonViewController.m in Sources */,
