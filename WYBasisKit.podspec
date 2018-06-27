@@ -1,7 +1,6 @@
 Pod::Spec.new do |s|
 
   s.name         = "WYBasisKit"
-  s.platform     = :ios, '8.0'
   s.version      = "0.0.1"
   s.summary      = "WYBasisKit里面汇集了常用的类扩展，帮助开发者提高开发效率。"
   s.description  = "WYBasisKit里面汇集了常用UI库的类扩展、方法扩展及网络JSON数
