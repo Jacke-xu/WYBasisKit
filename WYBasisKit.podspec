@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/Jacke-xu/WYBasisKit"
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author       = { "jacke-xu" => "xuwangyong@aliyun.com" }
-  s.source       = { :git => "https://github.com/Jacke-xu/WYBasisKit.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/Jacke-xu/WYBasisKit.git", :tag => "0.0.1" }
   s.source_files  = "Classes", "Classes/**/*.{h,m}"
   s.exclude_files = "Classes/Exclude"
 
