@@ -54,7 +54,6 @@
  */
 - (void)textDidChange {
     
-    //重绘
     [self characterTruncation];
 }
 
