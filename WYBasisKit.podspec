@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author             = { "jacke-xu" => "xuwangyong@aliyun.com" }
   s.source       = { :git => "https://github.com/Jacke-xu/WYBasisKit.git", :tag => "#{s.version}" }
-  s.source_files  = "WYBasisKit/*
+  s.source_files  = "Classes", "Classes/**/*.{h,m}"
   s.exclude_files = "Classes/Exclude"
 
 end
