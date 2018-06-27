@@ -11,6 +11,6 @@ Pod::Spec.new do |s|
   s.author             = { "jacke-xu" => "xuwangyong@aliyun.com" }
   s.source       = { :git => "https://github.com/Jacke-xu/WYBasisKit.git", :tag => "#{s.version}" }
   s.source_files  = "WYBasisKit/*
-  s.exclude_files = "WYBasisKit/Exclude"
+  s.exclude_files = "Classes/Exclude"
 
 end
