@@ -102,7 +102,7 @@
             
         }else {
             
-            debugLog(@"不支持reloadData的view");
+            WYLog(@"不支持reloadData的view");
         }
     });
 }

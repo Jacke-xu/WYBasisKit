@@ -33,7 +33,7 @@
     [self.view addSubview:textField1];
     
     UITextField *textField2 = [[UITextField alloc]initWithFrame:CGRectMake(20, superView.bottom-60, screenWidth-40, 50)];
-    textField2.placeholder = @"这个是加载在子view上的";
+    textField2.placeholder = @"这个是加载在子view上的,5个字符";
     textField2.backgroundColor = [UIColor greenColor];
     [textField2 automaticFollowKeyboard:self.view];
     textField2.maximumLimit = 5;

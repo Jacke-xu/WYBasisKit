@@ -11,6 +11,10 @@
 		1F0A182920E1D24500532AA3 /* NetworkMonitoring.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0A182720E1D24500532AA3 /* NetworkMonitoring.m */; };
 		1F0A182A20E1D24500532AA3 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0A182820E1D24500532AA3 /* Reachability.m */; };
 		1F0A182F20E216B000532AA3 /* WYNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F0A182E20E216B000532AA3 /* WYNetworking.m */; };
+		1F1D41DC20F4560700FB65E2 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1D41DB20F4560700FB65E2 /* GTMBase64.m */; };
+		1F1D41DF20F4570300FB65E2 /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1D41DE20F4570300FB65E2 /* NSData+CommonCrypto.m */; };
+		1F1D41E220F4573F00FB65E2 /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1D41E020F4573F00FB65E2 /* NSString+Base64.m */; };
+		1F1D41E520F4576900FB65E2 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1D41E420F4576900FB65E2 /* NSData+Base64.m */; };
 		1F1E415220DCA6E900C61107 /* TestTextFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1E415120DCA6E900C61107 /* TestTextFieldViewController.m */; };
 		1F28302F20D3B9B700624C76 /* Countdown.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FB320D3B9B600624C76 /* Countdown.m */; };
 		1F28303020D3B9B700624C76 /* Loading.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1F282FB520D3B9B600624C76 /* Loading.bundle */; };
@@ -47,7 +51,6 @@
 		1F28305220D3B9B700624C76 /* WKWebView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F28300820D3B9B700624C76 /* WKWebView+Extension.m */; };
 		1F28305320D3B9B700624C76 /* BoolJudge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F28300F20D3B9B700624C76 /* BoolJudge.m */; };
 		1F28305420D3B9B700624C76 /* LocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F28301220D3B9B700624C76 /* LocalStorage.m */; };
-		1F28305520D3B9B700624C76 /* NSString+MD5Encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F28301620D3B9B700624C76 /* NSString+MD5Encryption.m */; };
 		1F28305620D3B9B700624C76 /* NSArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F28301920D3B9B700624C76 /* NSArray+Extension.m */; };
 		1F28305920D3B9B700624C76 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F28301F20D3B9B700624C76 /* NSString+Extension.m */; };
 		1F28305A20D3B9B700624C76 /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F28302120D3B9B700624C76 /* UIColor+Extension.m */; };
@@ -61,6 +64,10 @@
 		1F59A64B20D8A7040055AAB4 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F59A64A20D8A7040055AAB4 /* MainViewController.m */; };
 		1F59A64E20D8A91F0055AAB4 /* UINavigationController+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F59A64D20D8A91F0055AAB4 /* UINavigationController+Extension.m */; };
 		1F59A65120D8E5B80055AAB4 /* UIViewController+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F59A65020D8E5B80055AAB4 /* UIViewController+Extension.m */; };
+		1F64823820F34470001D4B0A /* NSString+RSA.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F64823720F34470001D4B0A /* NSString+RSA.m */; };
+		1F64823B20F3447E001D4B0A /* NSString+AES256.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F64823A20F3447E001D4B0A /* NSString+AES256.m */; };
+		1F64823E20F34489001D4B0A /* NSString+DES.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F64823D20F34489001D4B0A /* NSString+DES.m */; };
+		1F64824120F34494001D4B0A /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F64824020F34494001D4B0A /* NSString+MD5.m */; };
 		1FA9267620DA46A500C5D12B /* TestLableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA9267520DA46A500C5D12B /* TestLableViewController.m */; };
 		1FBEBE9320DB78030038FBBF /* UILabel+RichText.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBEBE9220DB78030038FBBF /* UILabel+RichText.m */; };
 		1FC5FDA920DCE70F0092CED8 /* UIButton+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC5FDA620DCE70F0092CED8 /* UIButton+Extension.m */; };
@@ -82,6 +89,15 @@
 		1F0A182820E1D24500532AA3 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		1F0A182D20E216B000532AA3 /* WYNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYNetworking.h; sourceTree = "<group>"; };
 		1F0A182E20E216B000532AA3 /* WYNetworking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYNetworking.m; sourceTree = "<group>"; };
+		1F1D41D920F455E000FB65E2 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		1F1D41DA20F4560700FB65E2 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
+		1F1D41DB20F4560700FB65E2 /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
+		1F1D41DD20F4570300FB65E2 /* NSData+CommonCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CommonCrypto.h"; sourceTree = "<group>"; };
+		1F1D41DE20F4570300FB65E2 /* NSData+CommonCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CommonCrypto.m"; sourceTree = "<group>"; };
+		1F1D41E020F4573F00FB65E2 /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
+		1F1D41E120F4573F00FB65E2 /* NSString+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Base64.h"; sourceTree = "<group>"; };
+		1F1D41E320F4576900FB65E2 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		1F1D41E420F4576900FB65E2 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		1F1E415020DCA6E900C61107 /* TestTextFieldViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestTextFieldViewController.h; sourceTree = "<group>"; };
 		1F1E415120DCA6E900C61107 /* TestTextFieldViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestTextFieldViewController.m; sourceTree = "<group>"; };
 		1F282FB220D3B9B600624C76 /* Countdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Countdown.h; sourceTree = "<group>"; };
@@ -153,8 +169,6 @@
 		1F28300F20D3B9B700624C76 /* BoolJudge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoolJudge.m; sourceTree = "<group>"; };
 		1F28301120D3B9B700624C76 /* LocalStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalStorage.h; sourceTree = "<group>"; };
 		1F28301220D3B9B700624C76 /* LocalStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalStorage.m; sourceTree = "<group>"; };
-		1F28301520D3B9B700624C76 /* NSString+MD5Encryption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5Encryption.h"; sourceTree = "<group>"; };
-		1F28301620D3B9B700624C76 /* NSString+MD5Encryption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5Encryption.m"; sourceTree = "<group>"; };
 		1F28301820D3B9B700624C76 /* NSArray+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Extension.h"; sourceTree = "<group>"; };
 		1F28301920D3B9B700624C76 /* NSArray+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Extension.m"; sourceTree = "<group>"; };
 		1F28301E20D3B9B700624C76 /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
@@ -181,6 +195,14 @@
 		1F59A64D20D8A91F0055AAB4 /* UINavigationController+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Extension.m"; sourceTree = "<group>"; };
 		1F59A64F20D8E5B80055AAB4 /* UIViewController+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Extension.h"; sourceTree = "<group>"; };
 		1F59A65020D8E5B80055AAB4 /* UIViewController+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Extension.m"; sourceTree = "<group>"; };
+		1F64823620F34470001D4B0A /* NSString+RSA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+RSA.h"; sourceTree = "<group>"; };
+		1F64823720F34470001D4B0A /* NSString+RSA.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+RSA.m"; sourceTree = "<group>"; };
+		1F64823920F3447E001D4B0A /* NSString+AES256.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+AES256.h"; sourceTree = "<group>"; };
+		1F64823A20F3447E001D4B0A /* NSString+AES256.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+AES256.m"; sourceTree = "<group>"; };
+		1F64823C20F34489001D4B0A /* NSString+DES.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+DES.h"; sourceTree = "<group>"; };
+		1F64823D20F34489001D4B0A /* NSString+DES.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+DES.m"; sourceTree = "<group>"; };
+		1F64823F20F34494001D4B0A /* NSString+MD5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
+		1F64824020F34494001D4B0A /* NSString+MD5.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		1FA9267420DA46A500C5D12B /* TestLableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestLableViewController.h; sourceTree = "<group>"; };
 		1FA9267520DA46A500C5D12B /* TestLableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestLableViewController.m; sourceTree = "<group>"; };
 		1FBEBE9120DB78030038FBBF /* UILabel+RichText.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+RichText.h"; sourceTree = "<group>"; };
@@ -222,6 +244,22 @@
 				1F0A182E20E216B000532AA3 /* WYNetworking.m */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		1F1D41D520F4558000FB65E2 /* BASE */ = {
+			isa = PBXGroup;
+			children = (
+				1F1D41D920F455E000FB65E2 /* GTMDefines.h */,
+				1F1D41DA20F4560700FB65E2 /* GTMBase64.h */,
+				1F1D41DB20F4560700FB65E2 /* GTMBase64.m */,
+				1F1D41E120F4573F00FB65E2 /* NSString+Base64.h */,
+				1F1D41E020F4573F00FB65E2 /* NSString+Base64.m */,
+				1F1D41E320F4576900FB65E2 /* NSData+Base64.h */,
+				1F1D41E420F4576900FB65E2 /* NSData+Base64.m */,
+				1F1D41DD20F4570300FB65E2 /* NSData+CommonCrypto.h */,
+				1F1D41DE20F4570300FB65E2 /* NSData+CommonCrypto.m */,
+			);
+			path = BASE;
 			sourceTree = "<group>";
 		};
 		1F282FB120D3B9B600624C76 /* Countdown */ = {
@@ -459,6 +497,10 @@
 		1F28301320D3B9B700624C76 /* Encryption */ = {
 			isa = PBXGroup;
 			children = (
+				1F1D41D520F4558000FB65E2 /* BASE */,
+				1F64823520F343D0001D4B0A /* RSA */,
+				1F64823420F343BF001D4B0A /* AES256 */,
+				1F64823320F343AE001D4B0A /* DES */,
 				1F28301420D3B9B700624C76 /* MD5 */,
 			);
 			path = Encryption;
@@ -467,8 +509,8 @@
 		1F28301420D3B9B700624C76 /* MD5 */ = {
 			isa = PBXGroup;
 			children = (
-				1F28301520D3B9B700624C76 /* NSString+MD5Encryption.h */,
-				1F28301620D3B9B700624C76 /* NSString+MD5Encryption.m */,
+				1F64823F20F34494001D4B0A /* NSString+MD5.h */,
+				1F64824020F34494001D4B0A /* NSString+MD5.m */,
 			);
 			path = MD5;
 			sourceTree = "<group>";
@@ -543,6 +585,33 @@
 				1FC5FDAC20DCE75B0092CED8 /* TestTUIButtonViewController.m */,
 			);
 			path = TestController;
+			sourceTree = "<group>";
+		};
+		1F64823320F343AE001D4B0A /* DES */ = {
+			isa = PBXGroup;
+			children = (
+				1F64823C20F34489001D4B0A /* NSString+DES.h */,
+				1F64823D20F34489001D4B0A /* NSString+DES.m */,
+			);
+			path = DES;
+			sourceTree = "<group>";
+		};
+		1F64823420F343BF001D4B0A /* AES256 */ = {
+			isa = PBXGroup;
+			children = (
+				1F64823920F3447E001D4B0A /* NSString+AES256.h */,
+				1F64823A20F3447E001D4B0A /* NSString+AES256.m */,
+			);
+			path = AES256;
+			sourceTree = "<group>";
+		};
+		1F64823520F343D0001D4B0A /* RSA */ = {
+			isa = PBXGroup;
+			children = (
+				1F64823620F34470001D4B0A /* NSString+RSA.h */,
+				1F64823720F34470001D4B0A /* NSString+RSA.m */,
+			);
+			path = RSA;
 			sourceTree = "<group>";
 		};
 		1FC5FDA420DCE70F0092CED8 /* UIButton */ = {
@@ -753,6 +822,7 @@
 				1F28304E20D3B9B700624C76 /* UITextField+Extension.m in Sources */,
 				1F28303620D3B9B700624C76 /* LLSimpleCamera.m in Sources */,
 				1F28303A20D3B9B700624C76 /* TOCropOverlayView.m in Sources */,
+				1F64823820F34470001D4B0A /* NSString+RSA.m in Sources */,
 				1F28305620D3B9B700624C76 /* NSArray+Extension.m in Sources */,
 				1FBEBE9320DB78030038FBBF /* UILabel+RichText.m in Sources */,
 				1F59A64B20D8A7040055AAB4 /* MainViewController.m in Sources */,
@@ -764,16 +834,19 @@
 				1F59A65120D8E5B80055AAB4 /* UIViewController+Extension.m in Sources */,
 				1F28304520D3B9B700624C76 /* WaterfallFlow.m in Sources */,
 				1F28303B20D3B9B700624C76 /* TOCroppedImageAttributes.m in Sources */,
+				1F64823E20F34489001D4B0A /* NSString+DES.m in Sources */,
 				1F59A64E20D8A91F0055AAB4 /* UINavigationController+Extension.m in Sources */,
 				1FA9267620DA46A500C5D12B /* TestLableViewController.m in Sources */,
 				1F28305120D3B9B700624C76 /* UIView+Rounded.m in Sources */,
+				1F1D41E220F4573F00FB65E2 /* NSString+Base64.m in Sources */,
+				1F1D41DF20F4570300FB65E2 /* NSData+CommonCrypto.m in Sources */,
 				1F28305C20D3B9B700624C76 /* UIImage+Extension.m in Sources */,
 				1FC5FDAA20DCE70F0092CED8 /* UIButton+Layout.m in Sources */,
 				1F28305A20D3B9B700624C76 /* UIColor+Extension.m in Sources */,
 				1F28303120D3B9B700624C76 /* LoadingView.m in Sources */,
+				1F64824120F34494001D4B0A /* NSString+MD5.m in Sources */,
 				1F28304F20D3B9B700624C76 /* UITextView+Extension.m in Sources */,
 				1F28303520D3B9B700624C76 /* LLSimpleCamera+Helper.m in Sources */,
-				1F28305520D3B9B700624C76 /* NSString+MD5Encryption.m in Sources */,
 				1F1E415220DCA6E900C61107 /* TestTextFieldViewController.m in Sources */,
 				1F28304720D3B9B700624C76 /* CALayer+Extension.m in Sources */,
 				1F0A182F20E216B000532AA3 /* WYNetworking.m in Sources */,
@@ -782,6 +855,7 @@
 				1FC5FDAD20DCE75B0092CED8 /* TestTUIButtonViewController.m in Sources */,
 				1F28305B20D3B9B700624C76 /* UIFont+Extension.m in Sources */,
 				1F28304320D3B9B700624C76 /* UIImage+FixOrientation.m in Sources */,
+				1F1D41E520F4576900FB65E2 /* NSData+Base64.m in Sources */,
 				1F28304620D3B9B700624C76 /* WYScrollerView.m in Sources */,
 				1F28304220D3B9B700624C76 /* UIImage+CropRotate.m in Sources */,
 				1F28304120D3B9B700624C76 /* TOCropViewControllerTransitioning.m in Sources */,
@@ -793,8 +867,10 @@
 				1F28303C20D3B9B700624C76 /* TOCropScrollView.m in Sources */,
 				1FC5FDB120DCF9AB0092CED8 /* NSObject+ModelParse.m in Sources */,
 				1F28306420D3BAAA00624C76 /* NSMutableAttributedString+Extension.m in Sources */,
+				1F64823B20F3447E001D4B0A /* NSString+AES256.m in Sources */,
 				1F59A64520D8A1F40055AAB4 /* TestWebViewViewController.m in Sources */,
 				1F28305920D3B9B700624C76 /* NSString+Extension.m in Sources */,
+				1F1D41DC20F4560700FB65E2 /* GTMBase64.m in Sources */,
 				1F28303420D3B9B700624C76 /* WYSegmentedView.m in Sources */,
 				1F28303820D3B9B700624C76 /* SKFCamera.m in Sources */,
 				1F28304B20D3B9B700624C76 /* UILabel+Extension.m in Sources */,

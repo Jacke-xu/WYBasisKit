@@ -157,6 +157,82 @@
      return [self convertToDate:timerSp];
 }
 
+/** 时间戳转星座
+ 
+ 摩羯座 12月22日------1月19日
+ 水瓶座 1月20日-------2月18日
+ 双鱼座 2月19日-------3月20日
+ 白羊座 3月21日-------4月19日
+ 金牛座 4月20日-------5月20日
+ 双子座 5月21日-------6月21日
+ 巨蟹座 6月22日-------7月22日
+ 狮子座 7月23日-------8月22日
+ 处女座 8月23日-------9月22日
+ 天秤座 9月23日------10月23日
+ 天蝎座 10月24日-----11月21日
+ 射手座 11月22日-----12月21日
+ 
+ */
++ (NSString *)timestampToConstellation:(NSString *)timerSp {
+    
+    //计算月份
+    NSString *date = [self convertToDate:timerSp];
+    NSString *retStr=@"";
+    NSString *birthStr = [date substringFromIndex:5];
+    int month=0;
+    NSString *theMonth = [birthStr substringToIndex:2];
+    if([[theMonth substringToIndex:0] isEqualToString:@"0"]){
+        month = [[theMonth substringFromIndex:1] intValue];
+    }else{
+        month = [theMonth intValue];
+    }
+    //计算天数
+    int day=0;
+    NSString *theDay = [birthStr substringFromIndex:3];
+    if([[theDay substringToIndex:0] isEqualToString:@"0"]){
+        day = [[theDay substringFromIndex:1] intValue];
+    }else {
+        day = [theDay intValue];
+    }
+    
+    if (month<1 || month>12 || day<1 || day>31){
+        return @"错误日期格式!";
+    }
+    if(month==2 && day>29) {
+        return @"错误日期格式!!";
+    }else if(month==4 || month==6 || month==9 || month==11) {
+        if (day>30) {
+            return @"错误日期格式!!!";
+        }
+    }
+    NSString *astroString = @"魔羯水瓶双鱼白羊金牛双子巨蟹狮子处女天秤天蝎射手魔羯";
+    NSString *astroFormat = @"102123444543";
+    retStr=[NSString stringWithFormat:@"%@",[astroString substringWithRange:NSMakeRange(month*2-(day < [[astroFormat substringWithRange:NSMakeRange((month-1), 1)] intValue] - (-19))*2,2)]];
+    return [NSString stringWithFormat:@"%@座",retStr];
+}
+
+/** 根据时间戳算年龄 */
++ (NSString *)timestampToAge:(NSString *)timerSp {
+    
+    NSString *dateString = [self convertToDate:timerSp];
+    NSString *year = [dateString substringWithRange:NSMakeRange(0, 4)];
+    NSString *month = [dateString substringWithRange:NSMakeRange(5, 2)];
+    NSString *day = [dateString substringWithRange:NSMakeRange(dateString.length-2, 2)];
+    NSDate *nowDate = [NSDate date];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierISO8601];
+    NSDateComponents *compomemts = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitWeekday | NSCalendarUnitDay fromDate:nowDate];
+    NSInteger nowYear = compomemts.year;
+    NSInteger nowMonth = compomemts.month;
+    NSInteger nowDay = compomemts.day;
+    
+    // 计算年龄
+    NSInteger userAge = nowYear - year.intValue - 1;
+    if ((nowMonth > month.intValue) || (nowMonth == month.intValue && nowDay >= day.intValue)) {
+        userAge++;
+    }
+    return [NSString stringWithFormat:@"%ld",userAge];
+}
+
 /** 获取手机时间戳 */
 + (NSString *)getCurrentTimeSp {
     
@@ -450,6 +526,51 @@
     if ([platform isEqualToString:@"x86_64"])    return @"iPhone Simulator";
     
     return platform;
+}
+
++ (NSString *)spacingBankCardNumber:(NSString *)bankCardNumber {
+    
+    NSString *tmpStr = bankCardNumber;
+    NSInteger size = (tmpStr.length / 4);
+    NSMutableArray *tmpStrArr = [[NSMutableArray alloc] init];
+    for (int n = 0;n < size; n++)
+    {
+        [tmpStrArr addObject:[tmpStr substringWithRange:NSMakeRange(n*4, 4)]];
+    }
+    
+    [tmpStrArr addObject:[tmpStr substringWithRange:NSMakeRange(size*4, (tmpStr.length % 4))]];
+    
+    tmpStr = [tmpStrArr componentsJoinedByString:@" "];
+    
+    return tmpStr;
+}
+
++ (NSString *)bankCardNumberRemoveSpacing:(NSString *)bankCardNumber {
+    
+    return [bankCardNumber stringByReplacingOccurrencesOfString:@" " withString:@""];
+}
+
++ (NSString *)securityBankCard:(NSString *)bankCardNumber {
+    
+    NSString *IDCard =  bankCardNumber;
+    if(IDCard.length > 10){
+        return [NSString stringWithFormat:@"%@********%@",[IDCard substringToIndex:6], [IDCard substringFromIndex:IDCard.length-4]];
+    }else if(IDCard.length > 4){
+        return [NSString stringWithFormat:@"********%@", [IDCard substringFromIndex:IDCard.length-4]];
+    }
+    return IDCard;
+}
+
+//将 &lt 等类似的字符转化为HTML中的“<”等
++ (NSString *)htmlEntityDecode:(NSString *)string {
+    
+    string = [string stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
+    string = [string stringByReplacingOccurrencesOfString:@"&apos;" withString:@"'"];
+    string = [string stringByReplacingOccurrencesOfString:@"&lt;" withString:@"<"];
+    string = [string stringByReplacingOccurrencesOfString:@"&gt;" withString:@">"];
+    string = [string stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"]; // Do this last so that, e.g. @"&amp;lt;" goes to @"&lt;" not @"<"
+    
+    return string;
 }
 
 + (NSString *)emptyStr:(NSString *)str {

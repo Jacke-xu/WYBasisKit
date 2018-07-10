@@ -764,9 +764,9 @@
                 //表明用户尚未选择关于客户端是否可以访问硬件
                 [AVCaptureDevice requestAccessForMediaType:AVMediaTypeAudio completionHandler:^(BOOL granted) {
                     if (granted) {
-                        NSLog(@"请求完成！");
+                        WYLog(@"请求完成！");
                     } else {
-                        NSLog(@"失败");
+                        WYLog(@"失败");
                     }
                 }];
                 status = 2;

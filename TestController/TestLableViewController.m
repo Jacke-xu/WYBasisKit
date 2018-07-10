@@ -78,7 +78,7 @@
     
     [label2 clickRichTextWithStrings:@[@"https://github.com/Jacke-xu/WYBasisKit",@"记得给star哦"] clickAction:^(NSString *string, NSRange range, NSInteger index) {
         NSString *message = [NSString stringWithFormat:@"点击了“%@”字符\nrange: %@\nindex: %ld",string,NSStringFromRange(range),index];
-        debugLog(@"messge = %@",message);
+        WYLog(@"messge = %@",message);
     }];
     //设置是否有点击效果，默认是YES
     label2.enabledClickEffect = NO;
@@ -92,7 +92,7 @@
 - (void)didClickRichText:(NSString *)string range:(NSRange)range index:(NSInteger)index {
     
     NSString *message = [NSString stringWithFormat:@"点击了“%@”字符\nrange: %@\nindex: %ld",string,NSStringFromRange(range),index];
-    debugLog(@"messge = %@",message);
+    WYLog(@"messge = %@",message);
 }
 
 - (void)didReceiveMemoryWarning {

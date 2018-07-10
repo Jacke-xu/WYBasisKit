@@ -125,7 +125,7 @@
             item.titleLabel.textAlignment = NSTextAlignmentCenter;
             
         }else {
-            //NSLog(@"图片数组越界");
+            //WYLog(@"图片数组越界");
         }
         item.tag = 100+i;
         [item addTarget:self action:@selector(itemClick:) forControlEvents:UIControlEventTouchUpInside];

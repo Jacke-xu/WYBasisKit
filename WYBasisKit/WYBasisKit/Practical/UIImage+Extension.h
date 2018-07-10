@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, GradientType) {
+    
+    GradientTypeTopToBottom      = 0,//从上到小
+    GradientTypeLeftToRight      = 1,//从左到右
+    GradientTypeUpleftToLowright = 2,//左上到右下
+    GradientTypeUprightToLowleft = 3,//右上到左下
+};
+
 @interface UIImage (Extension)
 
 /**
@@ -44,47 +52,20 @@
 + (UIImage *)fileImage:(NSString *)fileImage fileName:(NSString *)fileName;
 
 /** 字符串转图片 */
-+ (UIImage *)Base64StrToUIImage:(NSString *)encodedImageStr;
++ (UIImage *)base64StrToUIImage:(NSString *)encodedImageStr;
 
 /** 图片转字符串 */
-+ (NSString *)ImageToBase64Str:(UIImage *)image;
++ (NSString *)imageToBase64Str:(UIImage *)image;
 
 /**
- *  拉伸图片
- *
- *  @param name 图片名字
- *
- *  @return 拉伸好的图片
- */
-+ (UIImage *)hd_resizedImageWithImageName:(NSString *)name;
-
-/**
- *  拉伸图片
- *
- *  @param image 要拉伸的图片
- *
- *  @return 拉伸好的图片
- */
-+ (UIImage *)hd_resizedImageWithImage:(UIImage *)image;
-
-/**
- *  返回一个缩放好的图片
+ *  图片切割
  *
  *  @param image  要切割的图片
  *  @param imageSize 边框的宽度
  *
  *  @return 切割好的图片
  */
-+ (UIImage *)hd_cutImage:(UIImage*)image andSize:(CGSize)imageSize;
-
-/**
- *  返回一个下边有半个红圈的原型头像
- *
- *  @param image  要切割的图片
- *
- *  @return 切割好的头像
- */
-+ (UIImage *)hd_captureCircleImage:(UIImage*)image;
++ (UIImage *)cutImage:(UIImage*)image andSize:(CGSize)imageSize;
 
 /**
  *  根据url返回一个圆形的头像
@@ -95,7 +76,7 @@
  *
  *  @return 切割好的头像
  */
-+ (UIImage *)hd_captureCircleImageWithURL:(NSString *)iconUrl andBorderWith:(CGFloat)border andBorderColor:(UIColor *)color;
++ (UIImage *)captureCircleImageWithURL:(NSString *)iconUrl andBorderWith:(CGFloat)border andBorderColor:(UIColor *)color;
 
 /**
  *  根据iamge返回一个圆形的头像
@@ -106,7 +87,7 @@
  *
  *  @return 切割好的头像
  */
-+ (UIImage *)hd_captureCircleImageWithImage:(UIImage *)iconImage andBorderWith:(CGFloat)border andBorderColor:(UIColor *)color;
++ (UIImage *)captureCircleImageWithImage:(UIImage *)iconImage andBorderWith:(CGFloat)border andBorderColor:(UIColor *)color;
 
 /**
  *  生成毛玻璃效果的图片
@@ -116,7 +97,7 @@
  *
  *  @return 返回模糊化之后的图片
  */
-+ (UIImage *)hd_blurredImageWithImage:(UIImage *)image andBlurAmount:(CGFloat)blurAmount;
++ (UIImage *)blurredImageWithImage:(UIImage *)image andBlurAmount:(CGFloat)blurAmount;
 
 /**
  *  截取相应的view生成一张图片
@@ -125,24 +106,14 @@
  *
  *  @return 生成的图片
  */
-+ (UIImage *)hd_viewShotWithView:(UIView *)view;
++ (UIImage *)viewShotWithView:(UIView *)view;
 
 /**
  *  截屏
  *
  *  @return 返回截屏的图片
  */
-+ (UIImage *)hd_screenShot;
-
-/**
- *  给图片添加水印
- *
- *  @param originalImage         原图
- *  @param waterImageName 水印的名字
- *
- *  @return 添加完水印的图片
- */
-+ (UIImage *)hd_waterImageWithBgImageName:(UIImage *)originalImage andWaterImageName:(NSString *)waterImageName;
++ (UIImage *)screenShot;
 
 /**
  *  图片进行压缩
@@ -154,7 +125,7 @@
  *
  *  @exception 压缩之后为image/jpeg 格式
  */
-+ (UIImage *)hd_reduceImage:(UIImage *)image percent:(float)percent;
++ (UIImage *)reduceImage:(UIImage *)image percent:(float)percent;
 
 /**
  *  对图片进行压缩
@@ -164,7 +135,7 @@
  *
  *  @return 压缩好的图片
  */
-+ (UIImage *)hd_imageWithImageSimple:(UIImage*)image scaledToSize:(CGSize)newSize;
++ (UIImage *)imageWithImageSimple:(UIImage*)image scaledToSize:(CGSize)newSize;
 
 /**
  *  对图片进行压缩
@@ -174,7 +145,7 @@
  *
  *  @return 压缩好的图片
  */
-+ (UIImage *)hd_imageWithImageSimple:(UIImage*)image scaledToKB:(NSInteger)kb;
++ (UIImage *)imageWithImageSimple:(UIImage*)image scaledToKB:(NSInteger)kb;
 
 /**
  *  对图片进行压缩
@@ -187,11 +158,11 @@
 + (UIImage *)compressImage:(UIImage *)image toByte:(NSInteger)maxLength;
 
 /**
- *  生成了一个毛玻璃效果的图片
+ *  生成一个毛玻璃效果的图片
  *
  *  @return 返回模糊化好的图片
  */
-- (UIImage *)hd_blurredImage:(CGFloat)blurAmount;
+- (UIImage *)blurredImage:(CGFloat)blurAmount;
 
 /**
  *  生成一个毛玻璃效果的图片
@@ -200,7 +171,7 @@
  *
  *  @return 毛玻璃好的图片
  */
-- (UIImage *)hd_blearImageWithBlurLevel:(CGFloat)blurLevel;
+- (UIImage *)blearImageWithBlurLevel:(CGFloat)blurLevel;
 
 /** 根据给定的url计算网络图片的大小*/
 + (CGSize)downloadImageSizeWithURL:(id)imageURL;
@@ -208,7 +179,65 @@
 /** 根据视频url获取第一帧图片*/
 + (UIImage *)videoPreViewImage:(NSURL *)path;
 
-/** 根据给定的颜生成图片*/
+/** 根据给定的颜色生成图片*/
 + (UIImage *)createImage:(UIColor *)imageColor;
+
+/**
+ 通过渐变色生成图片
+ 
+ @param colors 渐变颜色数组
+ @param gradientType 渐变类型
+ @param imageSize 需要的图片尺寸
+ 
+ */
++ (UIImage *)imageFromGradientColors:(NSArray *)colors gradientType:(GradientType)gradientType imageSize:(CGSize)imageSize;
+
+/**
+ 对比两张图片是否相同
+ 
+ @param image 原图
+ @param anotherImage 需要比较的图片
+ 
+ */
++ (BOOL)imageEqualToImage:(UIImage*)image anotherImage:(UIImage *)anotherImage;
+
+/**
+ 图片透明度
+ 
+ @param alpha 透明度
+ @param image 原图
+ 
+ */
++ (UIImage *)imageByApplyingAlpha:(CGFloat)alpha  image:(UIImage*)image;
+
+/**
+ 镶嵌图片
+ 
+ @param firstImage 图片1
+ @param secondImage 图片2
+ @return 拼接后的图片
+ */
++ (UIImage *)spliceFirstImage:(UIImage *)firstImage secondImage:(UIImage *)secondImage;
+
+/**
+ 生成二维码图片
+ 
+ @param dataDic 二维码中的信息
+ @param size 二维码Size
+ @param waterImage 水印图片
+ @return 一个二维码图片，水印在二维码中央
+ */
++ (UIImage *)qrCodeImageForDataDic:(NSDictionary *)dataDic size:(CGSize)size waterImage:(UIImage *)waterImage;
+
+/**
+ 修改二维码颜色
+ 
+ @param image 二维码图片
+ @param red red
+ @param green green
+ @param blue blue
+ @return 修改颜色后的二维码图片
+ */
++ (UIImage *)changeColorWithQRCodeImage:(UIImage *)image red:(NSUInteger)red green:(NSUInteger)green blue:(NSUInteger)blue;
 
 @end

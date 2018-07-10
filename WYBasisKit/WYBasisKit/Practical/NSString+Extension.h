@@ -17,6 +17,18 @@
 /** 根据银行卡号获取所属银行 */
 + (NSString *)getBankName:(NSString *)string;
 
+/** 正常号转银行卡号 － 增加4位间的空格 */
++ (NSString *)spacingBankCardNumber:(NSString *)bankCardNumber;
+
+/** 银行卡号转正常号 － 去除4位间的空格 */
++ (NSString *)bankCardNumberRemoveSpacing:(NSString *)bankCardNumber;
+
+/** 银行卡号安全化 格式为****1234保留最后4位 */
++ (NSString *)securityBankCard:(NSString *)bankCardNumber;
+
+/** 格式化HTML代码 */
++ (NSString *)htmlEntityDecode:(NSString *)string;
+
 /** 返回一个计算好的字符串的高度和宽度 */
 - (CGSize)boundingRectWithSize:(CGSize)size withFont:(UIFont *)font lineSpacing:(NSInteger)lineSpacing;
 
@@ -46,10 +58,16 @@
  */
 + (NSString *)timeDifferenceWithNowTimer:(NSString *)timerSp;
 
+/** 时间戳转星座 */
++ (NSString *)timestampToConstellation:(NSString *)timerSp;
+
+/** 根据时间戳算年龄 */
++ (NSString *)timestampToAge:(NSString *)timerSp;
+
 /** 获取手机时间戳 */
 + (NSString *)getCurrentTimeSp;
 
-/** 获取网路时间戳*/
+/** 获取网络时间戳*/
 + (NSString *)getNetworkTimeSp;
 
 /** 图片转字符串 */

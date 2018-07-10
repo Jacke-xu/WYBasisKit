@@ -105,7 +105,7 @@
     __weak typeof(self) weakSelf = self;
     [self.camera setOnDeviceChange:^(LLSimpleCamera *camera, AVCaptureDevice * device) {
         
-        NSLog(@"Device changed.");
+        WYLog(@"Device changed.");
         
         // device changed, check if flash is available
         if([camera isFlashAvailable]) {
@@ -124,7 +124,7 @@
     }];
     
     [self.camera setOnError:^(LLSimpleCamera *camera, NSError *error) {
-        NSLog(@"Camera error: %@", error);
+        WYLog(@"Camera error: %@", error);
         
         if([error.domain isEqualToString:LLSimpleCameraErrorDomain]) {
             if(error.code == LLSimpleCameraErrorCodeCameraPermission) {
@@ -188,14 +188,14 @@
     __weak typeof(self) weakSelf = self;
     // 去拍照
     [self.camera capture:^(LLSimpleCamera *camera, UIImage *image, NSDictionary *metadata, NSError *error) {
-        NSLog(@"拍照结束");
+        WYLog(@"拍照结束");
         if(!error) {
             TOCropViewController *cropController = [[TOCropViewController alloc] initWithImage:image];
             cropController.delegate = self;
             [weakSelf presentViewController:cropController animated:YES completion:nil];
         }
         else {
-            NSLog(@"An error has occured: %@", error);
+            WYLog(@"An error has occured: %@", error);
         }
     } exactSeenImage:YES];
 }

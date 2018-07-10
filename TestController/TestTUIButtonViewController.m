@@ -43,10 +43,10 @@
 - (void)btnClick:(UIButton *)sender {
     
     sender.selected = !sender.selected;
-    NSLog(@"sender:%@",sender);
-    NSLog(@"nTitle = %@\nhTitle = %@\nsTitle = %@",sender.nTitle,sender.hTitle,sender.sTitle);
-    NSLog(@"title_nColor = %@\ntitle_hColor = %@\ntitle_sColor = %@",sender.title_nColor,sender.title_hColor,sender.title_sColor);
-    NSLog(@"nImage = %@\nhImage = %@\nsImage = %@",sender.nImage,sender.hImage,sender.sImage);
+    WYLog(@"sender:%@",sender);
+    WYLog(@"nTitle = %@\nhTitle = %@\nsTitle = %@",sender.nTitle,sender.hTitle,sender.sTitle);
+    WYLog(@"title_nColor = %@\ntitle_hColor = %@\ntitle_sColor = %@",sender.title_nColor,sender.title_hColor,sender.title_sColor);
+    WYLog(@"nImage = %@\nhImage = %@\nsImage = %@",sender.nImage,sender.hImage,sender.sImage);
 }
 
 - (void)didReceiveMemoryWarning {

@@ -24,7 +24,7 @@
 
 - (BOOL)addNoti {
     
-    BOOL obj = objc_getAssociatedObject(self, &@selector(addNoti));
+    BOOL obj = [objc_getAssociatedObject(self, &@selector(addNoti)) boolValue];
     return obj;
 }
 
@@ -110,7 +110,7 @@
         NSMutableDictionary *maximumLimitAttributes = [attributes mutableCopy];
         maximumLimitAttributes[NSParagraphStyleAttributeName] = paragraphStyle;
         
-        NSString *limitStr = [NSString stringWithFormat:@"%lu/%ld",(unsigned long)self.text.length,(long)self.maximumLimit];
+        NSString *limitStr = [NSString stringWithFormat:@"%lu/%ld",(unsigned long)self.text.length > (long)self.maximumLimit ? (long)self.maximumLimit : (unsigned long)self.text.length ,(long)self.maximumLimit];
         
         [limitStr drawInRect:CGRectMake(x, rect.size.height-20+self.contentOffset.y, width, 20) withAttributes:maximumLimitAttributes];
     }
@@ -132,13 +132,20 @@
 - (void)characterTruncation {
     
     //字符截取
-    if((self.text.length > self.maximumLimit) && (self.maximumLimit)) {
+    if(self.maximumLimit) {
         
-        const char *res = [self.text substringToIndex:self.maximumLimit].UTF8String;
-        if (res == NULL) {
-            self.text = [self.text substringToIndex:self.maximumLimit - 1];
-        }else{
-            self.text = [self.text substringToIndex:self.maximumLimit];
+        UITextRange *selectedRange = [self markedTextRange];
+        //获取高亮部分
+        UITextPosition *position = [self positionFromPosition:selectedRange.start offset:0];
+        //没有高亮选择的字，则对已输入的文字进行字数统计和限制,如果有高亮待选择的字，则暂不对文字进行统计和限制
+        if ((position == nil) && (self.text.length > self.maximumLimit)) {
+            
+            const char *res = [self.text substringToIndex:self.maximumLimit].UTF8String;
+            if (res == NULL) {
+                self.text = [self.text substringToIndex:self.maximumLimit - 1];
+            }else{
+                self.text = [self.text substringToIndex:self.maximumLimit];
+            }
         }
     }
 }

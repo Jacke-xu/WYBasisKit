@@ -80,17 +80,9 @@
 
 //DEBUG打印日志
 #ifdef DEBUG
-
-# define debugLog(fmt, ...) NSLog((@"\n[文件名:%s]\n" "[函数名:%s]\n" "[行号:%d] \n" fmt), __FILE__, __FUNCTION__, __LINE__, ##__VA_ARGS__);
-
-#define debugMethod() NSLog(@"%s", __func__)
-
+# define WYLog(FORMAT, ...) printf("[%s<%p>行号:%d]:\n%s\n\n\n\n\n\n",__FUNCTION__,self,__LINE__,[[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String])
 #else
-
-#define debugLog(...)
-
-#define debugMethod()
-
+# define NSLog(FORMAT, ...)
 #endif
 
 //由角度、弧度值转换
@@ -112,13 +104,13 @@
 
 #define appStoreName     [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"]
 
-//App identifier
+//应用标识
 #define AppIdentifier    [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
 
-//appStore 版本号
+//应用商店版本号
 #define AppStoreVersion   [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
 
-//app版本号
+//应用构建版本号
 #define AppVersion        [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]
 
 
