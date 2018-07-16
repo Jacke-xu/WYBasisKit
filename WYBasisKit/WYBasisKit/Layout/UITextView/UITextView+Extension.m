@@ -13,6 +13,10 @@
 
 @property (nonatomic, assign) BOOL addNoti;
 
+@property (nonatomic, copy) NSString *lastTextStr;
+
+@property (nonatomic, copy) void(^textHandle) (NSString *textStr);
+
 @end
 
 @implementation UITextView (Extension)
@@ -70,6 +74,42 @@
     
     id obj = objc_getAssociatedObject(self, &@selector(maximumLimit));
     return [obj integerValue];
+}
+
+- (void)setTextHandle:(void (^)(NSString *))textHandle {
+    
+    objc_setAssociatedObject(self, &@selector(textHandle), textHandle, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+- (void (^)(NSString *))textHandle {
+    
+    id handle = objc_getAssociatedObject(self, &@selector(textHandle));
+    if (handle) {
+        
+        return (void(^)(NSString *textStr))handle;
+    }
+    return nil;
+}
+
+- (void)setLastTextStr:(NSString *)lastTextStr {
+    
+    objc_setAssociatedObject(self, @selector(lastTextStr), lastTextStr, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+- (NSString *)lastTextStr {
+    
+    return [NSString emptyStr:objc_getAssociatedObject(self, _cmd)];
+}
+
+- (void)textDidChange:(void (^)(NSString *))handle {
+    
+    self.textHandle = handle;
+    [self addTextChangeNoti];
+}
+
+- (void)fixMessyDisplay {
+    
+    [self addTextChangeNoti];
 }
 
 /**
@@ -148,6 +188,12 @@
             }
         }
     }
+    
+    if((self.textHandle) && (![self.text isEqualToString:self.lastTextStr])) {
+        
+        self.textHandle(self.text);
+    }
+    self.lastTextStr = self.text;
 }
 
 - (void)addTextChangeNoti {

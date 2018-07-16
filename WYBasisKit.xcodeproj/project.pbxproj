@@ -16,6 +16,10 @@
 		1F1D41E220F4573F00FB65E2 /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1D41E020F4573F00FB65E2 /* NSString+Base64.m */; };
 		1F1D41E520F4576900FB65E2 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1D41E420F4576900FB65E2 /* NSData+Base64.m */; };
 		1F1E415220DCA6E900C61107 /* TestTextFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1E415120DCA6E900C61107 /* TestTextFieldViewController.m */; };
+		1F226F5220F59B4800129AB6 /* NSString+Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F226F5120F59B4800129AB6 /* NSString+Emoji.m */; };
+		1F226F5520F59D5800129AB6 /* TestBoolJudgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F226F5420F59D5800129AB6 /* TestBoolJudgeViewController.m */; };
+		1F226F5920F5A2C300129AB6 /* AppleSystemService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F226F5820F5A2C200129AB6 /* AppleSystemService.m */; };
+		1F226F6420F5ED9800129AB6 /* UIButton+EdgeInsetsLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F226F6320F5ED9800129AB6 /* UIButton+EdgeInsetsLayout.m */; };
 		1F28302F20D3B9B700624C76 /* Countdown.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FB320D3B9B600624C76 /* Countdown.m */; };
 		1F28303020D3B9B700624C76 /* Loading.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1F282FB520D3B9B600624C76 /* Loading.bundle */; };
 		1F28303120D3B9B700624C76 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FB720D3B9B600624C76 /* LoadingView.m */; };
@@ -74,6 +78,7 @@
 		1FC5FDAA20DCE70F0092CED8 /* UIButton+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC5FDA820DCE70F0092CED8 /* UIButton+Layout.m */; };
 		1FC5FDAD20DCE75B0092CED8 /* TestTUIButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC5FDAC20DCE75B0092CED8 /* TestTUIButtonViewController.m */; };
 		1FC5FDB120DCF9AB0092CED8 /* NSObject+ModelParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC5FDB020DCF9AB0092CED8 /* NSObject+ModelParse.m */; };
+		1FE99FAC20F6FF6D00E40C27 /* TestTransitionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE99FAB20F6FF6D00E40C27 /* TestTransitionViewController.m */; };
 		1FFBD91A20BA874700305331 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFBD91920BA874700305331 /* AppDelegate.m */; };
 		1FFBD92220BA874800305331 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FFBD92120BA874800305331 /* Assets.xcassets */; };
 		1FFBD92520BA874800305331 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FFBD92320BA874800305331 /* LaunchScreen.storyboard */; };
@@ -100,6 +105,14 @@
 		1F1D41E420F4576900FB65E2 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		1F1E415020DCA6E900C61107 /* TestTextFieldViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestTextFieldViewController.h; sourceTree = "<group>"; };
 		1F1E415120DCA6E900C61107 /* TestTextFieldViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestTextFieldViewController.m; sourceTree = "<group>"; };
+		1F226F5020F59B4800129AB6 /* NSString+Emoji.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Emoji.h"; sourceTree = "<group>"; };
+		1F226F5120F59B4800129AB6 /* NSString+Emoji.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Emoji.m"; sourceTree = "<group>"; };
+		1F226F5320F59D5800129AB6 /* TestBoolJudgeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestBoolJudgeViewController.h; sourceTree = "<group>"; };
+		1F226F5420F59D5800129AB6 /* TestBoolJudgeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestBoolJudgeViewController.m; sourceTree = "<group>"; };
+		1F226F5720F5A2C200129AB6 /* AppleSystemService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppleSystemService.h; sourceTree = "<group>"; };
+		1F226F5820F5A2C200129AB6 /* AppleSystemService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppleSystemService.m; sourceTree = "<group>"; };
+		1F226F6220F5ED9800129AB6 /* UIButton+EdgeInsetsLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+EdgeInsetsLayout.h"; sourceTree = "<group>"; };
+		1F226F6320F5ED9800129AB6 /* UIButton+EdgeInsetsLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+EdgeInsetsLayout.m"; sourceTree = "<group>"; };
 		1F282FB220D3B9B600624C76 /* Countdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Countdown.h; sourceTree = "<group>"; };
 		1F282FB320D3B9B600624C76 /* Countdown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Countdown.m; sourceTree = "<group>"; };
 		1F282FB520D3B9B600624C76 /* Loading.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Loading.bundle; sourceTree = "<group>"; };
@@ -215,6 +228,8 @@
 		1FC5FDAC20DCE75B0092CED8 /* TestTUIButtonViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestTUIButtonViewController.m; sourceTree = "<group>"; };
 		1FC5FDAF20DCF9AB0092CED8 /* NSObject+ModelParse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+ModelParse.h"; sourceTree = "<group>"; };
 		1FC5FDB020DCF9AB0092CED8 /* NSObject+ModelParse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ModelParse.m"; sourceTree = "<group>"; };
+		1FE99FAA20F6FF6D00E40C27 /* TestTransitionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestTransitionViewController.h; sourceTree = "<group>"; };
+		1FE99FAB20F6FF6D00E40C27 /* TestTransitionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestTransitionViewController.m; sourceTree = "<group>"; };
 		1FFBD91520BA874600305331 /* WYBasisKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WYBasisKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FFBD91820BA874700305331 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1FFBD91920BA874700305331 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -260,6 +275,98 @@
 				1F1D41DE20F4570300FB65E2 /* NSData+CommonCrypto.m */,
 			);
 			path = BASE;
+			sourceTree = "<group>";
+		};
+		1F226F4720F598F000129AB6 /* NSArray */ = {
+			isa = PBXGroup;
+			children = (
+				1F28301820D3B9B700624C76 /* NSArray+Extension.h */,
+				1F28301920D3B9B700624C76 /* NSArray+Extension.m */,
+			);
+			path = NSArray;
+			sourceTree = "<group>";
+		};
+		1F226F4820F5990400129AB6 /* NSString */ = {
+			isa = PBXGroup;
+			children = (
+				1F28301E20D3B9B700624C76 /* NSString+Extension.h */,
+				1F28301F20D3B9B700624C76 /* NSString+Extension.m */,
+				1F226F5020F59B4800129AB6 /* NSString+Emoji.h */,
+				1F226F5120F59B4800129AB6 /* NSString+Emoji.m */,
+			);
+			path = NSString;
+			sourceTree = "<group>";
+		};
+		1F226F4920F5991E00129AB6 /* UIColor */ = {
+			isa = PBXGroup;
+			children = (
+				1F28302020D3B9B700624C76 /* UIColor+Extension.h */,
+				1F28302120D3B9B700624C76 /* UIColor+Extension.m */,
+			);
+			path = UIColor;
+			sourceTree = "<group>";
+		};
+		1F226F4A20F5992B00129AB6 /* UIFont */ = {
+			isa = PBXGroup;
+			children = (
+				1F28302220D3B9B700624C76 /* UIFont+Extension.h */,
+				1F28302320D3B9B700624C76 /* UIFont+Extension.m */,
+			);
+			path = UIFont;
+			sourceTree = "<group>";
+		};
+		1F226F4B20F5993600129AB6 /* UIImage */ = {
+			isa = PBXGroup;
+			children = (
+				1F28302420D3B9B700624C76 /* UIImage+Extension.h */,
+				1F28302520D3B9B700624C76 /* UIImage+Extension.m */,
+			);
+			path = UIImage;
+			sourceTree = "<group>";
+		};
+		1F226F4C20F59A9A00129AB6 /* NSMutableAttributedString */ = {
+			isa = PBXGroup;
+			children = (
+				1F28306320D3BAAA00624C76 /* NSMutableAttributedString+Extension.h */,
+				1F28306120D3BAA900624C76 /* NSMutableAttributedString+Extension.m */,
+			);
+			path = NSMutableAttributedString;
+			sourceTree = "<group>";
+		};
+		1F226F4D20F59AA600129AB6 /* NSMutableParagraphStyle */ = {
+			isa = PBXGroup;
+			children = (
+				1F28306020D3BAA900624C76 /* NSMutableParagraphStyle+Extension.h */,
+				1F28306220D3BAAA00624C76 /* NSMutableParagraphStyle+Extension.m */,
+			);
+			path = NSMutableParagraphStyle;
+			sourceTree = "<group>";
+		};
+		1F226F4E20F59ABA00129AB6 /* UINavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				1F59A64C20D8A91F0055AAB4 /* UINavigationController+Extension.h */,
+				1F59A64D20D8A91F0055AAB4 /* UINavigationController+Extension.m */,
+			);
+			path = UINavigationController;
+			sourceTree = "<group>";
+		};
+		1F226F4F20F59ACC00129AB6 /* UIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1F59A64F20D8E5B80055AAB4 /* UIViewController+Extension.h */,
+				1F59A65020D8E5B80055AAB4 /* UIViewController+Extension.m */,
+			);
+			path = UIViewController;
+			sourceTree = "<group>";
+		};
+		1F226F5620F5A2A500129AB6 /* AppleSystemService */ = {
+			isa = PBXGroup;
+			children = (
+				1F226F5720F5A2C200129AB6 /* AppleSystemService.h */,
+				1F226F5820F5A2C200129AB6 /* AppleSystemService.m */,
+			);
+			path = AppleSystemService;
 			sourceTree = "<group>";
 		};
 		1F282FB120D3B9B600624C76 /* Countdown */ = {
@@ -518,24 +625,15 @@
 		1F28301720D3B9B700624C76 /* Practical */ = {
 			isa = PBXGroup;
 			children = (
-				1F28301820D3B9B700624C76 /* NSArray+Extension.h */,
-				1F28301920D3B9B700624C76 /* NSArray+Extension.m */,
-				1F28301E20D3B9B700624C76 /* NSString+Extension.h */,
-				1F28301F20D3B9B700624C76 /* NSString+Extension.m */,
-				1F28302020D3B9B700624C76 /* UIColor+Extension.h */,
-				1F28302120D3B9B700624C76 /* UIColor+Extension.m */,
-				1F28302220D3B9B700624C76 /* UIFont+Extension.h */,
-				1F28302320D3B9B700624C76 /* UIFont+Extension.m */,
-				1F28302420D3B9B700624C76 /* UIImage+Extension.h */,
-				1F28302520D3B9B700624C76 /* UIImage+Extension.m */,
-				1F28306320D3BAAA00624C76 /* NSMutableAttributedString+Extension.h */,
-				1F28306120D3BAA900624C76 /* NSMutableAttributedString+Extension.m */,
-				1F28306020D3BAA900624C76 /* NSMutableParagraphStyle+Extension.h */,
-				1F28306220D3BAAA00624C76 /* NSMutableParagraphStyle+Extension.m */,
-				1F59A64C20D8A91F0055AAB4 /* UINavigationController+Extension.h */,
-				1F59A64D20D8A91F0055AAB4 /* UINavigationController+Extension.m */,
-				1F59A64F20D8E5B80055AAB4 /* UIViewController+Extension.h */,
-				1F59A65020D8E5B80055AAB4 /* UIViewController+Extension.m */,
+				1F226F4B20F5993600129AB6 /* UIImage */,
+				1F226F4A20F5992B00129AB6 /* UIFont */,
+				1F226F4920F5991E00129AB6 /* UIColor */,
+				1F226F4820F5990400129AB6 /* NSString */,
+				1F226F4720F598F000129AB6 /* NSArray */,
+				1F226F4F20F59ACC00129AB6 /* UIViewController */,
+				1F226F4E20F59ABA00129AB6 /* UINavigationController */,
+				1F226F4D20F59AA600129AB6 /* NSMutableParagraphStyle */,
+				1F226F4C20F59A9A00129AB6 /* NSMutableAttributedString */,
 			);
 			path = Practical;
 			sourceTree = "<group>";
@@ -583,6 +681,10 @@
 				1F1E415120DCA6E900C61107 /* TestTextFieldViewController.m */,
 				1FC5FDAB20DCE75B0092CED8 /* TestTUIButtonViewController.h */,
 				1FC5FDAC20DCE75B0092CED8 /* TestTUIButtonViewController.m */,
+				1F226F5320F59D5800129AB6 /* TestBoolJudgeViewController.h */,
+				1F226F5420F59D5800129AB6 /* TestBoolJudgeViewController.m */,
+				1FE99FAA20F6FF6D00E40C27 /* TestTransitionViewController.h */,
+				1FE99FAB20F6FF6D00E40C27 /* TestTransitionViewController.m */,
 			);
 			path = TestController;
 			sourceTree = "<group>";
@@ -621,6 +723,8 @@
 				1FC5FDA620DCE70F0092CED8 /* UIButton+Extension.m */,
 				1FC5FDA720DCE70F0092CED8 /* UIButton+Layout.h */,
 				1FC5FDA820DCE70F0092CED8 /* UIButton+Layout.m */,
+				1F226F6220F5ED9800129AB6 /* UIButton+EdgeInsetsLayout.h */,
+				1F226F6320F5ED9800129AB6 /* UIButton+EdgeInsetsLayout.m */,
 			);
 			path = UIButton;
 			sourceTree = "<group>";
@@ -632,6 +736,13 @@
 				1FC5FDB020DCF9AB0092CED8 /* NSObject+ModelParse.m */,
 			);
 			path = ModelParse;
+			sourceTree = "<group>";
+		};
+		1FE99FAD20F72C5600E40C27 /* AnimatedTransitions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AnimatedTransitions;
 			sourceTree = "<group>";
 		};
 		1FFBD90C20BA874600305331 = {
@@ -672,6 +783,8 @@
 		1FFBD92E20BA883500305331 /* WYBasisKit */ = {
 			isa = PBXGroup;
 			children = (
+				1FE99FAD20F72C5600E40C27 /* AnimatedTransitions */,
+				1F226F5620F5A2A500129AB6 /* AppleSystemService */,
 				1F28300D20D3B9B700624C76 /* BoolJudge */,
 				1F282FBA20D3B9B600624C76 /* CNLog */,
 				1F282FB120D3B9B600624C76 /* Countdown */,
@@ -830,10 +943,12 @@
 				1F28303E20D3B9B700624C76 /* TOCropView.m in Sources */,
 				1F28303D20D3B9B700624C76 /* TOCropToolbar.m in Sources */,
 				1F0A182A20E1D24500532AA3 /* Reachability.m in Sources */,
+				1FE99FAC20F6FF6D00E40C27 /* TestTransitionViewController.m in Sources */,
 				1F28303320D3B9B700624C76 /* Foundation+Log.m in Sources */,
 				1F59A65120D8E5B80055AAB4 /* UIViewController+Extension.m in Sources */,
 				1F28304520D3B9B700624C76 /* WaterfallFlow.m in Sources */,
 				1F28303B20D3B9B700624C76 /* TOCroppedImageAttributes.m in Sources */,
+				1F226F5520F59D5800129AB6 /* TestBoolJudgeViewController.m in Sources */,
 				1F64823E20F34489001D4B0A /* NSString+DES.m in Sources */,
 				1F59A64E20D8A91F0055AAB4 /* UINavigationController+Extension.m in Sources */,
 				1FA9267620DA46A500C5D12B /* TestLableViewController.m in Sources */,
@@ -856,6 +971,7 @@
 				1F28305B20D3B9B700624C76 /* UIFont+Extension.m in Sources */,
 				1F28304320D3B9B700624C76 /* UIImage+FixOrientation.m in Sources */,
 				1F1D41E520F4576900FB65E2 /* NSData+Base64.m in Sources */,
+				1F226F6420F5ED9800129AB6 /* UIButton+EdgeInsetsLayout.m in Sources */,
 				1F28304620D3B9B700624C76 /* WYScrollerView.m in Sources */,
 				1F28304220D3B9B700624C76 /* UIImage+CropRotate.m in Sources */,
 				1F28304120D3B9B700624C76 /* TOCropViewControllerTransitioning.m in Sources */,
@@ -876,6 +992,7 @@
 				1F28304B20D3B9B700624C76 /* UILabel+Extension.m in Sources */,
 				1F28304420D3B9B700624C76 /* TXScrollLabelView.m in Sources */,
 				1F28304A20D3B9B700624C76 /* UIImageView+Extension.m in Sources */,
+				1F226F5220F59B4800129AB6 /* NSString+Emoji.m in Sources */,
 				1F28303220D3B9B700624C76 /* StateView.m in Sources */,
 				1FFBD92820BA874800305331 /* main.m in Sources */,
 				1FFBD91A20BA874700305331 /* AppDelegate.m in Sources */,
@@ -883,6 +1000,7 @@
 				1F28303F20D3B9B700624C76 /* TOCropViewController.m in Sources */,
 				1F3360F420DB40D9009BD7AB /* TestTextViewViewController.m in Sources */,
 				1F28305220D3B9B700624C76 /* WKWebView+Extension.m in Sources */,
+				1F226F5920F5A2C300129AB6 /* AppleSystemService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1016,6 +1134,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XRF48FBABT;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/WYBasisKit/WYBasisKit/MacroDefinition/GlobalHeader.pch";
 				INFOPLIST_FILE = WYBasisKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1035,6 +1154,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XRF48FBABT;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/WYBasisKit/WYBasisKit/MacroDefinition/GlobalHeader.pch";
 				INFOPLIST_FILE = WYBasisKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

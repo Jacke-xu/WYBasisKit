@@ -10,6 +10,10 @@
 
 @interface UIButton (Layout)
 
+/**
+ *  利用运行时设置UIButton的titleLabel和imageView的显示位置
+ */
+
 //设置按钮图片控件位置
 @property (nonatomic, assign) CGRect imageRect;
 

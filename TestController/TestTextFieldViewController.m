@@ -30,6 +30,11 @@
     textField1.placeholderColor = [UIColor orangeColor];
     textField1.backgroundColor = [UIColor greenColor];
     [textField1 automaticFollowKeyboard:self.view];
+    [textField1 textDidChange:^(NSString *textStr) {
+
+        WYLog(@"输入的文本是：%@",textStr);
+    }];
+    [textField1 fixMessyDisplay];
     [self.view addSubview:textField1];
     
     UITextField *textField2 = [[UITextField alloc]initWithFrame:CGRectMake(20, superView.bottom-60, screenWidth-40, 50)];
@@ -37,6 +42,10 @@
     textField2.backgroundColor = [UIColor greenColor];
     [textField2 automaticFollowKeyboard:self.view];
     textField2.maximumLimit = 5;
+    [textField2 textDidChange:^(NSString *textStr) {
+
+        WYLog(@"输入的文本是：%@",textStr);
+    }];
     [superView addSubview:textField2];
 }
 

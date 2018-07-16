@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UIButton+Layout.h"
+#import "UIButton+EdgeInsetsLayout.h"
 
 @interface UIButton (Extension)
 

@@ -7,6 +7,7 @@
 //
 
 #import "TestTUIButtonViewController.h"
+#import "UIImage+Extension.h"
 
 @interface TestTUIButtonViewController ()
 
@@ -18,7 +19,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(20, navViewHeight+50, screenWidth-40, 100) target:self selector:@selector(btnClick:)];
+    UIButton *btn    = [[UIButton alloc]initWithFrame:CGRectMake(20, navViewHeight+50, screenWidth-40, 100) target:self selector:@selector(btnClick:)];
     btn.backgroundColor = [UIColor orangeColor];
     btn.titleFont = [UIFont boldSystemFontOfSize:25];
     btn.nTitle = @"默认状态";
@@ -38,6 +39,16 @@
     btn.imageRect = CGRectMake((btn.width-imageSize.width)/2, 5+titleSize.height+((btn.height-imageSize.height-titleSize.height-5)/2), imageSize.width, imageSize.height);
     
     [self.view addSubview:btn];
+    
+    UIButton *btn2    = [[UIButton alloc]initWithFrame:CGRectMake(20, navViewHeight+200, screenWidth-40, 100) target:self selector:@selector(btnClick:)];
+    btn2.backgroundColor = [UIColor orangeColor];
+    btn2.titleFont = [UIFont boldSystemFontOfSize:25];
+    btn2.nTitle = @"默认状态";
+    btn2.title_nColor = [UIColor greenColor];
+    btn2.nImage = [UIImage cutImage:[UIImage imageNamed:@"timg-n"] andSize:CGSizeMake(20, 30)];
+    [btn2 layouEdgeInsetsPosition:ButtonPositionImageTop_titleBottom spacing:5];
+    
+    [self.view addSubview:btn2];
 }
 
 - (void)btnClick:(UIButton *)sender {

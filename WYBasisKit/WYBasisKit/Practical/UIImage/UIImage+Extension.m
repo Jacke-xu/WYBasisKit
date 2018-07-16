@@ -33,6 +33,40 @@
 }
 
 /**
+ *  获取启动页图片
+ *
+ *  @return 启动页图片
+ */
++ (UIImage *)launchImage {
+    
+    UIImage               *lauchImage      = nil;
+    NSString              *viewOrientation = nil;
+    CGSize                 viewSize        = [UIScreen mainScreen].bounds.size;
+    UIInterfaceOrientation orientation     = [[UIApplication sharedApplication] statusBarOrientation];
+    
+    if (orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeRight) {
+        
+        viewOrientation = @"Landscape";
+        
+    } else {
+        
+        viewOrientation = @"Portrait";
+    }
+    
+    NSArray *imagesDictionary = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"UILaunchImages"];
+    for (NSDictionary *dict in imagesDictionary) {
+        
+        CGSize imageSize = CGSizeFromString(dict[@"UILaunchImageSize"]);
+        if (CGSizeEqualToSize(imageSize, viewSize) && [viewOrientation isEqualToString:dict[@"UILaunchImageOrientation"]]) {
+            
+            lauchImage = [UIImage imageNamed:dict[@"UILaunchImageName"]];
+        }
+    }
+    
+    return lauchImage;
+}
+
+/**
  *  加载非.Bound文件下图片，单张、或2x、3x均适用(若加载非png图片需要拼接后缀名)
  *
  *  @param image 图片名

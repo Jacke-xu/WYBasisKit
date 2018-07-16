@@ -29,6 +29,13 @@ typedef NS_ENUM(NSUInteger, GradientType) {
 - (CGFloat)height;
 
 /**
+ *  获取启动页图片
+ *
+ *  @return 启动页图片
+ */
++ (UIImage *)launchImage;
+
+/**
  *  加载非.Bound文件下图片，单张、或2x、3x均适用(若加载非png图片需要拼接后缀名)
  *
  *  @param image 图片名

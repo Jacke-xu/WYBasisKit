@@ -29,6 +29,10 @@
     textView1.placeholderStr = @"这个是添加在控制器view上的";
     textView1.placeholderColor = [UIColor whiteColor];
     [textView1 automaticFollowKeyboard:self.view];
+    [textView1 textDidChange:^(NSString *textStr) {
+        
+        WYLog(@"输入的文本是：%@",textStr);
+    }];
     [self.view addSubview:textView1];
     
     UITextView *textView2 = [[UITextView alloc]initWithFrame:CGRectMake(20, superView.bottom-320, screenWidth-40, 200)];

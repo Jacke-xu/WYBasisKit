@@ -1,47 +1,24 @@
 //
-//  MainViewController.m
+//  TestTransitionViewController.m
 //  WYBasisKit
 //
-//  Created by  jacke-xu on 2018/6/19.
+//  Created by  jacke-xu on 2018/7/12.
 //  Copyright © 2018年 jacke-xu. All rights reserved.
 //
 
-#import "MainViewController.h"
-#import "TestLableViewController.h"
-#import "TestWebViewViewController.h"
-#import "TestTextViewViewController.h"
-#import "TestTextFieldViewController.h"
-#import "TestTUIButtonViewController.h"
-#import "TestBoolJudgeViewController.h"
 #import "TestTransitionViewController.h"
 
-@interface MainViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface TestTransitionViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, weak) UITableView *tableView;
 
 @end
 
-@implementation MainViewController
-
-- (void)viewWillAppear:(BOOL)animated {
-    
-    [super viewWillAppear:YES];
-    
-    self.navigationController.titleColor = [UIColor yellowColor];
-    self.navigationController.titleFont = [UIFont boldSystemFontOfSize:20];
-    self.navigationController.barBackgroundColor = [UIColor greenColor];
-    //self.navigationController.barBackgroundImage = [UIImage imageNamed:@"test"];
-    self.navigationController.barReturnButtonImage = [UIImage imageNamed:@"返回按钮"];
-    self.navigationController.barReturnButtonColor = [UIColor whiteColor];
-    [self.navigationController pushControllerBarReturnButtonTitle:@"上一页" navigationItem:self.navigationItem];
-}
+@implementation TestTransitionViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    self.navigationItem.title = @"首页";
-    
     self.tableView.backgroundColor = [UIColor whiteColor];
 }
 
@@ -77,7 +54,6 @@
     }
     cell.backgroundColor = [UIColor whiteColor];
     cell.textLabel.text = [self section][indexPath.row];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld",indexPath.row];
     
     return cell;
 }
@@ -86,42 +62,16 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    UIViewController *vc = nil;
-    if(indexPath.row == 0) {
-        
-        vc = [[TestWebViewViewController alloc]init];
-    }
-    else if (indexPath.row == 1) {
-        
-        vc = [[TestLableViewController alloc]init];
-    }
-    else if (indexPath.row == 2) {
-        
-        vc = [[TestTextViewViewController alloc]init];
-    }
-    else if (indexPath.row == 3) {
-        
-        vc = [[TestTextFieldViewController alloc]init];
-    }
-    else if (indexPath.row == 4) {
-        
-        vc = [[TestTUIButtonViewController alloc]init];
-    }
-    else if (indexPath.row == 6) {
-        
-        vc = [[TestBoolJudgeViewController alloc]init];
-    }
-    else if (indexPath.row == 7) {
-        
-        vc = [[TestTransitionViewController alloc]init];
-    }
-    vc.navigationItem.title = [self section][indexPath.row];
-    [self.navigationController pushViewController:vc animated:YES];
+//    UIViewController *vc = [[UIViewController alloc]init];
+//
+//    vc.navigationItem.title = @"转场动画测试";
 }
 
 - (NSArray *)section {
     
-    NSArray *sectionTitleAry = @[@"WKWebView",@"UILable",@"UITextView",@"UITextField",@"UIButton",@"网络请求",@"BoolJudge",@"转场动画测试"];
+    NSArray *sectionTitleAry = @[@"push",
+                                 @"present"
+                                 ];
     
     return sectionTitleAry;
 }

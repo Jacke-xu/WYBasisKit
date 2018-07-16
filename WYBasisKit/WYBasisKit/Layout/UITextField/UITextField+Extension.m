@@ -7,10 +7,15 @@
 //
 
 #import "UITextField+Extension.h"
+#include <objc/runtime.h>
 
 @interface UITextField ()
 
 @property (nonatomic, assign) BOOL addNoti;
+
+@property (nonatomic, copy) NSString *lastTextStr;
+
+@property (nonatomic, copy) void(^textHandle) (NSString *textStr);
 
 @end
 
@@ -49,12 +54,48 @@
     return [objc_getAssociatedObject(self, _cmd) integerValue];
 }
 
+- (void)setTextHandle:(void (^)(NSString *))textHandle {
+    
+    objc_setAssociatedObject(self, &@selector(textHandle), textHandle, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+- (void (^)(NSString *))textHandle {
+    
+    id handle = objc_getAssociatedObject(self, &@selector(textHandle));
+    if (handle) {
+        
+        return (void(^)(NSString *textStr))handle;
+    }
+    return nil;
+}
+
+- (void)setLastTextStr:(NSString *)lastTextStr {
+    
+    objc_setAssociatedObject(self, @selector(lastTextStr), lastTextStr, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+- (NSString *)lastTextStr {
+    
+    return [NSString emptyStr:objc_getAssociatedObject(self, _cmd)];
+}
+
 /**
  *  监听文字改变
  */
 - (void)textDidChange {
     
     [self characterTruncation];
+}
+
+- (void)textDidChange:(void (^)(NSString *))handle {
+    
+    self.textHandle = handle;
+    [self addTextChangeNoti];
+}
+
+- (void)fixMessyDisplay {
+    
+    [self addTextChangeNoti];
 }
 
 - (void)addTextChangeNoti {
@@ -86,6 +127,12 @@
             }
         }
     }
+    if((self.textHandle) && (![self.text isEqualToString:self.lastTextStr])) {
+        
+        self.textHandle(self.text);
+    }
+    self.lastTextStr = self.text;
+    
     return self.text;
 }
 
