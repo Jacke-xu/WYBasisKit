@@ -10,6 +10,7 @@
 
 @interface Countdown : NSObject
 
+//初始化，非单例
 - (Countdown *)initCountdown;
 
 - (void)beginCountdown:(NSInteger)downtimer action:(void(^)(NSInteger downTimer))action;

@@ -26,22 +26,6 @@
 		1F28303220D3B9B700624C76 /* StateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FB920D3B9B600624C76 /* StateView.m */; };
 		1F28303320D3B9B700624C76 /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FBB20D3B9B600624C76 /* Foundation+Log.m */; };
 		1F28303420D3B9B700624C76 /* WYSegmentedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FBF20D3B9B700624C76 /* WYSegmentedView.m */; };
-		1F28303520D3B9B700624C76 /* LLSimpleCamera+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FC220D3B9B700624C76 /* LLSimpleCamera+Helper.m */; };
-		1F28303620D3B9B700624C76 /* LLSimpleCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FC420D3B9B700624C76 /* LLSimpleCamera.m */; };
-		1F28303720D3B9B700624C76 /* SKFCamera.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1F282FC520D3B9B700624C76 /* SKFCamera.bundle */; };
-		1F28303820D3B9B700624C76 /* SKFCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FC720D3B9B700624C76 /* SKFCamera.m */; };
-		1F28303920D3B9B700624C76 /* TOActivityCroppedImageProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FC920D3B9B700624C76 /* TOActivityCroppedImageProvider.m */; };
-		1F28303A20D3B9B700624C76 /* TOCropOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FCB20D3B9B700624C76 /* TOCropOverlayView.m */; };
-		1F28303B20D3B9B700624C76 /* TOCroppedImageAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FCD20D3B9B700624C76 /* TOCroppedImageAttributes.m */; };
-		1F28303C20D3B9B700624C76 /* TOCropScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FCF20D3B9B700624C76 /* TOCropScrollView.m */; };
-		1F28303D20D3B9B700624C76 /* TOCropToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FD120D3B9B700624C76 /* TOCropToolbar.m */; };
-		1F28303E20D3B9B700624C76 /* TOCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FD320D3B9B700624C76 /* TOCropView.m */; };
-		1F28303F20D3B9B700624C76 /* TOCropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FD520D3B9B700624C76 /* TOCropViewController.m */; };
-		1F28304020D3B9B700624C76 /* TOCropViewControllerLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F282FD620D3B9B700624C76 /* TOCropViewControllerLocalizable.strings */; };
-		1F28304120D3B9B700624C76 /* TOCropViewControllerTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FD820D3B9B700624C76 /* TOCropViewControllerTransitioning.m */; };
-		1F28304220D3B9B700624C76 /* UIImage+CropRotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FDA20D3B9B700624C76 /* UIImage+CropRotate.m */; };
-		1F28304320D3B9B700624C76 /* UIImage+FixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FDC20D3B9B700624C76 /* UIImage+FixOrientation.m */; };
-		1F28304420D3B9B700624C76 /* TXScrollLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FDF20D3B9B700624C76 /* TXScrollLabelView.m */; };
 		1F28304520D3B9B700624C76 /* WaterfallFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FE220D3B9B700624C76 /* WaterfallFlow.m */; };
 		1F28304620D3B9B700624C76 /* WYScrollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FE520D3B9B700624C76 /* WYScrollerView.m */; };
 		1F28304720D3B9B700624C76 /* CALayer+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FE920D3B9B700624C76 /* CALayer+Extension.m */; };
@@ -75,9 +59,9 @@
 		1FA9267620DA46A500C5D12B /* TestLableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA9267520DA46A500C5D12B /* TestLableViewController.m */; };
 		1FBEBE9320DB78030038FBBF /* UILabel+RichText.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBEBE9220DB78030038FBBF /* UILabel+RichText.m */; };
 		1FC5FDA920DCE70F0092CED8 /* UIButton+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC5FDA620DCE70F0092CED8 /* UIButton+Extension.m */; };
-		1FC5FDAA20DCE70F0092CED8 /* UIButton+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC5FDA820DCE70F0092CED8 /* UIButton+Layout.m */; };
 		1FC5FDAD20DCE75B0092CED8 /* TestTUIButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC5FDAC20DCE75B0092CED8 /* TestTUIButtonViewController.m */; };
 		1FC5FDB120DCF9AB0092CED8 /* NSObject+ModelParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC5FDB020DCF9AB0092CED8 /* NSObject+ModelParse.m */; };
+		1FD24D7C20FEDF23004B7D3F /* TestLoadingStateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD24D7B20FEDF23004B7D3F /* TestLoadingStateViewController.m */; };
 		1FE99FAC20F6FF6D00E40C27 /* TestTransitionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE99FAB20F6FF6D00E40C27 /* TestTransitionViewController.m */; };
 		1FFBD91A20BA874700305331 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFBD91920BA874700305331 /* AppDelegate.m */; };
 		1FFBD92220BA874800305331 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FFBD92120BA874800305331 /* Assets.xcassets */; };
@@ -123,36 +107,6 @@
 		1F282FBB20D3B9B600624C76 /* Foundation+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Foundation+Log.m"; sourceTree = "<group>"; };
 		1F282FBE20D3B9B700624C76 /* WYSegmentedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSegmentedView.h; sourceTree = "<group>"; };
 		1F282FBF20D3B9B700624C76 /* WYSegmentedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSegmentedView.m; sourceTree = "<group>"; };
-		1F282FC120D3B9B700624C76 /* LLSimpleCamera+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LLSimpleCamera+Helper.h"; sourceTree = "<group>"; };
-		1F282FC220D3B9B700624C76 /* LLSimpleCamera+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LLSimpleCamera+Helper.m"; sourceTree = "<group>"; };
-		1F282FC320D3B9B700624C76 /* LLSimpleCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLSimpleCamera.h; sourceTree = "<group>"; };
-		1F282FC420D3B9B700624C76 /* LLSimpleCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLSimpleCamera.m; sourceTree = "<group>"; };
-		1F282FC520D3B9B700624C76 /* SKFCamera.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SKFCamera.bundle; sourceTree = "<group>"; };
-		1F282FC620D3B9B700624C76 /* SKFCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKFCamera.h; sourceTree = "<group>"; };
-		1F282FC720D3B9B700624C76 /* SKFCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKFCamera.m; sourceTree = "<group>"; };
-		1F282FC820D3B9B700624C76 /* TOActivityCroppedImageProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOActivityCroppedImageProvider.h; sourceTree = "<group>"; };
-		1F282FC920D3B9B700624C76 /* TOActivityCroppedImageProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOActivityCroppedImageProvider.m; sourceTree = "<group>"; };
-		1F282FCA20D3B9B700624C76 /* TOCropOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCropOverlayView.h; sourceTree = "<group>"; };
-		1F282FCB20D3B9B700624C76 /* TOCropOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCropOverlayView.m; sourceTree = "<group>"; };
-		1F282FCC20D3B9B700624C76 /* TOCroppedImageAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCroppedImageAttributes.h; sourceTree = "<group>"; };
-		1F282FCD20D3B9B700624C76 /* TOCroppedImageAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCroppedImageAttributes.m; sourceTree = "<group>"; };
-		1F282FCE20D3B9B700624C76 /* TOCropScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCropScrollView.h; sourceTree = "<group>"; };
-		1F282FCF20D3B9B700624C76 /* TOCropScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCropScrollView.m; sourceTree = "<group>"; };
-		1F282FD020D3B9B700624C76 /* TOCropToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCropToolbar.h; sourceTree = "<group>"; };
-		1F282FD120D3B9B700624C76 /* TOCropToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCropToolbar.m; sourceTree = "<group>"; };
-		1F282FD220D3B9B700624C76 /* TOCropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCropView.h; sourceTree = "<group>"; };
-		1F282FD320D3B9B700624C76 /* TOCropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCropView.m; sourceTree = "<group>"; };
-		1F282FD420D3B9B700624C76 /* TOCropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCropViewController.h; sourceTree = "<group>"; };
-		1F282FD520D3B9B700624C76 /* TOCropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCropViewController.m; sourceTree = "<group>"; };
-		1F282FD620D3B9B700624C76 /* TOCropViewControllerLocalizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = TOCropViewControllerLocalizable.strings; sourceTree = "<group>"; };
-		1F282FD720D3B9B700624C76 /* TOCropViewControllerTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCropViewControllerTransitioning.h; sourceTree = "<group>"; };
-		1F282FD820D3B9B700624C76 /* TOCropViewControllerTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCropViewControllerTransitioning.m; sourceTree = "<group>"; };
-		1F282FD920D3B9B700624C76 /* UIImage+CropRotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CropRotate.h"; sourceTree = "<group>"; };
-		1F282FDA20D3B9B700624C76 /* UIImage+CropRotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CropRotate.m"; sourceTree = "<group>"; };
-		1F282FDB20D3B9B700624C76 /* UIImage+FixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FixOrientation.h"; sourceTree = "<group>"; };
-		1F282FDC20D3B9B700624C76 /* UIImage+FixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FixOrientation.m"; sourceTree = "<group>"; };
-		1F282FDE20D3B9B700624C76 /* TXScrollLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXScrollLabelView.h; sourceTree = "<group>"; };
-		1F282FDF20D3B9B700624C76 /* TXScrollLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXScrollLabelView.m; sourceTree = "<group>"; };
 		1F282FE120D3B9B700624C76 /* WaterfallFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterfallFlow.h; sourceTree = "<group>"; };
 		1F282FE220D3B9B700624C76 /* WaterfallFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterfallFlow.m; sourceTree = "<group>"; };
 		1F282FE420D3B9B700624C76 /* WYScrollerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYScrollerView.h; sourceTree = "<group>"; };
@@ -222,12 +176,12 @@
 		1FBEBE9220DB78030038FBBF /* UILabel+RichText.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+RichText.m"; sourceTree = "<group>"; };
 		1FC5FDA520DCE70F0092CED8 /* UIButton+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Extension.h"; sourceTree = "<group>"; };
 		1FC5FDA620DCE70F0092CED8 /* UIButton+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Extension.m"; sourceTree = "<group>"; };
-		1FC5FDA720DCE70F0092CED8 /* UIButton+Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Layout.h"; sourceTree = "<group>"; };
-		1FC5FDA820DCE70F0092CED8 /* UIButton+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Layout.m"; sourceTree = "<group>"; };
 		1FC5FDAB20DCE75B0092CED8 /* TestTUIButtonViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestTUIButtonViewController.h; sourceTree = "<group>"; };
 		1FC5FDAC20DCE75B0092CED8 /* TestTUIButtonViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestTUIButtonViewController.m; sourceTree = "<group>"; };
 		1FC5FDAF20DCF9AB0092CED8 /* NSObject+ModelParse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+ModelParse.h"; sourceTree = "<group>"; };
 		1FC5FDB020DCF9AB0092CED8 /* NSObject+ModelParse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ModelParse.m"; sourceTree = "<group>"; };
+		1FD24D7A20FEDF23004B7D3F /* TestLoadingStateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestLoadingStateViewController.h; sourceTree = "<group>"; };
+		1FD24D7B20FEDF23004B7D3F /* TestLoadingStateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestLoadingStateViewController.m; sourceTree = "<group>"; };
 		1FE99FAA20F6FF6D00E40C27 /* TestTransitionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestTransitionViewController.h; sourceTree = "<group>"; };
 		1FE99FAB20F6FF6D00E40C27 /* TestTransitionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestTransitionViewController.m; sourceTree = "<group>"; };
 		1FFBD91520BA874600305331 /* WYBasisKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WYBasisKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -402,8 +356,6 @@
 			isa = PBXGroup;
 			children = (
 				1F282FBD20D3B9B700624C76 /* SegmentedView */,
-				1F282FC020D3B9B700624C76 /* SKFCamera */,
-				1F282FDD20D3B9B700624C76 /* TextScroll */,
 				1F282FE020D3B9B700624C76 /* WaterfallFlow */,
 				1F282FE320D3B9B700624C76 /* WYScrollView */,
 			);
@@ -417,50 +369,6 @@
 				1F282FBF20D3B9B700624C76 /* WYSegmentedView.m */,
 			);
 			path = SegmentedView;
-			sourceTree = "<group>";
-		};
-		1F282FC020D3B9B700624C76 /* SKFCamera */ = {
-			isa = PBXGroup;
-			children = (
-				1F282FC120D3B9B700624C76 /* LLSimpleCamera+Helper.h */,
-				1F282FC220D3B9B700624C76 /* LLSimpleCamera+Helper.m */,
-				1F282FC320D3B9B700624C76 /* LLSimpleCamera.h */,
-				1F282FC420D3B9B700624C76 /* LLSimpleCamera.m */,
-				1F282FC520D3B9B700624C76 /* SKFCamera.bundle */,
-				1F282FC620D3B9B700624C76 /* SKFCamera.h */,
-				1F282FC720D3B9B700624C76 /* SKFCamera.m */,
-				1F282FC820D3B9B700624C76 /* TOActivityCroppedImageProvider.h */,
-				1F282FC920D3B9B700624C76 /* TOActivityCroppedImageProvider.m */,
-				1F282FCA20D3B9B700624C76 /* TOCropOverlayView.h */,
-				1F282FCB20D3B9B700624C76 /* TOCropOverlayView.m */,
-				1F282FCC20D3B9B700624C76 /* TOCroppedImageAttributes.h */,
-				1F282FCD20D3B9B700624C76 /* TOCroppedImageAttributes.m */,
-				1F282FCE20D3B9B700624C76 /* TOCropScrollView.h */,
-				1F282FCF20D3B9B700624C76 /* TOCropScrollView.m */,
-				1F282FD020D3B9B700624C76 /* TOCropToolbar.h */,
-				1F282FD120D3B9B700624C76 /* TOCropToolbar.m */,
-				1F282FD220D3B9B700624C76 /* TOCropView.h */,
-				1F282FD320D3B9B700624C76 /* TOCropView.m */,
-				1F282FD420D3B9B700624C76 /* TOCropViewController.h */,
-				1F282FD520D3B9B700624C76 /* TOCropViewController.m */,
-				1F282FD620D3B9B700624C76 /* TOCropViewControllerLocalizable.strings */,
-				1F282FD720D3B9B700624C76 /* TOCropViewControllerTransitioning.h */,
-				1F282FD820D3B9B700624C76 /* TOCropViewControllerTransitioning.m */,
-				1F282FD920D3B9B700624C76 /* UIImage+CropRotate.h */,
-				1F282FDA20D3B9B700624C76 /* UIImage+CropRotate.m */,
-				1F282FDB20D3B9B700624C76 /* UIImage+FixOrientation.h */,
-				1F282FDC20D3B9B700624C76 /* UIImage+FixOrientation.m */,
-			);
-			path = SKFCamera;
-			sourceTree = "<group>";
-		};
-		1F282FDD20D3B9B700624C76 /* TextScroll */ = {
-			isa = PBXGroup;
-			children = (
-				1F282FDE20D3B9B700624C76 /* TXScrollLabelView.h */,
-				1F282FDF20D3B9B700624C76 /* TXScrollLabelView.m */,
-			);
-			path = TextScroll;
 			sourceTree = "<group>";
 		};
 		1F282FE020D3B9B700624C76 /* WaterfallFlow */ = {
@@ -685,6 +593,8 @@
 				1F226F5420F59D5800129AB6 /* TestBoolJudgeViewController.m */,
 				1FE99FAA20F6FF6D00E40C27 /* TestTransitionViewController.h */,
 				1FE99FAB20F6FF6D00E40C27 /* TestTransitionViewController.m */,
+				1FD24D7A20FEDF23004B7D3F /* TestLoadingStateViewController.h */,
+				1FD24D7B20FEDF23004B7D3F /* TestLoadingStateViewController.m */,
 			);
 			path = TestController;
 			sourceTree = "<group>";
@@ -721,8 +631,6 @@
 			children = (
 				1FC5FDA520DCE70F0092CED8 /* UIButton+Extension.h */,
 				1FC5FDA620DCE70F0092CED8 /* UIButton+Extension.m */,
-				1FC5FDA720DCE70F0092CED8 /* UIButton+Layout.h */,
-				1FC5FDA820DCE70F0092CED8 /* UIButton+Layout.m */,
 				1F226F6220F5ED9800129AB6 /* UIButton+EdgeInsetsLayout.h */,
 				1F226F6320F5ED9800129AB6 /* UIButton+EdgeInsetsLayout.m */,
 			);
@@ -736,13 +644,6 @@
 				1FC5FDB020DCF9AB0092CED8 /* NSObject+ModelParse.m */,
 			);
 			path = ModelParse;
-			sourceTree = "<group>";
-		};
-		1FE99FAD20F72C5600E40C27 /* AnimatedTransitions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AnimatedTransitions;
 			sourceTree = "<group>";
 		};
 		1FFBD90C20BA874600305331 = {
@@ -783,7 +684,6 @@
 		1FFBD92E20BA883500305331 /* WYBasisKit */ = {
 			isa = PBXGroup;
 			children = (
-				1FE99FAD20F72C5600E40C27 /* AnimatedTransitions */,
 				1F226F5620F5A2A500129AB6 /* AppleSystemService */,
 				1F28300D20D3B9B700624C76 /* BoolJudge */,
 				1F282FBA20D3B9B600624C76 /* CNLog */,
@@ -879,8 +779,6 @@
 			files = (
 				1F28303020D3B9B700624C76 /* Loading.bundle in Resources */,
 				1FFBD92520BA874800305331 /* LaunchScreen.storyboard in Resources */,
-				1F28303720D3B9B700624C76 /* SKFCamera.bundle in Resources */,
-				1F28304020D3B9B700624C76 /* TOCropViewControllerLocalizable.strings in Resources */,
 				1FFBD92220BA874800305331 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -914,10 +812,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-WYBasisKit/Pods-WYBasisKit-resources.sh",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+				"${PODS_ROOT}/PureCamera/PureCamera/PureCamera.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PureCamera.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -931,23 +831,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F28303920D3B9B700624C76 /* TOActivityCroppedImageProvider.m in Sources */,
 				1F28304E20D3B9B700624C76 /* UITextField+Extension.m in Sources */,
-				1F28303620D3B9B700624C76 /* LLSimpleCamera.m in Sources */,
-				1F28303A20D3B9B700624C76 /* TOCropOverlayView.m in Sources */,
 				1F64823820F34470001D4B0A /* NSString+RSA.m in Sources */,
 				1F28305620D3B9B700624C76 /* NSArray+Extension.m in Sources */,
 				1FBEBE9320DB78030038FBBF /* UILabel+RichText.m in Sources */,
 				1F59A64B20D8A7040055AAB4 /* MainViewController.m in Sources */,
 				1F28305D20D3B9B700624C76 /* RefreshView.m in Sources */,
-				1F28303E20D3B9B700624C76 /* TOCropView.m in Sources */,
-				1F28303D20D3B9B700624C76 /* TOCropToolbar.m in Sources */,
 				1F0A182A20E1D24500532AA3 /* Reachability.m in Sources */,
 				1FE99FAC20F6FF6D00E40C27 /* TestTransitionViewController.m in Sources */,
 				1F28303320D3B9B700624C76 /* Foundation+Log.m in Sources */,
 				1F59A65120D8E5B80055AAB4 /* UIViewController+Extension.m in Sources */,
 				1F28304520D3B9B700624C76 /* WaterfallFlow.m in Sources */,
-				1F28303B20D3B9B700624C76 /* TOCroppedImageAttributes.m in Sources */,
 				1F226F5520F59D5800129AB6 /* TestBoolJudgeViewController.m in Sources */,
 				1F64823E20F34489001D4B0A /* NSString+DES.m in Sources */,
 				1F59A64E20D8A91F0055AAB4 /* UINavigationController+Extension.m in Sources */,
@@ -956,12 +850,10 @@
 				1F1D41E220F4573F00FB65E2 /* NSString+Base64.m in Sources */,
 				1F1D41DF20F4570300FB65E2 /* NSData+CommonCrypto.m in Sources */,
 				1F28305C20D3B9B700624C76 /* UIImage+Extension.m in Sources */,
-				1FC5FDAA20DCE70F0092CED8 /* UIButton+Layout.m in Sources */,
 				1F28305A20D3B9B700624C76 /* UIColor+Extension.m in Sources */,
 				1F28303120D3B9B700624C76 /* LoadingView.m in Sources */,
 				1F64824120F34494001D4B0A /* NSString+MD5.m in Sources */,
 				1F28304F20D3B9B700624C76 /* UITextView+Extension.m in Sources */,
-				1F28303520D3B9B700624C76 /* LLSimpleCamera+Helper.m in Sources */,
 				1F1E415220DCA6E900C61107 /* TestTextFieldViewController.m in Sources */,
 				1F28304720D3B9B700624C76 /* CALayer+Extension.m in Sources */,
 				1F0A182F20E216B000532AA3 /* WYNetworking.m in Sources */,
@@ -969,18 +861,15 @@
 				1F28305320D3B9B700624C76 /* BoolJudge.m in Sources */,
 				1FC5FDAD20DCE75B0092CED8 /* TestTUIButtonViewController.m in Sources */,
 				1F28305B20D3B9B700624C76 /* UIFont+Extension.m in Sources */,
-				1F28304320D3B9B700624C76 /* UIImage+FixOrientation.m in Sources */,
 				1F1D41E520F4576900FB65E2 /* NSData+Base64.m in Sources */,
 				1F226F6420F5ED9800129AB6 /* UIButton+EdgeInsetsLayout.m in Sources */,
 				1F28304620D3B9B700624C76 /* WYScrollerView.m in Sources */,
-				1F28304220D3B9B700624C76 /* UIImage+CropRotate.m in Sources */,
-				1F28304120D3B9B700624C76 /* TOCropViewControllerTransitioning.m in Sources */,
+				1FD24D7C20FEDF23004B7D3F /* TestLoadingStateViewController.m in Sources */,
 				1F28304D20D3B9B700624C76 /* UITableView+Extension.m in Sources */,
 				1F28305020D3B9B700624C76 /* UIView+Extension.m in Sources */,
 				1F28306520D3BAAA00624C76 /* NSMutableParagraphStyle+Extension.m in Sources */,
 				1F28305420D3B9B700624C76 /* LocalStorage.m in Sources */,
 				1F0A182920E1D24500532AA3 /* NetworkMonitoring.m in Sources */,
-				1F28303C20D3B9B700624C76 /* TOCropScrollView.m in Sources */,
 				1FC5FDB120DCF9AB0092CED8 /* NSObject+ModelParse.m in Sources */,
 				1F28306420D3BAAA00624C76 /* NSMutableAttributedString+Extension.m in Sources */,
 				1F64823B20F3447E001D4B0A /* NSString+AES256.m in Sources */,
@@ -988,16 +877,13 @@
 				1F28305920D3B9B700624C76 /* NSString+Extension.m in Sources */,
 				1F1D41DC20F4560700FB65E2 /* GTMBase64.m in Sources */,
 				1F28303420D3B9B700624C76 /* WYSegmentedView.m in Sources */,
-				1F28303820D3B9B700624C76 /* SKFCamera.m in Sources */,
 				1F28304B20D3B9B700624C76 /* UILabel+Extension.m in Sources */,
-				1F28304420D3B9B700624C76 /* TXScrollLabelView.m in Sources */,
 				1F28304A20D3B9B700624C76 /* UIImageView+Extension.m in Sources */,
 				1F226F5220F59B4800129AB6 /* NSString+Emoji.m in Sources */,
 				1F28303220D3B9B700624C76 /* StateView.m in Sources */,
 				1FFBD92820BA874800305331 /* main.m in Sources */,
 				1FFBD91A20BA874700305331 /* AppDelegate.m in Sources */,
 				1F28302F20D3B9B700624C76 /* Countdown.m in Sources */,
-				1F28303F20D3B9B700624C76 /* TOCropViewController.m in Sources */,
 				1F3360F420DB40D9009BD7AB /* TestTextViewViewController.m in Sources */,
 				1F28305220D3B9B700624C76 /* WKWebView+Extension.m in Sources */,
 				1F226F5920F5A2C300129AB6 /* AppleSystemService.m in Sources */,

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol viewControllerHandlerProtocol <NSObject>
+@protocol ViewControllerHandlerProtocol <NSObject>
 
 @optional
 
@@ -17,6 +17,22 @@
 
 @end
 
-@interface UIViewController (Extension)<viewControllerHandlerProtocol>
+@interface UIViewController (Extension)<ViewControllerHandlerProtocol>
+
+/** 从导航控制器栈中查找ViewController，没有时返回nil */
+- (UIViewController *)findViewController:(NSString *)className;
+
+/** 删除指定的视图控制器 */
+- (void)deleteViewController:(NSString *)className complete:(void(^)(void))complete;
+
+/** 跳转到指定的视图控制器 */
+- (void)pushViewController:(NSString *)className animated:(BOOL)animated;
+
+/** 跳转到指定的视图控制器，此方法可防止循环跳转 */
+- (void)preventCirculationPushViewController:(NSString *)className animated:(BOOL)animated;
+
+/** 返回到指定的视图控制器 */
+- (void)popViewController:(NSString *)className animated:(BOOL)animated;
+
 
 @end

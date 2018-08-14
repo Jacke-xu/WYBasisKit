@@ -33,36 +33,6 @@ static StateView *_stateView = nil;
     return _stateView;
 }
 
-+ (void)showSuccessMessage:(NSString *)message {
-    
-    [[self shared] layoutStateViewWithImage:@"success" message:message superView:[UIApplication sharedApplication].keyWindow];
-}
-
-+ (void)showSuccessMessage:(NSString *)message superView:(UIView *)superView {
-    
-    [[self shared] layoutStateViewWithImage:@"success" message:message superView:superView];
-}
-
-+ (void)showErrorMessage:(NSString *)message {
-    
-    [[self shared] layoutStateViewWithImage:@"error" message:message superView:[UIApplication sharedApplication].keyWindow];
-}
-
-+ (void)showErrorMessage:(NSString *)message superView:(UIView *)superView {
-    
-    [[self shared] layoutStateViewWithImage:@"error" message:message superView:superView];
-}
-
-+ (void)showWarningMessage:(NSString *)message {
-    
-    [[self shared] layoutStateViewWithImage:@"waitting" message:message superView:[UIApplication sharedApplication].keyWindow];
-}
-
-+ (void)showWarningMessage:(NSString *)message superView:(UIView *)superView {
-    
-    [[self shared] layoutStateViewWithImage:@"waitting" message:message superView:superView];
-}
-
 + (void)showSuccessInfo:(NSString *)message {
     
     weakSelf(self);

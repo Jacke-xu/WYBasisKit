@@ -5,4 +5,7 @@ target 'WYBasisKit' do
 pod "AFNetworking"
 pod "SDWebImage"
 pod "MJRefresh"
+pod "PureCamera"
+pod "TXScrollLabelView"
+
 end

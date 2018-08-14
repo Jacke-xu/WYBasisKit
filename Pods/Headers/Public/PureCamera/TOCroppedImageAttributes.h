@@ -1,0 +1,1 @@
+../../../PureCamera/PureCamera/TOCroppedImageAttributes.h

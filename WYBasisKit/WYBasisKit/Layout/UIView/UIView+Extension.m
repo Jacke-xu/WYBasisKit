@@ -283,7 +283,7 @@
     __weak typeof(self) textFieldSelf = self;
     [UIView animateWithDuration:duration delay:0 options:option animations:^{
         
-        CGFloat extraHeight = [self hasSystemNavigationBarExtraHeight];
+        CGFloat extraHeight = [textFieldSelf hasSystemNavigationBarExtraHeight];
         textFieldSelf.mainView.frame = CGRectMake(textFieldSelf.mainViewFrame.origin.x, textFieldSelf.mainViewFrame.origin.y+extraHeight, textFieldSelf.mainViewFrame.size.width, textFieldSelf.mainViewFrame.size.height);
         
     } completion:nil];

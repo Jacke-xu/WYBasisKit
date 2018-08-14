@@ -1,0 +1,1 @@
+../../../PureCamera/PureCamera/UIImage+CropRotate.h

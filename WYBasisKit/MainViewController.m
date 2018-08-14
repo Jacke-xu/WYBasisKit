@@ -14,6 +14,9 @@
 #import "TestTUIButtonViewController.h"
 #import "TestBoolJudgeViewController.h"
 #import "TestTransitionViewController.h"
+#import "TestLoadingStateViewController.h"
+
+#import <UIImageView+WebCache.h>
 
 @interface MainViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -77,7 +80,7 @@
     }
     cell.backgroundColor = [UIColor whiteColor];
     cell.textLabel.text = [self section][indexPath.row];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld",indexPath.row];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row];
     
     return cell;
 }
@@ -115,13 +118,17 @@
         
         vc = [[TestTransitionViewController alloc]init];
     }
+    else if (indexPath.row == 8) {
+        
+        vc = [[TestLoadingStateViewController alloc]init];
+    }
     vc.navigationItem.title = [self section][indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (NSArray *)section {
     
-    NSArray *sectionTitleAry = @[@"WKWebView",@"UILable",@"UITextView",@"UITextField",@"UIButton",@"网络请求",@"BoolJudge",@"转场动画测试"];
+    NSArray *sectionTitleAry = @[@"WKWebView",@"UILable",@"UITextView",@"UITextField",@"UIButton",@"网络请求",@"BoolJudge",@"转场动画测试",@"LoadingState"];
     
     return sectionTitleAry;
 }

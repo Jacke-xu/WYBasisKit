@@ -36,8 +36,16 @@
     for (NSDictionary *dic in colorsOfRanges) {
         
         UIColor *color = (UIColor *)[dic.allKeys firstObject];
-        NSArray *rangeAry = (NSArray *)[dic.allValues firstObject];
-        [self addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange([[rangeAry firstObject] integerValue], [[rangeAry lastObject] integerValue])];
+        if([[dic.allValues firstObject] isKindOfClass:[NSString class]]) {
+            
+            NSString *rangeStr = (NSString *)[dic.allValues firstObject];
+            [self addAttribute:NSForegroundColorAttributeName value:color range:[self.string rangeOfString:rangeStr]];
+            
+        }else {
+            
+            NSArray *rangeAry = (NSArray *)[dic.allValues firstObject];
+            [self addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange([[rangeAry firstObject] integerValue], [[rangeAry lastObject] integerValue])];
+        }
     }
 }
 
@@ -48,8 +56,16 @@
     for (NSDictionary *dic in fontsOfRanges) {
         
         UIFont *font = (UIFont *)[dic.allKeys firstObject];
-        NSArray *rangeAry = (NSArray *)[dic.allValues firstObject];
-        [self addAttribute:NSFontAttributeName value:font range:NSMakeRange([[rangeAry firstObject] integerValue], [[rangeAry lastObject] integerValue])];
+        if([[dic.allValues firstObject] isKindOfClass:[NSString class]]) {
+            
+            NSString *rangeStr = (NSString *)[dic.allValues firstObject];
+            [self addAttribute:NSFontAttributeName value:font range:[self.string rangeOfString:rangeStr]];
+            
+        }else {
+            
+            NSArray *rangeAry = (NSArray *)[dic.allValues firstObject];
+            [self addAttribute:NSFontAttributeName value:font range:NSMakeRange([[rangeAry firstObject] integerValue], [[rangeAry lastObject] integerValue])];
+        }
     }
 }
 

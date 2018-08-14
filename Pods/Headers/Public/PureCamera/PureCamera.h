@@ -1,0 +1,1 @@
+../../../PureCamera/PureCamera/PureCamera.h

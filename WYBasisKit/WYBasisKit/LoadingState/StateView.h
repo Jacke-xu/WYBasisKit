@@ -10,24 +10,6 @@
 
 @interface StateView : UIView
 
-/** 手动移除 */
-+ (void)showSuccessMessage:(NSString *)message;
-
-/** 手动移除 */
-+ (void)showErrorMessage:(NSString *)message;
-
-/** 手动移除 */
-+ (void)showWarningMessage:(NSString *)message;
-
-/** 手动移除 */
-+ (void)showSuccessMessage:(NSString *)message superView:(UIView *)superView;
-
-/** 手动移除 */
-+ (void)showErrorMessage:(NSString *)message superView:(UIView *)superView;
-
-/** 手动移除 */
-+ (void)showWarningMessage:(NSString *)message superView:(UIView *)superView;
-
 /** 自动移除 */
 + (void)showSuccessInfo:(NSString *)message;
 

@@ -21,8 +21,8 @@
 @end
 
 @implementation LoadingView
-static LoadingView *_loadingView = nil;
 
+static LoadingView *_loadingView = nil;
 + (LoadingView *)shared {
     
     static dispatch_once_t predicate;
@@ -58,6 +58,7 @@ static LoadingView *_loadingView = nil;
 + (void)showWithMessage:(NSString *)message superView:(UIView *)superView {
     
     _loadingView = [self shared];
+    superView = [_loadingView sharedSuperView:superView];
     _loadingView.frame = CGRectMake(superView.frame.size.width/2-75, superView.frame.size.height/2-60, 150, 120);
     [superView addSubview:_loadingView];
     _loadingView.activity.hidden = YES;
@@ -76,6 +77,7 @@ static LoadingView *_loadingView = nil;
 + (void)showWithInfo:(NSString *)message superView:(UIView *)superView {
     
     _loadingView = [self shared];
+    superView = [_loadingView sharedSuperView:superView];
     _loadingView.frame = CGRectMake(superView.frame.size.width/2-60, superView.frame.size.height/2-50, 120, 100);
     [superView addSubview:_loadingView];
     _loadingView.heartImageView.hidden = YES;
@@ -98,7 +100,7 @@ static LoadingView *_loadingView = nil;
     [_loadingView removeFromSuperview];
 }
 
-- (UILabel *)setLabLineSpacing:(NSInteger)lineSpacing WithControll:(UILabel *)lab {
+- (UILabel *)setLabLineSpacing:(NSInteger)lineSpacing withControll:(UILabel *)lab {
     
     if(lab.text.length > 0) {
         
@@ -202,10 +204,37 @@ static LoadingView *_loadingView = nil;
         _bgView.frame = CGRectMake(0, 0, 135, 120);
         _lable.frame = CGRectMake(25, 65, 85, 0);
         _lable.numberOfLines = 2;
-        [self setLabLineSpacing:5 WithControll:_lable];
+        [self setLabLineSpacing:5 withControll:_lable];
         _lable.numberOfLines = 2;
     }
     _activity.frame = CGRectMake(_bgView.frame.size.width/2-20, 15, 40, 40);
+}
+
+- (UIView *)sharedSuperView:(UIView *)superView {
+    
+    if([self belongsViewController] != nil) {
+        
+        superView = [self belongsViewController].view;
+    }
+    return superView;
+}
+
+- (UIViewController *)belongsViewController {
+    
+    for (UIView *next = self; next; next = next.superview) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)nextResponder;
+        }
+    }
+    return nil;
+}
+
+- (CGSize)proportionSize:(CGSize)size {
+    
+    size.height = (size.width/5)*4;
+    
+    return size;
 }
 
 /*

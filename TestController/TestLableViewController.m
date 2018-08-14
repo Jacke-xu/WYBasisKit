@@ -28,8 +28,10 @@
     
     NSMutableAttributedString *attribute = [NSMutableAttributedString attributeWithStr:lab.text];
     [attribute setLineSpacing:5];
-    NSArray *colorsOfRanges = @[@{[UIColor orangeColor]:@[@"0",@"6"]},@{[UIColor greenColor]:@[@"8",@"10"]}];
-    NSArray *fontsOfRanges = @[@{[UIFont systemFontOfSize:18]:@[@"30",@"5"]},@{[UIFont boldSystemFontOfSize:30]:@[@"1",@"2"]}];
+    NSArray *colorsOfRanges = @[@{[UIColor orangeColor]:@"治性之道"},@{[UIColor greenColor]:@"盖聪明疏通者戒于太察"}];
+    NSArray *fontsOfRanges = @[@{[UIFont systemFontOfSize:18]:@"广心浩大者戒于遗忘"},@{[UIFont boldSystemFontOfSize:30]:@[@"1",@"2"]}];
+//    NSArray *colorsOfRanges = @[@{[UIColor orangeColor]:@[@"0",@"6"]},@{[UIColor greenColor]:@[@"8",@"10"]}];
+//    NSArray *fontsOfRanges = @[@{[UIFont systemFontOfSize:18]:@[@"30",@"5"]},@{[UIFont boldSystemFontOfSize:30]:@[@"1",@"2"]}];
     [attribute colorsOfRanges:colorsOfRanges];
     [attribute fontsOfRanges:fontsOfRanges];
     lab.attributedText = attribute;
@@ -77,7 +79,7 @@
     [self.view addSubview:label2];
     
     [label2 clickRichTextWithStrings:@[@"https://github.com/Jacke-xu/WYBasisKit",@"记得给star哦"] clickAction:^(NSString *string, NSRange range, NSInteger index) {
-        NSString *message = [NSString stringWithFormat:@"点击了“%@”字符\nrange: %@\nindex: %ld",string,NSStringFromRange(range),index];
+        NSString *message = [NSString stringWithFormat:@"点击了“%@”字符\nrange: %@\nindex: %ld",string,NSStringFromRange(range),(long)index];
         WYLog(@"messge = %@",message);
     }];
     //设置是否有点击效果，默认是YES
@@ -91,7 +93,7 @@
 
 - (void)didClickRichText:(NSString *)string range:(NSRange)range index:(NSInteger)index {
     
-    NSString *message = [NSString stringWithFormat:@"点击了“%@”字符\nrange: %@\nindex: %ld",string,NSStringFromRange(range),index];
+    NSString *message = [NSString stringWithFormat:@"点击了“%@”字符\nrange: %@\nindex: %ld",string,NSStringFromRange(range),(long)index];
     WYLog(@"messge = %@",message);
 }
 

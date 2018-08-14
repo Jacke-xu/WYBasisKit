@@ -17,15 +17,17 @@
 
 /**
  
- *  需要修改的字符颜色数组及量程，由字典组成  key = 颜色   value = 量程  例：NSArray *colorsOfRanges = @[@{color:@[@"0",@"1"]},@{color:@[@"1",@"2"]}]
- 
+ *  需要修改的字符颜色数组及量程，由字典组成  key = 颜色   value = 量程或需要修改的字符串
+ *  例：NSArray *colorsOfRanges = @[@{color:@[@"0",@"1"]},@{color:@[@"1",@"2"]}]
+ *  或：NSArray *colorsOfRanges = @[@{color:str},@{color:str}]
  */
 - (void)colorsOfRanges:(NSArray <NSDictionary *>*)colorsOfRanges;
 
 /**
  
- *  需要修改的字符字体数组及量程，由字典组成  key = 颜色   value = 量程  例：NSArray *fontsOfRanges = @[@{font:@[@"0",@"1"]},@{font:@[@"1",@"2"]}]
- 
+ *  需要修改的字符字体数组及量程，由字典组成  key = 颜色   value = 量程或需要修改的字符串
+ *  例：NSArray *fontsOfRanges = @[@{font:@[@"0",@"1"]},@{font:@[@"1",@"2"]}]
+ *  或：NSArray *fontsOfRanges = @[@{font:str},@{font:str}]
  */
 - (void)fontsOfRanges:(NSArray <NSDictionary *>*)fontsOfRanges;
 
