@@ -60,6 +60,11 @@
     WYLog(@"nImage = %@\nhImage = %@\nsImage = %@",sender.nImage,sender.hImage,sender.sImage);
 }
 
+- (void)dealloc {
+    
+    WYLog(@"dealloc");
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

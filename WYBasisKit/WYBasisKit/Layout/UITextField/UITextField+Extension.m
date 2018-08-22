@@ -55,15 +55,15 @@
 }
 
 - (void)setTextHandle:(void (^)(NSString *))textHandle {
-    
+
     objc_setAssociatedObject(self, &@selector(textHandle), textHandle, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 - (void (^)(NSString *))textHandle {
-    
+
     id handle = objc_getAssociatedObject(self, &@selector(textHandle));
     if (handle) {
-        
+
         return (void(^)(NSString *textStr))handle;
     }
     return nil;

@@ -51,6 +51,7 @@
 
 - (void)dealloc {
     
+    WYLog(@"dealloc");
     [self.view releaseKeyboardNotification];
 }
 

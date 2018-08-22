@@ -94,6 +94,11 @@
     return _tableView;
 }
 
+- (void)dealloc {
+    
+    WYLog(@"dealloc");
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

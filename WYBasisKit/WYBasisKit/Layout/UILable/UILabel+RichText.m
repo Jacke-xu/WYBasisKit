@@ -114,40 +114,41 @@
 #pragma mark - mainFunction
 - (void)clickRichTextWithStrings:(NSArray<NSString *> *)strings clickAction:(void (^)(NSString *, NSRange, NSInteger))clickAction {
     
-    [self richTextRangesWithStrings:strings];
+    __weak typeof(self) weakSelf = self;
+    [weakSelf richTextRangesWithStrings:strings];
     
-    if (self.clickBlock != clickAction) {
-        self.clickBlock = clickAction;
+    if (weakSelf.clickBlock != clickAction) {
+        weakSelf.clickBlock = clickAction;
     }
 }
 
 - (void)clickRichTextWithStrings:(NSArray<NSString *> *)strings delegate:(id<RichTextDelegate>)delegate {
     
-    [self richTextRangesWithStrings:strings];
+    __weak typeof(self) weakSelf = self;
+    [weakSelf richTextRangesWithStrings:strings];
     
-    if (self.delegate != delegate) {
-        self.delegate = delegate;
+    if (weakSelf.delegate != delegate) {
+        weakSelf.delegate = delegate;
     }
 }
 
 #pragma mark - touchAction
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    if (!self.isClickAction) {
+    __weak typeof(self) weakSelf = self;
+    if (!weakSelf.isClickAction) {
         return;
     }
     
-    if (objc_getAssociatedObject(self, @selector(enabledClickEffect))) {
-        self.isClickEffect = self.enabledClickEffect;
+    if (objc_getAssociatedObject(weakSelf, @selector(enabledClickEffect))) {
+        weakSelf.isClickEffect = weakSelf.enabledClickEffect;
     }
     
     UITouch *touch = [touches anyObject];
     
-    CGPoint point = [touch locationInView:self];
+    CGPoint point = [touch locationInView:weakSelf];
     
-    __weak typeof(self) weakSelf = self;
-    
-    [self richTextFrameWithTouchPoint:point result:^(NSString *string, NSRange range, NSInteger index) {
+    [weakSelf richTextFrameWithTouchPoint:point result:^(NSString *string, NSRange range, NSInteger index) {
         
         if (weakSelf.clickBlock) {
             weakSelf.clickBlock (string , range , index);
@@ -157,11 +158,11 @@
             [weakSelf.delegate didClickRichText:string range:range index:index];
         }
         
-        if (self.isClickEffect) {
+        if (weakSelf.isClickEffect) {
             
-            [self saveEffectDicWithRange:range];
+            [weakSelf saveEffectDicWithRange:range];
             
-            [self clickEffectWithStatus:YES];
+            [weakSelf clickEffectWithStatus:YES];
         }
         
     }];
@@ -169,9 +170,10 @@
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
     
-    if (self.isClickAction) {
-        if ([self richTextFrameWithTouchPoint:point result:nil]) {
-            return self;
+    __weak typeof(self) weakSelf = self;
+    if (weakSelf.isClickAction) {
+        if ([weakSelf richTextFrameWithTouchPoint:point result:nil]) {
+            return weakSelf;
         }
     }
     return [super hitTest:point withEvent:event];
@@ -180,26 +182,27 @@
 #pragma mark - getClickFrame
 - (BOOL)richTextFrameWithTouchPoint:(CGPoint)point result:(void (^) (NSString *string , NSRange range , NSInteger index))resultBlock
 {
-    CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((CFAttributedStringRef)self.attributedText);
+    __weak typeof(self) weakSelf = self;
+    CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((CFAttributedStringRef)weakSelf.attributedText);
     
     CGMutablePathRef Path = CGPathCreateMutable();
     
-    CGPathAddRect(Path, NULL, CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height));
+    CGPathAddRect(Path, NULL, CGRectMake(0, 0, weakSelf.bounds.size.width, weakSelf.bounds.size.height));
     
     CTFrameRef frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), Path, NULL);
     
     CFRange range = CTFrameGetVisibleStringRange(frame);
     
-    if (self.attributedText.length > range.length) {
+    if (weakSelf.attributedText.length > range.length) {
         
         UIFont *font ;
         
-        if ([self.attributedText attribute:NSFontAttributeName atIndex:0 effectiveRange:nil]) {
+        if ([weakSelf.attributedText attribute:NSFontAttributeName atIndex:0 effectiveRange:nil]) {
             
-            font = [self.attributedText attribute:NSFontAttributeName atIndex:0 effectiveRange:nil];
+            font = [weakSelf.attributedText attribute:NSFontAttributeName atIndex:0 effectiveRange:nil];
             
-        }else if (self.font){
-            font = self.font;
+        }else if (weakSelf.font){
+            font = weakSelf.font;
             
         }else {
             font = [UIFont systemFontOfSize:17];
@@ -209,7 +212,7 @@
         
         Path = CGPathCreateMutable();
         
-        CGPathAddRect(Path, NULL, CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height + font.lineHeight));
+        CGPathAddRect(Path, NULL, CGRectMake(0, 0, weakSelf.bounds.size.width, weakSelf.bounds.size.height + font.lineHeight));
         
         frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), Path, NULL);
     }
@@ -229,7 +232,7 @@
     
     CTFrameGetLineOrigins(frame, CFRangeMake(0, 0), origins);
     
-    CGAffineTransform transform = [self transformForCoreText];
+    CGAffineTransform transform = [weakSelf transformForCoreText];
     
     CGFloat verticalOffset = 0;
     
@@ -238,7 +241,7 @@
         
         CTLineRef line = CFArrayGetValueAtIndex(lines, i);
         
-        CGRect flippedRect = [self getLineBounds:line point:linePoint];
+        CGRect flippedRect = [weakSelf getLineBounds:line point:linePoint];
         
         CGRect rect = CGRectApplyAffineTransform(flippedRect, transform);
         
@@ -256,7 +259,7 @@
             lineSpace = 0;
         }
         
-        CGFloat lineOutSpace = (self.bounds.size.height - lineSpace * (count - 1) -rect.size.height * count) / 2;
+        CGFloat lineOutSpace = (weakSelf.bounds.size.height - lineSpace * (count - 1) -rect.size.height * count) / 2;
         
         rect.origin.y = lineOutSpace + rect.size.height * i + lineSpace * i;
         
@@ -274,11 +277,11 @@
                 index = index - 1;
             }
             
-            NSInteger link_count = self.attributeStrings.count;
+            NSInteger link_count = weakSelf.attributeStrings.count;
             
             for (int j = 0; j < link_count; j++) {
                 
-                RichTextModel *model = self.attributeStrings[j];
+                RichTextModel *model = weakSelf.attributeStrings[j];
                 
                 NSRange link_range = model.range;
                 if (NSLocationInRange(index, link_range)) {
@@ -301,18 +304,20 @@
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    if (self.isClickEffect) {
+    __weak typeof(self) weakSelf = self;
+    if (weakSelf.isClickEffect) {
         
-        [self performSelectorOnMainThread:@selector(clickEffectWithStatus:) withObject:nil waitUntilDone:NO];
+        [weakSelf performSelectorOnMainThread:@selector(clickEffectWithStatus:) withObject:nil waitUntilDone:NO];
         
     }
 }
 
 - (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    if (self.isClickEffect) {
+    __weak typeof(self) weakSelf = self;
+    if (weakSelf.isClickEffect) {
         
-        [self performSelectorOnMainThread:@selector(clickEffectWithStatus:) withObject:nil waitUntilDone:NO];
+        [weakSelf performSelectorOnMainThread:@selector(clickEffectWithStatus:) withObject:nil waitUntilDone:NO];
         
     }
 }
@@ -336,12 +341,13 @@
 #pragma mark - clickEffect
 - (void)clickEffectWithStatus:(BOOL)status
 {
-    if (self.isClickEffect) {
-        NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithAttributedString:self.attributedText];
+    __weak typeof(self) weakSelf = self;
+    if (weakSelf.isClickEffect) {
+        NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithAttributedString:weakSelf.attributedText];
         
-        NSMutableAttributedString *subAtt = [[NSMutableAttributedString alloc] initWithAttributedString:[[self.effectDic allValues] firstObject]];
+        NSMutableAttributedString *subAtt = [[NSMutableAttributedString alloc] initWithAttributedString:[[weakSelf.effectDic allValues] firstObject]];
         
-        NSRange range = NSRangeFromString([[self.effectDic allKeys] firstObject]);
+        NSRange range = NSRangeFromString([[weakSelf.effectDic allKeys] firstObject]);
         
         if (status) {
             [subAtt addAttribute:NSBackgroundColorAttributeName value:self.clickEffectColor range:NSMakeRange(0, subAtt.string.length)];
@@ -351,36 +357,36 @@
             
             [attStr replaceCharactersInRange:range withAttributedString:subAtt];
         }
-        self.attributedText = attStr;
+        weakSelf.attributedText = attStr;
     }
 }
 
 - (void)saveEffectDicWithRange:(NSRange)range
 {
-    self.effectDic = [NSMutableDictionary dictionary];
+    __weak typeof(self) weakSelf = self;
+    weakSelf.effectDic = [NSMutableDictionary dictionary];
     
     NSAttributedString *subAttribute = [self.attributedText attributedSubstringFromRange:range];
     
-    [self.effectDic setObject:subAttribute forKey:NSStringFromRange(range)];
+    [weakSelf.effectDic setObject:subAttribute forKey:NSStringFromRange(range)];
 }
 
 #pragma mark - getRange
 - (void)richTextRangesWithStrings:(NSArray <NSString *>  *)strings
 {
-    if (self.attributedText == nil) {
-        self.isClickAction = NO;
+    __weak typeof(self) weakSelf = self;
+    if (weakSelf.attributedText == nil) {
+        weakSelf.isClickAction = NO;
         return;
     }
     
-    self.isClickAction = YES;
+    weakSelf.isClickAction = YES;
     
-    self.isClickEffect = YES;
+    weakSelf.isClickEffect = YES;
     
-    __block  NSString *totalStr = self.attributedText.string;
+    __block  NSString *totalStr = weakSelf.attributedText.string;
     
-    self.attributeStrings = [NSMutableArray array];
-    
-    __weak typeof(self) weakSelf = self;
+    weakSelf.attributeStrings = [NSMutableArray array];
     
     [strings enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         

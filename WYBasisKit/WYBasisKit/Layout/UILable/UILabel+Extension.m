@@ -10,44 +10,11 @@
 
 @implementation UILabel (Extension)
 
-- (void)setLeftAlignment:(BOOL)leftAlignment {
-    
-    if(leftAlignment == YES) {
-        
-        self.textAlignment = NSTextAlignmentLeft;
-    }
-}
+- (void)leftAlignment {self.textAlignment = NSTextAlignmentLeft;}
 
-- (BOOL)leftAlignment {
-    
-    return NSTextAlignmentRight;
-}
+- (void)centerAlignment {self.textAlignment = NSTextAlignmentCenter;}
 
-- (void)setRightAlignment:(BOOL)rightAlignment {
-    
-    if(rightAlignment == YES) {
-        
-        self.textAlignment = NSTextAlignmentRight;
-    }
-}
-
-- (BOOL)rightAlignment {
-    
-    return NSTextAlignmentRight;
-}
-
-- (void)setCenterAlignment:(BOOL)centerAlignment {
-    
-    if(centerAlignment == YES) {
-        
-        self.textAlignment = NSTextAlignmentCenter;
-    }
-}
-
-- (BOOL)centerAlignment {
-    
-    return NSTextAlignmentRight;
-}
+- (void)rightAlignment {self.textAlignment = NSTextAlignmentRight;}
 
 + (UILabel *)createLabWithFrame:(CGRect)frame text:(NSString *)text textColor:(UIColor *)textColor font:(UIFont*)font bgColor:(UIColor *)bgColor {
     

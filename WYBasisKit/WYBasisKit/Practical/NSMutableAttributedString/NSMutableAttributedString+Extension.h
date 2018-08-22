@@ -32,12 +32,15 @@
 - (void)fontsOfRanges:(NSArray <NSDictionary *>*)fontsOfRanges;
 
 /** 设置行间距 */
-- (void)setLineSpacing:(NSInteger)lineSpacing;
+- (void)setLineSpacing:(CGFloat)lineSpacing string:(NSString *)string;
+
+/** 设置字间距 */
+- (void)setWordsSpacing:(CGFloat)wordsSpacing string:(NSString *)string;
 
 /** 添加下划线 */
-- (void)addUnderline;
+- (void)addUnderlineWithString:(NSString *)string;
 
 /** 添加中划线 */
-- (void)addHorizontalLine;
+- (void)addHorizontalLineWithString:(NSString *)string;
 
 @end

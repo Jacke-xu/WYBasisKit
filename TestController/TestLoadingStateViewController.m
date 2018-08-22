@@ -39,6 +39,8 @@
     [textField1 fixMessyDisplay];
     [self.view addSubview:textField1];
     
+    self.view.backgroundColor = [UIColor greenColor];
+    
     self.tableView.backgroundColor = [UIColor whiteColor];
 }
 
@@ -81,7 +83,6 @@
     if(cell == nil)
     {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIndentifier];
-        cell.contentView.backgroundColor = [UIColor orangeColor];
         [tableView cellCutOffLineFromZeroPoint:cell];
     }
     NSArray *rowAry = [self row][indexPath.section];
@@ -126,13 +127,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     UITextField *textField = [self.view viewWithTag:100];
     if(indexPath.section == 0) {
         
-        [LoadingView dismiss];
         if(indexPath.row == 0) {
             
             if(_superViewIndex == 0) {
@@ -247,6 +247,7 @@
 
 - (void)dealloc {
     
+    WYLog(@"dealloc");
     [self.view releaseKeyboardNotification];
 }
 

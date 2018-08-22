@@ -21,22 +21,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    CGFloat labHeight = [[self testStr] boundingRectWithSize:CGSizeMake(screenWidth-40, 0) withFont:boldFont(15) lineSpacing:5].height;
-    
-    UILabel *lab = [UILabel createLabWithFrame:CGRectMake(20, 0, screenWidth-40, labHeight) text:[self testStr] textColor:[UIColor blackColor] font:boldFont(15) bgColor:[UIColor lightGrayColor]];
+    UILabel *lab = [UILabel createLabWithFrame:CGRectMake(20, 0, screenWidth-40, 0) text:[self testStr] textColor:[UIColor blackColor] font:boldFont(15) bgColor:[UIColor lightGrayColor]];
     lab.numberOfLines = 0;
     
     NSMutableAttributedString *attribute = [NSMutableAttributedString attributeWithStr:lab.text];
-    [attribute setLineSpacing:5];
+    [attribute setLineSpacing:5 string:lab.text];
+    [attribute setWordsSpacing:20 string:@"然后中和之化应"];
     NSArray *colorsOfRanges = @[@{[UIColor orangeColor]:@"治性之道"},@{[UIColor greenColor]:@"盖聪明疏通者戒于太察"}];
     NSArray *fontsOfRanges = @[@{[UIFont systemFontOfSize:18]:@"广心浩大者戒于遗忘"},@{[UIFont boldSystemFontOfSize:30]:@[@"1",@"2"]}];
-//    NSArray *colorsOfRanges = @[@{[UIColor orangeColor]:@[@"0",@"6"]},@{[UIColor greenColor]:@[@"8",@"10"]}];
-//    NSArray *fontsOfRanges = @[@{[UIFont systemFontOfSize:18]:@[@"30",@"5"]},@{[UIFont boldSystemFontOfSize:30]:@[@"1",@"2"]}];
     [attribute colorsOfRanges:colorsOfRanges];
     [attribute fontsOfRanges:fontsOfRanges];
     lab.attributedText = attribute;
     [lab sizeToFit];
-    [attribute addAttribute:NSLinkAttributeName value:@"聪明" range:[[attribute string] rangeOfString:@"仁爱温良"]];
     [self.view addSubview:lab];
     
     
@@ -95,6 +91,11 @@
     
     NSString *message = [NSString stringWithFormat:@"点击了“%@”字符\nrange: %@\nindex: %ld",string,NSStringFromRange(range),(long)index];
     WYLog(@"messge = %@",message);
+}
+
+- (void)dealloc {
+    
+    WYLog(@"dealloc");
 }
 
 - (void)didReceiveMemoryWarning {

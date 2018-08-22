@@ -11,28 +11,41 @@
 
 @interface UIView (Extension)
 
+/** view.width */
 @property (nonatomic, assign) CGFloat width;
 
+/** view.height */
 @property (nonatomic, assign) CGFloat height;
 
+/** view.origin.x */
 @property (nonatomic, assign) CGFloat left;
 
+/** view.origin.y */
 @property (nonatomic, assign) CGFloat top;
 
+/** view.origin.x + view.width */
 @property (nonatomic, assign) CGFloat right;
 
+/** view.origin.y + view.height */
 @property (nonatomic, assign) CGFloat bottom;
 
+/** view.center.x */
 @property (nonatomic, assign) CGFloat centerx;
 
+/** view.center.y */
 @property (nonatomic, assign) CGFloat centery;
 
+/** view.origin */
 @property (nonatomic, assign) CGPoint origin;
 
+/** view.size */
 @property (nonatomic, assign) CGSize size;
 
 /** 找到自己的所属viewController */
 - (UIViewController *)belongsViewController;
+
+/** 找到当前显示的viewController */
+- (UIViewController *)currentViewController;
 
 /** 创建view */
 + (UIView *)createViewWithFrame:(CGRect)frame color:(UIColor *)color;

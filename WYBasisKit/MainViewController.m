@@ -116,10 +116,6 @@
     }
     else if (indexPath.row == 7) {
         
-        vc = [[TestTransitionViewController alloc]init];
-    }
-    else if (indexPath.row == 8) {
-        
         vc = [[TestLoadingStateViewController alloc]init];
     }
     vc.navigationItem.title = [self section][indexPath.row];
@@ -128,7 +124,7 @@
 
 - (NSArray *)section {
     
-    NSArray *sectionTitleAry = @[@"WKWebView",@"UILable",@"UITextView",@"UITextField",@"UIButton",@"网络请求",@"BoolJudge",@"转场动画测试",@"LoadingState"];
+    NSArray *sectionTitleAry = @[@"WKWebView",@"UILable",@"UITextView",@"UITextField",@"UIButton",@"网络请求",@"BoolJudge",@"LoadingState"];
     
     return sectionTitleAry;
 }

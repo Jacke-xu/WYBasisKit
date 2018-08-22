@@ -69,21 +69,26 @@
     }
 }
 
-- (void)setLineSpacing:(NSInteger)lineSpacing {
+- (void)setLineSpacing:(CGFloat)lineSpacing string:(NSString *)string {
     
     if(self.paragraphStyle == nil) {self.paragraphStyle = [NSMutableParagraphStyle paragraphStyle];}
     [self.paragraphStyle setLineSpacing:lineSpacing];
-    [self addAttribute:NSParagraphStyleAttributeName value:self.paragraphStyle range:NSMakeRange(0, self.string.length)];
+    [self addAttribute:NSParagraphStyleAttributeName value:self.paragraphStyle range:[self.string rangeOfString:string]];
 }
 
-- (void)addUnderline {
+- (void)setWordsSpacing:(CGFloat)wordsSpacing string:(NSString *)string {
     
-    [self addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:NSMakeRange(0, self.string.length)];
+    [self addAttribute:NSKernAttributeName value:[NSNumber numberWithFloat:wordsSpacing] range:[self.string rangeOfString:string]];
 }
 
-- (void)addHorizontalLine {
+- (void)addUnderlineWithString:(NSString *)string {
     
-    [self addAttribute:NSStrikethroughStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:NSMakeRange(0, self.string.length)];
+    [self addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:[self.string rangeOfString:string]];
+}
+
+- (void)addHorizontalLineWithString:(NSString *)string {
+    
+    [self addAttribute:NSStrikethroughStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:[self.string rangeOfString:string]];
 }
 
 @end

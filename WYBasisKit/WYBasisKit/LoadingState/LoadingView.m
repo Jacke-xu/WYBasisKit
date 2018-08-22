@@ -2,248 +2,277 @@
 //  LoadingView.m
 //  WYBasisKit
 //
-//  Created by jacke-xu on 17/2/12.
-//  Copyright © 2017年 com.jacke-xu. All rights reserved.
+//  Created by  jacke-xu on 2018/8/14.
+//  Copyright © 2018年 jacke-xu. All rights reserved.
 //
 
 #import "LoadingView.h"
 
 @interface LoadingView ()
 
-@property (nonatomic, weak) UIView *bgView;
+///显示文本
+@property (nonatomic, weak) UILabel *label;
 
-@property (nonatomic, weak) UILabel *lable;
-
+///系统小菊花
 @property (nonatomic, weak) UIActivityIndicatorView *activity;
 
+///自定义动图
 @property (nonatomic, weak) UIImageView *heartImageView;
+
+///用户交互状态
+@property (nonatomic, assign) BOOL userInteraction;
 
 @end
 
 @implementation LoadingView
 
+#pragma mark 构造单例
 static LoadingView *_loadingView = nil;
 + (LoadingView *)shared {
+    
+    [StateView dismiss];
     
     static dispatch_once_t predicate;
     dispatch_once(&predicate, ^{
         
         _loadingView = [[LoadingView alloc]init];
+        _loadingView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.8];
+        _loadingView.layer.cornerRadius = 10;
+        _loadingView.layer.masksToBounds = YES;
     });
-    [StateView dismiss];
     
     return _loadingView;
 }
 
+#pragma mark 构造方法
 + (void)showMessage:(NSString *)message {
     
-    [self showWithMessage:message superView:[UIApplication sharedApplication].delegate.window];
+    [self showMessageStr:[NSString emptyStr:message] showType:@"Message" superView:nil];
 }
 
 + (void)showMessage:(NSString *)message superView:(UIView *)superView {
     
-    [self showWithMessage:message superView:superView];
+    [self showMessageStr:[NSString emptyStr:message] showType:@"Message" superView:superView];
 }
 
-+ (void)showInfo:(NSString *)message {
++ (void)showInfo:(NSString *)info {
     
-    [self showWithInfo:message superView:[UIApplication sharedApplication].keyWindow];
+    [self showMessageStr:[NSString emptyStr:info] showType:@"Info" superView:nil];
 }
 
-+ (void)showInfo:(NSString *)message superView:(UIView *)superView {
++ (void)showInfo:(NSString *)info superView:(UIView *)superView {
     
-    [self showWithInfo:message superView:superView];
+    [self showMessageStr:[NSString emptyStr:info] showType:@"Info" superView:superView];
 }
 
-+ (void)showWithMessage:(NSString *)message superView:(UIView *)superView {
++ (void)userInteractionEnabled:(BOOL)userInteractionEnabled {
     
+    [self shared].userInteraction = !userInteractionEnabled;
+}
+
++ (void)showMessageStr:(NSString *)messageStr showType:(NSString *)showType superView:(UIView *)superView {
+    
+    //获取单例
     _loadingView = [self shared];
+    
+    //找到父控制器
     superView = [_loadingView sharedSuperView:superView];
-    _loadingView.frame = CGRectMake(superView.frame.size.width/2-75, superView.frame.size.height/2-60, 150, 120);
+    
+    //初始化设置
+    [self initializationSettings:showType messageStr:messageStr superView:superView];
+    
+    //添加到父控制器上
     [superView addSubview:_loadingView];
-    _loadingView.activity.hidden = YES;
-    if(_loadingView.bgView.frame.size.width != 150) {
-        
-        _loadingView.bgView.frame = CGRectMake(0, 0, 150, 120);
-        _loadingView.bgView.layer.cornerRadius = 10;
-    }
-    _loadingView.heartImageView.hidden = NO;
-    [_loadingView.heartImageView startAnimating];
     
-    _loadingView.lable.frame = CGRectMake(_loadingView.bgView.frame.size.width/2-50, 80, 100, 40);
-    _loadingView.lable.text = message;
-}
-
-+ (void)showWithInfo:(NSString *)message superView:(UIView *)superView {
-    
-    _loadingView = [self shared];
-    superView = [_loadingView sharedSuperView:superView];
-    _loadingView.frame = CGRectMake(superView.frame.size.width/2-60, superView.frame.size.height/2-50, 120, 100);
-    [superView addSubview:_loadingView];
-    _loadingView.heartImageView.hidden = YES;
-    if(_loadingView.bgView.frame.size.width != 120) {
-        
-        _loadingView.bgView.frame = CGRectMake(0, 0, 120, 100);
-        _loadingView.bgView.layer.cornerRadius = 15;
-    }
-    
-    _loadingView.activity.hidden = NO;
-    [_loadingView.activity startAnimating];
-    
-    _loadingView.lable.frame = CGRectMake(15, 65, 90, 20);
-    _loadingView.lable.text = message;
-    [_loadingView layoutFrame];
+    //设置用户交互
+    [UIApplication sharedApplication].keyWindow.userInteractionEnabled = !_loadingView.userInteraction;
 }
 
 + (void)dismiss {
     
+    //关闭动画
+    [_loadingView.heartImageView stopAnimating];
+    [_loadingView.activity stopAnimating];
+    
+    //移除自己
     [_loadingView removeFromSuperview];
+    
+    //打开用户交互
+    [UIApplication sharedApplication].keyWindow.userInteractionEnabled = YES;
 }
 
-- (UILabel *)setLabLineSpacing:(NSInteger)lineSpacing withControll:(UILabel *)lab {
+#pragma mark 查找当前显示的控制器的view，找不到就用keyWindow
+- (UIView *)sharedSuperView:(UIView *)superView {
     
-    if(lab.text.length > 0) {
+    if(superView == nil) {
         
-        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:lab.text];
-        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-        [paragraphStyle setLineSpacing:lineSpacing];
-        [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [lab.text length])];
-        lab.attributedText = attributedString;
-        [lab sizeToFit];
+        superView = ([self currentViewController].view == nil) ? [UIApplication sharedApplication].keyWindow : [self currentViewController].view;
     }
     
-    return lab;
+    //防止弹窗时键盘挡住自己
+    [superView endEditing:YES];
+    
+    return superView;
 }
 
-- (CGSize)boundingRectWithSize:(CGSize)size withFont:(UIFont *)font Text:(NSString *)text {
+#pragma mark 初始化设置
++ (void)initializationSettings:(NSString *)showType messageStr:(NSString *)messageStr superView:(UIView *)superView {
     
-    NSDictionary *attribute = @{NSFontAttributeName: font};
-    
-    CGSize retSize = [text boundingRectWithSize:size
-                                        options:\
-                      NSStringDrawingTruncatesLastVisibleLine |
-                      NSStringDrawingUsesLineFragmentOrigin |
-                      NSStringDrawingUsesFontLeading
-                                     attributes:attribute
-                                        context:nil].size;
-    
-    return retSize;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        WYLog(@"LoadingView提示文本：%@",messageStr);
+        
+        _loadingView.label.text = messageStr;
+        _loadingView.label.hidden = !(messageStr.length > 0);
+        
+        if([showType isEqualToString:@"Message"]) {
+            
+            _loadingView.activity.hidden = YES;
+            [_loadingView.activity stopAnimating];
+            
+            [_loadingView.heartImageView startAnimating];
+            _loadingView.heartImageView.hidden = NO;
+            
+            //给定临时宽度
+            CGFloat tempWidth = (_loadingView.label.hidden == YES) ? _loadingView.heartImageView.width+(_loadingView.heartImageView.top*2) : _loadingView.heartImageView.width+(_loadingView.label.left*2);
+            
+            if(_loadingView.label.hidden == NO) {
+                
+                //根据文本及计算弹窗width
+                tempWidth = [self sharedWindowWidth:tempWidth];
+            }
+            
+            _loadingView.heartImageView.left = (tempWidth - _loadingView.heartImageView.width)/2;
+            
+            _loadingView.label.top = _loadingView.heartImageView.bottom-10;//由于图片内容底部留白过大，这里减10，如更换图片可自行适当调整
+            
+            _loadingView.size = CGSizeMake(tempWidth, (_loadingView.label.hidden == YES) ? (tempWidth*0.95) : (_loadingView.label.bottom+10));//个人觉得不要完全正方形的好看一点
+        }
+        else {
+            
+            _loadingView.heartImageView.hidden = YES;
+            [_loadingView.heartImageView stopAnimating];
+            
+            [_loadingView.activity startAnimating];
+            _loadingView.activity.hidden = NO;
+            
+            //给定临时宽度
+            CGFloat tempWidth = (_loadingView.label.hidden == YES) ? _loadingView.activity.width+(_loadingView.activity.top*2) : _loadingView.activity.width+(_loadingView.label.left*2)+40;
+            
+            if(_loadingView.label.hidden == NO) {
+                
+                //根据文本及计算弹窗width
+                tempWidth = [self sharedWindowWidth:tempWidth];
+            }
+            
+            _loadingView.activity.left = (tempWidth - _loadingView.activity.width)/2;
+            
+            _loadingView.label.top = _loadingView.activity.bottom+10;//由于图片内容底部留白过小，这里加10
+            
+            _loadingView.size = CGSizeMake(tempWidth, (_loadingView.label.hidden == YES) ? tempWidth : (_loadingView.label.bottom+10));//个人觉得不要完全正方形的好看一点
+        }
+        
+        _loadingView.left = (screenWidth-_loadingView.width)/2;
+        
+        _loadingView.top = ((superView.height-_loadingView.height)/2)-(([UIScreen mainScreen].bounds.size.height-superView.height)/2);
+    });
 }
 
-- (UIView *)bgView {
+//布局关键
++ (CGFloat)sharedWindowWidth:(CGFloat)tempWidth {
     
-    if(_bgView == nil) {
+    //临时宽度
+    CGFloat windowWidth = tempWidth;
+    //图像动画width
+    CGFloat graphicalWidth = windowWidth-(_loadingView.label.left*2);
+    //文本总宽度
+    CGFloat textWidth = [_loadingView.label.text boundingRectWithSize:CGSizeMake(MAXFLOAT, _loadingView.label.font.lineHeight) withFont:_loadingView.label.font lineSpacing:0].width;
+    
+    //2行及以上(目前只适配2行)
+    if(textWidth > graphicalWidth) {
         
-        UIView *view = [[UIView alloc]init];
-        view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.8];
-        view.layer.masksToBounds = YES;
-        [_loadingView addSubview:view];
-        
-        _bgView = view;
+        if(textWidth < (graphicalWidth+_loadingView.label.font.lineHeight)) {
+            
+            windowWidth = textWidth+(_loadingView.label.left*2);
+        }
+        else {
+            
+            windowWidth = graphicalWidth+_loadingView.label.font.lineHeight+(_loadingView.label.left*2);
+        }
     }
     
-    return _bgView;
+    _loadingView.label.width = windowWidth-(_loadingView.label.left*2);
+    //这里执行下sizeToFit，防止弹窗底部留白过大
+    [_loadingView.label sizeToFit];
+    //重置lable.size，防止原点改变
+    _loadingView.label.size = CGSizeMake(windowWidth-((5+_loadingView.layer.cornerRadius)*2), _loadingView.label.height);
+    
+    return windowWidth;
 }
 
+#pragma mark 懒加载
 - (UIActivityIndicatorView *)activity {
     
     if(_activity == nil) {
         
         UIActivityIndicatorView *acti = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        acti.frame = CGRectMake(_bgView.frame.size.width/2-20, 15, 40, 40);
-        [_bgView addSubview:acti];
+        acti.size = CGSizeMake(40, 40);
+        acti.top = 20;
+        [_loadingView addSubview:acti];
         
         _activity = acti;
     }
-    
     return _activity;
 }
 
-- (UILabel *)lable {
+- (UILabel *)label {
     
-    if(_lable == nil) {
+    if(_label == nil) {
         
         UILabel *lab = [[UILabel alloc]init];
         lab.font = [UIFont boldSystemFontOfSize:16];
         lab.textColor = [UIColor whiteColor];
         lab.textAlignment = NSTextAlignmentCenter;
-        [_bgView addSubview:lab];
+        lab.clipsToBounds = YES;
+        lab.numberOfLines = 2;
+        lab.left = 5+_loadingView.layer.cornerRadius;
         
-        _lable = lab;
+        [_loadingView addSubview:lab];
+        
+        _label = lab;
     }
-    
-    return _lable;
+    return _label;
 }
 
 - (UIImageView *)heartImageView {
     
     if(_heartImageView == nil) {
         
-        UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(_bgView.frame.size.width/2-50, 10, 100, 80)];
-        NSMutableArray *images = [[NSMutableArray alloc]initWithCapacity:6];
+        UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectZero];
+        NSMutableArray *images = [[NSMutableArray alloc]init];
         for (int i=1; i<=5; i++)
         {
-            [images addObject:[UIImage imageWithContentsOfFile:[[[NSBundle mainBundle] pathForResource:@"Loading" ofType:@"bundle"] stringByAppendingPathComponent:[NSString stringWithFormat:@"car%d.png",i]]]];
+            [images addObject:[UIImage imageWithContentsOfFile:[[[NSBundle mainBundle] pathForResource:@"Loading" ofType:@"bundle"] stringByAppendingPathComponent:[NSString stringWithFormat:@"loading%d.png",i]]]];
         }
         imgView.animationImages = images;
         imgView.animationDuration = 0.4 ;
         imgView.animationRepeatCount = MAXFLOAT;
-        [_bgView addSubview:imgView];
+        imgView.size = CGSizeMake(85, 85);
+        imgView.top = 5;
+        imgView.contentMode = UIViewContentModeScaleAspectFit;
+        [_loadingView addSubview:imgView];
         
         _heartImageView = imgView;
     }
-    
     return _heartImageView;
 }
 
-- (void)layoutFrame {
-    
-    CGSize labSize = [self boundingRectWithSize:CGSizeMake(_lable.frame.size.width, 0) withFont:[UIFont boldSystemFontOfSize:16] Text:_lable.text];
-    if(labSize.height > 25) {
-        
-        _bgView.frame = CGRectMake(0, 0, 135, 120);
-        _lable.frame = CGRectMake(25, 65, 85, 0);
-        _lable.numberOfLines = 2;
-        [self setLabLineSpacing:5 withControll:_lable];
-        _lable.numberOfLines = 2;
-    }
-    _activity.frame = CGRectMake(_bgView.frame.size.width/2-20, 15, 40, 40);
-}
-
-- (UIView *)sharedSuperView:(UIView *)superView {
-    
-    if([self belongsViewController] != nil) {
-        
-        superView = [self belongsViewController].view;
-    }
-    return superView;
-}
-
-- (UIViewController *)belongsViewController {
-    
-    for (UIView *next = self; next; next = next.superview) {
-        UIResponder *nextResponder = [next nextResponder];
-        if ([nextResponder isKindOfClass:[UIViewController class]]) {
-            return (UIViewController *)nextResponder;
-        }
-    }
-    return nil;
-}
-
-- (CGSize)proportionSize:(CGSize)size {
-    
-    size.height = (size.width/5)*4;
-    
-    return size;
-}
-
 /*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect {
- // Drawing code
- }
- */
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect {
+    // Drawing code
+}
+*/
 
 @end
-

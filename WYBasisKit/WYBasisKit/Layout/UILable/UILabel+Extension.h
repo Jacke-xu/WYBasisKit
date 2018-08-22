@@ -10,12 +10,14 @@
 
 @interface UILabel (Extension)
 
-//设置标签对齐方式
-@property (nonatomic, assign) BOOL leftAlignment;//设置标签左对齐
+/** 设置标签左对齐 */
+- (void)leftAlignment;
 
-@property (nonatomic, assign) BOOL centerAlignment;//设置标签中心对齐
+/** 设置标签中心对齐 */
+- (void)centerAlignment;
 
-@property (nonatomic, assign) BOOL rightAlignment;//设置标签右对齐
+/** 设置标签右对齐 */
+- (void)rightAlignment;
 
 /** 创建无边框lab */
 + (UILabel *)createLabWithFrame:(CGRect)frame text:(NSString *)text textColor:(UIColor *)textColor font:(UIFont*)font bgColor:(UIColor *)bgColor;

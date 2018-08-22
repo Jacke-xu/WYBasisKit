@@ -2,147 +2,214 @@
 //  StateView.m
 //  WYBasisKit
 //
-//  Created by jacke－xu on 17/2/12.
-//  Copyright © 2017年 com.jacke-xu. All rights reserved.
+//  Created by  jacke-xu on 2018/8/16.
+//  Copyright © 2018年 jacke-xu. All rights reserved.
 //
 
 #import "StateView.h"
 
 @interface StateView ()
 
-@property (nonatomic, weak) UIView *bgView;
-
+///显示图标
 @property (nonatomic, weak) UIImageView *imageView;
 
+///显示文本
 @property (nonatomic, weak) UILabel *label;
+
+///用户交互状态
+@property (nonatomic, assign) BOOL userInteraction;
+
+///弹窗延时时间
+@property (nonatomic, assign) CGFloat delayed;
+
+///记录延时状态(每次按照自定义延时时间延时还是单次按照自定义延时时间延时)
+@property (nonatomic, assign) BOOL eachDelay;
+
+///记录是否需要自动移除弹窗
+@property (nonatomic, assign) BOOL autoRemove;
+
 
 @end
 
 @implementation StateView
+
 static StateView *_stateView = nil;
 
+#pragma mark 构造单例
 + (StateView *)shared {
+    
+    [LoadingView dismiss];
     
     static dispatch_once_t predicate;
     dispatch_once(&predicate, ^{
         
-        _stateView = [[StateView alloc]initWithFrame:CGRectMake(screenWidth/2-60, screenHeight/2-50, 120, 100)];
+        _stateView = [[StateView alloc]initWithFrame:CGRectZero];
+        _stateView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.8];
+        _stateView.layer.cornerRadius = 15;
+        _stateView.layer.masksToBounds = YES;
+        _stateView.delayed = 1.5f;
+        _stateView.autoRemove = YES;
     });
-    [LoadingView dismiss];
+    
+    _stateView.alpha = 1.0f;
     
     return _stateView;
 }
 
-+ (void)showSuccessInfo:(NSString *)message {
+#pragma mark 构造方法
++ (void)showSuccessInfo:(NSString *)info {
     
-    weakSelf(self);
-    [[weakself shared] layoutStateViewWithImage:@"success" message:message superView:[UIApplication sharedApplication].keyWindow];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [weakself dismiss];
-    });
+    [self layoutStateViewWithImage:@"success" info:[NSString emptyStr:info]];
 }
 
-+ (void)showErrorInfo:(NSString *)message {
++ (void)showErrorInfo:(NSString *)info {
     
-    weakSelf(self);
-    [[weakself shared] layoutStateViewWithImage:@"error" message:message superView:[UIApplication sharedApplication].keyWindow];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [weakself dismiss];
-    });
+    [self layoutStateViewWithImage:@"error" info:[NSString emptyStr:info]];
 }
 
-+ (void)showWarningInfo:(NSString *)message {
++ (void)showWarningInfo:(NSString *)info {
     
-    weakSelf(self);
-    [[weakself shared] layoutStateViewWithImage:@"waitting" message:message superView:[UIApplication sharedApplication].keyWindow];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [weakself dismiss];
-    });
+    [self layoutStateViewWithImage:@"warning" info:[NSString emptyStr:info]];
 }
 
-- (void)layoutStateViewWithImage:(NSString *)image message:(NSString *)message superView:(UIView *)superView {
++ (void)userInteractionEnabled:(BOOL)userInteractionEnabled {
     
-    self.imageView.image = [UIImage imageWithContentsOfFile:[[[NSBundle mainBundle] pathForResource:@"Loading" ofType:@"bundle"] stringByAppendingPathComponent:image]];
-    self.label.text = message;
-    [self.label sizeToFit];
+    [self shared].userInteraction = !userInteractionEnabled;
+}
+
++ (void)windowDelayed:(CGFloat)delayed eachDelay:(BOOL)eachDelay {
     
-    if(_label.frame.size.width <= 90) {
-    }else if (_label.frame.size.width <= 220.0) {
-        
-        if(_label.frame.size.width <= 110) {
-            
-            _stateView.frame = CGRectMake(superView.frame.size.width/2-65, superView.frame.size.height/2-55, 130, 110);
-            
-        }else {
-            
-            _stateView.frame = CGRectMake(superView.frame.size.width/2-70, superView.frame.size.height/2-60, 140, 120);
-        }
-        
-    }else if (_label.frame.size.width <= 390.0) {
-        
-        if(_label.frame.size.width <= 130) {
-            
-            _stateView.frame = CGRectMake(superView.frame.size.width/2-75, superView.frame.size.height/2-65, 150, 130);
-            
-        }else {
-            
-            _stateView.frame = CGRectMake(superView.frame.size.width/2-80, superView.frame.size.height/2-70, 160, 140);
-        }
-        
-    }else {
-        
-        if(_label.frame.size.width <= 150) {
-            
-            _stateView.frame = CGRectMake(superView.frame.size.width/2-85, superView.frame.size.height/2-75, 170, 150);
-            
-        }else {
-            
-            _stateView.frame = CGRectMake(superView.frame.size.width/2-90, superView.frame.size.height/2-80, 180, 160);
-        }
-    }
+    [self shared].delayed = delayed;
+    [self shared].eachDelay = eachDelay;
+}
+
++ (void)automaticRemoveWindow:(BOOL)autoRemove {
     
-    _bgView.frame = CGRectMake(0, 0, _stateView.frame.size.width, _stateView.frame.size.height);
-    _imageView.frame = CGRectMake(0, 20, _bgView.frame.size.width, 35);
-    _label.frame = CGRectMake(15, 65, _stateView.frame.size.width-30, 0);
-    _label.numberOfLines = 4;
-    [self setLabLineSpacing:5 WithControll:_label];
-    _label.numberOfLines = 4;
-    _label.frame = CGRectMake(15, 65, _bgView.frame.size.width-30, _label.frame.size.height);
-    _label.textAlignment = NSTextAlignmentCenter;
+    [self shared].autoRemove = autoRemove;
+}
+
++ (void)layoutStateViewWithImage:(NSString *)image info:(NSString *)info {
     
-    _stateView.frame = CGRectMake(_stateView.frame.origin.x, (superView.frame.size.height-(65+_label.frame.size.height+8))/2, _stateView.frame.size.width, 65+_label.frame.size.height+8);
-    _bgView.frame = CGRectMake(0, 0, _stateView.frame.size.width, _stateView.frame.size.height);
+    //获取单例
+    _stateView = [self shared];
     
-    [superView addSubview:_stateView];
+    //初始化设置
+    [self initializationSettings:image info:info];
+    
+    //添加到父控制器上
+    [[UIApplication sharedApplication].keyWindow addSubview:_stateView];
+    
+    //设置用户交互
+    [UIApplication sharedApplication].keyWindow.userInteractionEnabled = !_stateView.userInteraction;
 }
 
 + (void)dismiss {
     
-    [_stateView removeFromSuperview];
+    //重置延时策略
+    if(_stateView.eachDelay == NO) {_stateView.delayed = 1.5f;}
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        //加个渐隐动画
+        _stateView.alpha = 0.0f;
+        
+    } completion:^(BOOL finished) {
+        
+        //移除自己
+        [_stateView removeFromSuperview];
+        
+        //打开用户交互
+        [UIApplication sharedApplication].keyWindow.userInteractionEnabled = YES;
+    }];
 }
 
-- (UIView *)bgView {
+#pragma mark 初始化设置
++ (void)initializationSettings:(NSString *)image info:(NSString *)info {
     
-    if(!_bgView) {
+    dispatch_async(dispatch_get_main_queue(), ^{
         
-        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 120, 100)];
-        view.layer.cornerRadius = 15;
-        view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.8];
-        [_stateView addSubview:view];
+        WYLog(@"StateView提示文本：%@",info);
         
-        _bgView = view;
+        _stateView.imageView.image = [UIImage imageWithContentsOfFile:[[[NSBundle mainBundle] pathForResource:@"Loading" ofType:@"bundle"] stringByAppendingPathComponent:image]];
+        
+        _stateView.label.text = info;
+        _stateView.label.hidden = !(info.length > 0);
+        
+        //给定临时宽度
+        CGFloat tempWidth = (_stateView.label.hidden == YES) ? _stateView.imageView.width+(_stateView.imageView.top*2) : screenWidth*0.25;
+        
+        if(_stateView.label.hidden == NO) {
+            
+            //根据文本及计算弹窗width
+            tempWidth = [self sharedWindowWidth:tempWidth];
+        }
+        
+        _stateView.size = CGSizeMake(tempWidth, (_stateView.label.hidden == YES) ? tempWidth : _stateView.label.bottom+10);
+
+        _stateView.imageView.left = (_stateView.width-_stateView.imageView.width)/2;
+
+        _stateView.center = [UIApplication sharedApplication].keyWindow.center;
+        
+        if(_stateView.autoRemove == NO) return;
+        
+        [self performSelector:@selector(dismiss) withObject:nil afterDelay:_stateView.delayed];
+    });
+}
+
+//布局关键
++ (CGFloat)sharedWindowWidth:(CGFloat)tempWidth {
+    
+    //临时宽度
+    CGFloat windowWidth = tempWidth;
+    //label的左间距
+    CGFloat labelLeft = _stateView.label.left;
+    //label最低width
+    CGFloat labelWidth = windowWidth-(labelLeft*2);
+    //文本总宽度
+    CGFloat textWidth = [_stateView.label.text boundingRectWithSize:CGSizeMake(MAXFLOAT, _stateView.label.font.lineHeight) withFont:_stateView.label.font lineSpacing:0].width;
+    //最大支持屏幕的0.45倍宽,否则就不好看了
+    CGFloat maxWidth = screenWidth*0.45;
+
+    //需要折行计算
+    if(textWidth > labelWidth) {
+        
+        if (textWidth < (labelWidth+_stateView.label.font.lineHeight)) {
+            
+            windowWidth = textWidth+(labelLeft*2);
+        }
+        else {
+            
+            windowWidth = windowWidth+_stateView.label.font.lineHeight*2;
+            //计算lable的显示行数
+            CGFloat showLine = [_stateView.label.text textShowLinesWithControlWidth:windowWidth - (labelLeft*2) font:_stateView.label.font lineSpacing:0];
+            if(showLine > 3) {
+                
+                windowWidth = windowWidth+_stateView.label.font.lineHeight*3;
+            }
+        }
+        if(windowWidth >= maxWidth) {windowWidth = maxWidth;}
     }
+
+    _stateView.label.width = windowWidth-(labelLeft*2);
+    //这里执行下sizeToFit，防止弹窗底部留白过大
+    [_stateView.label sizeToFit];
+    //重置lable.size，防止原点改变
+    _stateView.label.size = CGSizeMake(windowWidth-(labelLeft*2), _stateView.label.height);
     
-    return _bgView;
+    return windowWidth;
 }
 
+#pragma mark 懒加载
 - (UIImageView *)imageView {
     
-    if(!_imageView) {
+    if(_imageView == nil) {
         
-        UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 20, 120, 35)];
+        UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectZero];
+        imgView.top = 20;
+        imgView.size = CGSizeMake(35, 35);
         imgView.contentMode = UIViewContentModeScaleAspectFit;
-        [self.bgView addSubview:imgView];
+        [_stateView addSubview:imgView];
+        
         _imageView = imgView;
     }
     
@@ -151,12 +218,17 @@ static StateView *_stateView = nil;
 
 - (UILabel *)label {
     
-    if(!_label) {
+    if(_label == nil) {
         
-        UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(15, 65, 90, 20)];
+        UILabel *lab = [[UILabel alloc]initWithFrame:CGRectZero];
+        lab.top = 65;
+        lab.left = 5+_stateView.layer.cornerRadius;
         lab.font = [UIFont boldSystemFontOfSize:16];
+        lab.numberOfLines = 4;
+        [lab centerAlignment];
         lab.textColor = [UIColor whiteColor];
-        [_bgView addSubview:lab];
+        
+        [_stateView addSubview:lab];
         
         _label = lab;
     }
@@ -164,27 +236,12 @@ static StateView *_stateView = nil;
     return _label;
 }
 
-- (UILabel *)setLabLineSpacing:(NSInteger)lineSpacing WithControll:(UILabel *)lab {
-    
-    if(lab.text.length > 0) {
-        
-        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:lab.text];
-        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-        [paragraphStyle setLineSpacing:lineSpacing];
-        [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [lab.text length])];
-        lab.attributedText = attributedString;
-        [lab sizeToFit];
-    }
-    
-    return lab;
-}
-
 /*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect {
- // Drawing code
- }
- */
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect {
+    // Drawing code
+}
+*/
 
 @end

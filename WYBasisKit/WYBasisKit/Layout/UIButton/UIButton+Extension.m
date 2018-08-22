@@ -110,69 +110,29 @@
     return self.titleLabel.font;
 }
 
-- (void)setLeftAlignment:(BOOL)leftAlignment {
+- (void)leftAlignment {
     
-    if(leftAlignment == YES) {
-        
-        self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    }
+    self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
 }
 
-- (BOOL)leftAlignment {
+- (void)centerAlignment {
     
-    return self.contentHorizontalAlignment;
+    self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
 }
 
-- (void)setCenterAlignment:(BOOL)centerAlignment {
+- (void)rightAlignment {
     
-    if(centerAlignment == YES) {
-        
-        self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-    }
+    self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
 }
 
-- (BOOL)centerAlignment {
+- (void)topAlignment {
     
-    return self.contentHorizontalAlignment;
+    self.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
 }
 
-- (void)setRightAlignment:(BOOL)rightAlignment {
+- (void)bottomAlignment {
     
-    if(rightAlignment == YES) {
-        
-        self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-    }
-}
-
-- (BOOL)rightAlignment {
-    
-    return self.contentHorizontalAlignment;
-}
-
-- (void)setTopAlignment:(BOOL)topAlignment {
-    
-    if(topAlignment == YES) {
-        
-        self.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
-    }
-}
-
-- (BOOL)topAlignment {
-    
-    return self.contentVerticalAlignment;
-}
-
-- (void)setBottomAlignment:(BOOL)bottomAlignment {
-    
-    if(bottomAlignment == YES) {
-        
-        self.contentVerticalAlignment = UIControlContentVerticalAlignmentBottom;
-    }
-}
-
-- (BOOL)bottomAlignment {
-    
-    return self.contentVerticalAlignment;
+    self.contentVerticalAlignment = UIControlContentVerticalAlignmentBottom;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame target:(id)target selector:(SEL)selector {
@@ -186,6 +146,11 @@
     }
     
     return self;
+}
+
+- (void)addTarget:(id)target selector:(SEL)selector {
+    
+    [self addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
 }
 
 @end

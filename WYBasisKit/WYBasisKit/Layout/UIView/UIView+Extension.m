@@ -13,6 +13,8 @@
 #import "UIFont+Extension.h"
 #import "UIColor+Extension.h"
 
+#import "AppDelegate.h"
+
 @interface UIView ()
 
 @property (nonatomic, weak) UIView *mainView;
@@ -108,6 +110,34 @@
         }
     }
     return nil;
+}
+
+- (UIViewController *)currentViewController {
+    
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;;
+    return [self getCurrentViewController:appDelegate.window.rootViewController];
+}
+
+//递归查找
+- (UIViewController *)getCurrentViewController:(UIViewController *)controller {
+    
+    if ([controller isKindOfClass:[UITabBarController class]]) {
+        
+        UINavigationController *nav = ((UITabBarController *)controller).selectedViewController;
+        return [nav.viewControllers lastObject];
+    }
+    else if ([controller isKindOfClass:[UINavigationController class]]) {
+        
+        return [((UINavigationController *)controller).viewControllers lastObject];
+    }
+    else if ([controller isKindOfClass:[UIViewController class]]) {
+        
+        return controller;
+    }
+    else {
+        
+        return nil;
+    }
 }
 
 + (UIView *)createViewWithFrame:(CGRect)frame color:(UIColor *)color {
@@ -261,16 +291,22 @@
         
         CGFloat bottom = [self.superview convertPoint:self.frame.origin toView:self.mainView].y+self.frame.size.height;
         CGFloat extraHeight = [self hasSystemNavigationBarExtraHeight];
+        
+        __weak typeof(self) textFieldSelf = self;
         if((bottom+extraHeight) > keyboardFrame.origin.y) {
             
-            __weak typeof(self) textFieldSelf = self;
             [UIView animateWithDuration:duration delay:0 options:option animations:^{
                 
-                textFieldSelf.mainView.frame = CGRectMake(textFieldSelf.mainView.frame.origin.x, -(bottom-keyboardFrame.origin.y), textFieldSelf.mainView.frame.size.width, textFieldSelf.mainView.frame.size.height);
+                textFieldSelf.mainView.top = -(bottom-keyboardFrame.origin.y);
                 
-            } completion:nil];
-            
-            [self layoutIfNeeded];
+            } completion:^(BOOL finished) {
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    //为了显示动画
+                    [textFieldSelf layoutIfNeeded];
+                });
+            }];
         }
     }
 }
@@ -284,11 +320,16 @@
     [UIView animateWithDuration:duration delay:0 options:option animations:^{
         
         CGFloat extraHeight = [textFieldSelf hasSystemNavigationBarExtraHeight];
-        textFieldSelf.mainView.frame = CGRectMake(textFieldSelf.mainViewFrame.origin.x, textFieldSelf.mainViewFrame.origin.y+extraHeight, textFieldSelf.mainViewFrame.size.width, textFieldSelf.mainViewFrame.size.height);
+        textFieldSelf.mainView.top = textFieldSelf.mainViewFrame.origin.y+extraHeight;
         
-    } completion:nil];
-    //为了显示动画
-    [self layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            //为了显示动画
+            [textFieldSelf layoutIfNeeded];
+        });
+    }];
 }
 
 //计算键盘弹出时的额外高度

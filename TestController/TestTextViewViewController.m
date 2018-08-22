@@ -30,11 +30,11 @@
     textView1.placeholderColor = [UIColor whiteColor];
     [textView1 automaticFollowKeyboard:self.view];
     [textView1 textDidChange:^(NSString *textStr) {
-        
+
         WYLog(@"输入的文本是：%@",textStr);
     }];
     [self.view addSubview:textView1];
-    
+
     UITextView *textView2 = [[UITextView alloc]initWithFrame:CGRectMake(20, superView.bottom-320, screenWidth-40, 200)];
     textView2.backgroundColor = [UIColor orangeColor];
     textView2.placeholderStr = @"这个是添加在子view上的,设置了最大输入10个字符";
@@ -46,6 +46,7 @@
 
 - (void)dealloc {
     
+    WYLog(@"dealloc");
     [self.view releaseKeyboardNotification];
 }
 

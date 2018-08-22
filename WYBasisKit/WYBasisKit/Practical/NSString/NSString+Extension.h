@@ -30,7 +30,13 @@
 + (NSString *)htmlEntityDecode:(NSString *)string;
 
 /** 返回一个计算好的字符串的高度和宽度 */
-- (CGSize)boundingRectWithSize:(CGSize)size withFont:(UIFont *)font lineSpacing:(NSInteger)lineSpacing;
+- (CGSize)boundingRectWithSize:(CGSize)size withFont:(UIFont *)font lineSpacing:(CGFloat)lineSpacing;
+
+/** 计算显示文本需要几行 */
+- (CGFloat)textShowLinesWithControlWidth:(CGFloat)controlWidth font:(UIFont *)font lineSpacing:(CGFloat)lineSpacing;
+
+/** 计算显示文本到指定行数时需要的高度 */
+- (CGFloat)textHeightWithSpecifyRow:(NSInteger)specifyRow font:(UIFont *)font lineSpacing:(CGFloat)lineSpacing;
 
 /** 将中文转换成UTF8编码格式 */
 + (NSString *)UTF8StrFromChinese:(NSString *)chineseStr;

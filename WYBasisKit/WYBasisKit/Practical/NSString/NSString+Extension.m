@@ -21,7 +21,7 @@
 }
 
 /** 返回一个计算好的字符串的高度和宽度 */
-- (CGSize)boundingRectWithSize:(CGSize)size withFont:(UIFont *)font lineSpacing:(NSInteger)lineSpacing {
+- (CGSize)boundingRectWithSize:(CGSize)size withFont:(UIFont *)font lineSpacing:(CGFloat)lineSpacing {
 
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
     [paragraphStyle setLineSpacing:lineSpacing];
@@ -36,6 +36,24 @@
                                         context:nil].size;
     
     return retSize;
+}
+
+/** 计算显示文本需要几行 */
+- (CGFloat)textShowLinesWithControlWidth:(CGFloat)controlWidth font:(UIFont *)font lineSpacing:(CGFloat)lineSpacing {
+    
+    //计算总高度
+    CGFloat totalHeight = [self boundingRectWithSize:CGSizeMake(controlWidth, 0) withFont:font lineSpacing:lineSpacing].height;
+    
+    //计算每行的高度
+    CGFloat lineHeight = font.lineHeight+lineSpacing;
+    
+    return totalHeight/lineHeight;
+}
+
+/** 计算显示文本到指定行数时需要的高度 */
+- (CGFloat)textHeightWithSpecifyRow:(NSInteger)specifyRow font:(UIFont *)font lineSpacing:(CGFloat)lineSpacing {
+    
+    return (font.lineHeight+lineSpacing)*specifyRow;
 }
 
 /** 将中文转换成UTF8编码格式 */
