@@ -13,7 +13,6 @@
 #import "TestTextFieldViewController.h"
 #import "TestTUIButtonViewController.h"
 #import "TestBoolJudgeViewController.h"
-#import "TestTransitionViewController.h"
 #import "TestLoadingStateViewController.h"
 
 #import <UIImageView+WebCache.h>

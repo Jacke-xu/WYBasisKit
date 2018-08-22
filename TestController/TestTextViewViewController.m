@@ -31,7 +31,7 @@
     [textView1 automaticFollowKeyboard:self.view];
     [textView1 textDidChange:^(NSString *textStr) {
 
-        WYLog(@"输入的文本是：%@",textStr);
+        NSLog(@"输入的文本是：%@",textStr);
     }];
     [self.view addSubview:textView1];
 
@@ -46,7 +46,7 @@
 
 - (void)dealloc {
     
-    WYLog(@"dealloc");
+    NSLog(@"dealloc");
     [self.view releaseKeyboardNotification];
 }
 

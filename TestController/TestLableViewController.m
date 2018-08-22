@@ -39,9 +39,9 @@
     //富文本点击
     //需要点击的字符相同
     NSString *label_text1 = @"我是个抽奖Label， 点我有奖，点我没奖哦";
-    
+
     NSMutableAttributedString *attributedString1 = [NSMutableAttributedString attributeWithStr:label_text1];
-    
+
     [attributedString1 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:20] range:NSMakeRange(0, label_text1.length)];
     [attributedString1 addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(12, 2)];
     [attributedString1 addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(17, 2)];
@@ -76,7 +76,7 @@
     
     [label2 clickRichTextWithStrings:@[@"https://github.com/Jacke-xu/WYBasisKit",@"记得给star哦"] clickAction:^(NSString *string, NSRange range, NSInteger index) {
         NSString *message = [NSString stringWithFormat:@"点击了“%@”字符\nrange: %@\nindex: %ld",string,NSStringFromRange(range),(long)index];
-        WYLog(@"messge = %@",message);
+        NSLog(@"messge = %@",message);
     }];
     //设置是否有点击效果，默认是YES
     label2.enabledClickEffect = NO;
@@ -90,12 +90,12 @@
 - (void)didClickRichText:(NSString *)string range:(NSRange)range index:(NSInteger)index {
     
     NSString *message = [NSString stringWithFormat:@"点击了“%@”字符\nrange: %@\nindex: %ld",string,NSStringFromRange(range),(long)index];
-    WYLog(@"messge = %@",message);
+    NSLog(@"messge = %@",message);
 }
 
 - (void)dealloc {
     
-    WYLog(@"dealloc");
+    NSLog(@"dealloc");
 }
 
 - (void)didReceiveMemoryWarning {

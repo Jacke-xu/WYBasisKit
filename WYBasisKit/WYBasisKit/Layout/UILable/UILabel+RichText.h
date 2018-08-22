@@ -4,7 +4,7 @@
 //
 //  Created by  jacke-xu on 2018/6/21.
 //  Copyright © 2018年 jacke-xu. All rights reserved.
-//
+//  感谢https://github.com/lyb5834/YBAttributeTextTapAction
 
 #import <UIKit/UIKit.h>
 

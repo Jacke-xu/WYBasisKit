@@ -62,7 +62,6 @@
 		1FC5FDA920DCE70F0092CED8 /* UIButton+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC5FDA620DCE70F0092CED8 /* UIButton+Extension.m */; };
 		1FC5FDAD20DCE75B0092CED8 /* TestTUIButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC5FDAC20DCE75B0092CED8 /* TestTUIButtonViewController.m */; };
 		1FD24D7C20FEDF23004B7D3F /* TestLoadingStateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD24D7B20FEDF23004B7D3F /* TestLoadingStateViewController.m */; };
-		1FE99FAC20F6FF6D00E40C27 /* TestTransitionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE99FAB20F6FF6D00E40C27 /* TestTransitionViewController.m */; };
 		1FFBD91A20BA874700305331 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFBD91920BA874700305331 /* AppDelegate.m */; };
 		1FFBD92220BA874800305331 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FFBD92120BA874800305331 /* Assets.xcassets */; };
 		1FFBD92520BA874800305331 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FFBD92320BA874800305331 /* LaunchScreen.storyboard */; };
@@ -182,8 +181,6 @@
 		1FC5FDAC20DCE75B0092CED8 /* TestTUIButtonViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestTUIButtonViewController.m; sourceTree = "<group>"; };
 		1FD24D7A20FEDF23004B7D3F /* TestLoadingStateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestLoadingStateViewController.h; sourceTree = "<group>"; };
 		1FD24D7B20FEDF23004B7D3F /* TestLoadingStateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestLoadingStateViewController.m; sourceTree = "<group>"; };
-		1FE99FAA20F6FF6D00E40C27 /* TestTransitionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestTransitionViewController.h; sourceTree = "<group>"; };
-		1FE99FAB20F6FF6D00E40C27 /* TestTransitionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestTransitionViewController.m; sourceTree = "<group>"; };
 		1FFBD91520BA874600305331 /* WYBasisKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WYBasisKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FFBD91820BA874700305331 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1FFBD91920BA874700305331 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -600,8 +597,6 @@
 				1FC5FDAC20DCE75B0092CED8 /* TestTUIButtonViewController.m */,
 				1F226F5320F59D5800129AB6 /* TestBoolJudgeViewController.h */,
 				1F226F5420F59D5800129AB6 /* TestBoolJudgeViewController.m */,
-				1FE99FAA20F6FF6D00E40C27 /* TestTransitionViewController.h */,
-				1FE99FAB20F6FF6D00E40C27 /* TestTransitionViewController.m */,
 				1FD24D7A20FEDF23004B7D3F /* TestLoadingStateViewController.h */,
 				1FD24D7B20FEDF23004B7D3F /* TestLoadingStateViewController.m */,
 			);
@@ -838,7 +833,6 @@
 				1F59A64B20D8A7040055AAB4 /* MainViewController.m in Sources */,
 				1F28305D20D3B9B700624C76 /* RefreshView.m in Sources */,
 				1F0A182A20E1D24500532AA3 /* Reachability.m in Sources */,
-				1FE99FAC20F6FF6D00E40C27 /* TestTransitionViewController.m in Sources */,
 				1F28303320D3B9B700624C76 /* Foundation+Log.m in Sources */,
 				1F46231A2122BDEE00418CD3 /* LoadingView.m in Sources */,
 				1F59A65120D8E5B80055AAB4 /* UIViewController+Extension.m in Sources */,

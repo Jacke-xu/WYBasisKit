@@ -120,7 +120,7 @@ static LoadingView *_loadingView = nil;
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        WYLog(@"LoadingView提示文本：%@",messageStr);
+        NSLog(@"LoadingView提示文本：%@",messageStr);
         
         _loadingView.label.text = messageStr;
         _loadingView.label.hidden = !(messageStr.length > 0);

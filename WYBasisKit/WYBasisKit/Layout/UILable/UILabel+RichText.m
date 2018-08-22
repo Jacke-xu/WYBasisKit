@@ -59,7 +59,7 @@
 }
 
 - (void (^)(NSString *, NSRange, NSInteger))clickBlock {
-    
+
     return objc_getAssociatedObject(self, _cmd);
 }
 
@@ -249,7 +249,7 @@
         
         rect = CGRectOffset(rect, 0, verticalOffset);
         
-        NSParagraphStyle *style = [self.attributedText attribute:NSParagraphStyleAttributeName atIndex:0 effectiveRange:nil];
+        NSParagraphStyle *style = [weakSelf.attributedText attribute:NSParagraphStyleAttributeName atIndex:0 effectiveRange:nil];
         
         CGFloat lineSpace;
         
@@ -324,7 +324,8 @@
 
 - (CGAffineTransform)transformForCoreText
 {
-    return CGAffineTransformScale(CGAffineTransformMakeTranslation(0, self.bounds.size.height), 1.f, -1.f);
+    __weak typeof(self) weakSelf = self;
+    return CGAffineTransformScale(CGAffineTransformMakeTranslation(0, weakSelf.bounds.size.height), 1.f, -1.f);
 }
 
 - (CGRect)getLineBounds:(CTLineRef)line point:(CGPoint)point
@@ -350,7 +351,7 @@
         NSRange range = NSRangeFromString([[weakSelf.effectDic allKeys] firstObject]);
         
         if (status) {
-            [subAtt addAttribute:NSBackgroundColorAttributeName value:self.clickEffectColor range:NSMakeRange(0, subAtt.string.length)];
+            [subAtt addAttribute:NSBackgroundColorAttributeName value:weakSelf.clickEffectColor range:NSMakeRange(0, subAtt.string.length)];
             
             [attStr replaceCharactersInRange:range withAttributedString:subAtt];
         }else {
@@ -366,7 +367,7 @@
     __weak typeof(self) weakSelf = self;
     weakSelf.effectDic = [NSMutableDictionary dictionary];
     
-    NSAttributedString *subAttribute = [self.attributedText attributedSubstringFromRange:range];
+    NSAttributedString *subAttribute = [weakSelf.attributedText attributedSubstringFromRange:range];
     
     [weakSelf.effectDic setObject:subAttribute forKey:NSStringFromRange(range)];
 }

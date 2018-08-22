@@ -32,7 +32,7 @@
     [textField1 automaticFollowKeyboard:self.view];
     [textField1 textDidChange:^(NSString *textStr) {
 
-        WYLog(@"输入的文本是：%@",textStr);
+        NSLog(@"输入的文本是：%@",textStr);
     }];
     [textField1 fixMessyDisplay];
     [self.view addSubview:textField1];
@@ -44,14 +44,14 @@
     textField2.maximumLimit = 5;
     [textField2 textDidChange:^(NSString *textStr) {
 
-        WYLog(@"输入的文本是：%@",textStr);
+        NSLog(@"输入的文本是：%@",textStr);
     }];
     [superView addSubview:textField2];
 }
 
 - (void)dealloc {
     
-    WYLog(@"dealloc");
+    NSLog(@"dealloc");
     [self.view releaseKeyboardNotification];
 }
 

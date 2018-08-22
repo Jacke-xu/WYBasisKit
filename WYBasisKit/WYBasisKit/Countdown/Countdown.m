@@ -63,7 +63,7 @@
         
         dispatch_cancel(_timer);
         _timer = nil;
-        WYLog(@"取消倒计时成功");
+        NSLog(@"取消倒计时成功");
     }
 }
 

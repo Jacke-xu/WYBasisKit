@@ -27,7 +27,7 @@
 
 - (void)dealloc {
     
-    WYLog(@"dealloc");
+    NSLog(@"dealloc");
 }
 
 - (void)didReceiveMemoryWarning {

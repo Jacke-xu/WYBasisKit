@@ -19,15 +19,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    WYLog(@"是否包含Emoji = %@",[NSNumber numberWithBool:[@"fwet😁" isIncludingEmoji]]);
-    WYLog(@"是否包含Emoji = %@",[NSNumber numberWithBool:[@"😁" isIncludingEmoji]]);
-    WYLog(@"是否是Emoji = %@",[NSNumber numberWithBool:[@"😁" isEmoji]]);
-    WYLog(@"是否是Emoji = %@",[NSNumber numberWithBool:[@"j" isEmoji]]);
-    WYLog(@"查看Emoji = %@",@"fwet😁");
-    WYLog(@"移除Emoji = %@",[@"fwet😁" removedEmojiString]);
-    WYLog(@"移除Emoji = %@",[@"fwet" removedEmojiString]);
-    WYLog(@"移除Emoji = %@",[@"fwet💕" stringByReplacingEmojiCheatCodesWithUnicode]);
-    WYLog(@"文字化Emoji = %@",[@"fwet💕" stringByReplacingEmojiUnicodeWithCheatCodes]);
+    NSLog(@"是否包含Emoji = %@",[NSNumber numberWithBool:[@"fwet😁" isIncludingEmoji]]);
+    NSLog(@"是否包含Emoji = %@",[NSNumber numberWithBool:[@"😁" isIncludingEmoji]]);
+    NSLog(@"是否是Emoji = %@",[NSNumber numberWithBool:[@"😁" isEmoji]]);
+    NSLog(@"是否是Emoji = %@",[NSNumber numberWithBool:[@"j" isEmoji]]);
+    NSLog(@"查看Emoji = %@",@"fwet😁");
+    NSLog(@"移除Emoji = %@",[@"fwet😁" removedEmojiString]);
+    NSLog(@"移除Emoji = %@",[@"fwet" removedEmojiString]);
+    NSLog(@"移除Emoji = %@",[@"fwet💕" stringByReplacingEmojiCheatCodesWithUnicode]);
+    NSLog(@"文字化Emoji = %@",[@"fwet💕" stringByReplacingEmojiUnicodeWithCheatCodes]);
 }
 
 - (void)didReceiveMemoryWarning {

@@ -128,7 +128,7 @@ static StateView *_stateView = nil;
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        WYLog(@"StateView提示文本：%@",info);
+        NSLog(@"StateView提示文本：%@",info);
         
         _stateView.imageView.image = [UIImage imageWithContentsOfFile:[[[NSBundle mainBundle] pathForResource:@"Loading" ofType:@"bundle"] stringByAppendingPathComponent:image]];
         
