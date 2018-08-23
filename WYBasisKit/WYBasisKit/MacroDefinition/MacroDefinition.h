@@ -80,7 +80,7 @@
 
 //DEBUG打印日志
 #ifdef DEBUG
-# define NSLog(FORMAT, ...) printf("[%s行号:%d]:\n%s\n\n\n\n\n\n",__FUNCTION__,__LINE__,[[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String])
+# define NSLog(FORMAT, ...) printf("\n\n[%s行号:%d]:\n%s\n\n",__FUNCTION__,__LINE__,[[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String])
 #else
 # define NSLog(FORMAT, ...)
 #endif
