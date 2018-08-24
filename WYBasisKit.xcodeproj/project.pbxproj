@@ -149,6 +149,7 @@
 		1F28306120D3BAA900624C76 /* NSMutableAttributedString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+Extension.m"; sourceTree = "<group>"; };
 		1F28306220D3BAAA00624C76 /* NSMutableParagraphStyle+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableParagraphStyle+Extension.m"; sourceTree = "<group>"; };
 		1F28306320D3BAAA00624C76 /* NSMutableAttributedString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+Extension.h"; sourceTree = "<group>"; };
+		1F2D9C9D212FA1810025A48E /* Singleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
 		1F2F46742125660800849E2D /* StateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StateView.h; sourceTree = "<group>"; };
 		1F2F46752125660900849E2D /* StateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StateView.m; sourceTree = "<group>"; };
 		1F3360F220DB40D9009BD7AB /* TestTextViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestTextViewViewController.h; sourceTree = "<group>"; };
@@ -491,8 +492,9 @@
 			isa = PBXGroup;
 			children = (
 				1F28300A20D3B9B700624C76 /* APIMacro.h */,
-				1F28300B20D3B9B700624C76 /* GlobalHeader.pch */,
+				1F2D9C9D212FA1810025A48E /* Singleton.h */,
 				1F28300C20D3B9B700624C76 /* MacroDefinition.h */,
+				1F28300B20D3B9B700624C76 /* GlobalHeader.pch */,
 			);
 			path = MacroDefinition;
 			sourceTree = "<group>";
@@ -565,6 +567,7 @@
 		1F28302920D3B9B700624C76 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				1F2D9CA3212FF70C0025A48E /* HTTPSFiles */,
 				1F0A182C20E2167600532AA3 /* Networking */,
 				1F28302A20D3B9B700624C76 /* NetWorkingStatus */,
 			);
@@ -580,6 +583,13 @@
 				1F0A182820E1D24500532AA3 /* Reachability.m */,
 			);
 			path = NetWorkingStatus;
+			sourceTree = "<group>";
+		};
+		1F2D9CA3212FF70C0025A48E /* HTTPSFiles */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HTTPSFiles;
 			sourceTree = "<group>";
 		};
 		1F59A64220D8A1AB0055AAB4 /* TestController */ = {

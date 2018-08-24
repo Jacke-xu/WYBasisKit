@@ -41,9 +41,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     self.navigationItem.title = @"首页";
-    
     self.tableView.backgroundColor = [UIColor whiteColor];
 }
 
@@ -109,11 +107,11 @@
         
         vc = [[TestTUIButtonViewController alloc]init];
     }
-    else if (indexPath.row == 6) {
+    else if (indexPath.row == 5) {
         
         vc = [[TestBoolJudgeViewController alloc]init];
     }
-    else if (indexPath.row == 7) {
+    else if (indexPath.row == 6) {
         
         vc = [[TestLoadingStateViewController alloc]init];
     }
@@ -123,7 +121,7 @@
 
 - (NSArray *)section {
     
-    NSArray *sectionTitleAry = @[@"WKWebView",@"UILable",@"UITextView",@"UITextField",@"UIButton",@"网络请求",@"BoolJudge",@"LoadingState"];
+    NSArray *sectionTitleAry = @[@"WKWebView",@"UILable",@"UITextView",@"UITextField",@"UIButton",@"BoolJudge",@"LoadingState"];
     
     return sectionTitleAry;
 }
