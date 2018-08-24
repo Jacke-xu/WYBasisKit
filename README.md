@@ -1,4 +1,7 @@
 # WYBasisKit
 
+详细README会在随后补全
 
-目前已大致整理完毕，待调试测验(有的还没有调试测验的)；使用过程中如发现BUG或你有好的意见或建议，可发送邮件至mobileAppDvlp@icloud.com
+如果你也觉得很酷😎，就点一下Star吧(●ˇ∀ˇ●)
+
+如您在使用过程中发现BUG,或有好的意见或建议，可发邮件至mobileAppDvlp@icloud.com
