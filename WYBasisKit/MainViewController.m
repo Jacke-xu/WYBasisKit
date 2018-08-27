@@ -15,8 +15,6 @@
 #import "TestBoolJudgeViewController.h"
 #import "TestLoadingStateViewController.h"
 
-#import <UIImageView+WebCache.h>
-
 @interface MainViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, weak) UITableView *tableView;

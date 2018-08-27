@@ -14,8 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 ///网络请求方式
 typedef enum : NSUInteger {
     
-    ///HTTP(无需额外配置)
-    requestWayHttp = 0,
+    ///HTTP和CAHTTPS(无需额外配置  CAHTTPS：向正规CA机构购买的HTTPS服务)
+    requestWayHttpAndCAHttps = 0,
     ///HTTPS单向验证(需要将一个服务端的cer文件放进工程HTTPSFiles目录下，即server.cer)
     requestWayHttpsSingleValidation,
     ///HTTPS双向验证(需要将一个服务端的cer文件与一个带密码的客户端p12文件放进工程HTTPSFiles目录下，即server.cer和client.p12)
@@ -24,7 +24,7 @@ typedef enum : NSUInteger {
 } NetworkRequestWay;
 
 ///成功Block
-typedef void (^ _Nullable Success)(id responseObject, id parseObject);
+typedef void (^ _Nullable Success)(id responseObject);
 
 ///失败Blcok
 typedef void (^ _Nullable Failure)(NSError *error, NSString *errorStr);

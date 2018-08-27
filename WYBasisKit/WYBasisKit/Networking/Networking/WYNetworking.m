@@ -9,7 +9,6 @@
 #import "WYNetworking.h"
 #import "AFNetworking.h"
 #import "NetworkMonitoring.h"
-#import "NSObject+ModelParse.h"
 
 @implementation WYUploadModle
 
@@ -40,7 +39,7 @@ singleton_implementation(WYNetworking)//单例实现
     [manager GET:URLString parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        if (success) {success(responseObject,[NSObject parse:responseObject]);}
+        if (success) {success(responseObject);}
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -72,7 +71,7 @@ singleton_implementation(WYNetworking)//单例实现
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        if (success) {success(responseObject,[NSObject parse:responseObject]);}
+        if (success) {success(responseObject);}
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -100,7 +99,7 @@ singleton_implementation(WYNetworking)//单例实现
     [manager POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        if (success) {success(responseObject,[NSObject parse:responseObject]);}
+        if (success) {success(responseObject);}
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -131,7 +130,7 @@ singleton_implementation(WYNetworking)//单例实现
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        if (success) {success(responseObject,[NSObject parse:responseObject]);}
+        if (success) {success(responseObject);}
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -190,7 +189,7 @@ singleton_implementation(WYNetworking)//单例实现
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        if (success) {success(responseObject,[NSObject parse:responseObject]);}
+        if (success) {success(responseObject);}
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
@@ -236,7 +235,7 @@ singleton_implementation(WYNetworking)//单例实现
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        if (success) {success(responseObject,[NSObject parse:responseObject]);}
+        if (success) {success(responseObject);}
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
@@ -275,7 +274,7 @@ singleton_implementation(WYNetworking)//单例实现
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        if (success) {success(responseObject,[NSObject parse:responseObject]);}
+        if (success) {success(responseObject);}
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
@@ -300,7 +299,7 @@ singleton_implementation(WYNetworking)//单例实现
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     //设置安全策略
-    if(_requestWay !=  requestWayHttp) {[manager setSecurityPolicy:[self securityPolicyWithSessionManager:manager]];}
+    if(_requestWay !=  requestWayHttpAndCAHttps) {[manager setSecurityPolicy:[self securityPolicyWithSessionManager:manager]];}
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:URLString]];
     
@@ -368,7 +367,7 @@ singleton_implementation(WYNetworking)//单例实现
     manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 10);
     
     //设置安全策略
-    if(_requestWay !=  requestWayHttp) {[manager setSecurityPolicy:[self securityPolicyWithSessionManager:manager]];}
+    if(_requestWay !=  requestWayHttpAndCAHttps) {[manager setSecurityPolicy:[self securityPolicyWithSessionManager:manager]];}
     
     if([requestType isEqualToString:@"GET"]) {
         
@@ -378,10 +377,15 @@ singleton_implementation(WYNetworking)//单例实现
     }
     else if ([requestType isEqualToString:@"POST"]) {
         
+        //manager.requestSerializer = [AFJSONRequestSerializer serializer];
         manager.requestSerializer = [AFHTTPRequestSerializer serializer];
         [manager.requestSerializer setValue:@"application/x-www-form-urlencoded; charset=utf-8"forHTTPHeaderField:@"Content-Type"];
+        
         manager.responseSerializer = [AFHTTPResponseSerializer serializer];
         manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/plain",@"text/html", nil];
+        
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/plain",@"text/html",@"text/css", nil];
         
         manager.requestSerializer.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
         [manager setSessionDidBecomeInvalidBlock:^(NSURLSession * _Nonnull session, NSError * _Nonnull error) {
