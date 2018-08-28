@@ -1,6 +1,6 @@
 # WYBasisKit
 
-详细README会在随后补全
+详细README会在随后的日志中补全
 
 如果你也觉得很酷😎，就点一下Star吧(●ˇ∀ˇ●)
 
