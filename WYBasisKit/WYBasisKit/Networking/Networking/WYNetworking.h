@@ -11,6 +11,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class WYFileModel;
+
 ///网络请求方式
 typedef enum : NSUInteger {
     
@@ -27,7 +29,7 @@ typedef enum : NSUInteger {
 typedef void (^ _Nullable Success)(id responseObject);
 
 ///失败Blcok
-typedef void (^ _Nullable Failure)(NSError *error, NSString *errorStr);
+typedef void (^ _Nullable Failure)(NSError *error);
 
 ///上传或者下载进度Block
 typedef void (^ _Nullable Progress)(NSProgress * _Nullable progress);
@@ -38,39 +40,6 @@ typedef NSURL * _Nullable (^ _Nullable Destination)(NSURL *targetPath, NSURLResp
 ///下载成功的Blcok
 typedef void (^ _Nullable DownLoadSuccess)(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath);
 
-
-#pragma mark -->上传模型
-@interface WYUploadModle : NSObject
-
-/**
- *  上传的图片的名字
- */
-@property (nonatomic, copy) NSString *picName;
-
-/**
- *  上传图片大小(kb)
- */
-@property (nonatomic, assign) NSUInteger picSize;
-
-/**
- *  上传的图片
- */
-@property (nonatomic, strong, nullable) UIImage *pic;
-
-/**
- *  上传的二进制文件
- */
-@property (nonatomic, strong) NSData *picData;
-
-/**
- *  上传的资源url
- */
-@property (nonatomic, copy) NSString *url;
-
-@end
-
-
-#pragma mark -->网络请求API
 @interface WYNetworking : NSObject
 singleton_interface(WYNetworking)//单例声明
 
@@ -138,42 +107,43 @@ singleton_interface(WYNetworking)//单例声明
 
 
 /**
- *  POST图片上传(多张图片) // 可扩展成多个别的数据上传如:mp3等
+ *  POST多个文件上传(如图片、MP3、MP4等)
  *
- *  @param URLString  请求的链接
- *  @param parameters 请求的参数
- *  @param picArray   存放图片模型的数组
- *  @param progress   进度的回调
- *  @param success    上传成功的回调
- *  @param failure    上传失败的回调
+ *  @param URLString    请求的链接
+ *  @param parameters   请求的参数
+ *  @param modelArray   存放待上传文件模型的数组
+ *  @param progress     进度的回调
+ *  @param success      上传成功的回调
+ *  @param failure      上传失败的回调
  */
-- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters andPicArray:(NSArray <WYUploadModle *>*)picArray progress:(Progress)progress success:(Success)success failure:(Failure)failure;
+- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters fileModelArray:(NSArray <WYFileModel *>*)modelArray progress:(Progress)progress success:(Success)success failure:(Failure)failure;
 
 
 /**
- *  POST图片上传(单张图片) // 可扩展成单个别的数据上传如:mp3等
+ *  POST单个文件上传(如图片、MP3、MP4等)
  *
- *  @param URLString   请求的链接
- *  @param parameters  请求的参数
- *  @param uploadModle 上传的图片模型
- *  @param progress    进度的回调
- *  @param success     上传成功的回调
- *  @param failure     上传失败的回调
+ *  @param URLString    请求的链接
+ *  @param parameters   请求的参数
+ *  @param fileModel    待上传文件的模型
+ *  @param progress     进度的回调
+ *  @param success      上传成功的回调
+ *  @param failure      上传失败的回调
  */
-- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters andPic:(WYUploadModle *)uploadModle progress:(Progress)progress success:(Success)success failure:(Failure)failure;
+- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters fileModel:(WYFileModel *)fileModel progress:(Progress)progress success:(Success)success failure:(Failure)failure;
 
 
 /**
- *  POST上传url资源
+ *  POST上传URL资源(根据本地文件URL路径或网络下载地址上传图片、MP3、MP4等)
  *
- *  @param URLString   请求的链接
- *  @param parameters  请求的参数
- *  @param uploadModle 上传的图片模型(资源的url地址)
- *  @param progress    进度的回调
- *  @param success     上传成功的回调
- *  @param failure     上传失败的回调
+ *  @param URLString        请求的链接
+ *  @param parameters       请求的参数
+ *  @param fileModel        上传的图片模型
+ *  @param isLocalFilePath  是否是本地图片URL路径
+ *  @param progress         进度的回调
+ *  @param success          上传成功的回调
+ *  @param failure          上传失败的回调
  */
-- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters andPicUrl:(WYUploadModle *)uploadModle progress:(Progress)progress success:(Success)success failure:(Failure)failure;
+- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters fileModel:(WYFileModel *)fileModel isLocalFilePath:(BOOL)isLocalFilePath progress:(Progress)progress success:(Success)success failure:(Failure)failure;
 
 
 /**

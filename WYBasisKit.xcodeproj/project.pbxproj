@@ -49,6 +49,7 @@
 		1F2F46762125660900849E2D /* StateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2F46752125660900849E2D /* StateView.m */; };
 		1F3360F420DB40D9009BD7AB /* TestTextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3360F320DB40D9009BD7AB /* TestTextViewViewController.m */; };
 		1F46231A2122BDEE00418CD3 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4623192122BDEE00418CD3 /* LoadingView.m */; };
+		1F46B00A21352D500028AAB8 /* WYFileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F46B00921352D500028AAB8 /* WYFileModel.m */; };
 		1F59A64520D8A1F40055AAB4 /* TestWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F59A64420D8A1F40055AAB4 /* TestWebViewViewController.m */; };
 		1F59A64B20D8A7040055AAB4 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F59A64A20D8A7040055AAB4 /* MainViewController.m */; };
 		1F59A64E20D8A91F0055AAB4 /* UINavigationController+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F59A64D20D8A91F0055AAB4 /* UINavigationController+Extension.m */; };
@@ -156,6 +157,8 @@
 		1F3360F320DB40D9009BD7AB /* TestTextViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestTextViewViewController.m; sourceTree = "<group>"; };
 		1F4623182122BDEE00418CD3 /* LoadingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
 		1F4623192122BDEE00418CD3 /* LoadingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
+		1F46B00821352D500028AAB8 /* WYFileModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYFileModel.h; sourceTree = "<group>"; };
+		1F46B00921352D500028AAB8 /* WYFileModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYFileModel.m; sourceTree = "<group>"; };
 		1F59A64320D8A1F40055AAB4 /* TestWebViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestWebViewViewController.h; sourceTree = "<group>"; };
 		1F59A64420D8A1F40055AAB4 /* TestWebViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestWebViewViewController.m; sourceTree = "<group>"; };
 		1F59A64920D8A7040055AAB4 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -568,6 +571,7 @@
 			isa = PBXGroup;
 			children = (
 				1F2D9CA3212FF70C0025A48E /* HTTPSFiles */,
+				1F46B0042134EDFA0028AAB8 /* WYFileModel */,
 				1F0A182C20E2167600532AA3 /* Networking */,
 				1F28302A20D3B9B700624C76 /* NetWorkingStatus */,
 			);
@@ -590,6 +594,15 @@
 			children = (
 			);
 			path = HTTPSFiles;
+			sourceTree = "<group>";
+		};
+		1F46B0042134EDFA0028AAB8 /* WYFileModel */ = {
+			isa = PBXGroup;
+			children = (
+				1F46B00821352D500028AAB8 /* WYFileModel.h */,
+				1F46B00921352D500028AAB8 /* WYFileModel.m */,
+			);
+			path = WYFileModel;
 			sourceTree = "<group>";
 		};
 		1F59A64220D8A1AB0055AAB4 /* TestController */ = {
@@ -858,6 +871,7 @@
 				1F28305A20D3B9B700624C76 /* UIColor+Extension.m in Sources */,
 				1F64824120F34494001D4B0A /* NSString+MD5.m in Sources */,
 				1F28304F20D3B9B700624C76 /* UITextView+Extension.m in Sources */,
+				1F46B00A21352D500028AAB8 /* WYFileModel.m in Sources */,
 				1F1E415220DCA6E900C61107 /* TestTextFieldViewController.m in Sources */,
 				1F28304720D3B9B700624C76 /* CALayer+Extension.m in Sources */,
 				1F0A182F20E216B000532AA3 /* WYNetworking.m in Sources */,

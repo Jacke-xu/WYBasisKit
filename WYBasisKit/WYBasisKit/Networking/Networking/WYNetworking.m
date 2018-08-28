@@ -8,16 +8,8 @@
 
 #import "WYNetworking.h"
 #import "AFNetworking.h"
-#import "NetworkMonitoring.h"
 
-@implementation WYUploadModle
-
-- (NSString *)description {
-    
-    return [NSString stringWithFormat:@"<%@ : %p> \n{picName : %@ \n pic : %@ \n}", [self class], self,self.picName, self.pic];
-}
-
-@end
+#import "WYFileModel.h"
 
 @implementation WYNetworking
 singleton_implementation(WYNetworking)//单例实现
@@ -44,7 +36,7 @@ singleton_implementation(WYNetworking)//单例实现
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
-        if (failure) {failure(error,[error localizedDescription]);}
+        if (failure) {failure(error);}
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }];
 }
@@ -76,7 +68,7 @@ singleton_implementation(WYNetworking)//单例实现
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
-        if (failure) {failure(error,[error localizedDescription]);}
+        if (failure) {failure(error);}
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }];
 }
@@ -104,7 +96,7 @@ singleton_implementation(WYNetworking)//单例实现
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
-        if (failure) {failure(error,[error localizedDescription]);}
+        if (failure) {failure(error);}
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }];
 }
@@ -135,23 +127,23 @@ singleton_implementation(WYNetworking)//单例实现
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
-        if (failure) {failure(error,[error localizedDescription]);}
+        if (failure) {failure(error);}
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }];
 }
 
 
 /**
- *  POST图片上传(多张图片) // 可扩展成多个别的数据上传如:mp3等
+ *  POST多个文件上传(如图片、MP3、MP4等)
  *
- *  @param URLString  请求的链接
- *  @param parameters 请求的参数
- *  @param picArray   存放图片模型的数组
- *  @param progress   进度的回调
- *  @param success    上传成功的回调
- *  @param failure    上传失败的回调
+ *  @param URLString    请求的链接
+ *  @param parameters   请求的参数
+ *  @param modelArray   存放待上传文件模型的数组
+ *  @param progress     进度的回调
+ *  @param success      上传成功的回调
+ *  @param failure      上传失败的回调
  */
-- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters andPicArray:(NSArray <WYUploadModle *>*)picArray progress:(Progress)progress success:(Success)success failure:(Failure)failure {
+- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters fileModelArray:(NSArray<WYFileModel *> *)modelArray progress:(Progress)progress success:(Success)success failure:(Failure)failure {
     
     [self networkMonitoring:^(BOOL hasNetwork) {if(hasNetwork == NO) {return;}}];
     
@@ -159,27 +151,14 @@ singleton_implementation(WYNetworking)//单例实现
     
     [manager POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
-        NSInteger count = picArray.count;
-        NSString *fileName = @"";
-        NSData *data = [NSData data];
-        
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < modelArray.count; i++)
         {
             @autoreleasepool {
-                WYUploadModle *uploadModle = picArray[i];
-                fileName = [NSString stringWithFormat:@"pic%02d.jpg", i];
-                /**
-                 *  压缩图片然后再上传(1.0代表无损 0~~1.0区间)
-                 */
-                data = UIImageJPEGRepresentation(uploadModle.pic, 1.0);
-                CGFloat precent = uploadModle.picSize / (data.length / 1024.0);
-                if (precent > 1) {precent = 1.0;}
-                data = nil;
-                data = UIImageJPEGRepresentation(uploadModle.pic, precent);
                 
-                [formData appendPartWithFileData:data name:uploadModle.picName fileName:fileName mimeType:@"image/jpeg"];
-                data = nil;
-                uploadModle.pic = nil;
+                WYFileModel *fileModel = modelArray[i];
+                [formData appendPartWithFileData:fileModel.fileData name:fileModel.fileName fileName:fileModel.fileName mimeType:fileModel.mimeType];
+                fileModel.fileData = nil;
+                fileModel = nil;
             }
         }
         
@@ -193,22 +172,22 @@ singleton_implementation(WYNetworking)//单例实现
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
-        if (failure) {failure(error,[error localizedDescription]);}
+        if (failure) {failure(error);}
     }];
 }
 
 
 /**
- *  POST图片上传(单张图片) // 可扩展成单个别的数据上传如:mp3等
+ *  POST单个文件上传(如图片、MP3、MP4等)
  *
- *  @param URLString   请求的链接
- *  @param parameters  请求的参数
- *  @param uploadModle 上传的图片模型
- *  @param progress    进度的回调
- *  @param success     上传成功的回调
- *  @param failure     上传失败的回调
+ *  @param URLString    请求的链接
+ *  @param parameters   请求的参数
+ *  @param fileModel    待上传文件的模型
+ *  @param progress     进度的回调
+ *  @param success      上传成功的回调
+ *  @param failure      上传失败的回调
  */
-- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters andPic:(WYUploadModle *)uploadModle progress:(Progress)progress success:(Success)success failure:(Failure)failure {
+- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters fileModel:(WYFileModel *)fileModel progress:(Progress)progress success:(Success)success failure:(Failure)failure {
     
     [self networkMonitoring:^(BOOL hasNetwork) {if(hasNetwork == NO) {return;}}];
     
@@ -216,18 +195,8 @@ singleton_implementation(WYNetworking)//单例实现
     
     [manager POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
-        /**
-         *  压缩图片然后再上传(1.0代表无损 0~~1.0区间)
-         */
-        NSData *data = UIImageJPEGRepresentation(uploadModle.pic, 1.0);
-        CGFloat precent = uploadModle.picSize / (data.length / 1024.0);
-        if (precent > 1) {precent = 1.0;}
-        data = nil;
-        data = UIImageJPEGRepresentation(uploadModle.pic, precent);
-        
-        NSString *fileName = [NSString stringWithFormat:@"%@.jpg", uploadModle.picName];
-        
-        [formData appendPartWithFileData:data name:uploadModle.picName fileName:fileName mimeType:@"image/jpeg"];
+        [formData appendPartWithFileData:fileModel.fileData name:fileModel.fileName fileName:fileModel.fileName mimeType:fileModel.mimeType];
+        fileModel.fileData = nil;
         
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         
@@ -239,22 +208,23 @@ singleton_implementation(WYNetworking)//单例实现
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
-        if (failure) {failure(error,[error localizedDescription]);}
+        if (failure) {failure(error);}
     }];
 }
 
 
 /**
- *  POST上传url资源
+ *  POST上传URL资源(根据本地文件URL路径或网络下载地址上传图片、MP3、MP4等)
  *
- *  @param URLString   请求的链接
- *  @param parameters  请求的参数
- *  @param uploadModle 上传的图片模型(资源的url地址)
- *  @param progress    进度的回调
- *  @param success     上传成功的回调
- *  @param failure     上传失败的回调
+ *  @param URLString        请求的链接
+ *  @param parameters       请求的参数
+ *  @param fileModel        上传的图片模型
+ *  @param isLocalFilePath  是否是本地图片URL路径
+ *  @param progress         进度的回调
+ *  @param success          上传成功的回调
+ *  @param failure          上传失败的回调
  */
-- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters andPicUrl:(WYUploadModle *)uploadModle progress:(Progress)progress success:(Success)success failure:(Failure)failure {
+- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters fileModel:(WYFileModel *)fileModel isLocalFilePath:(BOOL)isLocalFilePath progress:(Progress)progress success:(Success)success failure:(Failure)failure {
     
     [self networkMonitoring:^(BOOL hasNetwork) {if(hasNetwork == NO) {return;}}];
     
@@ -262,11 +232,19 @@ singleton_implementation(WYNetworking)//单例实现
     
     [manager POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
-        NSString *fileName = [NSString stringWithFormat:@"%@.jpg", uploadModle.picName];
-        // 根据本地路径获取url(相册等资源上传)
-        NSURL *url = [NSURL fileURLWithPath:uploadModle.url]; // [NSURL URLWithString:uploadModle.url] 可以换成网络的图片在上传
         
-        [formData appendPartWithFileURL:url name:uploadModle.picName fileName:fileName mimeType:@"application/octet-stream" error:nil];
+        NSURL *fileUrl = [NSURL URLWithString:@""];
+        if(isLocalFilePath == YES) {
+            
+            //根据本地路径获取url(相册等资源上传)
+            fileUrl = [NSURL fileURLWithPath:fileModel.fileUrl];
+        }
+        else {
+            
+            //网络路径直接转换成NSURL
+            fileUrl = [NSURL URLWithString:fileModel.fileUrl];
+        }
+        [formData appendPartWithFileURL:fileUrl name:fileModel.fileName fileName:fileModel.fileName mimeType:fileModel.mimeType error:nil];
         
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         
@@ -278,7 +256,7 @@ singleton_implementation(WYNetworking)//单例实现
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
-        if (failure) {failure(error,[error localizedDescription]);}
+        if (failure) {failure(error);}
     }];
 }
 
@@ -315,7 +293,7 @@ singleton_implementation(WYNetworking)//单例实现
         
     } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
         
-        if (error) {failure(error, [error localizedDescription]);}
+        if (error) {failure(error);}
         else {downLoadSuccess(response, filePath);}
     }];
     
@@ -342,15 +320,15 @@ singleton_implementation(WYNetworking)//单例实现
  */
 - (void)networkMonitoring:(void(^)(BOOL hasNetwork))networkBlock {
     
-    if([NetworkMonitoring sharedNetworkMonitoring].networkStatus == NetworkStatusNotReachable) {
+    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         
-        [StateView showWarningInfo:@"无网络连接,请检查您的网络设置!"];
-    }
-    
-    if(networkBlock) {
-        
-        networkBlock([NetworkMonitoring sharedNetworkMonitoring].networkStatus != NetworkStatusNotReachable);
-    }
+        if((status == AFNetworkReachabilityStatusNotReachable) && (networkBlock)) {
+            
+            networkBlock(NO);
+            [StateView showWarningInfo:@"无网络连接,请检查您的网络设置!"];
+        }
+    }];
 }
 
 
@@ -377,7 +355,14 @@ singleton_implementation(WYNetworking)//单例实现
     }
     else if ([requestType isEqualToString:@"POST"]) {
         
-        //manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        /**
+         *  AFHTTPRequestSerializer：是普通的 HTTP 的编码格式的，也就是 mid=10&method=userInfo&dateInt=20160818 这种格式的。
+         *
+         *  AFJSONRequestSerializer：是 JSON 编码格式的，也就是 {"mid":"11","method":"userInfo","dateInt":"20160818"} 这种格式的。
+         *
+         *  AFPropertyListRequestSerializer：是plist编码格式的。
+         */
+        
         manager.requestSerializer = [AFHTTPRequestSerializer serializer];
         [manager.requestSerializer setValue:@"application/x-www-form-urlencoded; charset=utf-8"forHTTPHeaderField:@"Content-Type"];
         

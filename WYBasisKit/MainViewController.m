@@ -15,6 +15,8 @@
 #import "TestBoolJudgeViewController.h"
 #import "TestLoadingStateViewController.h"
 
+#import "WYNetworking.h"
+
 @interface MainViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, weak) UITableView *tableView;
@@ -41,6 +43,14 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"首页";
     self.tableView.backgroundColor = [UIColor whiteColor];
+    
+//    [[WYNetworking sharedWYNetworking] POST:@"" parameters:@{} andPic:nil progress:^(NSProgress * _Nullable progress) {
+//        
+//    } success:^(id  _Nonnull responseObject) {
+//        
+//    } failure:^(NSError * _Nonnull error) {
+//        
+//    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
