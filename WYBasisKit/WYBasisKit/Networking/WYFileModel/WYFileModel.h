@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 ///上传文件的类型
 typedef enum : NSUInteger {
     
@@ -62,3 +64,5 @@ typedef enum : NSUInteger {
 @property (nonatomic, copy) NSString *fileUrl;
 
 @end
+
+NS_ASSUME_NONNULL_END
