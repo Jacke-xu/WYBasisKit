@@ -19,7 +19,7 @@ typedef enum : NSUInteger {
     fileTypeAudio,
     ///上传文件-->视频
     fileTypeVideo,
-    ///上传文件-->URL
+    ///上传文件-->URL路径上传
     fileTypeUrl,
 } FileType;
 
