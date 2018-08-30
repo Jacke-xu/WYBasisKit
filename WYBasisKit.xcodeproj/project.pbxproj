@@ -708,13 +708,13 @@
 				1F282FB120D3B9B600624C76 /* Countdown */,
 				1F28301320D3B9B700624C76 /* Encryption */,
 				1F282FE620D3B9B700624C76 /* Layout */,
-				1F282FBC20D3B9B700624C76 /* Libraries */,
 				1F282FB420D3B9B600624C76 /* LoadingState */,
 				1F28300920D3B9B700624C76 /* MacroDefinition */,
 				1F28301020D3B9B700624C76 /* Memory */,
 				1F28302920D3B9B700624C76 /* Networking */,
 				1F28301720D3B9B700624C76 /* Practical */,
 				1F28302620D3B9B700624C76 /* RefreshView */,
+				1F282FBC20D3B9B700624C76 /* Libraries */,
 			);
 			path = WYBasisKit;
 			sourceTree = "<group>";

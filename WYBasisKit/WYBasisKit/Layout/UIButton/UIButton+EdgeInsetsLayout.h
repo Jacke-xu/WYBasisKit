@@ -35,7 +35,7 @@ typedef NS_ENUM(NSInteger, ButtonPosition) {
 
 
 /**
- *  利用运行时设置UIButton的titleLabel和imageView的显示位置
+ *  利用运行时自由设置UIButton的titleLabel和imageView的显示位置
  */
 
 //设置按钮图片控件位置
