@@ -10,12 +10,21 @@
 
 @implementation WYFileModel
 
+- (instancetype)init {
+    
+    if(self == [super init]) {
+        
+        self.fileType = fileTypeImage;
+    }
+    return self;
+}
+
 - (void)setMimeType:(NSString *)mimeType {
     
     _mimeType = mimeType;
     if([self emptyStr:mimeType].length == 0) {
         
-        switch (self.fileType) {
+        switch (_fileType) {
             case fileTypeImage:
                 _mimeType = @"image/jpeg";
                 break;
@@ -41,6 +50,17 @@
 - (void)setFileName:(NSString *)fileName {
     
     _fileName = [self emptyStr:fileName];
+}
+
+- (void)setFolderName:(NSString *)folderName {
+    
+    _folderName = [self emptyStr:folderName];
+}
+
+- (void)setFileType:(FileType)fileType {
+    
+    _fileType = fileType;
+    self.mimeType = @"";
 }
 
 - (void)setCompressionQuality:(CGFloat)compressionQuality {

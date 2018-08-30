@@ -9,10 +9,44 @@
 #import "WYNetworking.h"
 #import "AFNetworking.h"
 
-#import "WYFileModel.h"
-
 @implementation WYNetworking
 singleton_implementation(WYNetworking)//单例实现
+
+static AFHTTPSessionManager *_manager = nil;
+- (AFHTTPSessionManager *)sharedSessionManager {
+    
+    __weak typeof(self)weakSelf = self;
+    static dispatch_once_t predicate;
+    dispatch_once(&predicate, ^{
+        
+        _manager = [AFHTTPSessionManager manager];
+        
+        /**
+         *  AFHTTPRequestSerializer：是普通的 HTTP 的编码格式的，也就是 mid=10&method=userInfo&dateInt=20160818 这种格式的。
+         *
+         *  AFJSONRequestSerializer：是 JSON 编码格式的，也就是 {"mid":"11","method":"userInfo","dateInt":"20160818"} 这种格式的。
+         *
+         *  AFPropertyListRequestSerializer：是plist编码格式的。
+         */
+        _manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        [_manager.requestSerializer setValue:@"application/x-www-form-urlencoded; charset=utf-8"forHTTPHeaderField:@"Content-Type"];
+        _manager.requestSerializer.timeoutInterval = (weakSelf.timeoutInterval ? weakSelf.timeoutInterval : 10);
+        
+        _manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        _manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/plain",@"text/html",@"text/css", nil];
+        
+        //关闭缓存，避免干扰调试
+        _manager.requestSerializer.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+        
+        //设置安全策略
+        if(weakSelf.requestWay !=  requestWayHttpAndCAHttps) {[_manager setSecurityPolicy:[weakSelf securityPolicy]];}
+    });
+    
+    //开启状态栏动画
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+    return _manager;
+}
 
 /**
  *  GET请求(未返回请求进度)
@@ -26,9 +60,7 @@ singleton_implementation(WYNetworking)//单例实现
     
     [self networkMonitoring:^(BOOL hasNetwork) {if(hasNetwork == NO) {return;}}];
     
-    AFHTTPSessionManager *manager = [self sessionManagerFromRequestType:@"GET"];
-    
-    [manager GET:URLString parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
+    [[self sharedSessionManager] GET:URLString parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         if (success) {success(responseObject);}
@@ -55,9 +87,7 @@ singleton_implementation(WYNetworking)//单例实现
     
     [self networkMonitoring:^(BOOL hasNetwork) {if(hasNetwork == NO) {return;}}];
     
-    AFHTTPSessionManager *manager = [self sessionManagerFromRequestType:@"GET"];
-    
-    [manager GET:URLString parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
+    [[self sharedSessionManager] GET:URLString parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
         
         if(progress) {progress(downloadProgress);}
         
@@ -86,9 +116,7 @@ singleton_implementation(WYNetworking)//单例实现
     
     [self networkMonitoring:^(BOOL hasNetwork) {if(hasNetwork == NO) {return;}}];
     
-    AFHTTPSessionManager *manager = [self sessionManagerFromRequestType:@"POST"];
-    
-    [manager POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    [[self sharedSessionManager] POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         if (success) {success(responseObject);}
@@ -114,9 +142,7 @@ singleton_implementation(WYNetworking)//单例实现
     
     [self networkMonitoring:^(BOOL hasNetwork) {if(hasNetwork == NO) {return;}}];
     
-    AFHTTPSessionManager *manager = [self sessionManagerFromRequestType:@"POST"];
-    
-    [manager POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    [[self sharedSessionManager] POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
         if(progress) {progress(uploadProgress);}
         
@@ -147,9 +173,7 @@ singleton_implementation(WYNetworking)//单例实现
     
     [self networkMonitoring:^(BOOL hasNetwork) {if(hasNetwork == NO) {return;}}];
     
-    AFHTTPSessionManager *manager = [self sessionManagerFromRequestType:@"UPLOAD"];
-    
-    [manager POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [[self sharedSessionManager] POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
         for (int i = 0; i < modelArray.count; i++)
         {
@@ -169,10 +193,12 @@ singleton_implementation(WYNetworking)//单例实现
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         if (success) {success(responseObject);}
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
         if (failure) {failure(error);}
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }];
 }
 
@@ -191,11 +217,9 @@ singleton_implementation(WYNetworking)//单例实现
     
     [self networkMonitoring:^(BOOL hasNetwork) {if(hasNetwork == NO) {return;}}];
     
-    AFHTTPSessionManager *manager = [self sessionManagerFromRequestType:@"UPLOAD"];
-    
-    [manager POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [[self sharedSessionManager] POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
-        [formData appendPartWithFileData:fileModel.fileData name:fileModel.fileName fileName:fileModel.fileName mimeType:fileModel.mimeType];
+        [formData appendPartWithFileData:fileModel.fileData name:fileModel.folderName fileName:fileModel.fileName mimeType:fileModel.mimeType];
         fileModel.fileData = nil;
         
     } progress:^(NSProgress * _Nonnull uploadProgress) {
@@ -205,45 +229,78 @@ singleton_implementation(WYNetworking)//单例实现
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         if (success) {success(responseObject);}
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
         if (failure) {failure(error);}
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }];
 }
 
 
 /**
- *  POST上传URL资源(根据本地文件URL路径或网络下载地址上传图片、MP3、MP4等)
+ *  POST多个URL资源上传(根据本地文件URL路径上传图片、MP3、MP4等)
  *
  *  @param URLString        请求的链接
  *  @param parameters       请求的参数
- *  @param fileModel        上传的图片模型
- *  @param isLocalFilePath  是否是本地图片URL路径
+ *  @param modelArray       存放待上传文件模型的数组
  *  @param progress         进度的回调
  *  @param success          上传成功的回调
  *  @param failure          上传失败的回调
  */
-- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters fileModel:(WYFileModel *)fileModel isLocalFilePath:(BOOL)isLocalFilePath progress:(Progress)progress success:(Success)success failure:(Failure)failure {
+- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters urlFileModelArray:(NSArray <WYFileModel *>*)modelArray progress:(Progress)progress success:(Success)success failure:(Failure)failure {
     
     [self networkMonitoring:^(BOOL hasNetwork) {if(hasNetwork == NO) {return;}}];
     
-    AFHTTPSessionManager *manager = [self sessionManagerFromRequestType:@"UPLOAD"];
+    [[self sharedSessionManager] POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+        for (int i = 0; i < modelArray.count; i++)
+        {
+            @autoreleasepool {
+                
+                WYFileModel *fileModel = modelArray[i];
+                //根据本地路径获取url(相册等资源上传)
+                NSURL *fileUrl = [NSURL fileURLWithPath:fileModel.fileUrl];
+                [formData appendPartWithFileURL:fileUrl name:fileModel.fileName fileName:fileModel.fileName mimeType:fileModel.mimeType error:nil];
+                fileModel = nil;
+            }
+        }
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+        if(progress) {progress(uploadProgress);}
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        if (success) {success(responseObject);}
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        if (failure) {failure(error);}
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    }];
+}
+
+
+/**
+ *  POST单个URL资源上传(根据本地文件URL路径上传图片、MP3、MP4等)
+ *
+ *  @param URLString        请求的链接
+ *  @param parameters       请求的参数
+ *  @param fileModel        上传的图片模型
+ *  @param progress         进度的回调
+ *  @param success          上传成功的回调
+ *  @param failure          上传失败的回调
+ */
+- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters urlFileModel:(WYFileModel *)fileModel progress:(Progress)progress success:(Success)success failure:(Failure)failure {
     
-    [manager POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [self networkMonitoring:^(BOOL hasNetwork) {if(hasNetwork == NO) {return;}}];
+    
+    [[self sharedSessionManager] POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
-        
-        NSURL *fileUrl = [NSURL URLWithString:@""];
-        if(isLocalFilePath == YES) {
-            
-            //根据本地路径获取url(相册等资源上传)
-            fileUrl = [NSURL fileURLWithPath:fileModel.fileUrl];
-        }
-        else {
-            
-            //网络路径直接转换成NSURL
-            fileUrl = [NSURL URLWithString:fileModel.fileUrl];
-        }
+        //根据本地路径获取url(相册等资源上传)
+        NSURL *fileUrl = [NSURL fileURLWithPath:fileModel.fileUrl];
         [formData appendPartWithFileURL:fileUrl name:fileModel.fileName fileName:fileModel.fileName mimeType:fileModel.mimeType error:nil];
         
     } progress:^(NSProgress * _Nonnull uploadProgress) {
@@ -253,54 +310,100 @@ singleton_implementation(WYNetworking)//单例实现
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         if (success) {success(responseObject);}
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
         if (failure) {failure(error);}
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }];
 }
 
 
 /**
- *  下载
+ *  下载文件
  *
- *  @param URLString       请求的链接
- *  @param progress        进度的回调
- *  @param destination     返回URL的回调
- *  @param downLoadSuccess 下载成功的回调
- *  @param failure         下载失败的回调
+ *  @param URLString   请求的链接
+ *  @param filePath    文件存储目录(默认存储目录为Download)
+ *  @param progress    进度的回调
+ *  @param success     下载成功的回调
+ *  @param failure     下载失败的回调
+ *
+ *  返回NSURLSessionDownloadTask实例，可用于暂停下载、继续下载、停止下载，暂停调用suspend方法，继续下载调用resume方法
  */
-- (NSURLSessionDownloadTask *)downLoadWithURL:(NSString *)URLString progress:(Progress)progress destination:(Destination)destination downLoadSuccess:(DownLoadSuccess)downLoadSuccess failure:(Failure)failure {
+- (NSURLSessionDownloadTask *)downLoadWithURL:(NSString *)URLString fileSavePath:(NSString *)filePath progress:(Progress)progress success:(DownLoadSuccess)success failure:(Failure)failure {
     
     [self networkMonitoring:^(BOOL hasNetwork) {if(hasNetwork == NO) {return;}}];
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
-    //设置安全策略
-    if(_requestWay !=  requestWayHttpAndCAHttps) {[manager setSecurityPolicy:[self securityPolicyWithSessionManager:manager]];}
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:URLString]];
-    
     // 下载任务
-    NSURLSessionDownloadTask *task = [manager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
-        
+    /**
+     * 第一个参数 - request：请求对象
+     * 第二个参数 - progress：下载进度block
+     *      其中： downloadProgress.completedUnitCount：已经完成的大小
+     *            downloadProgress.totalUnitCount：文件的总大小
+     * 第三个参数 - destination：自动完成文件剪切操作
+     *      其中： 返回值:该文件应该被剪切到哪里
+     *            targetPath：临时路径 temp NSURL
+     *            response：响应头
+     * 第四个参数 - completionHandler：下载完成回调
+     *      其中： filePath：真实路径 == 第三个参数的返回值
+     *            error:错误信息
+     */
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:URLString]];
+    NSURLSessionDownloadTask *downloadTask = [[self sharedSessionManager] downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
         if (progress) {progress(downloadProgress);}
         
     } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
         
-        if (destination) {return destination(targetPath, response);}
-        else {return nil;}
+        //拼接缓存目录
+        NSString *downloadPath = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:filePath.length > 0 ? filePath : @"Download"];
+        //打开文件管理器
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        //创建Download目录
+        [fileManager createDirectoryAtPath:downloadPath withIntermediateDirectories:YES attributes:nil error:nil];
+        //拼接文件路径
+        NSString *filePath = [downloadPath stringByAppendingPathComponent:response.suggestedFilename];
+        //返回文件位置的URL路径
+        return [NSURL fileURLWithPath:filePath];
         
     } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
-        
         if (error) {failure(error);}
-        else {downLoadSuccess(response, filePath);}
+        else {success(response, filePath);}
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }];
+    //开始启动任务
+    [downloadTask resume];
     
-    // 开始启动任务
-    [task resume];
+    return downloadTask;
+}
+
+
+/**
+ *  下载文件(继续下载)
+ *  @param downloadTask    下载任务NSURLSessionDownloadTask的实例
+ */
++ (void)downloadTaskResume:(NSURLSessionDownloadTask *)downloadTask {
     
-    return task;
+    [downloadTask resume];
+}
+
+/**
+ *  下载文件(暂停下载)
+ *  @param downloadTask    下载任务NSURLSessionDownloadTask的实例
+ */
++ (void)downloadTaskSuspend:(NSURLSessionDownloadTask *)downloadTask {
+    
+    [downloadTask suspend];
+}
+
+/**
+ *  下载文件(停止下载，会释放downloadTask)
+ *  @param downloadTask    下载任务NSURLSessionDownloadTask的实例
+ */
++ (void)downloadTaskStop:(NSURLSessionDownloadTask *)downloadTask {
+    
+    [downloadTask suspend];
+    downloadTask = nil;
 }
 
 
@@ -333,77 +436,9 @@ singleton_implementation(WYNetworking)//单例实现
 
 
 /**
- *  根据网络请求的类型设置SessionManager
- *
- *  @param requestType   网络请求的类型(POST/GET)
- */
-- (AFHTTPSessionManager *)sessionManagerFromRequestType:(NSString *)requestType {
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
-    manager.responseSerializer.acceptableContentTypes = self.acceptableContentTypes;
-    manager.requestSerializer.timeoutInterval = (self.timeoutInterval ? self.timeoutInterval : 10);
-    
-    //设置安全策略
-    if(_requestWay !=  requestWayHttpAndCAHttps) {[manager setSecurityPolicy:[self securityPolicyWithSessionManager:manager]];}
-    
-    if([requestType isEqualToString:@"GET"]) {
-        
-        NSMutableSet *contentTypes = [[NSMutableSet alloc] initWithSet:manager.responseSerializer.acceptableContentTypes];
-        [contentTypes addObject:@"text/html"];
-        [contentTypes addObject:@"text/plain"];
-    }
-    else if ([requestType isEqualToString:@"POST"]) {
-        
-        /**
-         *  AFHTTPRequestSerializer：是普通的 HTTP 的编码格式的，也就是 mid=10&method=userInfo&dateInt=20160818 这种格式的。
-         *
-         *  AFJSONRequestSerializer：是 JSON 编码格式的，也就是 {"mid":"11","method":"userInfo","dateInt":"20160818"} 这种格式的。
-         *
-         *  AFPropertyListRequestSerializer：是plist编码格式的。
-         */
-        
-        manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-        [manager.requestSerializer setValue:@"application/x-www-form-urlencoded; charset=utf-8"forHTTPHeaderField:@"Content-Type"];
-        
-        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-        manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/plain",@"text/html", nil];
-        
-        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-        manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/plain",@"text/html",@"text/css", nil];
-        
-        manager.requestSerializer.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
-        [manager setSessionDidBecomeInvalidBlock:^(NSURLSession * _Nonnull session, NSError * _Nonnull error) {
-            NSLog(@"setSessionDidBecomeInvalidBlock");
-        }];
-    }
-    else if ([requestType isEqualToString:@"UPLOAD"]) {
-        
-        //请求不使用AFN默认转换,保持原有数据
-        manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-        //响应不使用AFN默认转换,保持原有数据
-        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-        //按需设置
-        //[manager.requestSerializer setValue:@"multipart/form-data"forHTTPHeaderField:@"Content-Type"];
-        
-        //上传下载等无需开启状态栏动画
-        return manager;
-    }
-    else {}
-    
-    //开启状态栏动画
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    
-    return manager;
-}
-
-
-/**
  *  设置安全策略
- *
- *  @param sessionManager   需要设置安全策略的会话管理器
  */
-- (AFSecurityPolicy *)securityPolicyWithSessionManager:(AFHTTPSessionManager *)sessionManager {
+- (AFSecurityPolicy *)securityPolicy {
     
     NSString *certFilePath = [[NSBundle mainBundle] pathForResource:@"server" ofType:@"cer"];
     if(certFilePath.length == 0) {NSLog(@"server.cer文件没找到");}
@@ -418,7 +453,7 @@ singleton_implementation(WYNetworking)//单例实现
         securityPolicy.allowInvalidCertificates = YES;//使用自建证书  默认NO
         securityPolicy.validatesDomainName = YES;//域名验证  默认YES
         
-        __weak AFHTTPSessionManager *manager = (AFHTTPSessionManager *)sessionManager;
+        __weak AFHTTPSessionManager *manager = [self sharedSessionManager];
         __weak typeof(self)weakSelf = self;
         
         [manager setSessionDidReceiveAuthenticationChallengeBlock:^NSURLSessionAuthChallengeDisposition(NSURLSession*session, NSURLAuthenticationChallenge *challenge, NSURLCredential *__autoreleasing*_credential) {

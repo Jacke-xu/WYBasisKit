@@ -31,10 +31,16 @@ typedef enum : NSUInteger {
  *  可根据具体的上传文件类型自由设置，默认上传图片时设置为image/jpeg，上传音频时设置为audio/aac，上传视频时设置为video/mp4，上传url时设置为application/octet-stream
  */
 @property (nonatomic, copy) NSString *mimeType;
+
 /**
- *  上传的文件的名字(选传项，可以是图片名也可以是文件名)
+ *  上传的文件的名字(选传项)
  */
 @property (nonatomic, copy) NSString *fileName;
+
+/**
+ *  上传的文件的文件夹名字(选传项)
+ */
+@property (nonatomic, copy) NSString *folderName;
 
 /**
  *  上传图片压缩比例(选传项，0~1.0区间，1.0代表无损，默认无损)

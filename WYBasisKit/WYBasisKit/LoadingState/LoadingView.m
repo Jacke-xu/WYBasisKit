@@ -40,7 +40,6 @@ static LoadingView *_loadingView = nil;
         _loadingView.layer.cornerRadius = 10;
         _loadingView.layer.masksToBounds = YES;
     });
-    
     return _loadingView;
 }
 

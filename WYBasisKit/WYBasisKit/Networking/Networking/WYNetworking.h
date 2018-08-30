@@ -8,10 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "Singleton.h"
+#import "WYFileModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-@class WYFileModel;
 
 ///网络请求方式
 typedef enum : NSUInteger {
@@ -47,11 +46,6 @@ singleton_interface(WYNetworking)//单例声明
  *  超时时间(默认10秒)
  */
 @property (nonatomic, assign) NSTimeInterval timeoutInterval;
-
-/**
- *  可接受的响应内容类型
- */
-@property (nonatomic, copy) NSSet <NSString *> *acceptableContentTypes;
 
 
 /**
@@ -133,29 +127,62 @@ singleton_interface(WYNetworking)//单例声明
 
 
 /**
- *  POST上传URL资源(根据本地文件URL路径或网络下载地址上传图片、MP3、MP4等)
+ *  POST多个URL资源上传(根据本地文件URL路径上传图片、MP3、MP4等)
  *
  *  @param URLString        请求的链接
  *  @param parameters       请求的参数
- *  @param fileModel        上传的图片模型
- *  @param isLocalFilePath  是否是本地图片URL路径
+ *  @param modelArray       存放待上传文件模型的数组
  *  @param progress         进度的回调
  *  @param success          上传成功的回调
  *  @param failure          上传失败的回调
  */
-- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters fileModel:(WYFileModel *)fileModel isLocalFilePath:(BOOL)isLocalFilePath progress:(Progress)progress success:(Success)success failure:(Failure)failure;
+- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters urlFileModelArray:(NSArray <WYFileModel *>*)modelArray progress:(Progress)progress success:(Success)success failure:(Failure)failure;
 
 
 /**
- *  下载
+ *  POST单个URL资源上传(根据本地文件URL路径上传图片、MP3、MP4等)
  *
- *  @param URLString       请求的链接
- *  @param progress        进度的回调
- *  @param destination     返回URL的回调
- *  @param downLoadSuccess 下载成功的回调
- *  @param failure         下载失败的回调
+ *  @param URLString        请求的链接
+ *  @param parameters       请求的参数
+ *  @param fileModel        上传的文件模型
+ *  @param progress         进度的回调
+ *  @param success          上传成功的回调
+ *  @param failure          上传失败的回调
  */
-- (NSURLSessionDownloadTask *)downLoadWithURL:(NSString *)URLString progress:(Progress)progress destination:(Destination)destination downLoadSuccess:(DownLoadSuccess)downLoadSuccess failure:(Failure)failure;
+- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters urlFileModel:(WYFileModel *)fileModel progress:(Progress)progress success:(Success)success failure:(Failure)failure;
+
+
+/**
+ *  下载文件
+ *
+ *  @param URLString   请求的链接
+ *  @param filePath    文件存储目录(默认存储目录为Download)
+ *  @param progress    进度的回调
+ *  @param success     下载成功的回调
+ *  @param failure     下载失败的回调
+ *
+ *  返回NSURLSessionDownloadTask实例，可用于暂停下载、继续下载、停止下载，暂停调用suspend方法，继续下载调用resume方法
+ */
+- (NSURLSessionDownloadTask *)downLoadWithURL:(NSString *)URLString fileSavePath:(NSString *)filePath progress:(Progress)progress success:(DownLoadSuccess)success failure:(Failure)failure;
+
+
+/**
+ *  下载文件(继续下载)
+ *  @param downloadTask    下载任务NSURLSessionDownloadTask的实例
+ */
++ (void)downloadTaskResume:(NSURLSessionDownloadTask *)downloadTask;
+
+/**
+ *  下载文件(暂停下载)
+ *  @param downloadTask    下载任务NSURLSessionDownloadTask的实例
+ */
++ (void)downloadTaskSuspend:(NSURLSessionDownloadTask *)downloadTask;
+
+/**
+ *  下载文件(停止下载，会释放downloadTask)
+ *  @param downloadTask    下载任务NSURLSessionDownloadTask的实例
+ */
++ (void)downloadTaskStop:(NSURLSessionDownloadTask *)downloadTask;
 
 
 /**
