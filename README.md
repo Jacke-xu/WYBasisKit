@@ -13,18 +13,8 @@ Directly clone "WYBasisKit" to the project, and introduce "GlobalHeader.pch" in 
 
 ![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/directory.jpg)
 
-![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/UILable.gif)
 
-![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/UIButton.gif)
-
-![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/UITextField.gif)
-
-![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/UITextView.gif)
-
-![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/LoadingState.gif)
-
-
-README后续补全
+详细README后续补全
 
 
 
