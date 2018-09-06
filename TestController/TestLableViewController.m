@@ -24,14 +24,24 @@
     UILabel *lab = [UILabel createLabWithFrame:CGRectMake(20, 0, screenWidth-40, 0) text:[self testStr] textColor:[UIColor blackColor] font:boldFont(15) bgColor:[UIColor lightGrayColor]];
     lab.numberOfLines = 0;
     
+    //快速创建富文本属性
     NSMutableAttributedString *attribute = [NSMutableAttributedString attributeWithStr:lab.text];
+    //设置行间距
     [attribute setLineSpacing:5 string:lab.text];
+    //设置字间距
     [attribute setWordsSpacing:20 string:@"然后中和之化应"];
+    
+    //通过传入要设置的文本设置文本颜色
     NSArray *colorsOfRanges = @[@{[UIColor orangeColor]:@"治性之道"},@{[UIColor greenColor]:@"盖聪明疏通者戒于太察"}];
-    NSArray *fontsOfRanges = @[@{[UIFont systemFontOfSize:18]:@"广心浩大者戒于遗忘"},@{[UIFont boldSystemFontOfSize:30]:@[@"1",@"2"]}];
     [attribute colorsOfRanges:colorsOfRanges];
+    
+    //通过传入要设置的文本和传入要设置文本的下标位置综合设置文本字号
+    NSArray *fontsOfRanges = @[@{[UIFont systemFontOfSize:18]:@"广心浩大者戒于遗忘"},@{[UIFont boldSystemFontOfSize:30]:@[@"1",@"2"]}];
     [attribute fontsOfRanges:fontsOfRanges];
+    
+    //设置标签的富文本为自定义的富文本属性
     lab.attributedText = attribute;
+    
     [lab sizeToFit];
     [self.view addSubview:lab];
     
