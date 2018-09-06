@@ -73,6 +73,36 @@ textView.maximumLimit = 10;
 ![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/UITextField.gif) ![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/UITextView.gif)
 
 
+
+
+
+### UIButton+Extension  && UIButton+EdgeInsetsLayout
+```
+1.可以通过运行时或EdgeInsets快速调整button的图片控件与文本控件的位置
+2.可以快速初始化及添加点击事件
+3.可以通过不同的属性快速设置button不同状态时的title、title颜色、和image
+```
+```
+btn.nTitle = @"默认状态";
+btn.hTitle = @"高亮状态";
+btn.sTitle = @"选中状态";
+btn.title_nColor = [UIColor greenColor];
+btn.title_hColor = [UIColor yellowColor];
+btn.title_sColor = [UIColor blackColor];
+btn.nImage = [UIImage imageNamed:@"timg-n"];
+btn.hImage = [UIImage imageNamed:@"timg-h"];
+btn.sImage = [UIImage imageNamed:@"timg-s"];
+
+//通过运行时设置图片控件与文本控件的位置
+btn.titleRect = CGRectMake((btn.width-titleSize.width)/2, (btn.height-imageSize.height-titleSize.height-5)/2, titleSize.width, titleSize.height);
+btn.imageRect = CGRectMake((btn.width-imageSize.width)/2, 5+titleSize.height+((btn.height-imageSize.height-titleSize.height-5)/2), imageSize.width, imageSize.height);
+
+//通过EdgeInsets设置图片控件与文本控件的位置
+[btn2 layouEdgeInsetsPosition:ButtonPositionImageTop_titleBottom spacing:5];
+```
+![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/UIButton.gif) 
+
+
 详细README后续补全
 
 

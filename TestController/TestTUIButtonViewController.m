@@ -35,17 +35,20 @@
     CGSize titleSize = [btn.titleLabel.text boundingRectWithSize:btn.size withFont:btn.titleFont lineSpacing:0];
     CGSize imageSize = CGSizeMake(50, 50);
     
+    //通过运行时设置图片控件与文本控件的位置
     btn.titleRect = CGRectMake((btn.width-titleSize.width)/2, (btn.height-imageSize.height-titleSize.height-5)/2, titleSize.width, titleSize.height);
     btn.imageRect = CGRectMake((btn.width-imageSize.width)/2, 5+titleSize.height+((btn.height-imageSize.height-titleSize.height-5)/2), imageSize.width, imageSize.height);
     
     [self.view addSubview:btn];
     
-    UIButton *btn2    = [[UIButton alloc]initWithFrame:CGRectMake(20, navViewHeight+200, screenWidth-40, 100) target:self selector:@selector(btnClick:)];
+    UIButton *btn2 = [[UIButton alloc]initWithFrame:CGRectMake(20, navViewHeight+200, screenWidth-40, 100) target:self selector:@selector(btnClick:)];
     btn2.backgroundColor = [UIColor orangeColor];
     btn2.titleFont = [UIFont boldSystemFontOfSize:25];
     btn2.nTitle = @"默认状态";
     btn2.title_nColor = [UIColor greenColor];
     btn2.nImage = [UIImage cutImage:[UIImage imageNamed:@"timg-n"] andSize:CGSizeMake(20, 30)];
+    
+    //通过EdgeInsets设置图片控件与文本控件的位置
     [btn2 layouEdgeInsetsPosition:ButtonPositionImageTop_titleBottom spacing:5];
     
     [self.view addSubview:btn2];
