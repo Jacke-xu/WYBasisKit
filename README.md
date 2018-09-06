@@ -53,6 +53,10 @@ NSString *message = [NSString stringWithFormat:@"点击了“%@”字符\nrange:
 NSLog(@"messge = %@",message);
 }];
 ```
+```
+效果展示
+![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/UILable.gif)
+```
 
 
 详细README后续补全

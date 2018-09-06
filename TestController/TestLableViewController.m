@@ -89,6 +89,7 @@
     [label2 clickRichTextWithStrings:@[@"https://github.com/Jacke-xu/WYBasisKit",@"记得给star哦"] clickAction:^(NSString *string, NSRange range, NSInteger index) {
         NSString *message = [NSString stringWithFormat:@"点击了“%@”字符\nrange: %@\nindex: %ld",string,NSStringFromRange(range),(long)index];
         NSLog(@"messge = %@",message);
+        [self showAlertMessage:message];
     }];
     //设置是否有点击效果，默认是YES
     label2.enabledClickEffect = NO;
@@ -103,6 +104,16 @@
     
     NSString *message = [NSString stringWithFormat:@"点击了“%@”字符\nrange: %@\nindex: %ld",string,NSStringFromRange(range),(long)index];
     NSLog(@"messge = %@",message);
+    [self showAlertMessage:message];
+}
+
+- (void)showAlertMessage:(NSString *)message {
+    
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *albumAction = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:nil];
+    [actionSheet addAction:albumAction];
+    
+    [self presentViewController:actionSheet animated:YES completion:nil];
 }
 
 - (void)dealloc {
