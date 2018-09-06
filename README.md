@@ -21,7 +21,6 @@ Directly clone "WYBasisKit" to the project, and introduce "GlobalHeader.pch" in 
 ```
 ```
 使用方式(NSMutableAttributedString+Extension)
-```
 //快速创建富文本属性
 NSMutableAttributedString *attribute = [NSMutableAttributedString attributeWithStr:lab.text];
 //设置行间距
