@@ -15,9 +15,14 @@ Directly clone "WYBasisKit" to the project, and introduce "GlobalHeader.pch" in 
 
 ### NSMutableAttributedString+Extension  && UILabel+RichText
 ```
+NSMutableAttributedString+Extension
 1.可以快速创建富文本属性，已有的直接就直接返回；
 2.可以通过属性快速设置标签不同位置处文本的颜色和字号大小；
 3.可以快速设置标签的行间距、字间距、添加下划线等等。
+
+UILabel+RichText
+1.可以通过代理或block设置标签的点击事件
+2.可以设置要点击字符串的点击效果和点击效果颜色
 ```
 ```
 使用方式(NSMutableAttributedString+Extension)
@@ -36,6 +41,17 @@ NSArray *fontsOfRanges = @[@{[UIFont systemFontOfSize:18]:@"广心浩大者戒�
 [attribute fontsOfRanges:fontsOfRanges];
 //设置标签的富文本为自定义的富文本属性
 lab.attributedText = attribute;
+
+
+使用方式(UILabel+RichText)
+
+//通过代理设置要点击的字符串
+[label clickRichTextWithStrings:@[@"点我",@"点我"] delegate:self];
+//通过block设置要点击的字符串
+[label clickRichTextWithStrings:@[@"https://github.com/Jacke-xu/WYBasisKit",@"记得给star哦"] clickAction:^(NSString *string, NSRange range, NSInteger index) {
+NSString *message = [NSString stringWithFormat:@"点击了“%@”字符\nrange: %@\nindex: %ld",string,NSStringFromRange(range),(long)index];
+NSLog(@"messge = %@",message);
+}];
 ```
 
 

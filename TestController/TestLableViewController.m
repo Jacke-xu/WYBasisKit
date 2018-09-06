@@ -69,6 +69,7 @@
     label1.attributedText = attributedString1;
     [self.view addSubview:label1];
     
+    //通过代理设置要点击的字符串
     [label1 clickRichTextWithStrings:@[@"点我",@"点我"] delegate:self];
     
     //需要点击的字符不同
@@ -84,6 +85,7 @@
     label2.attributedText = attributedString2;
     [self.view addSubview:label2];
     
+    //通过block设置要点击的字符串
     [label2 clickRichTextWithStrings:@[@"https://github.com/Jacke-xu/WYBasisKit",@"记得给star哦"] clickAction:^(NSString *string, NSRange range, NSInteger index) {
         NSString *message = [NSString stringWithFormat:@"点击了“%@”字符\nrange: %@\nindex: %ld",string,NSStringFromRange(range),(long)index];
         NSLog(@"messge = %@",message);
