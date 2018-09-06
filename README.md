@@ -53,6 +53,23 @@ NSLog(@"messge = %@",message);
 ![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/UILable.gif)
 
 
+### UITextView+Extension  && UITextField+Extension
+```
+1.可以快速设置占位文本及占位文本颜色
+2.可以添加文字输入限制，省去自己写代理截取字符串的麻烦
+3.处理系统输入法导致的乱码
+```
+```
+//快速创建富文本属性
+textView.placeholderStr = @"在这里设置textView的占位文本";
+//让弹窗自动跟随键盘移动😎
+[textView automaticFollowKeyboard:self.view];
+//设置最大输入文本限制,就是这么简单
+textView.maximumLimit = 10;
+```
+![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/UITextField.gif) ![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/UITextView.gif)
+
+
 详细README后续补全
 
 
