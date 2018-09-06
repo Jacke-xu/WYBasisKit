@@ -24,9 +24,9 @@ UILabel+RichText
 1.可以通过代理或block设置标签的点击事件
 2.可以设置要点击字符串的点击效果和点击效果颜色
 ```
+![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/UILable.gif)
 ```
 使用方式(NSMutableAttributedString+Extension)
-
 //快速创建富文本属性
 NSMutableAttributedString *attribute = [NSMutableAttributedString attributeWithStr:lab.text];
 //设置行间距
@@ -44,7 +44,6 @@ lab.attributedText = attribute;
 
 
 使用方式(UILabel+RichText)
-
 //通过代理设置要点击的字符串
 [label clickRichTextWithStrings:@[@"点我",@"点我"] delegate:self];
 //通过block设置要点击的字符串
@@ -53,10 +52,6 @@ NSString *message = [NSString stringWithFormat:@"点击了“%@”字符\nrange:
 NSLog(@"messge = %@",message);
 }];
 ```
-```
-效果展示
-```
-![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/UILable.gif)
 
 
 详细README后续补全
