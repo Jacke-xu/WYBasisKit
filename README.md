@@ -103,8 +103,113 @@ btn.imageRect = CGRectMake((btn.width-imageSize.width)/2, 5+titleSize.height+((b
 ![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/UIButton.gif) 
 
 
-详细README后续补全
 
+
+
+### StateView  && LoadingView
+```
+//StateView
+/** 提示成功信息 */
++ (void)showSuccessInfo:(NSString *)info;
+
+/** 提示错误信息 */
++ (void)showErrorInfo:(NSString *)info;
+
+/** 提示警告信息 */
++ (void)showWarningInfo:(NSString *)info;
+
+/** 自定义图片模式 */
++ (void)showMessage:(NSString *)message;
+
+//LoadingView
+/** 自定义图片模式  superView只能是控制器view或则keyWindow */
++ (void)showMessage:(NSString *)message superView:(UIView *)superView;
+
+/** 系统小菊花模式 */
++ (void)showInfo:(NSString *)info;
+
+/** 系统小菊花模式  superView只能是控制器view或则keyWindow */
++ (void)showInfo:(NSString *)info  superView:(UIView *)superView;
+
+
+//通用
+/** 移除弹窗 */
++ (void)dismiss;
+
+/** 弹窗时是否允许用户界面交互(需在弹窗前设置)  默认允许 */
++ (void)userInteractionEnabled:(BOOL)userInteractionEnabled;
+```
+![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/LoadingState.gif) 
+
+
+
+
+
+### 基于AFNetworking封装的网络请求(支持HTTPS)
+```
+///HTTP和CAHTTPS(无需额外配置  CAHTTPS：向正规CA机构购买的HTTPS服务)
+requestWayHttpAndCAHttps = 0,
+///HTTPS单向验证(需要将一个服务端的cer文件放进工程HTTPSFiles目录下，即server.cer)
+requestWayHttpsSingleValidation,
+///HTTPS双向验证(需要将一个服务端的cer文件与一个带密码的客户端p12文件放进工程HTTPSFiles目录下，即server.cer和client.p12)
+requestWayHttpsBothwayValidation,
+
+/**
+*  超时时间(默认10秒)
+*/
+@property (nonatomic, assign) NSTimeInterval timeoutInterval;
+
+
+/**
+*  设置网络的请求方式(默认HTTP)
+*/
+@property (nonatomic, assign) NetworkRequestWay requestWay;
+
+/**
+*  GET请求
+*
+*  @param URLString  请求的链接
+*  @param parameters 请求的参数
+*  @param success    请求成功回调
+*  @param failure    请求失败回调
+*/
+- (void)GET:(NSString *)URLString parameters:(NSDictionary *)parameters success:(Success)success failure:(Failure)failure;
+
+/**
+*  POST请求
+*
+*  @param URLString  请求的链接
+*  @param parameters 请求的参数
+*  @param success    请求成功回调
+*  @param failure    请求失败回调
+*/
+- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters success:(Success)success failure:(Failure)failure;
+
+/**
+*  POST多个文件上传(如图片、MP3、MP4等)
+*
+*  @param URLString    请求的链接
+*  @param parameters   请求的参数
+*  @param modelArray   存放待上传文件模型的数组
+*  @param progress     进度的回调
+*  @param success      上传成功的回调
+*  @param failure      上传失败的回调
+*/
+- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters fileModelArray:(NSArray <WYFileModel *>*)modelArray progress:(Progress)progress success:(Success)success failure:(Failure)failure;
+
+/**
+*  下载文件
+*
+*  @param URLString   请求的链接
+*  @param filePath    文件存储目录(默认存储目录为Download)
+*  @param progress    进度的回调
+*  @param success     下载成功的回调
+*  @param failure     下载失败的回调
+*
+*  返回NSURLSessionDownloadTask实例，可用于暂停下载、继续下载、停止下载，暂停调用suspend方法，继续下载调用resume方法
+*/
+- (NSURLSessionDownloadTask *)downLoadWithURL:(NSString *)URLString fileSavePath:(NSString *)filePath progress:(Progress)progress success:(DownLoadSuccess)success failure:(Failure)failure;
+```
 
 
 如您在使用过程中发现BUG,或有好的意见或建议，可发邮件至mobileAppDvlp@icloud.com
