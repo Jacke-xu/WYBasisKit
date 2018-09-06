@@ -55,8 +55,8 @@ NSLog(@"messge = %@",message);
 ```
 ```
 效果展示
-![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/UILable.gif)
 ```
+![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/UILable.gif)
 
 
 详细README后续补全
