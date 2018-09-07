@@ -73,9 +73,6 @@ textView.maximumLimit = 10;
 ![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/UITextField.gif) ![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/UITextView.gif)
 
 
-
-
-
 ### UIButton+Extension  && UIButton+EdgeInsetsLayout
 ```
 1.可以通过运行时或EdgeInsets快速调整button的图片控件与文本控件的位置
@@ -101,9 +98,6 @@ btn.imageRect = CGRectMake((btn.width-imageSize.width)/2, 5+titleSize.height+((b
 [btn2 layouEdgeInsetsPosition:ButtonPositionImageTop_titleBottom spacing:5];
 ```
 ![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/UIButton.gif) 
-
-
-
 
 
 ### StateView  && LoadingView
@@ -140,9 +134,6 @@ btn.imageRect = CGRectMake((btn.width-imageSize.width)/2, 5+titleSize.height+((b
 + (void)userInteractionEnabled:(BOOL)userInteractionEnabled;
 ```
 ![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/LoadingState.gif) 
-
-
-
 
 
 ### 基于AFNetworking封装的网络请求(支持HTTPS)
@@ -184,6 +175,18 @@ requestWayHttpsBothwayValidation,
 *  @param failure    请求失败回调
 */
 - (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters success:(Success)success failure:(Failure)failure;
+
+/**
+*  POST单个文件上传(如图片、MP3、MP4等)
+*
+*  @param URLString    请求的链接
+*  @param parameters   请求的参数
+*  @param fileModel    待上传文件的模型
+*  @param progress     进度的回调
+*  @param success      上传成功的回调
+*  @param failure      上传失败的回调
+*/
+- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters fileModel:(WYFileModel *)fileModel progress:(Progress)progress success:(Success)success failure:(Failure)failure;
 
 /**
 *  POST多个文件上传(如图片、MP3、MP4等)
