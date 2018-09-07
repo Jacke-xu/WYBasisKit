@@ -5,7 +5,7 @@
 
 ## "WYBasisKit"是做什么的?
 
-"WYBasisKit" 不仅可以帮助开发者快速构建一个工程，还有基于常用网络框架和系统API而封装的方法，开发者只需简单的调用API就可以快速实现相应功能，提高开发效率。
+"WYBasisKit" 不仅可以帮助开发者快速构建一个工程，还有基于常用网络框架和系统API而封装的方法，开发者只需简单的调用API就可以快速实现相应功能， 大幅提高开发效率。
 
 
 ## "WYBasisKit"目录介绍
@@ -19,9 +19,9 @@ WYBasisKit/Layout              :  布局框架拓展，如UIView、UIButton、UI
 WYBasisKit/LoadingState        :  各种弹窗，网络等待弹窗及状态(成功、失败、警告)弹窗;
 WYBasisKit/MacroDefinition     :  各种宏定义;
 WYBasisKit/Memory              :  基于NSUserDefaults实现的本地存储;
-WYBasisKit/Networking          :  网络请求相关，基于AFNetworking封装的网络请求API、基于系统方法封装的网络解析类、基于苹果方法封装的网络判断(可弹窗提示，极易使用);
+WYBasisKit/Networking          :  网络请求相关，基于AFNetworking封装的网络请求API、基于系统方法封装的网络解析类、基于苹果方法封装的网络连接判断(可弹窗提示，极易使用);
 WYBasisKit/Practical           :  实用类拓展，如UIImage、UIColor、UIViewController、UINavigationController等;
-WYBasisKit/RefreshView         :  基于MJRefresh刷新框架的封装等;
+WYBasisKit/RefreshView         :  基于MJRefresh刷新框架的封装，可以快速构建实例对象;
 WYBasisKit/Libraries           :  自己写的一些小第三方，如不用可直接删除;
 ```
 
@@ -74,7 +74,7 @@ NSLog(@"messge = %@",message);
 3.处理系统输入法导致的乱码
 ```
 ```
-//快速创建富文本属性
+//设置textView占位符
 textView.placeholderStr = @"在这里设置textView的占位文本";
 //让弹窗自动跟随键盘移动(一句话的事儿，就是这么🐂)⭐️⭐️⭐️⭐️⭐️
 [textView automaticFollowKeyboard:self.view];
