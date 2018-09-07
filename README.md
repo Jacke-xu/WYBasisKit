@@ -1,17 +1,31 @@
 # WYBasisKit
 
-## Installation
-Directly clone "WYBasisKit" to the project, and introduce "GlobalHeader.pch" in the place where it is used (add pod support later)
+## 安装使用
+直接复制“WYBasisKit”到项目中，在需要使用的地方引入“GlobalHeader”头文件(后续会添加cocoapods支持)。
 
-## What does "WYBasisKit" do?
+## "WYBasisKit"是做什么的?
 
-"WYBasisKit" includes not only AFNetworking, MJRefresh and SDWebImage, but also method encapsulation based on these network frameworks and some common methods encapsulation and expansion based on system frameworks. With it, you can build engineering frameworks quickly. .
+"WYBasisKit" 不仅可以帮助开发者快速构建一个工程，还有基于常用网络框架和系统API而封装的方法，开发者只需简单的调用API就可以快速实现相应功能，提高开发效率。
+
+
+## "WYBasisKit"目录介绍
+```
+WYBasisKit/AppleSystemService  :  苹果外链方法，如拨打电话、跳转app评论页;
+WYBasisKit/BoolJudge           :  使用正则及系统API实现BOOL判断并返回BOOL值，如判断是否有定位权限、是否为身份证号、是否是银行卡号等;
+WYBasisKit/CNLog               :  中文日志打印(不用自己任何处理，放进项目中就行);
+WYBasisKit/Countdown           :  倒计时相应功能;
+WYBasisKit/Encryption          :  各种加密技术，如RSA、AES、DES、MD5;
+WYBasisKit/Layout              :  布局框架拓展，如UIView、UIButton、UITextView、UITextField、UILable等;
+WYBasisKit/LoadingState        :  各种弹窗，网络等待弹窗及状态(成功、失败、警告)弹窗;
+WYBasisKit/MacroDefinition     :  各种宏定义;
+WYBasisKit/Memory              :  基于NSUserDefaults实现的本地存储;
+WYBasisKit/Networking          :  网络请求相关，基于AFNetworking封装的网络请求API、基于系统方法封装的网络解析类、基于苹果方法封装的网络判断(可弹窗提示，极易使用);
+WYBasisKit/Practical           :  实用类拓展，如UIImage、UIColor、UIViewController、UINavigationController等;
+WYBasisKit/RefreshView         :  基于MJRefresh刷新框架的封装等;
+WYBasisKit/Libraries           :  自己写的一些小第三方，如不用可直接删除;
+```
 
 ## If you think it's cool,Please give me a little star. (如果你也觉得很酷😎，就点一下Star吧(●ˇ∀ˇ●))
-
-### "WYBasisKit" Introduction to tools
-
-![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/directory.jpg)
 
 ### NSMutableAttributedString+Extension  && UILabel+RichText
 ```
@@ -51,9 +65,6 @@ NSLog(@"messge = %@",message);
 }];
 ```
 ![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/UILable.gif)
-
-
-
 
 
 ### UITextView+Extension  && UITextField+Extension
