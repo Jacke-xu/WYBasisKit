@@ -1,7 +1,7 @@
 # WYBasisKit
 
 ## 安装使用
-直接复制“WYBasisKit”到项目中，在需要使用的地方引入“GlobalHeader”头文件(后续会添加cocoapods支持)。
+直接复制“WYBasisKit”到项目中，在需要使用的地方引入“GlobalHeader.pch”头文件(后续会添加cocoapods支持)。
 
 ## "WYBasisKit"是做什么的?
 
