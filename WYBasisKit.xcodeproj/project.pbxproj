@@ -58,6 +58,8 @@
 		1F64823B20F3447E001D4B0A /* NSString+AES256.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F64823A20F3447E001D4B0A /* NSString+AES256.m */; };
 		1F64823E20F34489001D4B0A /* NSString+DES.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F64823D20F34489001D4B0A /* NSString+DES.m */; };
 		1F64824120F34494001D4B0A /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F64824020F34494001D4B0A /* NSString+MD5.m */; };
+		1FA61C162147B09E00D62848 /* bank.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1FA61C152147B09E00D62848 /* bank.plist */; };
+		1FA61C182147B26C00D62848 /* EmojiFile in Resources */ = {isa = PBXBuildFile; fileRef = 1FA61C172147B26C00D62848 /* EmojiFile */; };
 		1FA9267620DA46A500C5D12B /* TestLableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA9267520DA46A500C5D12B /* TestLableViewController.m */; };
 		1FBEBE9320DB78030038FBBF /* UILabel+RichText.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBEBE9220DB78030038FBBF /* UILabel+RichText.m */; };
 		1FC5FDA920DCE70F0092CED8 /* UIButton+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC5FDA620DCE70F0092CED8 /* UIButton+Extension.m */; };
@@ -175,6 +177,8 @@
 		1F64823D20F34489001D4B0A /* NSString+DES.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+DES.m"; sourceTree = "<group>"; };
 		1F64823F20F34494001D4B0A /* NSString+MD5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		1F64824020F34494001D4B0A /* NSString+MD5.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		1FA61C152147B09E00D62848 /* bank.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bank.plist; sourceTree = "<group>"; };
+		1FA61C172147B26C00D62848 /* EmojiFile */ = {isa = PBXFileReference; lastKnownFileType = text; path = EmojiFile; sourceTree = "<group>"; };
 		1FA9267420DA46A500C5D12B /* TestLableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestLableViewController.h; sourceTree = "<group>"; };
 		1FA9267520DA46A500C5D12B /* TestLableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestLableViewController.m; sourceTree = "<group>"; };
 		1FBEBE9120DB78030038FBBF /* UILabel+RichText.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+RichText.h"; sourceTree = "<group>"; };
@@ -253,6 +257,8 @@
 		1F226F4820F5990400129AB6 /* NSString */ = {
 			isa = PBXGroup;
 			children = (
+				1FA61C152147B09E00D62848 /* bank.plist */,
+				1FA61C172147B26C00D62848 /* EmojiFile */,
 				1F28301E20D3B9B700624C76 /* NSString+Extension.h */,
 				1F28301F20D3B9B700624C76 /* NSString+Extension.m */,
 				1F226F5020F59B4800129AB6 /* NSString+Emoji.h */,
@@ -795,6 +801,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FA61C182147B26C00D62848 /* EmojiFile in Resources */,
+				1FA61C162147B09E00D62848 /* bank.plist in Resources */,
 				1F28303020D3B9B700624C76 /* Loading.bundle in Resources */,
 				1FFBD92520BA874800305331 /* LaunchScreen.storyboard in Resources */,
 				1FFBD92220BA874800305331 /* Assets.xcassets in Resources */,
