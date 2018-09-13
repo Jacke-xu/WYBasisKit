@@ -790,7 +790,6 @@
         }
         return status;
     }
-    
     else  {
         
         if([NetworkMonitoring sharedNetworkMonitoring].networkStatus == NetworkStatusNotReachable) {

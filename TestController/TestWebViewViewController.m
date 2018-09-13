@@ -20,7 +20,7 @@
     // Do any additional setup after loading the view.
     
     WKWebView *webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight-navViewHeight)];
-    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://developer.apple.com"]]];
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.apple.com/cn/"]]];
     [webView showProgressWithColor:[UIColor orangeColor]];
     [self.view addSubview:webView];
 }

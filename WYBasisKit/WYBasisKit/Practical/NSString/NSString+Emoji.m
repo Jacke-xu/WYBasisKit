@@ -95,6 +95,11 @@ static NSDictionary * s_cheatCodesToUnicode = nil;
 + (void)initializeEmojiCheatCodes
 {
     NSData *emojiData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"EmojiFile" ofType:nil]];
+    if((emojiData == nil) || (!emojiData)) {
+        
+        NSLog(@"bundle中未发现EmojiFile");
+        return;
+    }
     NSDictionary *forwardMap = [NSJSONSerialization JSONObjectWithData:emojiData options:0 error:nil];
     
     NSMutableDictionary *reversedMap = [NSMutableDictionary dictionaryWithCapacity:[forwardMap count]];

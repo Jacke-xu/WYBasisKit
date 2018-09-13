@@ -7,14 +7,13 @@
 //
 
 #import "UIFont+Extension.h"
-#import "MacroDefinition.h"
 
 @implementation UIFont (Extension)
 
 + (UIFont *)adjustFont:(UIFont *)font {
     
     UIFont *newFont = nil;
-    if (iPhone8Plus || iPhoneX){
+    if ([[UIScreen mainScreen] currentMode].size.width/[UIScreen mainScreen].bounds.size.width == 3) {
         
         newFont = [UIFont fontWithName:font.fontName size:font.pointSize+2];
         
