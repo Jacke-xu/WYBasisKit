@@ -90,6 +90,7 @@
 
 - (void)fixMessyDisplay {
     
+    if(self.maximumLimit <= 0) {self.maximumLimit = MAXFLOAT;}
     [self addTextChangeNoti];
 }
 

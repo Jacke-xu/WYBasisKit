@@ -20,11 +20,15 @@
  */
 @property (nonatomic, strong) UIColor *placeholderColor;
 
-
 /**
- *  右下角字符限制文本最大支持多少个字符，与占位文本颜色、字号一致  默认是不显示的，设置后显示，并且会自动根据该属性截取文本字符长度
+ *  最大显示字符限制(会自动根据该属性截取文本字符长度)
  */
 @property (nonatomic, assign) NSInteger maximumLimit;
+
+/**
+ *  右下角字符长度提示(需要设置maximumLimit属性)，与占位文本颜色、字号一致  默认NO
+ */
+@property (nonatomic, assign) BOOL characterLengthPrompt;
 
 /**
  *  文本发生改变时回调

@@ -104,6 +104,8 @@ textView.placeholderStr = @"在这里设置textView的占位文本";
 [textView automaticFollowKeyboard:self.view];
 //设置最大输入文本限制,就是这么简单
 textView.maximumLimit = 10;
+//设置右下角文字提示
+textView.characterLengthPrompt = YES;
 ```
 ![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/UITextField.gif) ![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/UITextView.gif)
 
@@ -140,8 +142,10 @@ btn.imageRect = CGRectMake((btn.width-imageSize.width)/2, 5+titleSize.height+((b
 只需一行代码就可以给WKWebView添加进度监听(进度条)，并且可以设置进度条颜色
 ```
 ```
+//使用示例
 WKWebView *webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight-navViewHeight)];
 [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.apple.com/cn/"]]];
+//看这里，看这里，一行代码就实现了进度监听和进度条颜色自定义
 [webView showProgressWithColor:[UIColor orangeColor]];
 [self.view addSubview:webView];
 ```

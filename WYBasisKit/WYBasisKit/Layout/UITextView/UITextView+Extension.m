@@ -76,6 +76,21 @@
     return [obj integerValue];
 }
 
+- (void)setCharacterLengthPrompt:(BOOL)characterLengthPrompt {
+    
+    objc_setAssociatedObject(self, &@selector(characterLengthPrompt), [NSNumber numberWithBool:characterLengthPrompt], OBJC_ASSOCIATION_ASSIGN);
+    
+    //setNeedsDisplay会在下一个消息循环时刻，调用drawRect:
+    [self addTextChangeNoti];
+    [self setNeedsDisplay];
+}
+
+- (BOOL)characterLengthPrompt {
+    
+    id obj = objc_getAssociatedObject(self, &@selector(characterLengthPrompt));
+    return [obj boolValue];
+}
+
 - (void)setTextHandle:(void (^)(NSString *))textHandle {
     
     objc_setAssociatedObject(self, &@selector(textHandle), textHandle, OBJC_ASSOCIATION_COPY_NONATOMIC);
@@ -109,6 +124,7 @@
 
 - (void)fixMessyDisplay {
     
+    if(self.maximumLimit <= 0) {self.maximumLimit = MAXFLOAT;}
     [self addTextChangeNoti];
 }
 
@@ -140,7 +156,7 @@
     CGFloat width = rect.size.width -2 * x;
     
     //画最大字符文本,添加文本显示边界
-    if(self.maximumLimit > 0) {
+    if((self.maximumLimit > 0) && (self.characterLengthPrompt == YES)) {
         
         [self setContentInset:UIEdgeInsetsMake(0, 0, 25, 0)];
         

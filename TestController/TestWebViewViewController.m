@@ -21,6 +21,7 @@
     
     WKWebView *webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight-navViewHeight)];
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.apple.com/cn/"]]];
+    //看这里，看这里，一行代码就实现了进度监听个进度条颜色自定义
     [webView showProgressWithColor:[UIColor orangeColor]];
     [self.view addSubview:webView];
 }

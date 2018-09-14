@@ -41,6 +41,7 @@
     textView2.placeholderColor = [UIColor whiteColor];
     [textView2 automaticFollowKeyboard:self.view];
     textView2.maximumLimit = 10;
+    textView2.characterLengthPrompt = YES;
     [superView addSubview:textView2];
 }
 
