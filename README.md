@@ -1,4 +1,4 @@
-# WYBasisKit
+# WYBasisKit(持续更新)
 
 ## 安装使用
 直接复制“WYBasisKit”到项目中，在需要使用的地方引入“GlobalHeader.pch”头文件(后续会添加cocoapods支持)。
@@ -251,6 +251,31 @@ requestWayHttpsBothwayValidation,
 *  @param failure      上传失败的回调
 */
 - (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters fileModelArray:(NSArray <WYFileModel *>*)modelArray progress:(Progress)progress success:(Success)success failure:(Failure)failure;
+
+/**
+*  POST多个URL资源上传(根据本地文件URL路径上传图片、MP3、MP4等)
+*
+*  @param URLString        请求的链接
+*  @param parameters       请求的参数
+*  @param modelArray       存放待上传文件模型的数组
+*  @param progress         进度的回调
+*  @param success          上传成功的回调
+*  @param failure          上传失败的回调
+*/
+- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters urlFileModelArray:(NSArray <WYFileModel *>*)modelArray progress:(Progress)progress success:(Success)success failure:(Failure)failure;
+
+
+/**
+*  POST单个URL资源上传(根据本地文件URL路径上传图片、MP3、MP4等)
+*
+*  @param URLString        请求的链接
+*  @param parameters       请求的参数
+*  @param fileModel        上传的文件模型
+*  @param progress         进度的回调
+*  @param success          上传成功的回调
+*  @param failure          上传失败的回调
+*/
+- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters urlFileModel:(WYFileModel *)fileModel progress:(Progress)progress success:(Success)success failure:(Failure)failure;
 
 /**
 *  下载文件
