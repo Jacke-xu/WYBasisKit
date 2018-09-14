@@ -411,7 +411,7 @@
 				1FC5FDA420DCE70F0092CED8 /* UIButton */,
 				1F282FE720D3B9B700624C76 /* CALayer */,
 				1F282FEF20D3B9B700624C76 /* UIImageView */,
-				1F282FF220D3B9B700624C76 /* UILable */,
+				1F282FF220D3B9B700624C76 /* UILabel */,
 				1F282FF820D3B9B700624C76 /* UITableView */,
 				1F282FFB20D3B9B700624C76 /* UITextField */,
 				1F282FFE20D3B9B700624C76 /* UITextView */,
@@ -439,7 +439,7 @@
 			path = UIImageView;
 			sourceTree = "<group>";
 		};
-		1F282FF220D3B9B700624C76 /* UILable */ = {
+		1F282FF220D3B9B700624C76 /* UILabel */ = {
 			isa = PBXGroup;
 			children = (
 				1F282FF320D3B9B700624C76 /* UILabel+Extension.h */,
@@ -447,7 +447,7 @@
 				1FBEBE9120DB78030038FBBF /* UILabel+RichText.h */,
 				1FBEBE9220DB78030038FBBF /* UILabel+RichText.m */,
 			);
-			path = UILable;
+			path = UILabel;
 			sourceTree = "<group>";
 		};
 		1F282FF820D3B9B700624C76 /* UITableView */ = {

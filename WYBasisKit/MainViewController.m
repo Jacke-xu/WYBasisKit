@@ -27,12 +27,19 @@
     
     [super viewWillAppear:YES];
     
+    //设置标题颜色
     self.navigationController.titleColor = [UIColor yellowColor];
+    //设置标题字号
     self.navigationController.titleFont = [UIFont boldSystemFontOfSize:20];
-    self.navigationController.barBackgroundColor = [UIColor greenColor];
-    //self.navigationController.barBackgroundImage = [UIImage imageNamed:@"test"];
+    //设置导航栏背景图
+    self.navigationController.barBackgroundImage = [UIImage imageNamed:@"test"];
+    //设置导航栏背景颜色(设置了背景图就不用设置背景颜色了)
+    //self.navigationController.barBackgroundColor = [UIColor greenColor];
+    //设置导航栏返回按钮图片
     self.navigationController.barReturnButtonImage = [UIImage imageNamed:@"返回按钮"];
+    //设置导航栏返回按钮文字颜色
     self.navigationController.barReturnButtonColor = [UIColor whiteColor];
+    //设置跳转到下一页时返回文本(可以传空)
     [self.navigationController pushControllerBarReturnButtonTitle:@"上一页" navigationItem:self.navigationItem];
 }
 

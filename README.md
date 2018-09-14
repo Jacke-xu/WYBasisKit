@@ -27,6 +27,30 @@ WYBasisKit/Libraries           :  自己写的一些小第三方，如不用可�
 
 ## If you think it's cool,Please give me a little star. (如果你也觉得很酷😎，就点一下Star吧(●ˇ∀ˇ●))
 
+### UINavigationController+Extension
+```
+1.可以通过属性直接设置导航栏(navigationBar)
+2.可以监听、拦截到导航栏的手势返回事件
+```
+```
+//设置标题颜色
+self.navigationController.titleColor = [UIColor yellowColor];
+//设置标题字号
+self.navigationController.titleFont = [UIFont boldSystemFontOfSize:20];
+//设置导航栏背景图
+self.navigationController.barBackgroundImage = [UIImage imageNamed:@"test"];
+//设置导航栏背景颜色(设置了背景图就不用设置背景颜色了)
+//self.navigationController.barBackgroundColor = [UIColor greenColor];
+//设置导航栏返回按钮图片
+self.navigationController.barReturnButtonImage = [UIImage imageNamed:@"返回按钮"];
+//设置导航栏返回按钮文字颜色
+self.navigationController.barReturnButtonColor = [UIColor whiteColor];
+//设置跳转到下一页时返回文本(可以传空)
+[self.navigationController pushControllerBarReturnButtonTitle:@"上一页" navigationItem:self.navigationItem];
+```
+![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/navigationBar.gif)
+
+
 ### NSMutableAttributedString+Extension  && UILabel+RichText
 ```
 NSMutableAttributedString+Extension
@@ -76,7 +100,7 @@ NSLog(@"messge = %@",message);
 ```
 //设置textView占位符
 textView.placeholderStr = @"在这里设置textView的占位文本";
-//让弹窗自动跟随键盘移动(一句话的事儿，就是这么🐂)⭐️⭐️⭐️⭐️⭐️
+//让视图自动跟随键盘移动(一句话的事儿，就是这么🐂)⭐️⭐️⭐️⭐️⭐️
 [textView automaticFollowKeyboard:self.view];
 //设置最大输入文本限制,就是这么简单
 textView.maximumLimit = 10;
@@ -109,6 +133,19 @@ btn.imageRect = CGRectMake((btn.width-imageSize.width)/2, 5+titleSize.height+((b
 [btn2 layouEdgeInsetsPosition:ButtonPositionImageTop_titleBottom spacing:5];
 ```
 ![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/UIButton.gif) 
+
+
+### WKWebView+Extension
+```
+只需一行代码就可以给WKWebView添加进度监听(进度条)，并且可以设置进度条颜色
+```
+```
+WKWebView *webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight-navViewHeight)];
+[webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.apple.com/cn/"]]];
+[webView showProgressWithColor:[UIColor orangeColor]];
+[self.view addSubview:webView];
+```
+![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/webView.gif) 
 
 
 ### StateView  && LoadingView
