@@ -25,7 +25,7 @@
 /** 移除弹窗 */
 + (void)dismiss;
 
-/** 弹窗时是否允许用户界面交互(需在弹窗前设置)  默认允许 */
+/** 弹窗时是否允许用户界面交互  默认允许 */
 + (void)userInteractionEnabled:(BOOL)userInteractionEnabled;
 
 @end

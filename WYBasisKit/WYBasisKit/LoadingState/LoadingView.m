@@ -19,9 +19,6 @@
 ///自定义动图
 @property (nonatomic, weak) UIImageView *heartImageView;
 
-///用户交互状态
-@property (nonatomic, assign) BOOL userInteraction;
-
 @end
 
 @implementation LoadingView
@@ -66,7 +63,8 @@ static LoadingView *_loadingView = nil;
 
 + (void)userInteractionEnabled:(BOOL)userInteractionEnabled {
     
-    [self shared].userInteraction = !userInteractionEnabled;
+    //设置用户交互
+    [UIApplication sharedApplication].keyWindow.userInteractionEnabled = userInteractionEnabled;
 }
 
 + (void)showMessageStr:(NSString *)messageStr showType:(NSString *)showType superView:(UIView *)superView {
@@ -82,9 +80,6 @@ static LoadingView *_loadingView = nil;
     
     //添加到父控制器上
     [superView addSubview:_loadingView];
-    
-    //设置用户交互
-    [UIApplication sharedApplication].keyWindow.userInteractionEnabled = !_loadingView.userInteraction;
 }
 
 + (void)dismiss {
@@ -118,8 +113,6 @@ static LoadingView *_loadingView = nil;
 + (void)initializationSettings:(NSString *)showType messageStr:(NSString *)messageStr superView:(UIView *)superView {
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        
-        NSLog(@"LoadingView提示文本：%@",messageStr);
         
         _loadingView.label.text = messageStr;
         _loadingView.label.hidden = !(messageStr.length > 0);

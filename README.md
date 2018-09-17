@@ -182,7 +182,7 @@ WKWebView *webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 0, screenWidt
 /** 移除弹窗 */
 + (void)dismiss;
 
-/** 弹窗时是否允许用户界面交互(需在弹窗前设置)  默认允许 */
+/** 弹窗时是否允许用户界面交互  默认允许 */
 + (void)userInteractionEnabled:(BOOL)userInteractionEnabled;
 ```
 ![image](https://github.com/Jacke-xu/WYBasisKit/blob/master/GitResource/LoadingState.gif) 

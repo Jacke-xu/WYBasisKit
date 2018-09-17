@@ -22,9 +22,6 @@
 /** 移除弹窗 */
 + (void)dismiss;
 
-/** 弹窗时是否允许用户界面交互(需在弹窗前设置)  默认允许 */
-+ (void)userInteractionEnabled:(BOOL)userInteractionEnabled;
-
 /** 设置弹窗是否需要自动移除(需在弹窗前设置)  默认YES */
 + (void)automaticRemoveWindow:(BOOL)autoRemove;
 
@@ -35,5 +32,8 @@
  @param eachDelay 是否每次都按照该延时设置延时,默认NO
  */
 + (void)windowDelayed:(CGFloat)delayed eachDelay:(BOOL)eachDelay;
+
+/** 弹窗时是否允许用户界面交互  默认允许 */
++ (void)userInteractionEnabled:(BOOL)userInteractionEnabled;
 
 @end

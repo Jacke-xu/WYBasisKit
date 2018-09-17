@@ -16,9 +16,6 @@
 ///显示文本
 @property (nonatomic, weak) UILabel *label;
 
-///用户交互状态
-@property (nonatomic, assign) BOOL userInteraction;
-
 ///弹窗延时时间
 @property (nonatomic, assign) CGFloat delayed;
 
@@ -74,7 +71,8 @@ static StateView *_stateView = nil;
 
 + (void)userInteractionEnabled:(BOOL)userInteractionEnabled {
     
-    [self shared].userInteraction = !userInteractionEnabled;
+    //设置用户交互
+    [UIApplication sharedApplication].keyWindow.userInteractionEnabled = userInteractionEnabled;
 }
 
 + (void)windowDelayed:(CGFloat)delayed eachDelay:(BOOL)eachDelay {
@@ -98,9 +96,6 @@ static StateView *_stateView = nil;
     
     //添加到父控制器上
     [[UIApplication sharedApplication].keyWindow addSubview:_stateView];
-    
-    //设置用户交互
-    [UIApplication sharedApplication].keyWindow.userInteractionEnabled = !_stateView.userInteraction;
 }
 
 + (void)dismiss {
@@ -127,8 +122,6 @@ static StateView *_stateView = nil;
 + (void)initializationSettings:(NSString *)image info:(NSString *)info {
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        
-        NSLog(@"StateView提示文本：%@",info);
         
         _stateView.imageView.image = [UIImage imageWithContentsOfFile:[[[NSBundle mainBundle] pathForResource:@"Loading" ofType:@"bundle"] stringByAppendingPathComponent:image]];
         
