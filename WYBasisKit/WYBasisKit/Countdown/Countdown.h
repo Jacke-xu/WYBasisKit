@@ -10,20 +10,27 @@
 
 @interface Countdown : NSObject
 
-//初始化，非单例
+/** 创建实例对象 */
 - (Countdown *)initCountdown;
 
-- (void)beginCountdown:(NSInteger)downtimer action:(void(^)(NSInteger downTimer))action;
+/**
+ 开始倒计时
 
+ @param totalTime 需要倒计时的时长，单位秒
+ @param action 倒计时block，里面返回的是剩余时长，单位秒
+ */
+- (void)beginCountdown:(NSInteger)totalTime action:(void(^)(NSInteger endDuration))action;
+
+/** 取消倒计时 */
 - (void)cancelCountdown;
 
-//传入一个秒数，返回时分秒格式的字符串
+///传入一个秒数，返回时分秒格式的字符串
 + (NSString *)formatTimeStr:(NSInteger)secondNumber;
 
-//传入一个秒数，返回有几个小时
+///传入一个秒数，返回有几个小时
 + (NSString *)formatFewHours:(NSInteger)secondNumber;
 
-//传入一个秒数，返回有多少分钟
+///传入一个秒数，返回有多少分钟
 + (NSString *)formatFewMinute:(NSInteger)secondNumber;
 
 @end

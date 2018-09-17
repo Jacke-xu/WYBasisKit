@@ -89,7 +89,6 @@
 #define degreesToRadian(x) (M_PI * (x) / 180.0)        //度获取弧度
 #define radianToDegrees(radian) (radian*180.0)/(M_PI)  //弧度获取角度
 
-
 ///获取app包路径
 #define bundlePath     [[NSBundle mainBundle] bundlePath];
 
@@ -116,7 +115,6 @@
 
 ///获取当前语言
 #define currentLanguage ([[NSLocale preferredLanguages] objectAtIndex:0])
-
 
 ///判断是否是传入的iOS系统版本
 #define iOSVersion(number)                [[[UIDevice currentDevice] systemVersion] floatValue] == number
@@ -150,13 +148,16 @@
 
 #define iPhoneXSMax    ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2688), [[UIScreen mainScreen] currentMode].size) : NO)
 
+///判断当前机型是使用2x还是3x图
 #define is3x      ([[UIScreen mainScreen] currentMode].size.width/[UIScreen mainScreen].bounds.size.width == 3) ? YES : NO
 
 ///根据是否是齐刘海机型
 #define isNeatBang      (iPhoneXS || iPhoneXSMax || iPhoneXR) ? YES : NO
 
+///是否是ipad
 #define iPad      ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
 
+///是否是iphone
 #define iPhone    ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
 
 

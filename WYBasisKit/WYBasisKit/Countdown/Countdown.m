@@ -21,10 +21,10 @@
     return [[Countdown alloc]init];
 }
 
-- (void)beginCountdown:(NSInteger)downtimer action:(void (^)(NSInteger))action {
+- (void)beginCountdown:(NSInteger)totalTime action:(void (^)(NSInteger))action {
     
     //倒计时时长
-    __block NSInteger timeout = downtimer; //倒计时时间
+    __block NSInteger timeout = totalTime; //倒计时时间
     weakSelf(self)
     self.timer = nil;
     
