@@ -12,42 +12,6 @@
 @implementation WYNetworking
 singleton_implementation(WYNetworking)//单例实现
 
-static AFHTTPSessionManager *_manager = nil;
-- (AFHTTPSessionManager *)sharedSessionManager {
-    
-    __weak typeof(self)weakSelf = self;
-    static dispatch_once_t predicate;
-    dispatch_once(&predicate, ^{
-        
-        _manager = [AFHTTPSessionManager manager];
-        
-        /**
-         *  AFHTTPRequestSerializer：是普通的 HTTP 的编码格式的，也就是 mid=10&method=userInfo&dateInt=20160818 这种格式的。
-         *
-         *  AFJSONRequestSerializer：是 JSON 编码格式的，也就是 {"mid":"11","method":"userInfo","dateInt":"20160818"} 这种格式的。
-         *
-         *  AFPropertyListRequestSerializer：是plist编码格式的。
-         */
-        _manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-        [_manager.requestSerializer setValue:@"application/x-www-form-urlencoded; charset=utf-8"forHTTPHeaderField:@"Content-Type"];
-        _manager.requestSerializer.timeoutInterval = (weakSelf.timeoutInterval ? weakSelf.timeoutInterval : 10);
-        
-        _manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-        _manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/plain",@"text/html",@"text/css", nil];
-        
-        //关闭缓存，避免干扰调试
-        _manager.requestSerializer.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
-        
-        //设置安全策略
-        if(weakSelf.requestWay !=  requestWayHttpAndCAHttps) {[_manager setSecurityPolicy:[weakSelf securityPolicy]];}
-    });
-    
-    //开启状态栏动画
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    
-    return _manager;
-}
-
 /**
  *  GET请求(未返回请求进度)
  *
@@ -526,6 +490,58 @@ static AFHTTPSessionManager *_manager = nil;
         return NO;
     }
     return YES;
+}
+
+#pragma mark 构造方法
+
+static AFHTTPSessionManager *_manager = nil;
+- (AFHTTPSessionManager *)sharedSessionManager {
+    
+    __weak typeof(self)weakSelf = self;
+    static dispatch_once_t predicate;
+    dispatch_once(&predicate, ^{
+        
+        _manager = [AFHTTPSessionManager manager];
+        
+        /**
+         *  AFHTTPRequestSerializer：是普通的 HTTP 的编码格式的，也就是 mid=10&method=userInfo&dateInt=20160818 这种格式的。
+         *
+         *  AFJSONRequestSerializer：是 JSON 编码格式的，也就是 {"mid":"11","method":"userInfo","dateInt":"20160818"} 这种格式的。
+         *
+         *  AFPropertyListRequestSerializer：是plist编码格式的。
+         */
+        _manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        [_manager.requestSerializer setValue:@"application/x-www-form-urlencoded; charset=utf-8"forHTTPHeaderField:@"Content-Type"];
+        _manager.requestSerializer.timeoutInterval = (weakSelf.timeoutInterval ? weakSelf.timeoutInterval : 10);
+        
+        _manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        _manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/plain",@"text/html",@"text/css", nil];
+        
+        //关闭缓存，避免干扰调试
+        _manager.requestSerializer.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+        
+        //设置安全策略
+        if(weakSelf.requestWay !=  requestWayHttpAndCAHttps) {[_manager setSecurityPolicy:[weakSelf securityPolicy]];}
+    });
+    
+    //开启状态栏动画
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+    return _manager;
+}
+
+- (void)setTimeoutInterval:(NSTimeInterval)timeoutInterval {
+    
+    _timeoutInterval = timeoutInterval;
+    [self sharedSessionManager].requestSerializer.timeoutInterval = (timeoutInterval > 0) ? timeoutInterval : 10;
+}
+
+- (void)setRequestWay:(NetworkRequestWay)requestWay {
+    
+    _requestWay = requestWay;
+    
+    //设置安全策略
+    [[self sharedSessionManager] setSecurityPolicy:(requestWay == requestWayHttpAndCAHttps) ? [AFSecurityPolicy defaultPolicy] : [self securityPolicy]];
 }
 
 @end
