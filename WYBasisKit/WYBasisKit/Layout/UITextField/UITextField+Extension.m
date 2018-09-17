@@ -107,7 +107,7 @@
 - (NSString *)characterTruncation {
     
     //字符截取
-    if(self.maximumLimit) {
+    if(self.maximumLimit > 0) {
         
         UITextRange *selectedRange = [self markedTextRange];
         //获取高亮部分
