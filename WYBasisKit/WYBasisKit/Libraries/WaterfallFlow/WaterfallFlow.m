@@ -82,7 +82,7 @@
 
 + (void)completedWithImage:(UIImage *)image imageUrl:(NSURL *)imageUrl reloadView:(UIView *)reloadView completed:(void(^)(UIImage *image, NSString *imageURL))completed {
     
-    GCD_mainThread(^{
+    GCD_MainThread(^{
         
         if(completed) {
             

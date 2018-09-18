@@ -70,13 +70,13 @@
 
 //G－C－D
 ///在子线程上运行的GCD
-#define GCD_subThread(block) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
+#define GCD_SubThread(block) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
 
 ///在主线程上运行的GCD
-#define GCD_mainThread(block) dispatch_async(dispatch_get_main_queue(),block)
+#define GCD_MainThread(block) dispatch_async(dispatch_get_main_queue(),block)
 
 ///只运行一次的GCD
-#define GCD_onceThread(Block) static dispatch_once_t onceToken; dispatch_once(&onceToken, Block);
+#define GCD_OnceThread(block) static dispatch_once_t onceToken; dispatch_once(&onceToken, block);
 
 ///DEBUG打印日志
 #ifdef DEBUG
@@ -159,14 +159,6 @@
 
 ///是否是iphone
 #define iPhone    ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
-
-
-///判断是真机还是模拟器
-#if appleSimulator  //iPhone 模拟器
-#endif
-
-#if appleIphone     //iPhone 真机
-#endif
 
 
 #endif /* MacroDefinition_h */
