@@ -534,6 +534,7 @@ static AFHTTPSessionManager *_manager = nil;
     
     _timeoutInterval = timeoutInterval;
     [self sharedSessionManager].requestSerializer.timeoutInterval = (timeoutInterval > 0) ? timeoutInterval : 10;
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
 - (void)setRequestWay:(NetworkRequestWay)requestWay {
@@ -542,6 +543,7 @@ static AFHTTPSessionManager *_manager = nil;
     
     //设置安全策略
     [[self sharedSessionManager] setSecurityPolicy:(requestWay == requestWayHttpAndCAHttps) ? [AFSecurityPolicy defaultPolicy] : [self securityPolicy]];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
 @end
