@@ -28,6 +28,8 @@
     textView1.backgroundColor = [UIColor orangeColor];
     textView1.placeholderStr = @"这个是添加在控制器view上的";
     textView1.placeholderColor = [UIColor whiteColor];
+    textView1.font = [UIFont systemFontOfSize:30];
+    textView1.placeholderFont = [UIFont systemFontOfSize:15];
     [textView1 automaticFollowKeyboard:self.view];
     [textView1 textDidChange:^(NSString *textStr) {
 
@@ -40,8 +42,10 @@
     textView2.placeholderStr = @"这个是添加在子view上的,设置了最大输入10个字符";
     textView2.placeholderColor = [UIColor whiteColor];
     [textView2 automaticFollowKeyboard:self.view];
-    textView2.maximumLimit = 10;
+    textView2.maximumLimit = 20;
     textView2.characterLengthPrompt = YES;
+    textView2.font = [UIFont systemFontOfSize:30];
+    textView2.placeholderFont = [UIFont systemFontOfSize:15];
     [superView addSubview:textView2];
 }
 

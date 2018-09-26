@@ -55,6 +55,17 @@
     [self addTextChangeNoti];
 }
 
+- (void)setPlaceholderFont:(UIFont *)placeholderFont {
+    
+    objc_setAssociatedObject(self, &@selector(placeholderFont), placeholderFont, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UIFont *)placeholderFont {
+    
+    UIFont *obj = objc_getAssociatedObject(self, &@selector(placeholderFont));
+    return obj;
+}
+
 - (UIColor *)placeholderColor {
     
     UIColor *obj = objc_getAssociatedObject(self, &@selector(placeholderColor));
@@ -138,17 +149,11 @@
     [self setNeedsDisplay];
 }
 
-- (void)setFont:(UIFont *)font {
-    
-    // setNeedsDisplay会在下一个消息循环时刻，调用drawRect:
-    [self setNeedsDisplay];
-}
-
 - (void)drawRect:(CGRect)rect {
     
     //设置文字属性
     NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-    attributes[NSFontAttributeName] = self.font;
+    attributes[NSFontAttributeName] = self.placeholderFont ? self.placeholderFont : self.font;
     attributes[NSForegroundColorAttributeName] = self.placeholderColor ? self.placeholderColor : [UIColor lightGrayColor];
     
     CGFloat x = 5;

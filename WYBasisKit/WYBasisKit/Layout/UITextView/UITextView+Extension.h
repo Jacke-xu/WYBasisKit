@@ -16,6 +16,11 @@
 @property (nonatomic, copy) NSString *placeholderStr;
 
 /**
+ *  占位文字字号
+ */
+@property (nonatomic, strong) UIFont *placeholderFont;
+
+/**
  *  占位文字颜色
  */
 @property (nonatomic, strong) UIColor *placeholderColor;
@@ -26,7 +31,7 @@
 @property (nonatomic, assign) NSInteger maximumLimit;
 
 /**
- *  右下角字符长度提示(需要设置maximumLimit属性)，与占位文本颜色、字号一致  默认NO
+ *  右下角字符长度提示(需要设置maximumLimit属性)  默认NO
  */
 @property (nonatomic, assign) BOOL characterLengthPrompt;
 
