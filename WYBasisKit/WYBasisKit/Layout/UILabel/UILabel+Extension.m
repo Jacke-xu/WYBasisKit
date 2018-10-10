@@ -10,6 +10,8 @@
 
 @implementation UILabel (Extension)
 
+- (CGFloat)lineHeight {return self.font.lineHeight;}
+
 - (void)leftAlignment {self.textAlignment = NSTextAlignmentLeft;}
 
 - (void)centerAlignment {self.textAlignment = NSTextAlignmentCenter;}
