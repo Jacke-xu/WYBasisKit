@@ -23,7 +23,6 @@
 		1F226F6420F5ED9800129AB6 /* UIButton+EdgeInsetsLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F226F6320F5ED9800129AB6 /* UIButton+EdgeInsetsLayout.m */; };
 		1F28302F20D3B9B700624C76 /* Countdown.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FB320D3B9B600624C76 /* Countdown.m */; };
 		1F28303020D3B9B700624C76 /* Loading.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1F282FB520D3B9B600624C76 /* Loading.bundle */; };
-		1F28303320D3B9B700624C76 /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FBB20D3B9B600624C76 /* Foundation+Log.m */; };
 		1F28303420D3B9B700624C76 /* WYSegmentedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FBF20D3B9B700624C76 /* WYSegmentedView.m */; };
 		1F28304520D3B9B700624C76 /* WaterfallFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FE220D3B9B700624C76 /* WaterfallFlow.m */; };
 		1F28304620D3B9B700624C76 /* WYScrollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F282FE520D3B9B700624C76 /* WYScrollerView.m */; };
@@ -47,6 +46,7 @@
 		1F28306520D3BAAA00624C76 /* NSMutableParagraphStyle+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F28306220D3BAAA00624C76 /* NSMutableParagraphStyle+Extension.m */; };
 		1F2F46762125660900849E2D /* StateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2F46752125660900849E2D /* StateView.m */; };
 		1F3360F420DB40D9009BD7AB /* TestTextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3360F320DB40D9009BD7AB /* TestTextViewViewController.m */; };
+		1F36153521782787001401AF /* Foundation+JSONLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F36153421782787001401AF /* Foundation+JSONLog.m */; };
 		1F3BB8C0215B5C3600358449 /* UITableView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3BB8BF215B5C3600358449 /* UITableView+Extension.m */; };
 		1F3BB8C4215B5D1500358449 /* UITextView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3BB8C3215B5D1400358449 /* UITextView+Extension.m */; };
 		1F46231A2122BDEE00418CD3 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4623192122BDEE00418CD3 /* LoadingView.m */; };
@@ -105,7 +105,6 @@
 		1F282FB220D3B9B600624C76 /* Countdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Countdown.h; sourceTree = "<group>"; };
 		1F282FB320D3B9B600624C76 /* Countdown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Countdown.m; sourceTree = "<group>"; };
 		1F282FB520D3B9B600624C76 /* Loading.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Loading.bundle; sourceTree = "<group>"; };
-		1F282FBB20D3B9B600624C76 /* Foundation+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Foundation+Log.m"; sourceTree = "<group>"; };
 		1F282FBE20D3B9B700624C76 /* WYSegmentedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYSegmentedView.h; sourceTree = "<group>"; };
 		1F282FBF20D3B9B700624C76 /* WYSegmentedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYSegmentedView.m; sourceTree = "<group>"; };
 		1F282FE120D3B9B700624C76 /* WaterfallFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterfallFlow.h; sourceTree = "<group>"; };
@@ -156,6 +155,7 @@
 		1F2F46752125660900849E2D /* StateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StateView.m; sourceTree = "<group>"; };
 		1F3360F220DB40D9009BD7AB /* TestTextViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestTextViewViewController.h; sourceTree = "<group>"; };
 		1F3360F320DB40D9009BD7AB /* TestTextViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestTextViewViewController.m; sourceTree = "<group>"; };
+		1F36153421782787001401AF /* Foundation+JSONLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Foundation+JSONLog.m"; sourceTree = "<group>"; };
 		1F3BB8BE215B5C3600358449 /* UITableView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Extension.h"; sourceTree = "<group>"; };
 		1F3BB8BF215B5C3600358449 /* UITableView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Extension.m"; sourceTree = "<group>"; };
 		1F3BB8C2215B5D1400358449 /* UITextView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Extension.h"; sourceTree = "<group>"; };
@@ -366,7 +366,7 @@
 		1F282FBA20D3B9B600624C76 /* CNLog */ = {
 			isa = PBXGroup;
 			children = (
-				1F282FBB20D3B9B600624C76 /* Foundation+Log.m */,
+				1F36153421782787001401AF /* Foundation+JSONLog.m */,
 			);
 			path = CNLog;
 			sourceTree = "<group>";
@@ -877,7 +877,6 @@
 				1F59A64B20D8A7040055AAB4 /* MainViewController.m in Sources */,
 				1F28305D20D3B9B700624C76 /* RefreshView.m in Sources */,
 				1F0A182A20E1D24500532AA3 /* Reachability.m in Sources */,
-				1F28303320D3B9B700624C76 /* Foundation+Log.m in Sources */,
 				1F46231A2122BDEE00418CD3 /* LoadingView.m in Sources */,
 				1F59A65120D8E5B80055AAB4 /* UIViewController+Extension.m in Sources */,
 				1F28304520D3B9B700624C76 /* WaterfallFlow.m in Sources */,
@@ -897,6 +896,7 @@
 				1F0A182F20E216B000532AA3 /* WYNetworking.m in Sources */,
 				1F3BB8C0215B5C3600358449 /* UITableView+Extension.m in Sources */,
 				1FC5FDA920DCE70F0092CED8 /* UIButton+Extension.m in Sources */,
+				1F36153521782787001401AF /* Foundation+JSONLog.m in Sources */,
 				1F28305320D3B9B700624C76 /* BoolJudge.m in Sources */,
 				1FC5FDAD20DCE75B0092CED8 /* TestTUIButtonViewController.m in Sources */,
 				1F28305B20D3B9B700624C76 /* UIFont+Extension.m in Sources */,

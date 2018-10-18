@@ -86,7 +86,7 @@
 #endif
 
 ///由角度、弧度值转换
-#define degreesToRadian(x) (M_PI * (x) / 180.0)        //度获取弧度
+#define degreesToRadian(x) (M_PI * (x) / 180.0)        //角度获取弧度
 #define radianToDegrees(radian) (radian*180.0)/(M_PI)  //弧度获取角度
 
 ///获取app包路径
@@ -95,7 +95,7 @@
 ///获取app资源目录路径
 #define appResourcePath         [[NSBundle mainBundle] resourcePath];
 
-///获取app包的readme.txt文件路径
+///获取app包的readme.txt文件
 #define readmePath         [[NSBundle mainBundle] pathForResource:@"readme" ofType:@"txt"];
 
 ///app名字
@@ -151,7 +151,7 @@
 ///判断当前机型是使用2x还是3x图
 #define is3x      ([[UIScreen mainScreen] currentMode].size.width/[UIScreen mainScreen].bounds.size.width == 3) ? YES : NO
 
-///根据是否是齐刘海机型
+///是否是齐刘海机型
 #define isNeatBang      (iPhoneXS || iPhoneXSMax || iPhoneXR) ? YES : NO
 
 ///是否是ipad
