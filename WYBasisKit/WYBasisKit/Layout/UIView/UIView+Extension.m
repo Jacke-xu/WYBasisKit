@@ -13,6 +13,8 @@
 #import "UIFont+Extension.h"
 #import "UIColor+Extension.h"
 
+#import "UITextView+WYExtension.h"
+
 #import "AppDelegate.h"
 
 @interface UIView ()
@@ -290,6 +292,16 @@
         NSTimeInterval duration = [noti.userInfo[UIKeyboardAnimationDurationUserInfoKey]doubleValue];
         
         CGFloat bottom = [self.superview convertPoint:self.frame.origin toView:self.mainView].y+self.frame.size.height;
+        
+        ///如果self是UITextView，则需判断是否显示了右下角提示文本，如显示，则需要加上提示文本的高度25
+        if([self isKindOfClass:[UITextView class]]) {
+            
+            UITextView *textView = (UITextView *)self;
+            if(textView.wy_characterLengthPrompt == YES) {
+                
+                bottom = bottom+25;
+            }
+        }
         CGFloat extraHeight = [self hasSystemNavigationBarExtraHeight];
         
         __weak typeof(self) textFieldSelf = self;

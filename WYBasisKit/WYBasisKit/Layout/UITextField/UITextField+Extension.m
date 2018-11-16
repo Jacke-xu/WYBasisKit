@@ -28,7 +28,7 @@
 
 - (UIColor *)placeholderColor {
     
-    return self.placeholderColor;
+    return [self valueForKeyPath:@"_placeholderLabel.textColor"];
 }
 
 - (void)setAddNoti:(BOOL)addNoti {

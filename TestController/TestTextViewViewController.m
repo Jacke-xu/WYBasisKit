@@ -7,7 +7,7 @@
 //
 
 #import "TestTextViewViewController.h"
-#import "UITextView+Extension.h"
+#import "UITextView+WYExtension.h"
 
 @interface TestTextViewViewController ()
 
@@ -23,15 +23,15 @@
     
     UIView *superView = [UIView createViewWithFrame:CGRectMake(0, 0, screenWidth, screenHeight-200) color:[UIColor redColor]];
     [self.view addSubview:superView];
-    
+
     UITextView *textView1 = [[UITextView alloc]initWithFrame:CGRectMake(20, screenHeight-300, screenWidth-40, 200)];
     textView1.backgroundColor = [UIColor orangeColor];
-    textView1.placeholderStr = @"这个是添加在控制器view上的";
-    textView1.placeholderColor = [UIColor whiteColor];
+    textView1.wy_placeholderStr = @"这个是添加在控制器view上的";
+    textView1.wy_placeholderColor = [UIColor whiteColor];
     textView1.font = [UIFont systemFontOfSize:30];
-    textView1.placeholderFont = [UIFont systemFontOfSize:15];
+    textView1.wy_placeholderFont = [UIFont systemFontOfSize:15];
     [textView1 automaticFollowKeyboard:self.view];
-    [textView1 textDidChange:^(NSString *textStr) {
+    [textView1 wy_textDidChange:^(NSString *textStr) {
 
         NSLog(@"输入的文本是：%@",textStr);
     }];
@@ -39,13 +39,13 @@
 
     UITextView *textView2 = [[UITextView alloc]initWithFrame:CGRectMake(20, superView.bottom-320, screenWidth-40, 200)];
     textView2.backgroundColor = [UIColor orangeColor];
-    textView2.placeholderStr = @"这个是添加在子view上的,设置了最大输入10个字符";
-    textView2.placeholderColor = [UIColor whiteColor];
+    textView2.wy_placeholderStr = @"这个是添加在子view上的,设置了最大输入10个字符";
+    textView2.wy_placeholderColor = [UIColor whiteColor];
     [textView2 automaticFollowKeyboard:self.view];
-    textView2.maximumLimit = 20;
-    textView2.characterLengthPrompt = YES;
+    textView2.wy_maximumLimit = 80;
+    textView2.wy_characterLengthPrompt = YES;
     textView2.font = [UIFont systemFontOfSize:30];
-    textView2.placeholderFont = [UIFont systemFontOfSize:15];
+    textView2.wy_placeholderFont = [UIFont systemFontOfSize:15];
     [superView addSubview:textView2];
 }
 

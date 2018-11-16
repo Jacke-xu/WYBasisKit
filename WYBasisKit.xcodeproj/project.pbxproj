@@ -48,7 +48,7 @@
 		1F3360F420DB40D9009BD7AB /* TestTextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3360F320DB40D9009BD7AB /* TestTextViewViewController.m */; };
 		1F36153521782787001401AF /* Foundation+JSONLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F36153421782787001401AF /* Foundation+JSONLog.m */; };
 		1F3BB8C0215B5C3600358449 /* UITableView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3BB8BF215B5C3600358449 /* UITableView+Extension.m */; };
-		1F3BB8C4215B5D1500358449 /* UITextView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3BB8C3215B5D1400358449 /* UITextView+Extension.m */; };
+		1F3E32CA217EE074003351F0 /* UITextView+WYExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3E32C9217EE074003351F0 /* UITextView+WYExtension.m */; };
 		1F46231A2122BDEE00418CD3 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4623192122BDEE00418CD3 /* LoadingView.m */; };
 		1F46B00A21352D500028AAB8 /* WYFileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F46B00921352D500028AAB8 /* WYFileModel.m */; };
 		1F59A64520D8A1F40055AAB4 /* TestWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F59A64420D8A1F40055AAB4 /* TestWebViewViewController.m */; };
@@ -158,8 +158,8 @@
 		1F36153421782787001401AF /* Foundation+JSONLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Foundation+JSONLog.m"; sourceTree = "<group>"; };
 		1F3BB8BE215B5C3600358449 /* UITableView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Extension.h"; sourceTree = "<group>"; };
 		1F3BB8BF215B5C3600358449 /* UITableView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Extension.m"; sourceTree = "<group>"; };
-		1F3BB8C2215B5D1400358449 /* UITextView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Extension.h"; sourceTree = "<group>"; };
-		1F3BB8C3215B5D1400358449 /* UITextView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Extension.m"; sourceTree = "<group>"; };
+		1F3E32C8217EE074003351F0 /* UITextView+WYExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextView+WYExtension.h"; sourceTree = "<group>"; };
+		1F3E32C9217EE074003351F0 /* UITextView+WYExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextView+WYExtension.m"; sourceTree = "<group>"; };
 		1F4623182122BDEE00418CD3 /* LoadingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
 		1F4623192122BDEE00418CD3 /* LoadingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
 		1F46B00821352D500028AAB8 /* WYFileModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYFileModel.h; sourceTree = "<group>"; };
@@ -609,8 +609,8 @@
 		1F3BB8C1215B5D1400358449 /* UITextView */ = {
 			isa = PBXGroup;
 			children = (
-				1F3BB8C2215B5D1400358449 /* UITextView+Extension.h */,
-				1F3BB8C3215B5D1400358449 /* UITextView+Extension.m */,
+				1F3E32C8217EE074003351F0 /* UITextView+WYExtension.h */,
+				1F3E32C9217EE074003351F0 /* UITextView+WYExtension.m */,
 			);
 			path = UITextView;
 			sourceTree = "<group>";
@@ -903,6 +903,7 @@
 				1F1D41E520F4576900FB65E2 /* NSData+Base64.m in Sources */,
 				1F226F6420F5ED9800129AB6 /* UIButton+EdgeInsetsLayout.m in Sources */,
 				1F28304620D3B9B700624C76 /* WYScrollerView.m in Sources */,
+				1F3E32CA217EE074003351F0 /* UITextView+WYExtension.m in Sources */,
 				1FD24D7C20FEDF23004B7D3F /* TestLoadingStateViewController.m in Sources */,
 				1F28304D20D3B9B700624C76 /* UITableView+Extension.m in Sources */,
 				1F28305020D3B9B700624C76 /* UIView+Extension.m in Sources */,
@@ -916,7 +917,6 @@
 				1F59A64520D8A1F40055AAB4 /* TestWebViewViewController.m in Sources */,
 				1F28305920D3B9B700624C76 /* NSString+Extension.m in Sources */,
 				1F1D41DC20F4560700FB65E2 /* GTMBase64.m in Sources */,
-				1F3BB8C4215B5D1500358449 /* UITextView+Extension.m in Sources */,
 				1F28303420D3B9B700624C76 /* WYSegmentedView.m in Sources */,
 				1F28304B20D3B9B700624C76 /* UILabel+Extension.m in Sources */,
 				1F28304A20D3B9B700624C76 /* UIImageView+Extension.m in Sources */,
