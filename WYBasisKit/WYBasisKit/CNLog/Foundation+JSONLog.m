@@ -43,7 +43,7 @@ static inline void wy_swizzleSelector(Class class, SEL originalSelector, SEL swi
 
 @implementation NSObject (JSONLog)
 //将obj转换成json字符串。如果失败则返回nil.
-- (NSString *)convertToJsonString {
+- (NSString *)wy_convertToJsonString {
     
     //先判断是否能转化为JSON格式
     if (![NSJSONSerialization isValidJSONObject:self])  return nil;
@@ -63,21 +63,21 @@ static inline void wy_swizzleSelector(Class class, SEL originalSelector, SEL swi
 //用此方法交换系统的 descriptionWithLocale: 方法。该方法在代码打印的时候调用。
 - (NSString *)wy_jsonlog_descriptionWithLocale:(id)locale{
     
-    NSString *result = [self convertToJsonString];//转换成JSON格式字符串
+    NSString *result = [self wy_convertToJsonString];//转换成JSON格式字符串
     if (!result) return [self wy_jsonlog_descriptionWithLocale:locale];//如果无法转换，就使用原先的格式
     return result;
 }
 //用此方法交换系统的 descriptionWithLocale:indent:方法。功能同上。
 - (NSString *)wy_jsonlog_descriptionWithLocale:(id)locale indent:(NSUInteger)level {
     
-    NSString *result = [self convertToJsonString];
+    NSString *result = [self wy_convertToJsonString];
     if (!result) return [self wy_jsonlog_descriptionWithLocale:locale indent:level];
     return result;
 }
 //用此方法交换系统的 debugDescription 方法。该方法在控制台使用po打印的时候调用。
 - (NSString *)wy_jsonlog_debugDescription{
     
-    NSString *result = [self convertToJsonString];
+    NSString *result = [self wy_convertToJsonString];
     if (!result) return [self wy_jsonlog_debugDescription];
     return result;
 }
@@ -106,21 +106,21 @@ static inline void wy_swizzleSelector(Class class, SEL originalSelector, SEL swi
 //用此方法交换系统的 descriptionWithLocale: 方法。该方法在代码打印的时候调用。
 - (NSString *)wy_jsonlog_descriptionWithLocale:(id)locale{
     
-    NSString *result = [self convertToJsonString];
+    NSString *result = [self wy_convertToJsonString];
     if (!result) return [self wy_jsonlog_descriptionWithLocale:locale];
     return result;
 }
 //用此方法交换系统的 descriptionWithLocale:indent:方法。功能同上。
 - (NSString *)wy_jsonlog_descriptionWithLocale:(id)locale indent:(NSUInteger)level {
     
-    NSString *result = [self convertToJsonString];
+    NSString *result = [self wy_convertToJsonString];
     if (!result) return [self wy_jsonlog_descriptionWithLocale:locale indent:level];
     return result;
 }
 //用此方法交换系统的 debugDescription 方法。该方法在控制台使用po打印的时候调用。
 - (NSString *)wy_jsonlog_debugDescription{
     
-    NSString *result = [self convertToJsonString];
+    NSString *result = [self wy_convertToJsonString];
     if (!result) return [self wy_jsonlog_debugDescription];
     return result;
 }

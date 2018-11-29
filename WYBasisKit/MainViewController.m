@@ -28,19 +28,19 @@
     [super viewWillAppear:YES];
     
     //设置标题颜色
-    self.navigationController.titleColor = [UIColor yellowColor];
+    self.navigationController.wy_titleColor = [UIColor yellowColor];
     //设置标题字号
-    self.navigationController.titleFont = [UIFont boldSystemFontOfSize:20];
+    self.navigationController.wy_titleFont = [UIFont boldSystemFontOfSize:30];
     //设置导航栏背景图
-    self.navigationController.barBackgroundImage = [UIImage imageNamed:@"test"];
+    self.navigationController.wy_barBackgroundImage = [UIImage imageNamed:@"test"];
     //设置导航栏背景颜色(设置了背景图就不用设置背景颜色了)
     //self.navigationController.barBackgroundColor = [UIColor greenColor];
     //设置导航栏返回按钮图片
-    self.navigationController.barReturnButtonImage = [UIImage imageNamed:@"返回按钮"];
+    self.navigationController.wy_barReturnButtonImage = [UIImage imageNamed:@"返回按钮"];
     //设置导航栏返回按钮文字颜色
-    self.navigationController.barReturnButtonColor = [UIColor whiteColor];
+    self.navigationController.wy_barReturnButtonColor = [UIColor orangeColor];
     //设置跳转到下一页时返回文本(可以传空)
-    [self.navigationController pushControllerBarReturnButtonTitle:@"上一页" navigationItem:self.navigationItem];
+    [self.navigationController wy_pushControllerBarReturnButtonTitle:@"回首页" navigationItem:self.navigationItem];
 }
 
 - (void)viewDidLoad {
@@ -48,6 +48,16 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"首页";
     self.tableView.backgroundColor = [UIColor whiteColor];
+}
+
+- (void)leftItem {
+    
+    NSLog(@"点击了左边item");
+}
+
+- (void)rightItem {
+    
+    NSLog(@"点击了右边item");
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -78,7 +88,7 @@
     if(cell == nil)
     {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIndentifier];
-        [tableView cellCutOffLineFromZeroPoint:cell];
+        [tableView wy_cellCutOffLineFromZeroPoint:cell];
     }
     cell.backgroundColor = [UIColor whiteColor];
     cell.textLabel.text = [self section][indexPath.row];
@@ -138,7 +148,7 @@
         UITableView *tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight-navViewHeight) style:UITableViewStyleGrouped];
         tableview.delegate = self;
         tableview.dataSource = self;
-        [tableview forbiddenSelfSizing];
+        [tableview wy_forbiddenSelfSizing];
         tableview.tableFooterView = [[UIView alloc]init];
         
         [self.view addSubview:tableview];

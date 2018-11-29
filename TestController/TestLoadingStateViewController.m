@@ -7,7 +7,7 @@
 //
 
 #import "TestLoadingStateViewController.h"
-#import "UITextField+Extension.h"
+#import "UITextField+WY_Extension.h"
 
 @interface TestLoadingStateViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -24,19 +24,19 @@
     // Do any additional setup after loading the view.
     
     //全局收起键盘
-    [self.navigationController.view gestureHidingkeyboard];
+    [self.navigationController.view wy_gestureHidingkeyboard];
     
     UITextField *textField1 = [[UITextField alloc]initWithFrame:CGRectMake(20, 20, screenWidth-40, 50)];
     textField1.placeholder = @"请输入要显示的文本";
-    textField1.placeholderColor = [UIColor orangeColor];
+    textField1.wy_placeholderColor = [UIColor orangeColor];
     textField1.backgroundColor = [UIColor greenColor];
     textField1.tag = 100;
-    [textField1 automaticFollowKeyboard:self.view];
-    [textField1 textDidChange:^(NSString *textStr) {
+    [textField1 wy_automaticFollowKeyboard:self.view];
+    [textField1 wy_textDidChange:^(NSString *textStr) {
         
         NSLog(@"输入的文本是：%@",textStr);
     }];
-    [textField1 fixMessyDisplay];
+    [textField1 wy_fixMessyDisplay];
     [self.view addSubview:textField1];
     
     self.view.backgroundColor = [UIColor greenColor];
@@ -83,7 +83,7 @@
     if(cell == nil)
     {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIndentifier];
-        [tableView cellCutOffLineFromZeroPoint:cell];
+        [tableView wy_cellCutOffLineFromZeroPoint:cell];
     }
     NSArray *rowAry = [self row][indexPath.section];
     cell.textLabel.text = rowAry[indexPath.row];
@@ -101,8 +101,8 @@
         
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(screenWidth-50, 12.5, 30, 30);
-        btn.nImage = [UIImage imageNamed:@"对勾-2"];
-        btn.sImage = [UIImage imageNamed:@"对勾"];
+        btn.wy_nImage = [UIImage imageNamed:@"对勾-2"];
+        btn.wy_sImage = [UIImage imageNamed:@"对勾"];
         if(indexPath.section == 3) {
             
             btn.selected = (indexPath.row == _superViewIndex);
@@ -116,12 +116,12 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UIButton *btn = [self cellBtnWithIndexPath:indexPath];
-    btn.nImage = nil;
-    btn.sImage = nil;
+    btn.wy_nImage = [[UIImage alloc]init];
+    btn.wy_sImage = [[UIImage alloc]init];
     if(indexPath.section == 3) {
         
-        btn.nImage = [UIImage imageNamed:@"对勾-2"];
-        btn.sImage = [UIImage imageNamed:@"对勾"];
+        btn.wy_nImage = [UIImage imageNamed:@"对勾-2"];
+        btn.wy_sImage = [UIImage imageNamed:@"对勾"];
         btn.selected = (indexPath.row == _superViewIndex);
     }
 }
@@ -232,7 +232,7 @@
         UITableView *tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 80, screenWidth, screenHeight-navViewHeight-80) style:UITableViewStyleGrouped];
         tableview.delegate = self;
         tableview.dataSource = self;
-        [tableview forbiddenSelfSizing];
+        [tableview wy_forbiddenSelfSizing];
         tableview.tableFooterView = [[UIView alloc]init];
         
         self.superViewIndex = 0;
@@ -248,7 +248,7 @@
 - (void)dealloc {
     
     NSLog(@"dealloc");
-    [self.view releaseKeyboardNotification];
+    [self.view wy_releaseKeyboardNotification];
 }
 
 - (void)didReceiveMemoryWarning {

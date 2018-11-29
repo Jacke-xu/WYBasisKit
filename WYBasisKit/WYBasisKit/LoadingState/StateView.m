@@ -56,17 +56,17 @@ static StateView *_stateView = nil;
 #pragma mark 构造方法
 + (void)showSuccessInfo:(NSString *)info {
     
-    [self layoutStateViewWithImage:@"success" info:[NSString emptyStr:info]];
+    [self layoutStateViewWithImage:@"success" info:[NSString wy_emptyStr:info]];
 }
 
 + (void)showErrorInfo:(NSString *)info {
     
-    [self layoutStateViewWithImage:@"error" info:[NSString emptyStr:info]];
+    [self layoutStateViewWithImage:@"error" info:[NSString wy_emptyStr:info]];
 }
 
 + (void)showWarningInfo:(NSString *)info {
     
-    [self layoutStateViewWithImage:@"warning" info:[NSString emptyStr:info]];
+    [self layoutStateViewWithImage:@"warning" info:[NSString wy_emptyStr:info]];
 }
 
 + (void)userInteractionEnabled:(BOOL)userInteractionEnabled {
@@ -129,7 +129,7 @@ static StateView *_stateView = nil;
         _stateView.label.hidden = !(info.length > 0);
         
         //给定临时宽度
-        CGFloat tempWidth = (_stateView.label.hidden == YES) ? _stateView.imageView.width+(_stateView.imageView.top*2) : screenWidth*0.25;
+        CGFloat tempWidth = (_stateView.label.hidden == YES) ? _stateView.imageView.wy_width+(_stateView.imageView.wy_top*2) : screenWidth*0.25;
         
         if(_stateView.label.hidden == NO) {
             
@@ -137,9 +137,9 @@ static StateView *_stateView = nil;
             tempWidth = [self sharedWindowWidth:tempWidth];
         }
         
-        _stateView.size = CGSizeMake(tempWidth, (_stateView.label.hidden == YES) ? tempWidth : _stateView.label.bottom+10);
+        _stateView.wy_size = CGSizeMake(tempWidth, (_stateView.label.hidden == YES) ? tempWidth : _stateView.label.wy_bottom+10);
 
-        _stateView.imageView.left = (_stateView.width-_stateView.imageView.width)/2;
+        _stateView.imageView.wy_left = (_stateView.wy_width-_stateView.imageView.wy_width)/2;
 
         _stateView.center = [UIApplication sharedApplication].keyWindow.center;
         
@@ -155,11 +155,11 @@ static StateView *_stateView = nil;
     //临时宽度
     CGFloat windowWidth = tempWidth;
     //label的左间距
-    CGFloat labelLeft = _stateView.label.left;
+    CGFloat labelLeft = _stateView.label.wy_left;
     //label最低width
     CGFloat labelWidth = windowWidth-(labelLeft*2);
     //文本总宽度
-    CGFloat textWidth = [_stateView.label.text boundingRectWithSize:CGSizeMake(MAXFLOAT, _stateView.label.font.lineHeight) withFont:_stateView.label.font lineSpacing:0].width;
+    CGFloat textWidth = [_stateView.label.text wy_boundingRectWithSize:CGSizeMake(MAXFLOAT, _stateView.label.font.lineHeight) withFont:_stateView.label.font lineSpacing:0].width;
     //最大支持屏幕的0.45倍宽,否则就不好看了
     CGFloat maxWidth = screenWidth*0.45;
 
@@ -174,7 +174,7 @@ static StateView *_stateView = nil;
             
             windowWidth = windowWidth+_stateView.label.font.lineHeight*2;
             //计算lable的显示行数
-            CGFloat showLine = [_stateView.label.text textShowLinesWithControlWidth:windowWidth - (labelLeft*2) font:_stateView.label.font lineSpacing:0];
+            CGFloat showLine = [_stateView.label.text wy_textShowLinesWithControlWidth:windowWidth - (labelLeft*2) font:_stateView.label.font lineSpacing:0];
             if(showLine > 3) {
                 
                 windowWidth = windowWidth+_stateView.label.font.lineHeight*3;
@@ -183,11 +183,11 @@ static StateView *_stateView = nil;
         if(windowWidth >= maxWidth) {windowWidth = maxWidth;}
     }
 
-    _stateView.label.width = windowWidth-(labelLeft*2);
+    _stateView.label.wy_width = windowWidth-(labelLeft*2);
     //这里执行下sizeToFit，防止弹窗底部留白过大
     [_stateView.label sizeToFit];
     //重置lable.size，防止原点改变
-    _stateView.label.size = CGSizeMake(windowWidth-(labelLeft*2), _stateView.label.height);
+    _stateView.label.wy_size = CGSizeMake(windowWidth-(labelLeft*2), _stateView.label.wy_height);
     
     return windowWidth;
 }
@@ -198,8 +198,8 @@ static StateView *_stateView = nil;
     if(_imageView == nil) {
         
         UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectZero];
-        imgView.top = 20;
-        imgView.size = CGSizeMake(35, 35);
+        imgView.wy_top = 20;
+        imgView.wy_size = CGSizeMake(35, 35);
         imgView.contentMode = UIViewContentModeScaleAspectFit;
         [_stateView addSubview:imgView];
         
@@ -214,11 +214,11 @@ static StateView *_stateView = nil;
     if(_label == nil) {
         
         UILabel *lab = [[UILabel alloc]initWithFrame:CGRectZero];
-        lab.top = 65;
-        lab.left = 5+_stateView.layer.cornerRadius;
+        lab.wy_top = 65;
+        lab.wy_left = 5+_stateView.layer.cornerRadius;
         lab.font = [UIFont boldSystemFontOfSize:16];
         lab.numberOfLines = 4;
-        [lab centerAlignment];
+        [lab wy_centerAlignment];
         lab.textColor = [UIColor whiteColor];
         
         [_stateView addSubview:lab];

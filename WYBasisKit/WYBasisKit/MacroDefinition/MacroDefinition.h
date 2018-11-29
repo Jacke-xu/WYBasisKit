@@ -33,6 +33,7 @@
 
 ///屏幕宽
 #define screenWidth     ([UIScreen mainScreen].bounds.size.width)
+
 ///屏幕高
 #define screenHeight    ([UIScreen mainScreen].bounds.size.height-tabbarSafetyZone)
 
@@ -50,11 +51,12 @@
 #define randomColor        [UIColor colorWithRed:arc4random()%256/255.0 green:arc4random()%256/255.0 blue:arc4random()%256/255.0 alpha:1.0]
 
 ///自定义颜色
-#define hexColor(color)        [UIColor hexColor:color]
+#define hexColor(color)        [UIColor wy_hexColor:color]
 
-/// 获取RGB颜色
+/// 获取RGBA颜色
 #define RGBA(r,g,b,a)      [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
 
+/// 获取RGB颜色
 #define RGB(r,g,b)         RGBA(r,g,b,1.0f)
 
 ///字体方法简写  自定义字体网址：http://iosfonts.com
@@ -131,6 +133,7 @@
 
 ///判断是竖屏还是横屏
 #define UIDeviceOrientationIsPortrait(orientation)  ((orientation) == UIDeviceOrientationPortrait || (orientation) == UIDeviceOrientationPortraitUpsideDown)//竖屏
+
 #define UIDeviceOrientationIsLandscape(orientation) ((orientation) == UIDeviceOrientationLandscapeLeft || (orientation) == UIDeviceOrientationLandscapeRight)//横屏
 
 ///判断是否 Retina屏、设备是否iphone几、是否是iPad

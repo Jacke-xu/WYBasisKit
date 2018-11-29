@@ -43,22 +43,22 @@ static LoadingView *_loadingView = nil;
 #pragma mark 构造方法
 + (void)showMessage:(NSString *)message {
     
-    [self showMessageStr:[NSString emptyStr:message] showType:@"Message" superView:nil];
+    [self showMessageStr:[NSString wy_emptyStr:message] showType:@"Message" superView:nil];
 }
 
 + (void)showMessage:(NSString *)message superView:(UIView *)superView {
     
-    [self showMessageStr:[NSString emptyStr:message] showType:@"Message" superView:superView];
+    [self showMessageStr:[NSString wy_emptyStr:message] showType:@"Message" superView:superView];
 }
 
 + (void)showInfo:(NSString *)info {
     
-    [self showMessageStr:[NSString emptyStr:info] showType:@"Info" superView:nil];
+    [self showMessageStr:[NSString wy_emptyStr:info] showType:@"Info" superView:nil];
 }
 
 + (void)showInfo:(NSString *)info superView:(UIView *)superView {
     
-    [self showMessageStr:[NSString emptyStr:info] showType:@"Info" superView:superView];
+    [self showMessageStr:[NSString wy_emptyStr:info] showType:@"Info" superView:superView];
 }
 
 + (void)userInteractionEnabled:(BOOL)userInteractionEnabled {
@@ -84,15 +84,18 @@ static LoadingView *_loadingView = nil;
 
 + (void)dismiss {
     
-    //关闭动画
-    [_loadingView.heartImageView stopAnimating];
-    [_loadingView.activity stopAnimating];
-    
-    //移除自己
-    [_loadingView removeFromSuperview];
-    
-    //打开用户交互
-    [UIApplication sharedApplication].keyWindow.userInteractionEnabled = YES;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        //关闭动画
+        [_loadingView.heartImageView stopAnimating];
+        [_loadingView.activity stopAnimating];
+        
+        //移除自己
+        [_loadingView removeFromSuperview];
+        
+        //打开用户交互
+        [UIApplication sharedApplication].keyWindow.userInteractionEnabled = YES;
+    });
 }
 
 #pragma mark 查找当前显示的控制器的view，找不到就用keyWindow
@@ -100,7 +103,7 @@ static LoadingView *_loadingView = nil;
     
     if(superView == nil) {
         
-        superView = ([self currentViewController].view == nil) ? [UIApplication sharedApplication].keyWindow : [self currentViewController].view;
+        superView = ([self wy_currentViewController].view == nil) ? [UIApplication sharedApplication].keyWindow : [self wy_currentViewController].view;
     }
     
     //防止弹窗时键盘挡住自己
@@ -126,7 +129,7 @@ static LoadingView *_loadingView = nil;
             _loadingView.heartImageView.hidden = NO;
             
             //给定临时宽度
-            CGFloat tempWidth = (_loadingView.label.hidden == YES) ? _loadingView.heartImageView.width+(_loadingView.heartImageView.top*2) : _loadingView.heartImageView.width+(_loadingView.label.left*2);
+            CGFloat tempWidth = (_loadingView.label.hidden == YES) ? _loadingView.heartImageView.wy_width+(_loadingView.heartImageView.wy_top*2) : _loadingView.heartImageView.wy_width+(_loadingView.label.wy_left*2);
             
             if(_loadingView.label.hidden == NO) {
                 
@@ -134,11 +137,11 @@ static LoadingView *_loadingView = nil;
                 tempWidth = [self sharedWindowWidth:tempWidth];
             }
             
-            _loadingView.heartImageView.left = (tempWidth - _loadingView.heartImageView.width)/2;
+            _loadingView.heartImageView.wy_left = (tempWidth - _loadingView.heartImageView.wy_width)/2;
             
-            _loadingView.label.top = _loadingView.heartImageView.bottom-10;//由于图片内容底部留白过大，这里减10，如更换图片可自行适当调整
+            _loadingView.label.wy_top = _loadingView.heartImageView.wy_bottom-10;//由于图片内容底部留白过大，这里减10，如更换图片可自行适当调整
             
-            _loadingView.size = CGSizeMake(tempWidth, (_loadingView.label.hidden == YES) ? (tempWidth*0.95) : (_loadingView.label.bottom+10));//个人觉得不要完全正方形的好看一点
+            _loadingView.wy_size = CGSizeMake(tempWidth, (_loadingView.label.hidden == YES) ? (tempWidth*0.95) : (_loadingView.label.wy_bottom+10));//个人觉得不要完全正方形的好看一点
         }
         else {
             
@@ -149,7 +152,7 @@ static LoadingView *_loadingView = nil;
             _loadingView.activity.hidden = NO;
             
             //给定临时宽度
-            CGFloat tempWidth = (_loadingView.label.hidden == YES) ? _loadingView.activity.width+(_loadingView.activity.top*2) : _loadingView.activity.width+(_loadingView.label.left*2)+40;
+            CGFloat tempWidth = (_loadingView.label.hidden == YES) ? _loadingView.activity.wy_width+(_loadingView.activity.wy_top*2) : _loadingView.activity.wy_width+(_loadingView.label.wy_left*2)+40;
             
             if(_loadingView.label.hidden == NO) {
                 
@@ -157,16 +160,16 @@ static LoadingView *_loadingView = nil;
                 tempWidth = [self sharedWindowWidth:tempWidth];
             }
             
-            _loadingView.activity.left = (tempWidth - _loadingView.activity.width)/2;
+            _loadingView.activity.wy_left = (tempWidth - _loadingView.activity.wy_width)/2;
             
-            _loadingView.label.top = _loadingView.activity.bottom+10;//由于图片内容底部留白过小，这里加10
+            _loadingView.label.wy_top = _loadingView.activity.wy_bottom+10;//由于图片内容底部留白过小，这里加10
             
-            _loadingView.size = CGSizeMake(tempWidth, (_loadingView.label.hidden == YES) ? tempWidth : (_loadingView.label.bottom+10));//个人觉得不要完全正方形的好看一点
+            _loadingView.wy_size = CGSizeMake(tempWidth, (_loadingView.label.hidden == YES) ? tempWidth : (_loadingView.label.wy_bottom+10));//个人觉得不要完全正方形的好看一点
         }
         
-        _loadingView.left = (screenWidth-_loadingView.width)/2;
+        _loadingView.wy_left = (screenWidth-_loadingView.wy_width)/2;
         
-        _loadingView.top = ((superView.height-_loadingView.height)/2)-(([UIScreen mainScreen].bounds.size.height-superView.height)/2);
+        _loadingView.wy_top = ((superView.wy_height-_loadingView.wy_height)/2)-(([UIScreen mainScreen].bounds.size.height-superView.wy_height)/2);
     });
 }
 
@@ -176,28 +179,28 @@ static LoadingView *_loadingView = nil;
     //临时宽度
     CGFloat windowWidth = tempWidth;
     //图像动画width
-    CGFloat graphicalWidth = windowWidth-(_loadingView.label.left*2);
+    CGFloat graphicalWidth = windowWidth-(_loadingView.label.wy_left*2);
     //文本总宽度
-    CGFloat textWidth = [_loadingView.label.text boundingRectWithSize:CGSizeMake(MAXFLOAT, _loadingView.label.font.lineHeight) withFont:_loadingView.label.font lineSpacing:0].width;
+    CGFloat textWidth = [_loadingView.label.text wy_boundingRectWithSize:CGSizeMake(MAXFLOAT, _loadingView.label.font.lineHeight) withFont:_loadingView.label.font lineSpacing:0].width;
     
     //2行及以上(目前只适配2行)
     if(textWidth > graphicalWidth) {
         
         if(textWidth < (graphicalWidth+_loadingView.label.font.lineHeight)) {
             
-            windowWidth = textWidth+(_loadingView.label.left*2);
+            windowWidth = textWidth+(_loadingView.label.wy_left*2);
         }
         else {
             
-            windowWidth = graphicalWidth+_loadingView.label.font.lineHeight+(_loadingView.label.left*2);
+            windowWidth = graphicalWidth+_loadingView.label.font.lineHeight+(_loadingView.label.wy_left*2);
         }
     }
     
-    _loadingView.label.width = windowWidth-(_loadingView.label.left*2);
+    _loadingView.label.wy_width = windowWidth-(_loadingView.label.wy_left*2);
     //这里执行下sizeToFit，防止弹窗底部留白过大
     [_loadingView.label sizeToFit];
     //重置lable.size，防止原点改变
-    _loadingView.label.size = CGSizeMake(windowWidth-((5+_loadingView.layer.cornerRadius)*2), _loadingView.label.height);
+    _loadingView.label.wy_size = CGSizeMake(windowWidth-((5+_loadingView.layer.cornerRadius)*2), _loadingView.label.wy_height);
     
     return windowWidth;
 }
@@ -208,8 +211,8 @@ static LoadingView *_loadingView = nil;
     if(_activity == nil) {
         
         UIActivityIndicatorView *acti = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        acti.size = CGSizeMake(40, 40);
-        acti.top = 20;
+        acti.wy_size = CGSizeMake(40, 40);
+        acti.wy_top = 20;
         [_loadingView addSubview:acti];
         
         _activity = acti;
@@ -227,7 +230,7 @@ static LoadingView *_loadingView = nil;
         lab.textAlignment = NSTextAlignmentCenter;
         lab.clipsToBounds = YES;
         lab.numberOfLines = 2;
-        lab.left = 5+_loadingView.layer.cornerRadius;
+        lab.wy_left = 5+_loadingView.layer.cornerRadius;
         
         [_loadingView addSubview:lab];
         
@@ -249,8 +252,8 @@ static LoadingView *_loadingView = nil;
         imgView.animationImages = images;
         imgView.animationDuration = 0.4 ;
         imgView.animationRepeatCount = MAXFLOAT;
-        imgView.size = CGSizeMake(85, 85);
-        imgView.top = 5;
+        imgView.wy_size = CGSizeMake(85, 85);
+        imgView.wy_top = 5;
         imgView.contentMode = UIViewContentModeScaleAspectFit;
         [_loadingView addSubview:imgView];
         

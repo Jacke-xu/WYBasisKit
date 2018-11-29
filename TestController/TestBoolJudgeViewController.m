@@ -7,7 +7,7 @@
 //
 
 #import "TestBoolJudgeViewController.h"
-#import "NSString+Emoji.h"
+#import "NSString+WY_Emoji.h"
 
 @interface TestBoolJudgeViewController ()
 
@@ -19,15 +19,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSLog(@"是否包含Emoji = %@",[NSNumber numberWithBool:[@"fwet😁" isIncludingEmoji]]);
-    NSLog(@"是否包含Emoji = %@",[NSNumber numberWithBool:[@"😁" isIncludingEmoji]]);
-    NSLog(@"是否是Emoji = %@",[NSNumber numberWithBool:[@"😁" isEmoji]]);
-    NSLog(@"是否是Emoji = %@",[NSNumber numberWithBool:[@"j" isEmoji]]);
+    NSLog(@"是否包含Emoji = %@",[NSNumber numberWithBool:[@"fwet😁" wy_isIncludingEmoji]]);
+    NSLog(@"是否包含Emoji = %@",[NSNumber numberWithBool:[@"😁" wy_isIncludingEmoji]]);
+    NSLog(@"是否是Emoji = %@",[NSNumber numberWithBool:[@"😁" wy_isEmoji]]);
+    NSLog(@"是否是Emoji = %@",[NSNumber numberWithBool:[@"j" wy_isEmoji]]);
     NSLog(@"查看Emoji = %@",@"fwet😁");
-    NSLog(@"移除Emoji = %@",[@"fwet😁" removedEmojiString]);
-    NSLog(@"移除Emoji = %@",[@"fwet" removedEmojiString]);
-    NSLog(@"移除Emoji = %@",[@"fwet💕" stringByReplacingEmojiCheatCodesWithUnicode]);
-    NSLog(@"文字化Emoji = %@",[@"fwet💕" stringByReplacingEmojiUnicodeWithCheatCodes]);
+    NSLog(@"移除Emoji = %@",[@"fwet😁" wy_removedEmojiString]);
+    NSLog(@"移除Emoji = %@",[@"fwet" wy_removedEmojiString]);
+    NSLog(@"移除Emoji = %@",[@"fwet💕" wy_stringByReplacingEmojiCheatCodesWithUnicode]);
+    NSLog(@"文字化Emoji = %@",[@"fwet💕" wy_stringByReplacingEmojiUnicodeWithCheatCodes]);
 }
 
 - (void)didReceiveMemoryWarning {

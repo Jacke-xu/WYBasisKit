@@ -7,6 +7,7 @@
 //
 
 #import "WYSegmentedView.h"
+#import "UIButton+WY_EdgeInsets.h"
 
 @interface WYSegmentedView ()<UIScrollViewDelegate>
 
@@ -119,9 +120,9 @@
             UIImage *selectedImage = ([_selerctedImageAry[i] isKindOfClass:[UIImage class]]) ? _selerctedImageAry[i] : [UIImage imageNamed:_selerctedImageAry[i]];
             [item setImage:selectedImage forState:UIControlStateSelected];
             
-            item.imageRect = CGRectMake(0, (item.height-normalImage.size.height-5-15)/2, _itemWidth, normalImage.size.height);
+            item.wy_imageRect = CGRectMake(0, (item.wy_height-normalImage.size.height-5-15)/2, _itemWidth, normalImage.size.height);
             item.imageView.contentMode = UIViewContentModeCenter;
-            item.titleRect = CGRectMake(0, 5+item.imageView.right, _itemWidth, 15);
+            item.wy_titleRect = CGRectMake(0, 5+item.imageView.wy_right, _itemWidth, 15);
             item.titleLabel.textAlignment = NSTextAlignmentCenter;
             
         }else {
@@ -207,7 +208,7 @@
     __weak typeof(self) weakself = self;
     [UIView animateWithDuration:.2f animations:^{
         
-        weakself.dividingStrip.frame = CGRectMake((weakself.currentItem.tag-100)*weakself.currentItem.width+((weakself.currentItem.width-weakself.dividingStripWidth)/2), weakself.headerHeight-weakself.dividingStripHeight, weakself.dividingStripWidth, weakself.dividingStripHeight);
+        weakself.dividingStrip.frame = CGRectMake((weakself.currentItem.tag-100)*weakself.currentItem.wy_width+((weakself.currentItem.wy_width-weakself.dividingStripWidth)/2), weakself.headerHeight-weakself.dividingStripHeight, weakself.dividingStripWidth, weakself.dividingStripHeight);
     }];
     
     if(_clickItem) {
