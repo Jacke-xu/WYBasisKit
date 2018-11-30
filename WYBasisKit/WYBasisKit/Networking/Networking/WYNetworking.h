@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Singleton.h"
-#import "WYFileModel.h"
+@class WYFileModel;
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -50,16 +50,6 @@
     self.tableView.backgroundColor = [UIColor whiteColor];
 }
 
-- (void)leftItem {
-    
-    NSLog(@"点击了左边item");
-}
-
-- (void)rightItem {
-    
-    NSLog(@"点击了右边item");
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     return [self section].count;

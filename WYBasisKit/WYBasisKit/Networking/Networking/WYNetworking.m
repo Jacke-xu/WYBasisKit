@@ -8,6 +8,7 @@
 
 #import "WYNetworking.h"
 #import "AFNetworking.h"
+#import "WYFileModel.h"
 
 @implementation WYNetworking
 singleton_implementation(WYNetworking)//单例实现
