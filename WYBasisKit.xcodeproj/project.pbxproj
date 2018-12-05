@@ -60,6 +60,7 @@
 		1F60C4C121AE2C5600288A9E /* NSObject+WY_Parse.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F60C4C021AE2C5600288A9E /* NSObject+WY_Parse.m */; };
 		1F60C4C421AE2E6C00288A9E /* UIImage+WY_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F60C4C321AE2E6C00288A9E /* UIImage+WY_Extension.m */; };
 		1F60C4C721AE6D8D00288A9E /* NSArray+WY_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F60C4C621AE6D8D00288A9E /* NSArray+WY_Extension.m */; };
+		1F725D9321B77861007F4B80 /* UITabBar+WY_Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F725D9221B77861007F4B80 /* UITabBar+WY_Badge.m */; };
 		1FA61C162147B09E00D62848 /* bank.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1FA61C152147B09E00D62848 /* bank.plist */; };
 		1FA61C182147B26C00D62848 /* EmojiFile in Resources */ = {isa = PBXBuildFile; fileRef = 1FA61C172147B26C00D62848 /* EmojiFile */; };
 		1FA9267620DA46A500C5D12B /* TestLableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA9267520DA46A500C5D12B /* TestLableViewController.m */; };
@@ -181,6 +182,8 @@
 		1F60C4C321AE2E6C00288A9E /* UIImage+WY_Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WY_Extension.m"; sourceTree = "<group>"; };
 		1F60C4C521AE6D8D00288A9E /* NSArray+WY_Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+WY_Extension.h"; sourceTree = "<group>"; };
 		1F60C4C621AE6D8D00288A9E /* NSArray+WY_Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+WY_Extension.m"; sourceTree = "<group>"; };
+		1F725D9121B77861007F4B80 /* UITabBar+WY_Badge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITabBar+WY_Badge.h"; sourceTree = "<group>"; };
+		1F725D9221B77861007F4B80 /* UITabBar+WY_Badge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+WY_Badge.m"; sourceTree = "<group>"; };
 		1FA61C152147B09E00D62848 /* bank.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bank.plist; sourceTree = "<group>"; };
 		1FA61C172147B26C00D62848 /* EmojiFile */ = {isa = PBXFileReference; lastKnownFileType = text; path = EmojiFile; sourceTree = "<group>"; };
 		1FA9267420DA46A500C5D12B /* TestLableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestLableViewController.h; sourceTree = "<group>"; };
@@ -408,6 +411,7 @@
 		1F282FE620D3B9B700624C76 /* Layout */ = {
 			isa = PBXGroup;
 			children = (
+				1F725D9021B7783D007F4B80 /* UITabBar */,
 				1F3BB8C1215B5D1400358449 /* UITextView */,
 				1F3BB8BD215B5C3600358449 /* UITableView */,
 				1FC5FDA420DCE70F0092CED8 /* UIButton */,
@@ -659,6 +663,15 @@
 			path = RSA;
 			sourceTree = "<group>";
 		};
+		1F725D9021B7783D007F4B80 /* UITabBar */ = {
+			isa = PBXGroup;
+			children = (
+				1F725D9121B77861007F4B80 /* UITabBar+WY_Badge.h */,
+				1F725D9221B77861007F4B80 /* UITabBar+WY_Badge.m */,
+			);
+			path = UITabBar;
+			sourceTree = "<group>";
+		};
 		1FC5FDA420DCE70F0092CED8 /* UIButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -870,6 +883,7 @@
 				1F59A65120D8E5B80055AAB4 /* UIViewController+WY_Extension.m in Sources */,
 				1F28304520D3B9B700624C76 /* WaterfallFlow.m in Sources */,
 				1F154C6621AD22CF00D1D830 /* UIButton+WY_EdgeInsets.m in Sources */,
+				1F725D9321B77861007F4B80 /* UITabBar+WY_Badge.m in Sources */,
 				1F154C7821AD41C100D1D830 /* WKWebView+WY_Extension.m in Sources */,
 				1F226F5520F59D5800129AB6 /* TestBoolJudgeViewController.m in Sources */,
 				1F59A64E20D8A91F0055AAB4 /* UINavigationController+WY_Extension.m in Sources */,
