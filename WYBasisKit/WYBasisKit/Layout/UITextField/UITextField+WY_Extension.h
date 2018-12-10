@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)wy_textDidChange:(void(^)(NSString *textStr))handle;
 
 /**
- *  处理系统输入法导致的乱码,如果调用了maximumLimit属性，内部会默认处理乱码
+ *  处理系统输入法导致的乱码
  */
 - (void)wy_fixMessyDisplay;
 

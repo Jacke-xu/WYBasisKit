@@ -46,7 +46,7 @@
     
     objc_setAssociatedObject(self, @selector(wy_maximumLimit), @(wy_maximumLimit), OBJC_ASSOCIATION_ASSIGN);
     
-    [self wy_addTextChangeNoti];
+    [self wy_fixMessyDisplay];
 }
 
 - (NSInteger)wy_maximumLimit {
@@ -85,7 +85,7 @@
 - (void)wy_textDidChange:(void (^)(NSString * _Nonnull))handle {
     
     self.wy_textHandle = handle;
-    [self wy_addTextChangeNoti];
+    [self wy_fixMessyDisplay];
 }
 
 - (void)wy_fixMessyDisplay {

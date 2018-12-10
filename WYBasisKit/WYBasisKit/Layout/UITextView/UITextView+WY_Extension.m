@@ -40,7 +40,7 @@
     
     objc_setAssociatedObject(self, &@selector(wy_placeholderStr), wy_placeholderStr, OBJC_ASSOCIATION_COPY_NONATOMIC);
     
-    [self wy_addTextChangeNoti];
+    [self wy_fixMessyDisplay];
     self.wy_placeholderLable.backgroundColor = [UIColor clearColor];
 }
 
@@ -54,7 +54,7 @@
     
     objc_setAssociatedObject(self, &@selector(wy_placeholderColor), wy_placeholderColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
-    [self wy_addTextChangeNoti];
+    [self wy_fixMessyDisplay];
     self.wy_placeholderLable.backgroundColor = [UIColor clearColor];;
 }
 
@@ -79,7 +79,7 @@
 - (void)setWy_maximumLimit:(NSInteger)wy_maximumLimit {
     
     objc_setAssociatedObject(self, &@selector(wy_maximumLimit), [NSNumber numberWithInteger:wy_maximumLimit], OBJC_ASSOCIATION_ASSIGN);
-    [self wy_addTextChangeNoti];
+    [self wy_fixMessyDisplay];
 }
 
 - (NSInteger)wy_maximumLimit {
@@ -91,7 +91,7 @@
 - (void)setWy_characterLengthPrompt:(BOOL)wy_characterLengthPrompt {
     
     objc_setAssociatedObject(self, &@selector(wy_characterLengthPrompt), [NSNumber numberWithBool:wy_characterLengthPrompt], OBJC_ASSOCIATION_ASSIGN);
-    [self wy_addTextChangeNoti];
+    [self wy_fixMessyDisplay];
     
     self.wy_height = (wy_characterLengthPrompt == YES) ? self.wy_height-25 : self.wy_height+25;
     self.wy_charactersLengthLable.text = [NSString stringWithFormat:@"%lu/%ld\t",(unsigned long)self.text.length > (long)self.wy_maximumLimit ? (long)self.wy_maximumLimit : (unsigned long)self.text.length ,(long)self.wy_maximumLimit];
@@ -175,7 +175,7 @@
 - (void)wy_textDidChange:(void (^)(NSString * _Nonnull))handle {
     
     self.wy_textHandle = handle;
-    [self wy_addTextChangeNoti];
+    [self wy_fixMessyDisplay];
 }
 
 - (void)wy_fixMessyDisplay {
