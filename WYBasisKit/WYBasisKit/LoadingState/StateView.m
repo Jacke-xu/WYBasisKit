@@ -35,8 +35,6 @@ static StateView *_stateView = nil;
 #pragma mark 构造单例
 + (StateView *)shared {
     
-    [LoadingView dismiss];
-    
     static dispatch_once_t predicate;
     dispatch_once(&predicate, ^{
         

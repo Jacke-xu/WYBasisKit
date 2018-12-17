@@ -52,6 +52,8 @@ static NSString *const wy_badgeNumberViewsKey = @"wy_badgeNumberViewsKey";
     [redDotViewes[tabBarIndex] setHidden:YES];
     [badgeNumberViews[tabBarIndex] setHidden:YES];
     
+    if(badgeValue == 0) {badgeStyle = WY_BadgeStyleNone;}
+    
     if(badgeStyle == WY_BadgeStyleRedDot) {
         
         [redDotViewes[tabBarIndex] setHidden:NO];

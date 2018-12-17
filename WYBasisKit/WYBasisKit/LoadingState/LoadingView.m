@@ -27,8 +27,6 @@
 static LoadingView *_loadingView = nil;
 + (LoadingView *)shared {
     
-    [StateView dismiss];
-    
     static dispatch_once_t predicate;
     dispatch_once(&predicate, ^{
         

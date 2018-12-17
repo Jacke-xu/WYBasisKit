@@ -22,7 +22,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     //全局收起键盘
     [self.navigationController.view wy_gestureHidingkeyboard];
     
@@ -129,7 +128,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    [LoadingView userInteractionEnabled:NO];
     UITextField *textField = [self.view viewWithTag:100];
     if(indexPath.section == 0) {
         
