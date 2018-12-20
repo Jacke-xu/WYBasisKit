@@ -56,7 +56,7 @@
     }
 }
 
-- (void)wy_pushViewController:(NSString *)className animated:(BOOL)animated {
+- (void)wy_showViewController:(NSString *)className animated:(BOOL)animated displaMode:(WYDisplaMode)displaMode {
     
     if([NSString wy_emptyStr:className].length <= 0) return;
     
@@ -68,10 +68,10 @@
     
     if(viewController == nil) return;
     
-    [self.navigationController pushViewController:viewController animated:animated];
+    [self showViewController:viewController animated:animated displaMode:displaMode];
 }
 
-- (void)wy_pushOnlyViewController:(NSString *)className animated:(BOOL)animated {
+- (void)wy_showOnlyViewController:(NSString *)className animated:(BOOL)animated displaMode:(WYDisplaMode)displaMode {
     
     if([NSString wy_emptyStr:className].length <= 0) return;
     
@@ -86,11 +86,11 @@
         
         if(viewController == nil) return;
         
-        [weakself.navigationController pushViewController:viewController animated:animated];
+        [weakself showViewController:viewController animated:animated displaMode:displaMode];
     }];
 }
 
-- (void)wy_popViewController:(NSString *)className animated:(BOOL)animated {
+- (void)wy_gobackViewController:(NSString *)className animated:(BOOL)animated {
     
     if([NSString wy_emptyStr:className].length <= 0) return;
     
@@ -104,10 +104,54 @@
         
         if ([vc isKindOfClass:class]) {
             
-            [self.navigationController popToViewController:vc animated:animated];
+            if([self wy_viewControllerDisplaMode] == WY_DisplaModePush) {
+                
+                [self.navigationController popToViewController:vc animated:animated];
+                
+            }else {
+                
+                UIViewController *presentingController = self.presentingViewController;
+                
+                while (![presentingController isKindOfClass:[vc class]]) {
+
+                    presentingController = presentingController.presentingViewController;
+                }
+                [presentingController dismissViewControllerAnimated:animated completion:nil];
+            }
             
             return;
         }
+    }
+}
+
+- (WYDisplaMode)wy_viewControllerDisplaMode {
+    
+    NSArray *viewcontrollers = self.navigationController.viewControllers;
+    WYDisplaMode displaMode = WY_DisplaModePush;
+    if (viewcontrollers.count > 1) {
+        
+        if ([viewcontrollers objectAtIndex:viewcontrollers.count - 1] == self) {
+            //push方式
+            displaMode = WY_DisplaModePush;
+        }
+    }
+    else {
+        //present方式
+        displaMode = WY_DisplaModePresent;
+    }
+    
+    return displaMode;
+}
+
+- (void)showViewController:(UIViewController *)viewController animated:(BOOL)animated displaMode:(WYDisplaMode)displaMode {
+    
+    if(displaMode == WY_DisplaModePush) {
+        
+        [self.navigationController pushViewController:viewController animated:animated];
+        
+    }else {
+        
+        [self presentViewController:viewController animated:animated completion:nil];
     }
 }
 

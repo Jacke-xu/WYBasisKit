@@ -66,6 +66,9 @@ typedef NS_ENUM(NSUInteger, WY_GradientType) {
 /** 图片转字符串 */
 + (NSString *)wy_imageToBase64Str:(UIImage *)image;
 
+/** 图片上绘制文字 */
+- (UIImage *)wy_imageAddTitle:(NSString *)title font:(UIFont *)font color:(UIColor *)color;
+
 /**
  *  图片切割
  *

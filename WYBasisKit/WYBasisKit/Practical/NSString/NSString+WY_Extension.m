@@ -556,6 +556,29 @@
     return string;
 }
 
+/** 字符串反转 */
+- (NSString *)wy_stringInversion {
+    
+    NSMutableString *reverString = [NSMutableString stringWithCapacity:self.length];
+    [self enumerateSubstringsInRange:NSMakeRange(0, self.length) options:NSStringEnumerationReverse | NSStringEnumerationByComposedCharacterSequences  usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+        [reverString appendString:substring];
+    }];
+    return reverString;
+}
+
+/** 获取汉字的拼音 */
+- (NSString *)wy_pinyinTransform:(NSString *)chineseStr {
+    
+    //将NSString装换成NSMutableString
+    NSMutableString *pinyin = [chineseStr mutableCopy];
+    //将汉字转换为拼音(带音标)
+    CFStringTransform((__bridge CFMutableStringRef)pinyin, NULL, kCFStringTransformMandarinLatin, NO);
+    //去掉拼音的音标
+    CFStringTransform((__bridge CFMutableStringRef)pinyin, NULL, kCFStringTransformStripCombiningMarks, NO);
+    //返回最近结果
+    return pinyin;
+}
+
 + (NSString *)wy_emptyStr:(NSString *)str {
     
     if(([str isKindOfClass:[NSNull class]]) || ([str isEqual:[NSNull null]]) || (str == nil) || (!str)) {

@@ -29,6 +29,12 @@
 /** 格式化HTML代码 */
 + (NSString *)wy_htmlEntityDecode:(NSString *)string;
 
+/** 字符串反转 */
+- (NSString *)wy_stringInversion;
+
+/** 获取汉字的拼音 */
+- (NSString *)wy_pinyinTransform:(NSString *)chineseStr;
+
 /** 返回一个计算好的字符串的高度和宽度 */
 - (CGSize)wy_boundingRectWithSize:(CGSize)size withFont:(UIFont *)font lineSpacing:(CGFloat)lineSpacing;
 

@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-//申请判断权限的类型
+///申请判断权限的类型
 typedef NS_ENUM(NSInteger, WYPermissionType) {
     
     WY_PermissionTypeLocation = 0,//定位

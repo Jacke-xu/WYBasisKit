@@ -17,6 +17,14 @@
 
 @end
 
+///viewController显示模式
+typedef NS_ENUM(NSInteger, WYDisplaMode) {
+    /** push */
+    WY_DisplaModePush = 0,
+    /** present */
+    WY_DisplaModePresent,
+};
+
 @interface UIViewController (WY_Extension)<ViewControllerHandlerProtocol>
 
 /** 从导航控制器栈中查找ViewController，没有时返回nil */
@@ -26,13 +34,16 @@
 - (void)wy_deleteViewController:(NSString *)className complete:(void(^)(void))complete;
 
 /** 跳转到指定的视图控制器 */
-- (void)wy_pushViewController:(NSString *)className animated:(BOOL)animated;
+- (void)wy_showViewController:(NSString *)className animated:(BOOL)animated displaMode:(WYDisplaMode)displaMode;
 
 /** 跳转到指定的视图控制器，此方法可防止循环跳转 */
-- (void)wy_pushOnlyViewController:(NSString *)className animated:(BOOL)animated;
+- (void)wy_showOnlyViewController:(NSString *)className animated:(BOOL)animated displaMode:(WYDisplaMode)displaMode;
 
 /** 返回到指定的视图控制器 */
-- (void)wy_popViewController:(NSString *)className animated:(BOOL)animated;
+- (void)wy_gobackViewController:(NSString *)className animated:(BOOL)animated;
+
+/** viewController是push还是present的方式显示的 */
+- (WYDisplaMode)wy_viewControllerDisplaMode;
 
 
 @end

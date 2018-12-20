@@ -34,6 +34,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)wy_jumpToAppReviewPageWithAppId:(NSString *)appId;
 
+/**
+ *  修改状态栏的颜色
+ *
+ *  @param statusBarColor 要修改的状态栏的颜色
+ */
++ (void)wy_statusBarBackgroundColor:(UIColor *)statusBarColor;
+
 @end
 
 NS_ASSUME_NONNULL_END
