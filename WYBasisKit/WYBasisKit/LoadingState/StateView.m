@@ -25,6 +25,8 @@
 ///记录是否需要自动移除弹窗
 @property (nonatomic, assign) BOOL autoRemove;
 
+///记录用户交互状态
+@property (nonatomic, assign) BOOL userEnabled;
 
 @end
 
@@ -44,6 +46,7 @@ static StateView *_stateView = nil;
         _stateView.layer.masksToBounds = YES;
         _stateView.delayed = 1.5f;
         _stateView.autoRemove = YES;
+        _stateView.userEnabled = YES;
     });
     
     _stateView.alpha = 1.0f;
@@ -70,7 +73,8 @@ static StateView *_stateView = nil;
 + (void)userInteractionEnabled:(BOOL)userInteractionEnabled {
     
     //设置用户交互
-    [UIApplication sharedApplication].keyWindow.userInteractionEnabled = userInteractionEnabled;
+    [self shared].userEnabled = userInteractionEnabled;
+    _stateView.superview.userInteractionEnabled = userInteractionEnabled;
 }
 
 + (void)windowDelayed:(CGFloat)delayed eachDelay:(BOOL)eachDelay {
@@ -94,6 +98,9 @@ static StateView *_stateView = nil;
     
     //添加到父控制器上
     [[UIApplication sharedApplication].keyWindow addSubview:_stateView];
+    
+    //设置用户交互
+    _stateView.superview.userInteractionEnabled = _stateView.userEnabled;
 }
 
 + (void)dismiss {

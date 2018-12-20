@@ -19,6 +19,9 @@
 ///自定义动图
 @property (nonatomic, weak) UIImageView *heartImageView;
 
+///记录用户交互状态
+@property (nonatomic, assign) BOOL userEnabled;
+
 @end
 
 @implementation LoadingView
@@ -34,6 +37,7 @@ static LoadingView *_loadingView = nil;
         _loadingView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.8];
         _loadingView.layer.cornerRadius = 10;
         _loadingView.layer.masksToBounds = YES;
+        _loadingView.userEnabled = YES;
     });
     return _loadingView;
 }
@@ -62,7 +66,8 @@ static LoadingView *_loadingView = nil;
 + (void)userInteractionEnabled:(BOOL)userInteractionEnabled {
     
     //设置用户交互
-    [UIApplication sharedApplication].keyWindow.userInteractionEnabled = userInteractionEnabled;
+    [self shared].userEnabled = userInteractionEnabled;
+    _loadingView.superview.userInteractionEnabled = userInteractionEnabled;
 }
 
 + (void)showMessageStr:(NSString *)messageStr showType:(NSString *)showType superView:(UIView *)superView {
@@ -78,6 +83,9 @@ static LoadingView *_loadingView = nil;
     
     //添加到父控制器上
     [superView addSubview:_loadingView];
+    
+    ///设置用户交互
+    _loadingView.superview.userInteractionEnabled = _loadingView.userEnabled;
 }
 
 + (void)dismiss {
@@ -92,7 +100,7 @@ static LoadingView *_loadingView = nil;
         [_loadingView removeFromSuperview];
         
         //打开用户交互
-        [UIApplication sharedApplication].keyWindow.userInteractionEnabled = YES;
+        _loadingView.superview.userInteractionEnabled = YES;
     });
 }
 

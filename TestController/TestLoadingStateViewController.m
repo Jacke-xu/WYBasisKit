@@ -128,7 +128,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [LoadingView userInteractionEnabled:NO];
+    //[LoadingView userInteractionEnabled:NO];
     UITextField *textField = [self.view viewWithTag:100];
     if(indexPath.section == 0) {
         
