@@ -66,6 +66,8 @@
 		1FA9267620DA46A500C5D12B /* TestLableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA9267520DA46A500C5D12B /* TestLableViewController.m */; };
 		1FC5FDAD20DCE75B0092CED8 /* TestTUIButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC5FDAC20DCE75B0092CED8 /* TestTUIButtonViewController.m */; };
 		1FD24D7C20FEDF23004B7D3F /* TestLoadingStateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD24D7B20FEDF23004B7D3F /* TestLoadingStateViewController.m */; };
+		1FE1D39F21D7156D00928FEB /* UIImage+WY_UserAvatar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE1D39E21D7156D00928FEB /* UIImage+WY_UserAvatar.m */; };
+		1FE1D3A221D720CC00928FEB /* TestUserAvatarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FE1D3A121D720CC00928FEB /* TestUserAvatarViewController.m */; };
 		1FFBD91A20BA874700305331 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFBD91920BA874700305331 /* AppDelegate.m */; };
 		1FFBD92220BA874800305331 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FFBD92120BA874800305331 /* Assets.xcassets */; };
 		1FFBD92520BA874800305331 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FFBD92320BA874800305331 /* LaunchScreen.storyboard */; };
@@ -192,6 +194,10 @@
 		1FC5FDAC20DCE75B0092CED8 /* TestTUIButtonViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestTUIButtonViewController.m; sourceTree = "<group>"; };
 		1FD24D7A20FEDF23004B7D3F /* TestLoadingStateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestLoadingStateViewController.h; sourceTree = "<group>"; };
 		1FD24D7B20FEDF23004B7D3F /* TestLoadingStateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestLoadingStateViewController.m; sourceTree = "<group>"; };
+		1FE1D39D21D7156D00928FEB /* UIImage+WY_UserAvatar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+WY_UserAvatar.h"; sourceTree = "<group>"; };
+		1FE1D39E21D7156D00928FEB /* UIImage+WY_UserAvatar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WY_UserAvatar.m"; sourceTree = "<group>"; };
+		1FE1D3A021D720CC00928FEB /* TestUserAvatarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestUserAvatarViewController.h; sourceTree = "<group>"; };
+		1FE1D3A121D720CC00928FEB /* TestUserAvatarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestUserAvatarViewController.m; sourceTree = "<group>"; };
 		1FFBD91520BA874600305331 /* WYBasisKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WYBasisKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FFBD91820BA874700305331 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1FFBD91920BA874700305331 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -293,6 +299,8 @@
 			children = (
 				1F60C4C221AE2E6C00288A9E /* UIImage+WY_Extension.h */,
 				1F60C4C321AE2E6C00288A9E /* UIImage+WY_Extension.m */,
+				1FE1D39D21D7156D00928FEB /* UIImage+WY_UserAvatar.h */,
+				1FE1D39E21D7156D00928FEB /* UIImage+WY_UserAvatar.m */,
 			);
 			path = UIImage;
 			sourceTree = "<group>";
@@ -374,6 +382,8 @@
 		1F282FBC20D3B9B700624C76 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				1F60B6FC21CCBE8F006717C0 /* Video */,
+				1F60B6FB21CCBE81006717C0 /* Audio */,
 				1F282FBD20D3B9B700624C76 /* SegmentedView */,
 				1F282FE020D3B9B700624C76 /* WaterfallFlow */,
 				1F282FE320D3B9B700624C76 /* WYScrollView */,
@@ -632,8 +642,24 @@
 				1F226F5420F59D5800129AB6 /* TestBoolJudgeViewController.m */,
 				1FD24D7A20FEDF23004B7D3F /* TestLoadingStateViewController.h */,
 				1FD24D7B20FEDF23004B7D3F /* TestLoadingStateViewController.m */,
+				1FE1D3A021D720CC00928FEB /* TestUserAvatarViewController.h */,
+				1FE1D3A121D720CC00928FEB /* TestUserAvatarViewController.m */,
 			);
 			path = TestController;
+			sourceTree = "<group>";
+		};
+		1F60B6FB21CCBE81006717C0 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		1F60B6FC21CCBE8F006717C0 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Video;
 			sourceTree = "<group>";
 		};
 		1F64823320F343AE001D4B0A /* DES */ = {
@@ -884,6 +910,7 @@
 				1F28304520D3B9B700624C76 /* WaterfallFlow.m in Sources */,
 				1F154C6621AD22CF00D1D830 /* UIButton+WY_EdgeInsets.m in Sources */,
 				1F725D9321B77861007F4B80 /* UITabBar+WY_Badge.m in Sources */,
+				1FE1D39F21D7156D00928FEB /* UIImage+WY_UserAvatar.m in Sources */,
 				1F154C7821AD41C100D1D830 /* WKWebView+WY_Extension.m in Sources */,
 				1F226F5520F59D5800129AB6 /* TestBoolJudgeViewController.m in Sources */,
 				1F59A64E20D8A91F0055AAB4 /* UINavigationController+WY_Extension.m in Sources */,
@@ -904,6 +931,7 @@
 				1FC5FDAD20DCE75B0092CED8 /* TestTUIButtonViewController.m in Sources */,
 				1F28305B20D3B9B700624C76 /* UIFont+WY_Extension.m in Sources */,
 				1F154C6921AD258000D1D830 /* CALayer+WY_Extension.m in Sources */,
+				1FE1D3A221D720CC00928FEB /* TestUserAvatarViewController.m in Sources */,
 				1F1D41E520F4576900FB65E2 /* NSData+Base64.m in Sources */,
 				1F28304620D3B9B700624C76 /* WYScrollerView.m in Sources */,
 				1F154C4821ACEE7E00D1D830 /* WY_BoolJudge.m in Sources */,

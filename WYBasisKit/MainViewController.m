@@ -14,6 +14,7 @@
 #import "TestTUIButtonViewController.h"
 #import "TestBoolJudgeViewController.h"
 #import "TestLoadingStateViewController.h"
+#import "TestUserAvatarViewController.h"
 
 @interface MainViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -120,13 +121,17 @@
         
         vc = [[TestLoadingStateViewController alloc]init];
     }
+    else if (indexPath.row == 7) {
+        
+        vc = [[TestUserAvatarViewController alloc]init];
+    }
     vc.navigationItem.title = [self section][indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (NSArray *)section {
     
-    NSArray *sectionTitleAry = @[@"WKWebView",@"UILable",@"UITextView",@"UITextField",@"UIButton",@"BoolJudge",@"LoadingState"];
+    NSArray *sectionTitleAry = @[@"WKWebView",@"UILable",@"UITextView",@"UITextField",@"UIButton",@"BoolJudge",@"LoadingState",@"userAvatar"];
     
     return sectionTitleAry;
 }

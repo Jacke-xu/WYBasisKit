@@ -30,6 +30,9 @@ typedef NS_ENUM(NSInteger, WYPermissionType) {
 /** 判断是否为纯汉字 */
 + (BOOL)wy_isChineseCharacters:(NSString *)string;
 
+/** 判断是否包含字母 */
++ (BOOL)wy_isContainLetters:(NSString *)string;
+
 /** 判断4-8位汉字：位数可更改 */
 + (BOOL)wy_combinationChineseCharacters:(NSString *)string;
 

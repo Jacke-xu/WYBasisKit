@@ -104,6 +104,20 @@
     return [self wy_isValidateByRegex:regex Object:string];
 }
 
+/** 判断是否包含字母 */
++ (BOOL)wy_isContainLetters:(NSString *)string {
+    
+    if (!string) {return NO;}
+    
+    NSRegularExpression *numberRegular = [NSRegularExpression regularExpressionWithPattern:@"[A-Za-z]" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSInteger count = [numberRegular numberOfMatchesInString:string options:NSMatchingReportProgress range:NSMakeRange(0, string.length)];
+    
+    //count是str中包含[A-Za-z]数字的个数，只要count>0，说明str中包含数字
+    if (count > 0) {return YES;}
+    
+    return NO;
+}
+
 /** 判断4-8位汉字：位数可更改 */
 + (BOOL)wy_combinationChineseCharacters:(NSString *)string {
     
