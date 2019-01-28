@@ -47,7 +47,7 @@ typedef NS_ENUM(NSUInteger, WY_AvatarImageType) {
 ///是否需要过滤特殊符号,如中划线、下划线等,默认YES
 @property (nonatomic, assign) BOOL filterSpecial;
 
-///要生成的托片的文字显示配置,默认显示全部
+///要生成的图片的文字显示配置,默认显示全部
 @property (nonatomic, assign) WY_AvatarImageType avatarImageType;
 
 @end
