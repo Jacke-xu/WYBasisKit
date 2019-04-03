@@ -37,6 +37,12 @@
 ///屏幕高
 #define screenHeight    ([UIScreen mainScreen].bounds.size.height-tabbarSafetyZone)
 
+///屏幕宽度比率
+#define screenWidthRatio  (screenWidth / 375.0)
+
+///屏幕高度比率
+#define screenHeightRatio  (screenHeight / 667.0)
+
 ///cell宽
 #define cellWidth       (self.bounds.size.width)
 
