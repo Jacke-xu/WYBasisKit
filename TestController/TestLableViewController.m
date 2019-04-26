@@ -21,7 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    UILabel *lab = [UILabel wy_createLabWithFrame:CGRectMake(20, 0, screenWidth-40, 0) textColor:[UIColor blackColor] font:boldFont(15)];
+    UILabel *lab = [UILabel wy_createLabWithFrame:CGRectMake(20, 0, wy_screenWidth-40, 0) textColor:[UIColor blackColor] font:wy_boldFont(15)];
     lab.text = [self testStr];
     lab.backgroundColor = [UIColor lightGrayColor];
     lab.numberOfLines = 0;
@@ -88,7 +88,7 @@
     [self.view addSubview:label2];
 
     //通过block设置要点击的字符串
-    weakSelf(self);
+    wy_weakSelf(self);
     [label2 wy_clickRichTextWithStrings:@[@"https://github.com/Jacke-xu/WYBasisKit",@"记得给star哦"] clickAction:^(NSString *string, NSRange range, NSInteger index) {
         NSString *message = [NSString stringWithFormat:@"点击了“%@”字符\nrange: %@\nindex: %ld",string,NSStringFromRange(range),(long)index];
         NSLog(@"messge = %@",message);

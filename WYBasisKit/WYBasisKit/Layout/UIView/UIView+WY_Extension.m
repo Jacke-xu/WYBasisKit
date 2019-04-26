@@ -15,8 +15,6 @@
 
 #import "UITextView+WY_Extension.h"
 
-#import "AppDelegate.h"
-
 @interface UIView ()
 
 @property (nonatomic, weak) UIView *wy_mainView;
@@ -116,8 +114,7 @@
 
 - (UIViewController *)wy_currentViewController {
     
-    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;;
-    return [self wy_getCurrentViewController:appDelegate.window.rootViewController];
+    return [self wy_getCurrentViewController:[UIApplication sharedApplication].delegate.window.rootViewController];
 }
 
 //递归查找

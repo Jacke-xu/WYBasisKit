@@ -140,7 +140,7 @@
     
     if(_tableView == nil) {
         
-        UITableView *tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight-navViewHeight) style:UITableViewStyleGrouped];
+        UITableView *tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, wy_screenWidth, wy_screenHeight-wy_navViewHeight) style:UITableViewStyleGrouped];
         tableview.delegate = self;
         tableview.dataSource = self;
         [tableview wy_forbiddenSelfSizing];

@@ -27,7 +27,7 @@
 /** 导航栏背景图片 */
 @property (nonatomic, strong) UIImage *wy_barBackgroundImage;
 
-/** 导航栏左侧返回按钮背景图片 */
+/** 导航栏左侧返回按钮背景图片(若同时显示返回图标与文本则建议调用自定义方法设置，防止iOS11以下返回图标和文本错位) */
 @property (nonatomic, strong) UIImage *wy_barReturnButtonImage;
 
 /** 导航栏左侧返回按钮背景颜色 */
@@ -42,10 +42,7 @@
 /** 设置导航栏上滑收起,下滑显示(iOS8及以后有效) */
 - (void)wy_hidesNavigationBarsOnSwipe;
 
-/** 是否显示默认的返回按钮 */
-- (void)wy_barReturnButtonHide:(BOOL)hide navigationItem:(UINavigationItem *)navigationItem;
-
-/** 导航栏左侧返回按钮文本 */
+/** 导航栏左侧返回按钮文本(若同时显示返回图标与文本则建议调用自定义方法设置，防止iOS11以下返回图标和文本错位) */
 - (void)wy_pushControllerBarReturnButtonTitle:(NSString *)barReturnButtonTitle navigationItem:(UINavigationItem *)navigationItem;
 
 /** 自定义leftBarButtonItem */

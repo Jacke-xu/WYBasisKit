@@ -79,7 +79,7 @@
     
     if (class == nil) return;
     
-    weakSelf(self);
+    wy_weakSelf(self);
     [self wy_deleteViewController:className complete:^{
         
         UIViewController *viewController = [[class alloc]init];

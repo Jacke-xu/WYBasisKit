@@ -14,80 +14,79 @@
 #define MacroDefinition_h
 
 ///NavBar高度 self.navigationController.navigationBar.frame.size.height
-#define navBarHeight     44.0f
+#define wy_navBarHeight     44.0f
 
 ///电池条高度
-#define statusBarHeight  [[UIApplication sharedApplication] statusBarFrame].size.height
+#define wy_statusBarHeight  [[UIApplication sharedApplication] statusBarFrame].size.height
 
 ///导航栏高度
-#define navViewHeight        (statusBarHeight+navBarHeight)
+#define wy_navViewHeight        (wy_statusBarHeight+wy_navBarHeight)
 
 ///tabBar高度
-#define tabBarHeight         ((isNeatBang == YES) ? (49.0f+34.0f) : 49.0f)
+#define wy_tabBarHeight         ((wy_isNeatBang == YES) ? (49.0f+34.0f) : 49.0f)
 
 ///tabBar安全区域
-#define tabbarSafetyZone         ((isNeatBang == YES) ? 34.0f : 0.0f)
+#define wy_tabbarSafetyZone         ((wy_isNeatBang == YES) ? 34.0f : 0.0f)
 
 ///导航栏安全区域
-#define navBarSafetyZone         ((isNeatBang == YES) ? 44.0f : 0.0f)
+#define wy_navBarSafetyZone         ((wy_isNeatBang == YES) ? 44.0f : 0.0f)
 
 ///屏幕宽
-#define screenWidth     ([UIScreen mainScreen].bounds.size.width)
+#define wy_screenWidth     ([UIScreen mainScreen].bounds.size.width)
 
 ///屏幕高(已减去tabbar安全区域高度)
-#define screenHeight    ([UIScreen mainScreen].bounds.size.height-tabbarSafetyZone)
+#define wy_screenHeight    ([UIScreen mainScreen].bounds.size.height-wy_tabbarSafetyZone)
 
 ///全屏高
-#define fullScreenHeight    [UIScreen mainScreen].bounds.size.height
+#define wy_fullScreenHeight    [UIScreen mainScreen].bounds.size.height
 
 ///屏幕宽度比率
-#define screenWidthRatio  (screenWidth / 375.0)
+#define wy_screenWidthRatio  (wy_screenWidth / 375.0)
 
 ///屏幕高度比率
-#define screenHeightRatio  (screenHeight / 667.0)
+#define wy_screenHeightRatio  (wy_screenHeight / 667.0)
 
 ///cell宽
-#define cellWidth       (self.bounds.size.width)
+#define wy_cellWidth       (self.bounds.size.width)
 
 ///cell高
-#define cellHeigth      (self.bounds.size.height)
+#define wy_cellHeigth      (self.bounds.size.height)
 
 ///keyWindow
-#define keywindow          [UIApplication sharedApplication].keyWindow
+#define wy_keywindow          [UIApplication sharedApplication].keyWindow
 
 //颜色方法简写
 ///颜色随机
-#define randomColor        [UIColor colorWithRed:arc4random()%256/255.0 green:arc4random()%256/255.0 blue:arc4random()%256/255.0 alpha:1.0]
+#define wy_randomColor        [UIColor colorWithRed:arc4random()%256/255.0 green:arc4random()%256/255.0 blue:arc4random()%256/255.0 alpha:1.0]
 
 ///自定义颜色
-#define hexColor(color)        [UIColor wy_hexColor:color]
+#define wy_hexColor(color)        [UIColor wy_hexColor:color]
 
 /// 获取RGBA颜色
-#define RGBA(r,g,b,a)      [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
+#define WY_RGBA(r,g,b,a)      [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
 
 /// 获取RGB颜色
-#define RGB(r,g,b)         RGBA(r,g,b,1.0f)
+#define WY_RGB(r,g,b)         WY_RGBA(r,g,b,1.0f)
 
 ///字体方法简写  自定义字体网址：http://iosfonts.com
-#define stmFont(font)                [UIFont systemFontOfSize:font]//系统
-#define pxFont(font)                 [UIFont systemFontOfSize:font/2]//px字号
-#define boldFont(font)               [UIFont boldSystemFontOfSize:font]//粗体
-#define customFont(font, fontName)   [UIFont fontWithName:fontName size:font]//自定义
+#define wy_pxFont(font)                 [UIFont systemFontOfSize:font/2]//px字号
+#define wy_boldFont(font)               [UIFont boldSystemFontOfSize:font]//粗体
+#define wy_fontName(font, fontName)     [UIFont fontWithName:fontName size:font]//自定义
 
 
 ///block self
-#define weakSelf(type)      __weak typeof(type) weak##type = type;
-#define strongSelf(type)    __strong typeof(type) type = weak##type;
+#define wy_weakSelf(type)      __weak typeof(type) weak##type = type;
+#define wy_strongSelf(type)    __strong typeof(type) type = weak##type;
 
 //G－C－D
 ///在子线程上运行的GCD
-#define GCD_SubThread(block) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
+#define WY_GCD_SubThread(block) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
 
 ///在主线程上运行的GCD
-#define GCD_MainThread(block) dispatch_async(dispatch_get_main_queue(),block)
+#define WY_GCD_MainThread(block) dispatch_async(dispatch_get_main_queue(),block)
 
 ///只运行一次的GCD
-#define GCD_OnceThread(block) static dispatch_once_t onceToken; dispatch_once(&onceToken, block);
+#define WY__GCD_OnceThread(block) static dispatch_once_t onceToken; dispatch_once(&onceToken, block);
 
 ///DEBUG打印日志
 #ifdef DEBUG
@@ -97,47 +96,47 @@
 #endif
 
 ///由角度、弧度值转换
-#define degreesToRadian(x) (M_PI * (x) / 180.0)        //角度获取弧度
-#define radianToDegrees(radian) (radian*180.0)/(M_PI)  //弧度获取角度
+#define wy_degreesToRadian(x) (M_PI * (x) / 180.0)        //角度获取弧度
+#define wy_radianToDegrees(radian) (radian*180.0)/(M_PI)  //弧度获取角度
 
 ///获取app包路径
-#define bundlePath     [[NSBundle mainBundle] bundlePath];
+#define wy_bundlePath     [[NSBundle mainBundle] bundlePath];
 
 ///获取app资源目录路径
-#define appResourcePath         [[NSBundle mainBundle] resourcePath];
+#define wy_appResourcePath         [[NSBundle mainBundle] resourcePath];
 
 ///获取app包的readme.txt文件
-#define readmePath         [[NSBundle mainBundle] pathForResource:@"readme" ofType:@"txt"];
+#define wy_readmePath         [[NSBundle mainBundle] pathForResource:@"readme" ofType:@"txt"];
 
 ///app名字
-#define AppName          [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"]
+#define wy_appName          [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"]
 
-#define appStoreName     [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"]
+#define wy_appStoreName     [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"]
 
 ///应用标识
-#define AppIdentifier    [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
+#define wy_appIdentifier    [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
 
 ///应用商店版本号
-#define AppStoreVersion   [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
+#define wy_appStoreVersion   [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
 
 ///应用构建版本号
-#define AppVersion        [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]
+#define wy_appVersion        [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]
 
 
 ///获取当前语言
-#define currentLanguage ([[NSLocale preferredLanguages] objectAtIndex:0])
+#define wy_currentLanguage ([[NSLocale preferredLanguages] objectAtIndex:0])
 
 ///判断是否是传入的iOS系统版本
-#define iOSVersion(number)                [[[UIDevice currentDevice] systemVersion] floatValue] == number
+#define WY_iOSVersion(number)                [[[UIDevice currentDevice] systemVersion] floatValue] == number
 
 ///判断是否是传入的iOS系统版本及以上
-#define iOSVersionAbove(number)                [[[UIDevice currentDevice] systemVersion] floatValue] >= number
+#define WY_iOSVersionAbove(number)                [[[UIDevice currentDevice] systemVersion] floatValue] >= number
 
 ///判断是否是传入的iOS系统版本及以下
-#define iOSVersionBelow(number)                [[[UIDevice currentDevice] systemVersion] floatValue] <= number
+#define WY_iOSVersionBelow(number)                [[[UIDevice currentDevice] systemVersion] floatValue] <= number
 
 ///判断是否在传入的iOS系统版本之间
-#define iOSVersionAmong(smallVersion,bigVersion)                (([[[UIDevice currentDevice] systemVersion] floatValue] >= smallVersion) && ([[[UIDevice currentDevice] systemVersion] floatValue] <= bigVersion))
+#define WY_iOSVersionAmong(smallVersion,bigVersion)                (([[[UIDevice currentDevice] systemVersion] floatValue] >= smallVersion) && ([[[UIDevice currentDevice] systemVersion] floatValue] <= bigVersion))
 
 
 ///判断是竖屏还是横屏
@@ -146,32 +145,32 @@
 #define UIDeviceOrientationIsLandscape(orientation) ((orientation) == UIDeviceOrientationLandscapeLeft || (orientation) == UIDeviceOrientationLandscapeRight)//横屏
 
 //http://www.xueui.cn/design/142395.html
-///判断是否 Retina屏、设备是否iphone几、是否是iPad
-#define retina      ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
+///判断是设备型号
+#define wy_isIPhoneSE     ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) && !wy_isIPad : NO)
 
-#define iPhoneSE     ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) && !isiPad : NO)
+#define wy_isIPhone8     ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) && !wy_isIPad : NO)
 
-#define iPhone8     ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) && !isiPad : NO)
+#define wy_isIPhone8Plus ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size) && !wy_isIPad : NO)
 
-#define iPhone8Plus ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size) && !isiPad : NO)
+#define wy_isIPhoneXR    ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? (CGSizeEqualToSize(CGSizeMake(828, 1792), [[UIScreen mainScreen] currentMode].size) || CGSizeEqualToSize(CGSizeMake(750, 1624), [[UIScreen mainScreen] currentMode].size)) && !wy_isIPad : NO)
 
-#define iPhoneXR    ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? (CGSizeEqualToSize(CGSizeMake(828, 1792), [[UIScreen mainScreen] currentMode].size) || CGSizeEqualToSize(CGSizeMake(750, 1624), [[UIScreen mainScreen] currentMode].size)) && !isiPad : NO)
+#define wy_isIPhoneXS    ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) && !wy_isIPad : NO)
 
-#define iPhoneXS    ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) && !isiPad : NO)
-
-#define iPhoneXSMax    ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2688), [[UIScreen mainScreen] currentMode].size) && !isiPad : NO)
+#define wy_isIPhoneXSMax    ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2688), [[UIScreen mainScreen] currentMode].size) && !wy_isIPad : NO)
 
 ///判断当前机型是使用2x还是3x图
-#define is3x      ([[UIScreen mainScreen] currentMode].size.width/[UIScreen mainScreen].bounds.size.width == 3) ? YES : NO
+#define wy_is3x      ([[UIScreen mainScreen] currentMode].size.width/[UIScreen mainScreen].bounds.size.width == 3) ? YES : NO
 
 ///是否是齐刘海机型
-#define isNeatBang      (iPhoneXS || iPhoneXSMax || iPhoneXR) ? YES : NO
+#define wy_isNeatBang      (wy_isIPhoneXS || wy_isIPhoneXSMax || wy_isIPhoneXR) ? YES : NO
 
 ///是否是ipad
-#define isiPad      ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+#define wy_isIPad      ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
 
 ///是否是iphone
-#define iPhone    ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
+#define wy_isIPhone    ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
+
+#define wy_isSimulator   (TARGET_IPHONE_SIMULATOR == 1 && TARGET_OS_IPHONE == 1) ? YES : NO
 
 
 #endif /* MacroDefinition_h */

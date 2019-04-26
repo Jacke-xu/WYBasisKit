@@ -25,7 +25,7 @@
     //全局收起键盘
     [self.navigationController.view wy_gestureHidingkeyboard];
     
-    UITextField *textField1 = [[UITextField alloc]initWithFrame:CGRectMake(20, 20, screenWidth-40, 50)];
+    UITextField *textField1 = [[UITextField alloc]initWithFrame:CGRectMake(20, 20, wy_screenWidth-40, 50)];
     textField1.placeholder = @"请输入要显示的文本";
     textField1.wy_placeholderColor = [UIColor orangeColor];
     textField1.backgroundColor = [UIColor greenColor];
@@ -99,7 +99,7 @@
     if(indexPath.section > 2) {
         
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(screenWidth-50, 12.5, 30, 30);
+        btn.frame = CGRectMake(wy_screenWidth-50, 12.5, 30, 30);
         btn.wy_nImage = [UIImage imageNamed:@"对勾-2"];
         btn.wy_sImage = [UIImage imageNamed:@"对勾"];
         if(indexPath.section == 3) {
@@ -228,7 +228,7 @@
     
     if(_tableView == nil) {
         
-        UITableView *tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 80, screenWidth, screenHeight-navViewHeight-80) style:UITableViewStyleGrouped];
+        UITableView *tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 80, wy_screenWidth, wy_screenHeight-wy_navViewHeight-80) style:UITableViewStyleGrouped];
         tableview.delegate = self;
         tableview.dataSource = self;
         [tableview wy_forbiddenSelfSizing];

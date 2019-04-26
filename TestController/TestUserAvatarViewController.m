@@ -30,8 +30,8 @@
         imageView.image = [UIImage wy_generateAvatarImageWithCharacter:nickNameAry[i] optional:nil];
         [self.view addSubview:imageView];
         
-        leftx = (imageView.wy_right+20+imageWidth > screenWidth-20) ? 20 : imageView.wy_right+20;
-        topy = (imageView.wy_right+20+imageWidth > screenWidth-20) ? imageView.wy_bottom+20 : imageView.wy_top;
+        leftx = (imageView.wy_right+20+imageWidth > wy_screenWidth-20) ? 20 : imageView.wy_right+20;
+        topy = (imageView.wy_right+20+imageWidth > wy_screenWidth-20) ? imageView.wy_bottom+20 : imageView.wy_top;
     }
 }
 
