@@ -93,14 +93,8 @@ static StateView *_stateView = nil;
     //获取单例
     _stateView = [self shared];
     
-    //初始化设置
+    //设置并加载在俯视图上
     [self initializationSettings:image info:info];
-    
-    //添加到父控制器上
-    [[UIApplication sharedApplication].keyWindow addSubview:_stateView];
-    
-    //设置用户交互
-    _stateView.superview.userInteractionEnabled = _stateView.userEnabled;
 }
 
 + (void)dismiss {
@@ -134,7 +128,7 @@ static StateView *_stateView = nil;
         _stateView.label.hidden = !(info.length > 0);
         
         //给定临时宽度
-        CGFloat tempWidth = (_stateView.label.hidden == YES) ? _stateView.imageView.wy_width+(_stateView.imageView.wy_top*2) : screenWidth*0.25;
+        CGFloat tempWidth = (_stateView.label.hidden == YES) ? _stateView.imageView.wy_width+(_stateView.imageView.wy_top*2) : wy_screenWidth*0.25;
         
         if(_stateView.label.hidden == NO) {
             
@@ -147,6 +141,12 @@ static StateView *_stateView = nil;
         _stateView.imageView.wy_left = (_stateView.wy_width-_stateView.imageView.wy_width)/2;
 
         _stateView.center = [UIApplication sharedApplication].keyWindow.center;
+        
+        //添加到父控制器上
+        [[UIApplication sharedApplication].keyWindow addSubview:_stateView];
+        
+        //设置用户交互
+        _stateView.superview.userInteractionEnabled = _stateView.userEnabled;
         
         if(_stateView.autoRemove == NO) return;
         
@@ -166,7 +166,7 @@ static StateView *_stateView = nil;
     //文本总宽度
     CGFloat textWidth = [_stateView.label.text wy_boundingRectWithSize:CGSizeMake(MAXFLOAT, _stateView.label.font.lineHeight) withFont:_stateView.label.font lineSpacing:0].width;
     //最大支持屏幕的0.45倍宽,否则就不好看了
-    CGFloat maxWidth = screenWidth*0.45;
+    CGFloat maxWidth = wy_screenWidth*0.45;
 
     //需要折行计算
     if(textWidth > labelWidth) {

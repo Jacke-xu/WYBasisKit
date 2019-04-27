@@ -14,7 +14,7 @@
 
 + (NSMutableAttributedString *)wy_attributeWithStr:(NSString *)str {
     
-    return [[NSMutableAttributedString alloc] initWithString:str];
+    return [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@",str]];
 }
 
 - (void)setWy_paragraphStyle:(NSMutableParagraphStyle *)wy_paragraphStyle {
@@ -73,7 +73,7 @@
     
     if(self.wy_paragraphStyle == nil) {self.wy_paragraphStyle = [NSMutableParagraphStyle wy_paragraphStyle];}
     [self.wy_paragraphStyle setLineSpacing:lineSpacing];
-    [self addAttribute:NSParagraphStyleAttributeName value:self.wy_paragraphStyle range:[self.string rangeOfString:string]];
+    [self addAttribute:NSParagraphStyleAttributeName value:self.wy_paragraphStyle range:[[NSString stringWithFormat:@"%@",self.string] rangeOfString:[NSString stringWithFormat:@"%@",string]]];
 }
 
 - (void)wy_setWordsSpacing:(CGFloat)wordsSpacing string:(NSString *)string {

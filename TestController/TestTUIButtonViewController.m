@@ -20,7 +20,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    UIButton *btn    = [[UIButton alloc]wy_initWithFrame:CGRectMake(20, navViewHeight+50, screenWidth-40, 100) target:self selector:@selector(btnClick:)];
+    UIButton *btn    = [[UIButton alloc]wy_initWithFrame:CGRectMake(20, wy_navViewHeight+50, wy_screenWidth-40, 100) target:self selector:@selector(btnClick:)];
     btn.backgroundColor = [UIColor orangeColor];
     btn.wy_titleFont = [UIFont boldSystemFontOfSize:25];
     btn.wy_nTitle = @"默认状态";
@@ -42,7 +42,7 @@
     
     [self.view addSubview:btn];
     
-    UIButton *btn2 = [[UIButton alloc]wy_initWithFrame:CGRectMake(20, navViewHeight+200, screenWidth-40, 120) target:self selector:@selector(btnClick:)];
+    UIButton *btn2 = [[UIButton alloc]wy_initWithFrame:CGRectMake(20, wy_navViewHeight+200, wy_screenWidth-40, 120) target:self selector:@selector(btnClick:)];
     btn2.backgroundColor = [UIColor orangeColor];
     btn2.wy_titleFont = [UIFont boldSystemFontOfSize:25];
     btn2.wy_nTitle = @"默认状态";

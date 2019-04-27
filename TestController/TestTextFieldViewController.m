@@ -22,10 +22,10 @@
     //全局收起键盘
     [self.navigationController.view wy_gestureHidingkeyboard];
     
-    UIView *superView = [UIView wy_createViewWithFrame:CGRectMake(0, 0, screenWidth, screenHeight-200) color:[UIColor redColor]];
+    UIView *superView = [UIView wy_createViewWithFrame:CGRectMake(0, 0, wy_screenWidth, wy_screenHeight-200) color:[UIColor redColor]];
     [self.view addSubview:superView];
     
-    UITextField *textField1 = [[UITextField alloc]initWithFrame:CGRectMake(20, screenHeight-60-navViewHeight, screenWidth-40, 50)];
+    UITextField *textField1 = [[UITextField alloc]initWithFrame:CGRectMake(20, wy_screenHeight-60-wy_navViewHeight, wy_screenWidth-40, 50)];
     textField1.placeholder = @"这个是加载在控制器view上的";
     textField1.wy_placeholderColor = [UIColor orangeColor];
     textField1.backgroundColor = [UIColor greenColor];
@@ -37,7 +37,7 @@
     [textField1 wy_fixMessyDisplay];
     [self.view addSubview:textField1];
     
-    UITextField *textField2 = [[UITextField alloc]initWithFrame:CGRectMake(20, superView.wy_bottom-60, screenWidth-40, 50)];
+    UITextField *textField2 = [[UITextField alloc]initWithFrame:CGRectMake(20, superView.wy_bottom-60, wy_screenWidth-40, 50)];
     textField2.placeholder = @"这个是加载在子view上的,5个字符";
     textField2.backgroundColor = [UIColor greenColor];
     [textField2 wy_automaticFollowKeyboard:self.view];

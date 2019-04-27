@@ -151,11 +151,6 @@ static NSString *const barReturnButtonDelegate = @"barReturnButtonDelegate";
     [self.navigationBar setTintColor:wy_barReturnButtonColor];
 }
 
-- (void)wy_barReturnButtonHide:(BOOL)hide navigationItem:(UINavigationItem *)navigationItem {
-    
-    navigationItem.hidesBackButton = hide;
-}
-
 - (void)wy_pushControllerBarReturnButtonTitle:(NSString *)barReturnButtonTitle navigationItem:(UINavigationItem *)navigationItem {
     
     if(navigationItem.backBarButtonItem == nil) {

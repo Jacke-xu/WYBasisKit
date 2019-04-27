@@ -173,7 +173,7 @@ static LoadingView *_loadingView = nil;
             _loadingView.wy_size = CGSizeMake(tempWidth, (_loadingView.label.hidden == YES) ? tempWidth : (_loadingView.label.wy_bottom+10));//个人觉得不要完全正方形的好看一点
         }
         
-        _loadingView.wy_left = (screenWidth-_loadingView.wy_width)/2;
+        _loadingView.wy_left = (wy_screenWidth-_loadingView.wy_width)/2;
         
         _loadingView.wy_top = ((superView.wy_height-_loadingView.wy_height)/2)-(([UIScreen mainScreen].bounds.size.height-superView.wy_height)/2);
     });

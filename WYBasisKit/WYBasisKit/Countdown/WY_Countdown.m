@@ -25,7 +25,7 @@
     
     //倒计时时长
     __block NSInteger timeout = totalTime; //倒计时时间
-    weakSelf(self)
+    wy_weakSelf(self)
     self.wy_timer = nil;
     
     if (timeout != 0) {

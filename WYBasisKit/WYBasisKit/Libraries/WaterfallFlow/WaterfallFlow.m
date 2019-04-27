@@ -7,6 +7,7 @@
 //
 
 #import "WaterfallFlow.h"
+#import <SDImageCache.h>
 #import <UIImageView+WebCache.h>
 
 @implementation WaterfallFlow
@@ -58,7 +59,7 @@
     UIImage *cacaeImage = [[SDImageCache sharedImageCache]imageFromDiskCacheForKey:imageUrl];
     if(cacaeImage == nil) {
         
-        weakSelf(self);
+        wy_weakSelf(self);
         [imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:placeholderImage options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
             
             if(progress) {
@@ -82,7 +83,7 @@
 
 + (void)completedWithImage:(UIImage *)image imageUrl:(NSURL *)imageUrl reloadView:(UIView *)reloadView completed:(void(^)(UIImage *image, NSString *imageURL))completed {
     
-    GCD_MainThread(^{
+    WY_GCD_MainThread(^{
         
         if(completed) {
             

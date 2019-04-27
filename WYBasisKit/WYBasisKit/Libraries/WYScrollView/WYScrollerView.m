@@ -61,8 +61,8 @@
     if(!_lab) {
         
         UILabel *lable = [[UILabel alloc]init];
-        lable.textColor = RGB(153, 153, 153);
-        lable.font = stmFont(12);
+        lable.textColor = WY_RGB(153, 153, 153);
+        lable.font = [UIFont systemFontOfSize:12];
         lable.textAlignment = NSTextAlignmentLeft;
         [self.contentView addSubview:lable];
         

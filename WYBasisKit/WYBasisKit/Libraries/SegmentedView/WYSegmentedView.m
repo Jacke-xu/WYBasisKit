@@ -74,13 +74,13 @@
     
     self.headerHeight = 45;
     
-    self.item_no_Color = hexColor(@"9b9b9b");
-    self.item_sl_Color = hexColor(@"000000");
+    self.item_no_Color = wy_hexColor(@"9b9b9b");
+    self.item_sl_Color = wy_hexColor(@"000000");
     
-    self.dividingStripColor = hexColor(@"fad961");
+    self.dividingStripColor = wy_hexColor(@"fad961");
     self.dividingStripHeight = 2.0;
     
-    self.control_dividingStripColor = RGB(244, 244, 244);
+    self.control_dividingStripColor = WY_RGB(244, 244, 244);
     
     self.item_no_Font = [UIFont systemFontOfSize:15];
     self.item_sl_Font = [UIFont systemFontOfSize:15];
@@ -92,7 +92,7 @@
     
     if(!self.itemWidth) {
         
-        self.itemWidth = (_titleAry.count > 5) ? screenWidth/5 : screenWidth/_titleAry.count;
+        self.itemWidth = (_titleAry.count > 5) ? wy_screenWidth/5 : wy_screenWidth/_titleAry.count;
         
         self.dividingStripWidth = _itemWidth-20;
     }
@@ -156,7 +156,7 @@
     
     if(sender.tag != _currentItem.tag) {
         
-        _vcScrollView.contentOffset = CGPointMake(screenWidth*(sender.tag-100), 0);
+        _vcScrollView.contentOffset = CGPointMake(wy_screenWidth*(sender.tag-100), 0);
     }
     //重新赋值标签属性
     [self updateItemProperty:sender];
@@ -222,7 +222,7 @@
     
     if((scrollView == _vcScrollView) && (_vcScrollView.contentOffset.x >= 0)) {
         
-        CGFloat index = scrollView.contentOffset.x / screenWidth;
+        CGFloat index = scrollView.contentOffset.x / wy_screenWidth;
         UIButton *channeItem =  (UIButton *)[_headerScrollView viewWithTag:100+index];
         //重新赋值标签属性
         [self updateItemProperty:channeItem];
@@ -237,11 +237,11 @@
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake((_itemWidth*_selectedIndex)+10, _headerHeight-_dividingStripHeight, _dividingStripWidth, _dividingStripHeight)];
         view.backgroundColor = _dividingStripColor;
         
-        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, _headerHeight-_dividingStripHeight, screenWidth, _dividingStripHeight)];
+        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, _headerHeight-_dividingStripHeight, wy_screenWidth, _dividingStripHeight)];
         lineView.backgroundColor = _control_dividingStripColor;
         
         //设置ScrollView的位置与大小
-        UIScrollView *scroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, _headerHeight)];
+        UIScrollView *scroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, wy_screenWidth, _headerHeight)];
         scroll.showsHorizontalScrollIndicator = NO;
         [scroll addSubview:lineView];
         [scroll addSubview:view];
@@ -258,13 +258,13 @@
     
     if(_vcScrollView == nil) {
         
-        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, _headerHeight, screenWidth, self.frame.size.height-_headerHeight)];
+        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, _headerHeight, wy_screenWidth, self.frame.size.height-_headerHeight)];
         scrollView.delegate = self;
         scrollView.backgroundColor = [UIColor whiteColor];
         scrollView.pagingEnabled = YES;
         scrollView.scrollEnabled = YES;
-        scrollView.contentSize = CGSizeMake(screenWidth*_titleAry.count, scrollView.frame.size.height);
-        [scrollView setContentOffset:CGPointMake(screenWidth*_selectedIndex, 0)];
+        scrollView.contentSize = CGSizeMake(wy_screenWidth*_titleAry.count, scrollView.frame.size.height);
+        [scrollView setContentOffset:CGPointMake(wy_screenWidth*_selectedIndex, 0)];
         [self addSubview:scrollView];
         
         _vcScrollView = scrollView;
@@ -273,7 +273,7 @@
             
             UIViewController *viewcontroller = _controllerAry[i];
             UIView *viewcon = viewcontroller.view;
-            viewcon.frame = CGRectMake(screenWidth*i, 0, screenWidth, scrollView.frame.size.height);
+            viewcon.frame = CGRectMake(wy_screenWidth*i, 0, wy_screenWidth, scrollView.frame.size.height);
             
             [scrollView addSubview:viewcon];
             [self.superViewController addChildViewController:viewcontroller];

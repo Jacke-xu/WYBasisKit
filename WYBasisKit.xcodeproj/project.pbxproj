@@ -46,11 +46,10 @@
 		1F28305A20D3B9B700624C76 /* UIColor+WY_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F28302120D3B9B700624C76 /* UIColor+WY_Extension.m */; };
 		1F28305B20D3B9B700624C76 /* UIFont+WY_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F28302320D3B9B700624C76 /* UIFont+WY_Extension.m */; };
 		1F28305D20D3B9B700624C76 /* RefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F28302820D3B9B700624C76 /* RefreshView.m */; };
-		1F28306420D3BAAA00624C76 /* NSMutableAttributedString+WY_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F28306120D3BAA900624C76 /* NSMutableAttributedString+WY_Extension.m */; };
-		1F28306520D3BAAA00624C76 /* NSMutableParagraphStyle+WY_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F28306220D3BAAA00624C76 /* NSMutableParagraphStyle+WY_Extension.m */; };
 		1F2F46762125660900849E2D /* StateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2F46752125660900849E2D /* StateView.m */; };
 		1F3360F420DB40D9009BD7AB /* TestTextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3360F320DB40D9009BD7AB /* TestTextViewViewController.m */; };
 		1F36153521782787001401AF /* Foundation+JSONLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F36153421782787001401AF /* Foundation+JSONLog.m */; };
+		1F37360A2274760000DEA8B0 /* NSDecimalNumber+WY_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3736092274760000DEA8B0 /* NSDecimalNumber+WY_Extension.m */; };
 		1F46231A2122BDEE00418CD3 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4623192122BDEE00418CD3 /* LoadingView.m */; };
 		1F46B00A21352D500028AAB8 /* WYFileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F46B00921352D500028AAB8 /* WYFileModel.m */; };
 		1F59A64520D8A1F40055AAB4 /* TestWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F59A64420D8A1F40055AAB4 /* TestWebViewViewController.m */; };
@@ -72,6 +71,8 @@
 		1FFBD92220BA874800305331 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FFBD92120BA874800305331 /* Assets.xcassets */; };
 		1FFBD92520BA874800305331 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FFBD92320BA874800305331 /* LaunchScreen.storyboard */; };
 		1FFBD92820BA874800305331 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFBD92720BA874800305331 /* main.m */; };
+		F23DE2152272CF9B0065F38C /* NSMutableParagraphStyle+WY_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F23DE2132272CF9A0065F38C /* NSMutableParagraphStyle+WY_Extension.m */; };
+		F23DE2182272CFA80065F38C /* NSMutableAttributedString+WY_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F23DE2162272CFA80065F38C /* NSMutableAttributedString+WY_Extension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -156,16 +157,14 @@
 		1F28302320D3B9B700624C76 /* UIFont+WY_Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+WY_Extension.m"; sourceTree = "<group>"; };
 		1F28302720D3B9B700624C76 /* RefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshView.h; sourceTree = "<group>"; };
 		1F28302820D3B9B700624C76 /* RefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshView.m; sourceTree = "<group>"; };
-		1F28306020D3BAA900624C76 /* NSMutableParagraphStyle+WY_Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableParagraphStyle+WY_Extension.h"; sourceTree = "<group>"; };
-		1F28306120D3BAA900624C76 /* NSMutableAttributedString+WY_Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+WY_Extension.m"; sourceTree = "<group>"; };
-		1F28306220D3BAAA00624C76 /* NSMutableParagraphStyle+WY_Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableParagraphStyle+WY_Extension.m"; sourceTree = "<group>"; };
-		1F28306320D3BAAA00624C76 /* NSMutableAttributedString+WY_Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+WY_Extension.h"; sourceTree = "<group>"; };
 		1F2D9C9D212FA1810025A48E /* Singleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
 		1F2F46742125660800849E2D /* StateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StateView.h; sourceTree = "<group>"; };
 		1F2F46752125660900849E2D /* StateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StateView.m; sourceTree = "<group>"; };
 		1F3360F220DB40D9009BD7AB /* TestTextViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestTextViewViewController.h; sourceTree = "<group>"; };
 		1F3360F320DB40D9009BD7AB /* TestTextViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestTextViewViewController.m; sourceTree = "<group>"; };
 		1F36153421782787001401AF /* Foundation+JSONLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Foundation+JSONLog.m"; sourceTree = "<group>"; };
+		1F3736082274760000DEA8B0 /* NSDecimalNumber+WY_Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDecimalNumber+WY_Extension.h"; sourceTree = "<group>"; };
+		1F3736092274760000DEA8B0 /* NSDecimalNumber+WY_Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDecimalNumber+WY_Extension.m"; sourceTree = "<group>"; };
 		1F4623182122BDEE00418CD3 /* LoadingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
 		1F4623192122BDEE00418CD3 /* LoadingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
 		1F46B00821352D500028AAB8 /* WYFileModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYFileModel.h; sourceTree = "<group>"; };
@@ -206,6 +205,10 @@
 		1FFBD92620BA874800305331 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FFBD92720BA874800305331 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		68A8E59B41F877FEF5AA9E31 /* Pods-WYBasisKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYBasisKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-WYBasisKit/Pods-WYBasisKit.release.xcconfig"; sourceTree = "<group>"; };
+		F23DE2132272CF9A0065F38C /* NSMutableParagraphStyle+WY_Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableParagraphStyle+WY_Extension.m"; sourceTree = "<group>"; };
+		F23DE2142272CF9A0065F38C /* NSMutableParagraphStyle+WY_Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableParagraphStyle+WY_Extension.h"; sourceTree = "<group>"; };
+		F23DE2162272CFA80065F38C /* NSMutableAttributedString+WY_Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+WY_Extension.m"; sourceTree = "<group>"; };
+		F23DE2172272CFA80065F38C /* NSMutableAttributedString+WY_Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+WY_Extension.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -308,8 +311,8 @@
 		1F226F4C20F59A9A00129AB6 /* NSMutableAttributedString */ = {
 			isa = PBXGroup;
 			children = (
-				1F28306320D3BAAA00624C76 /* NSMutableAttributedString+WY_Extension.h */,
-				1F28306120D3BAA900624C76 /* NSMutableAttributedString+WY_Extension.m */,
+				F23DE2172272CFA80065F38C /* NSMutableAttributedString+WY_Extension.h */,
+				F23DE2162272CFA80065F38C /* NSMutableAttributedString+WY_Extension.m */,
 			);
 			path = NSMutableAttributedString;
 			sourceTree = "<group>";
@@ -317,8 +320,8 @@
 		1F226F4D20F59AA600129AB6 /* NSMutableParagraphStyle */ = {
 			isa = PBXGroup;
 			children = (
-				1F28306020D3BAA900624C76 /* NSMutableParagraphStyle+WY_Extension.h */,
-				1F28306220D3BAAA00624C76 /* NSMutableParagraphStyle+WY_Extension.m */,
+				F23DE2142272CF9A0065F38C /* NSMutableParagraphStyle+WY_Extension.h */,
+				F23DE2132272CF9A0065F38C /* NSMutableParagraphStyle+WY_Extension.m */,
 			);
 			path = NSMutableParagraphStyle;
 			sourceTree = "<group>";
@@ -546,6 +549,7 @@
 		1F28301720D3B9B700624C76 /* Practical */ = {
 			isa = PBXGroup;
 			children = (
+				1F373607227475AE00DEA8B0 /* NSDecimalNumber */,
 				1F11744F2123BCC8009BB0A4 /* NSObject */,
 				1F226F4B20F5993600129AB6 /* UIImage */,
 				1F226F4A20F5992B00129AB6 /* UIFont */,
@@ -596,6 +600,15 @@
 			children = (
 			);
 			path = HTTPSFiles;
+			sourceTree = "<group>";
+		};
+		1F373607227475AE00DEA8B0 /* NSDecimalNumber */ = {
+			isa = PBXGroup;
+			children = (
+				1F3736082274760000DEA8B0 /* NSDecimalNumber+WY_Extension.h */,
+				1F3736092274760000DEA8B0 /* NSDecimalNumber+WY_Extension.m */,
+			);
+			path = NSDecimalNumber;
 			sourceTree = "<group>";
 		};
 		1F3BB8BD215B5C3600358449 /* UITableView */ = {
@@ -906,6 +919,7 @@
 				1F46231A2122BDEE00418CD3 /* LoadingView.m in Sources */,
 				1F154C7221AD338700D1D830 /* UILabel+WY_RichText.m in Sources */,
 				1F154C7521AD3FB500D1D830 /* UITextField+WY_Extension.m in Sources */,
+				1F37360A2274760000DEA8B0 /* NSDecimalNumber+WY_Extension.m in Sources */,
 				1F59A65120D8E5B80055AAB4 /* UIViewController+WY_Extension.m in Sources */,
 				1F28304520D3B9B700624C76 /* WaterfallFlow.m in Sources */,
 				1F154C6621AD22CF00D1D830 /* UIButton+WY_EdgeInsets.m in Sources */,
@@ -925,6 +939,7 @@
 				1F28305A20D3B9B700624C76 /* UIColor+WY_Extension.m in Sources */,
 				1F46B00A21352D500028AAB8 /* WYFileModel.m in Sources */,
 				1F1E415220DCA6E900C61107 /* TestTextFieldViewController.m in Sources */,
+				F23DE2152272CF9B0065F38C /* NSMutableParagraphStyle+WY_Extension.m in Sources */,
 				1F154C6321AD196800D1D830 /* UIButton+WY_Extension.m in Sources */,
 				1F0A182F20E216B000532AA3 /* WYNetworking.m in Sources */,
 				1F36153521782787001401AF /* Foundation+JSONLog.m in Sources */,
@@ -936,10 +951,8 @@
 				1F28304620D3B9B700624C76 /* WYScrollerView.m in Sources */,
 				1F154C4821ACEE7E00D1D830 /* WY_BoolJudge.m in Sources */,
 				1FD24D7C20FEDF23004B7D3F /* TestLoadingStateViewController.m in Sources */,
-				1F28306520D3BAAA00624C76 /* NSMutableParagraphStyle+WY_Extension.m in Sources */,
 				1F28305420D3B9B700624C76 /* LocalStorage.m in Sources */,
 				1F0A182920E1D24500532AA3 /* NetworkMonitoring.m in Sources */,
-				1F28306420D3BAAA00624C76 /* NSMutableAttributedString+WY_Extension.m in Sources */,
 				1F2F46762125660900849E2D /* StateView.m in Sources */,
 				1F154C5721ACF37C00D1D830 /* NSString+WY_DES.m in Sources */,
 				1F59A64520D8A1F40055AAB4 /* TestWebViewViewController.m in Sources */,
@@ -955,6 +968,7 @@
 				1F60C4C121AE2C5600288A9E /* NSObject+WY_Parse.m in Sources */,
 				1F154C4521ACEE3700D1D830 /* WY_AppleSystemService.m in Sources */,
 				1F154C5421ACF32E00D1D830 /* NSString+WY_AES256.m in Sources */,
+				F23DE2182272CFA80065F38C /* NSMutableAttributedString+WY_Extension.m in Sources */,
 				1F3360F420DB40D9009BD7AB /* TestTextViewViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

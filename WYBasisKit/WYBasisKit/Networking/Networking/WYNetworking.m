@@ -511,11 +511,11 @@ static AFHTTPSessionManager *_manager = nil;
          *
          *  AFPropertyListRequestSerializer：是plist编码格式的。
          */
-        _manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        _manager.requestSerializer = [AFJSONRequestSerializer serializer];
         [_manager.requestSerializer setValue:@"application/x-www-form-urlencoded; charset=utf-8"forHTTPHeaderField:@"Content-Type"];
         _manager.requestSerializer.timeoutInterval = (weakSelf.timeoutInterval ? weakSelf.timeoutInterval : 10);
         
-        _manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        _manager.responseSerializer = [AFJSONResponseSerializer serializer];
         _manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/plain",@"text/html",@"text/css", nil];
         
         //关闭缓存，避免干扰调试
