@@ -41,6 +41,8 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @param strings  需要添加的字符串数组
  *  @param clickAction 点击事件回调
+ *
+ *  如果设置了富文本，建议把字号通过富文本重新设置下，否则会出现点击区域不准确的可能性
  */
 - (void)wy_clickRichTextWithStrings:(NSArray <NSString *> *)strings
                      clickAction:(void (^) (NSString *string, NSRange range, NSInteger index))clickAction;
@@ -50,6 +52,8 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @param strings  需要添加的字符串数组
  *  @param delegate 富文本代理
+ *
+ *  如果设置了富文本，建议把字号通过富文本重新设置下，否则会出现点击区域不准确的可能性
  */
 - (void)wy_clickRichTextWithStrings:(NSArray <NSString *> *)strings
                         delegate:(id <WY_RichTextDelegate> )delegate;

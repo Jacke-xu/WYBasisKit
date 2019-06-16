@@ -216,9 +216,9 @@
     CFArrayRef lines = CTFrameGetLines(frame);
     
     if (!lines) {
-        CFRelease(frame);
-        CFRelease(framesetter);
-        CGPathRelease(Path);
+        if(frame){CFRelease(frame);}
+        if(framesetter){CFRelease(framesetter);}
+        if(Path){CGPathRelease(Path);}
         return NO;
     }
     
@@ -284,17 +284,17 @@
                     if (resultBlock) {
                         resultBlock (model.wy_str , model.wy_range , (NSInteger)j);
                     }
-                    CFRelease(frame);
-                    CFRelease(framesetter);
-                    CGPathRelease(Path);
+                    if(frame){CFRelease(frame);}
+                    if(framesetter){CFRelease(framesetter);}
+                    if(Path){CGPathRelease(Path);}
                     return YES;
                 }
             }
         }
     }
-    CFRelease(frame);
-    CFRelease(framesetter);
-    CGPathRelease(Path);
+    if(frame){CFRelease(frame);}
+    if(framesetter){CFRelease(framesetter);}
+    if(Path){CGPathRelease(Path);}
     return NO;
 }
 
