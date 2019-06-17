@@ -31,6 +31,19 @@
     return [self valueForKeyPath:@"_placeholderLabel.textColor"];
 }
 
+- (void)setWy_clearButtonImage:(UIImage *)wy_clearButtonImage {
+    
+    objc_setAssociatedObject(self, @selector(wy_clearButtonImage), wy_clearButtonImage, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    
+    UIButton *clearButton = [self valueForKey:@"_clearButton"];
+    [clearButton setImage:self.wy_clearButtonImage forState:UIControlStateNormal];
+}
+
+- (UIImage *)wy_clearButtonImage {
+    
+    return objc_getAssociatedObject(self, @selector(wy_clearButtonImage));
+}
+
 - (void)setWy_addNoti:(BOOL)wy_addNoti {
     
     objc_setAssociatedObject(self, @selector(wy_addNoti), [NSNumber numberWithBool:wy_addNoti], OBJC_ASSOCIATION_ASSIGN);

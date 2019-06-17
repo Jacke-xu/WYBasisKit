@@ -216,9 +216,9 @@
     CFArrayRef lines = CTFrameGetLines(frame);
     
     if (!lines) {
-        CFRelease(frame);
-        CFRelease(framesetter);
-        CGPathRelease(Path);
+        if(frame) {CFRelease(frame);}
+        if(framesetter) {CFRelease(framesetter);}
+        if(Path) {CGPathRelease(Path);}
         return NO;
     }
     
