@@ -12,6 +12,9 @@
 
 + (UIColor *)wy_hexColor:(NSString *)hexColor {
     
+    if ([hexColor hasPrefix:@"0X"] ||[hexColor hasPrefix:@"0x"]) hexColor = [hexColor substringFromIndex:2];
+    if ([hexColor hasPrefix:@"#"]) hexColor = [hexColor substringFromIndex:1];
+    
     unsigned int red, green, blue;
     
     NSRange range;

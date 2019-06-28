@@ -1,0 +1,53 @@
+//
+//  TestPagingViewController.m
+//  WYBasisKit
+//
+//  Created by jacke-xu on 2019/6/7.
+//  Copyright © 2019 jacke-xu. All rights reserved.
+//
+
+#import "TestPagingViewController.h"
+#import "WY_PagingView.h"
+
+@interface TestPagingViewController ()
+
+@end
+
+@implementation TestPagingViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    
+    WY_PagingView *pagingView = [[WY_PagingView alloc]wy_initWithFrame:CGRectMake(0, 0, wy_screenWidth, wy_screenHeight-wy_navViewHeight) superViewController:self];
+//    pagingView.bar_Height = 80;
+//    pagingView.bar_Width = 120;
+//    pagingView.barButton_dividingSpace = 10;
+    NSMutableArray *vcs = [NSMutableArray arrayWithCapacity:0];
+    NSArray *titleAry = @[@"喜欢斗地主",@"弄啥呢",@"你瞅啥",@"瞅你咋的",@"再瞅个试试",@"试试就试试",@"逗比",@"青年",@"欢乐多"];
+    NSMutableArray *deImages = [NSMutableArray arrayWithCapacity:0];
+    NSMutableArray *slImages = [NSMutableArray arrayWithCapacity:0];
+    for (int i=0; i<titleAry.count; i++) {
+        
+        UIViewController *vc = [[UIViewController alloc]init];
+        vc.view.backgroundColor = wy_randomColor;
+        [vcs addObject:vc];
+        [deImages addObject:@"shengxian-shuiguo"];
+        [slImages addObject:@"shuiguopingguo"];
+    }
+    //[pagingView wy_layoutPagingControllerAry:[vcs copy] titleAry:[titleAry copy] defaultImageAry:[deImages copy] selectedImageAry:[slImages copy]];
+    [pagingView wy_layoutPagingControllerAry:[vcs copy] titleAry:[titleAry copy]];
+    [self.view addSubview:pagingView];
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

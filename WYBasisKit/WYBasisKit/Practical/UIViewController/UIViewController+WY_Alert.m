@@ -1,0 +1,278 @@
+//
+//  UIViewController+WY_Alert.m
+//  WYBasisKit
+//
+//  Created by bangtuike on 2019/6/27.
+//  Copyright © 2019 jacke-xu. All rights reserved.
+//
+
+#import "UIViewController+WY_Alert.h"
+#import "UIAlertController+WY_Extension.h"
+#import <objc/runtime.h>
+
+@interface UIViewController ()
+
+@property (nonatomic, strong) NSArray *cancelTitleAry;
+
+@end
+
+@implementation UIViewController (WY_Alert)
+
+- (void)wy_showAlertControllerWithMessage:(NSString *_Nullable)alertMessage {
+    
+    [self wy_showAlertControllerWithAlertTitle:nil alertMessage:alertMessage actionTitles:nil handler:nil];
+}
+
+- (void)wy_showAlertControllerWithMessage:(NSString *_Nullable)alertMessage
+                             actionTitles:(NSArray<NSString *> * _Nullable)actionTitles handler:(void (^ _Nullable)(UIAlertAction * _Nonnull, NSInteger))handler {
+    
+    [self wy_showAlertControllerWithAlertTitle:nil alertMessage:alertMessage actionTitles:actionTitles handler:handler];
+}
+
+- (void)wy_showAlertControllerWithAlertTitle:(NSString *_Nullable)alertTitle
+                                alertMessage:(NSString *_Nullable)alertMessage {
+    
+    [self wy_showAlertControllerWithAlertTitle:alertTitle alertMessage:alertMessage actionTitles:nil handler:nil];
+}
+
+- (void)wy_showAlertControllerWithAlertTitle:(NSString *_Nullable)alertTitle
+                                alertMessage:(NSString *_Nullable)alertMessage
+                                actionTitles:(NSArray<NSString *> * _Nullable)actionTitles handler:(void (^ _Nullable)(UIAlertAction * _Nonnull, NSInteger))handler {
+    
+    [self setValue:[NSString wy_emptyStr:alertTitle] forKey:NSStringFromSelector(@selector(wy_alertTitle))];
+    [self setValue:[NSString wy_emptyStr:alertMessage] forKey:NSStringFromSelector(@selector(wy_alertMessage))];
+    [self setValue:actionTitles forKey:NSStringFromSelector(@selector(wy_actionTitles))];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[NSString wy_emptyStr:alertTitle] message:[NSString wy_emptyStr:alertMessage] preferredStyle:(self.wy_preferredStyle == WY_PreferredStyleAlert) ? UIAlertControllerStyleAlert : UIAlertControllerStyleActionSheet];
+    
+    [self wy_modifyAlertControllerStyle:alertController];
+    for (NSString *actionTitle in actionTitles) {
+
+        UIAlertActionStyle alertActionStyle = UIAlertActionStyleDefault;
+        if((self.wy_preferredStyle == WY_PreferredStyleActionSheet) && ([actionTitles indexOfObject:actionTitle] == 0) && ([self.cancelTitleAry containsObject:actionTitle] == YES) && (self.wy_clickBlankClose == YES)) {
+            
+            alertActionStyle = UIAlertActionStyleCancel;
+        }
+        UIAlertAction *alertAction = [UIAlertAction actionWithTitle:[NSString wy_emptyStr:actionTitle] style:alertActionStyle handler:^(UIAlertAction * _Nonnull action) {
+
+            if(handler) {
+
+                handler(action,[actionTitles indexOfObject:action.title]);
+            }
+        }];
+        [self wy_modifyAlertControllerActionTitleStyle:alertController alertAction:alertAction];
+        [alertController addAction:alertAction];
+    }
+    [self presentViewController:alertController animated:YES completion:^{
+        
+        if((self.wy_clickBlankClose == YES) && (self.wy_preferredStyle == WY_PreferredStyleAlert)) {
+            
+            [alertController wy_clickBlankCloseAlert];
+        }
+    }];
+}
+
+- (void)wy_modifyAlertControllerStyle:(UIAlertController *)alertController {
+    
+    if([NSString wy_emptyStr:alertController.title].length > 0) {
+        
+        if((self.wy_alertTitleColor != nil) ||
+           (self.wy_alertTitleFont != nil)) {
+            
+            NSMutableAttributedString *titleAttributed = [[NSMutableAttributedString alloc] initWithString:alertController.title];
+            NSRange titleRange = [alertController.title rangeOfString:alertController.title];
+            if(self.wy_alertTitleColor != nil) {
+                
+                [titleAttributed addAttribute:NSForegroundColorAttributeName value:self.wy_alertTitleColor range:titleRange];
+            }
+            
+            if(self.wy_alertTitleFont != nil) {
+                
+                [titleAttributed addAttribute:NSFontAttributeName value:self.wy_alertTitleFont range:titleRange];
+            }
+            [alertController setValue:titleAttributed forKey:@"attributedTitle"];
+        }
+    }
+    
+    if([NSString wy_emptyStr:alertController.message].length > 0) {
+        
+        if((self.wy_alertMessageColor != nil) ||
+           (self.wy_alertMessageFont != nil)) {
+            
+            NSMutableAttributedString *messageAttributed = [[NSMutableAttributedString alloc] initWithString:alertController.message];
+            NSRange messageRange = [alertController.message rangeOfString:alertController.message];
+            if(self.wy_alertMessageColor != nil) {
+                
+                [messageAttributed addAttribute:NSForegroundColorAttributeName value:self.wy_alertMessageColor range:messageRange];
+            }
+            
+            if(self.wy_alertMessageFont != nil) {
+                
+                [messageAttributed addAttribute:NSFontAttributeName value:self.wy_alertMessageFont range:messageRange];
+            }
+            [alertController setValue:messageAttributed forKey:@"attributedMessage"];
+        }
+    }
+}
+
+- (void)wy_modifyAlertControllerActionTitleStyle:(UIAlertController *)alertController alertAction:(UIAlertAction *)alertAction {
+    
+    if(WY_iOSVersionAbove(8.4)) {
+        
+        NSInteger actionIndex = [self.wy_actionTitles indexOfObject:alertAction.title];
+        UIColor *actionColor = nil;
+        if((self.wy_cancelActionColor != nil) && ([self.cancelTitleAry containsObject:alertAction.title] == YES) && (actionIndex == 0)) {
+            
+            actionColor = self.wy_cancelActionColor;
+        }else {
+            
+            if(self.wy_otherActionColor != nil) {
+                
+                actionColor = self.wy_otherActionColor;
+            }else {
+                actionColor = self.wy_actionTitleColors[actionIndex];
+            }
+        }
+        if((actionColor != nil) && ([actionColor isKindOfClass:[UIColor class]])) {
+            
+            [alertAction setValue:actionColor forKey:@"titleTextColor"];
+        }
+    }
+}
+
+- (void)setWy_preferredStyle:(WY_PreferredStyle)wy_preferredStyle {
+    
+    objc_setAssociatedObject(self, @selector(wy_preferredStyle), @(wy_preferredStyle), OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (WY_PreferredStyle)wy_preferredStyle {
+    
+    return [objc_getAssociatedObject(self, _cmd) integerValue];
+}
+
+- (void)setWy_clickBlankClose:(BOOL)wy_clickBlankClose {
+    
+    objc_setAssociatedObject(self, @selector(wy_clickBlankClose), @(wy_clickBlankClose), OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (BOOL)wy_clickBlankClose {
+    
+    return [objc_getAssociatedObject(self, _cmd) boolValue];
+}
+
+- (void)setWy_alertTitleColor:(UIColor *)wy_alertTitleColor {
+    
+    objc_setAssociatedObject(self, @selector(wy_alertTitleColor), wy_alertTitleColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UIColor *)wy_alertTitleColor {
+    
+    return objc_getAssociatedObject(self, _cmd);
+}
+
+- (void)setWy_alertMessageColor:(UIColor *)wy_alertMessageColor {
+    
+    objc_setAssociatedObject(self, @selector(wy_alertMessageColor), wy_alertMessageColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UIColor *)wy_alertMessageColor {
+    
+    return objc_getAssociatedObject(self, _cmd);
+}
+
+- (void)setWy_actionTitleColors:(NSArray<UIColor *> *)wy_actionTitleColors {
+    
+    objc_setAssociatedObject(self, @selector(wy_actionTitleColors), wy_actionTitleColors, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (NSArray<UIColor *> *)wy_actionTitleColors {
+    
+    return objc_getAssociatedObject(self, _cmd);
+}
+
+- (void)setWy_alertTitleFont:(UIFont *)wy_alertTitleFont {
+    
+    objc_setAssociatedObject(self, @selector(wy_alertTitleFont), wy_alertTitleFont, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UIFont *)wy_alertTitleFont {
+    
+    return objc_getAssociatedObject(self, _cmd);
+}
+
+- (void)setWy_alertMessageFont:(UIFont *)wy_alertMessageFont {
+    
+    objc_setAssociatedObject(self, @selector(wy_alertMessageFont), wy_alertMessageFont, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UIFont *)wy_alertMessageFont {
+    
+    return objc_getAssociatedObject(self, _cmd);
+}
+
+- (void)setWy_alertTitle:(NSString * _Nonnull)wy_alertTitle {
+    
+    objc_setAssociatedObject(self, @selector(wy_alertTitle), wy_alertTitle, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+- (NSString *)wy_alertTitle {
+    
+    return objc_getAssociatedObject(self, _cmd);
+}
+
+- (void)setWy_alertMessage:(NSString * _Nonnull)wy_alertMessage {
+    
+    objc_setAssociatedObject(self, @selector(wy_alertMessage), wy_alertMessage, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+- (NSString *)wy_alertMessage {
+    
+    return objc_getAssociatedObject(self, _cmd);
+}
+
+- (void)setWy_actionTitles:(NSArray<NSString *> * _Nonnull)wy_actionTitles {
+    
+    objc_setAssociatedObject(self, @selector(wy_actionTitles), wy_actionTitles, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (NSArray<NSString *> *)wy_actionTitles {
+    
+    return objc_getAssociatedObject(self, _cmd);
+}
+
+- (void)setCancelTitleAry:(NSArray *)cancelTitleAry {
+    
+    objc_setAssociatedObject(self, @selector(cancelTitleAry), cancelTitleAry, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (NSArray *)cancelTitleAry {
+    
+    NSArray *cancelStrs = objc_getAssociatedObject(self, _cmd);
+    if((cancelStrs.count <= 0) || (cancelStrs == nil)) {
+        
+        cancelStrs = @[@"取消",@"知道了",@"朕知道了"];
+    }
+    return cancelStrs;
+}
+
+- (void)setWy_cancelActionColor:(UIColor *)wy_cancelActionColor {
+    
+    objc_setAssociatedObject(self, @selector(wy_cancelActionColor), wy_cancelActionColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UIColor *)wy_cancelActionColor {
+    
+    return objc_getAssociatedObject(self, _cmd);
+}
+
+- (void)setWy_otherActionColor:(UIColor *)wy_otherActionColor {
+    
+    objc_setAssociatedObject(self, @selector(wy_otherActionColor), wy_otherActionColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UIColor *)wy_otherActionColor {
+    
+    return objc_getAssociatedObject(self, _cmd);
+}
+
+@end

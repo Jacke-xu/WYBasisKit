@@ -14,14 +14,16 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
-  - MJRefresh (3.1.16)
+  - Masonry (1.1.0)
+  - MJRefresh (3.2.0)
   - PureCamera (1.5)
-  - SDWebImage (5.0.2):
-    - SDWebImage/Core (= 5.0.2)
-  - SDWebImage/Core (5.0.2)
+  - SDWebImage (5.0.6):
+    - SDWebImage/Core (= 5.0.6)
+  - SDWebImage/Core (5.0.6)
 
 DEPENDENCIES:
   - AFNetworking
+  - Masonry
   - MJRefresh
   - PureCamera
   - SDWebImage
@@ -29,16 +31,18 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
+    - Masonry
     - MJRefresh
     - PureCamera
     - SDWebImage
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  MJRefresh: 7798e16e53a5ef7f332dd05b27664db4e29530fd
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
   PureCamera: 227000fb12f8900534cea7ecf168497249910683
-  SDWebImage: 6764b5fa0f73c203728052955dbefa2bf1f33282
+  SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
 
-PODFILE CHECKSUM: 6e492093fefed90158388bb3bf69d52e9a522dd1
+PODFILE CHECKSUM: 86e8a73a47d010f03695e404fa915e5062f619ff
 
 COCOAPODS: 1.5.3
