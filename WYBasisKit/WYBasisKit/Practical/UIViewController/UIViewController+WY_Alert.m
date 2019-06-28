@@ -55,6 +55,8 @@
         }
         UIAlertAction *alertAction = [UIAlertAction actionWithTitle:[NSString wy_emptyStr:actionTitle] style:alertActionStyle handler:^(UIAlertAction * _Nonnull action) {
 
+            // 弹窗关闭时将wy_preferredStyle恢复成m默认
+            self.wy_preferredStyle = WY_PreferredStyleAlert;
             if(handler) {
 
                 handler(action,[actionTitles indexOfObject:action.title]);

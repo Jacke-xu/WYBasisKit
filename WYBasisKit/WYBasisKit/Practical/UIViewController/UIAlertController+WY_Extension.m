@@ -7,6 +7,7 @@
 //
 
 #import "UIAlertController+WY_Extension.h"
+#import "UIViewController+WY_Alert.h"
 
 @interface UIAlertController ()<UIGestureRecognizerDelegate>
 
@@ -31,6 +32,7 @@
 
 - (void)wy_closeAlert {
     
+    self.wy_preferredStyle = WY_PreferredStyleAlert;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

@@ -19,14 +19,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    CGFloat btnWidth = (wy_screenWidth-48)/2;
+    CGFloat btnWidth = (wy_screenWidth-64)/3;
     CGFloat leftx = 16;
     CGFloat topy = 100;
-    for (int i=0; i<2; i++) {
+    for (int i=0; i<3; i++) {
         
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(leftx, topy, btnWidth, 50);
-        btn.wy_nTitle = @[@"alert",@"actionSheet"][i];
+        btn.wy_nTitle = @[@"alert",@"actionSheet",@"弹窗模式"][i];
         btn.backgroundColor = [UIColor orangeColor];
         btn.wy_title_nColor = [UIColor whiteColor];
         btn.tag = i;
@@ -38,7 +38,9 @@
 
 - (void)showAlert:(UIButton *)sender {
     
-    self.wy_preferredStyle = sender.tag;
+    if(sender.tag < 2) {
+        self.wy_preferredStyle = sender.tag;
+    }
     self.wy_clickBlankClose = YES;
     self.wy_alertTitleColor = [UIColor orangeColor];
     self.wy_alertTitleFont = [UIFont boldSystemFontOfSize:30];
