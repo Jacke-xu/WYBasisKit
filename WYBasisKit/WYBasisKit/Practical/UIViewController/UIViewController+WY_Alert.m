@@ -160,6 +160,7 @@
     self.wy_alertTitle = @"";
     self.wy_alertMessage = @"";
     self.wy_actionTitles = @[];
+    self.cancelTitleAry = @[@"取消",@"知道了",@"朕知道了"];
 }
 
 - (void)setWy_preferredStyle:(WY_PreferredStyle)wy_preferredStyle {
@@ -269,12 +270,7 @@
 
 - (NSArray *)cancelTitleAry {
     
-    NSArray *cancelStrs = objc_getAssociatedObject(self, _cmd);
-    if((cancelStrs.count <= 0) || (cancelStrs == nil)) {
-        
-        cancelStrs = @[@"取消",@"知道了",@"朕知道了"];
-    }
-    return cancelStrs;
+    return objc_getAssociatedObject(self, _cmd);
 }
 
 - (void)setWy_cancelActionColor:(UIColor *)wy_cancelActionColor {
