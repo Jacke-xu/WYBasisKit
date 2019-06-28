@@ -27,25 +27,25 @@ typedef NS_ENUM(NSInteger, WY_PreferredStyle) {
 @property (nonatomic, assign) BOOL wy_clickBlankClose;
 
 /// 设置AlertController标题颜色
-@property (nonatomic, strong) UIColor *wy_alertTitleColor;
+@property (nonatomic, strong, nullable) UIColor *wy_alertTitleColor;
 
 /// 设置AlertController消息颜色
-@property (nonatomic, strong) UIColor *wy_alertMessageColor;
+@property (nonatomic, strong, nullable) UIColor *wy_alertMessageColor;
 
 /// 设置AlertController事件按钮颜色
-@property (nonatomic, strong) NSArray <UIColor *>*wy_actionTitleColors;
+@property (nonatomic, strong, nullable) NSArray <UIColor *>*wy_actionTitleColors;
 
 /// 取消按钮颜色 优先级比wy_actionTitleColors高
-@property (nonatomic, strong) UIColor *wy_cancelActionColor;
+@property (nonatomic, strong, nullable) UIColor *wy_cancelActionColor;
 
 /// 其他按钮颜色 优先级比wy_actionTitleColors高
-@property (nonatomic, strong) UIColor *wy_otherActionColor;
+@property (nonatomic, strong, nullable) UIColor *wy_otherActionColor;
 
 /// 设置AlertController标题字号
-@property (nonatomic, strong) UIFont *wy_alertTitleFont;
+@property (nonatomic, strong, nullable) UIFont *wy_alertTitleFont;
 
 /// 设置AlertController消息字号
-@property (nonatomic, strong) UIFont *wy_alertMessageFont;
+@property (nonatomic, strong, nullable) UIFont *wy_alertMessageFont;
 
 /// 获取AlertController标题
 @property (nonatomic, copy, readonly) NSString *wy_alertTitle;

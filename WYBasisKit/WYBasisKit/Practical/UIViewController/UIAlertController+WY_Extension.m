@@ -8,14 +8,17 @@
 
 #import "UIAlertController+WY_Extension.h"
 #import "UIViewController+WY_Alert.h"
+#import <objc/runtime.h>
 
 @interface UIAlertController ()<UIGestureRecognizerDelegate>
+
+@property (nonatomic, copy) void(^wy_clickBlock)(void);
 
 @end
 
 @implementation UIAlertController (WY_Extension)
 
-- (void)wy_clickBlankCloseAlert {
+- (void)wy_clickBlankCloseAlert:(void (^)(void))completion {
     
     NSArray *arrayViews = [UIApplication sharedApplication].keyWindow.subviews;
     
@@ -27,12 +30,17 @@
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(wy_closeAlert)];
         tap.delegate = self;
         [backView addGestureRecognizer:tap];
+        
+        self.wy_clickBlock = completion;
     }
 }
 
 - (void)wy_closeAlert {
     
-    self.wy_preferredStyle = WY_PreferredStyleAlert;
+    if(self.wy_clickBlock) {
+        
+        self.wy_clickBlock();
+    }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -48,6 +56,16 @@
         return NO;
     }
     return YES;
+}
+
+- (void)setWy_clickBlock:(void (^)(void))wy_clickBlock {
+    
+    objc_setAssociatedObject(self, @selector(wy_clickBlock), wy_clickBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+- (void (^)(void))wy_clickBlock {
+    
+    return objc_getAssociatedObject(self, _cmd);
 }
 
 @end

@@ -43,33 +43,37 @@
     [self setValue:[NSString wy_emptyStr:alertMessage] forKey:NSStringFromSelector(@selector(wy_alertMessage))];
     [self setValue:actionTitles forKey:NSStringFromSelector(@selector(wy_actionTitles))];
     
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[NSString wy_emptyStr:alertTitle] message:[NSString wy_emptyStr:alertMessage] preferredStyle:(self.wy_preferredStyle == WY_PreferredStyleAlert) ? UIAlertControllerStyleAlert : UIAlertControllerStyleActionSheet];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:([NSString wy_emptyStr:alertTitle].length > 0) ? alertTitle : nil  message:([NSString wy_emptyStr:alertMessage].length > 0) ? alertMessage : nil preferredStyle:(self.wy_preferredStyle == WY_PreferredStyleAlert) ? UIAlertControllerStyleAlert : UIAlertControllerStyleActionSheet];
     
     [self wy_modifyAlertControllerStyle:alertController];
     for (NSString *actionTitle in actionTitles) {
-
+        
         UIAlertActionStyle alertActionStyle = UIAlertActionStyleDefault;
-        if((self.wy_preferredStyle == WY_PreferredStyleActionSheet) && ([actionTitles indexOfObject:actionTitle] == 0) && ([self.cancelTitleAry containsObject:actionTitle] == YES) && (self.wy_clickBlankClose == YES)) {
+        if((self.wy_preferredStyle == WY_PreferredStyleActionSheet) && (([actionTitles indexOfObject:actionTitle] == 0) || ([actionTitles indexOfObject:actionTitle] == (actionTitles.count-1))) && ([self.cancelTitleAry containsObject:actionTitle] == YES)) {
             
             alertActionStyle = UIAlertActionStyleCancel;
         }
         UIAlertAction *alertAction = [UIAlertAction actionWithTitle:[NSString wy_emptyStr:actionTitle] style:alertActionStyle handler:^(UIAlertAction * _Nonnull action) {
-
-            // 弹窗关闭时将wy_preferredStyle恢复成m默认
-            self.wy_preferredStyle = WY_PreferredStyleAlert;
+            
+            // 弹窗关闭时将各属性恢复成默认
+            [self wy_defaultProperty];
             if(handler) {
-
+                
                 handler(action,[actionTitles indexOfObject:action.title]);
             }
         }];
         [self wy_modifyAlertControllerActionTitleStyle:alertController alertAction:alertAction];
         [alertController addAction:alertAction];
     }
+    wy_weakSelf(self);
     [self presentViewController:alertController animated:YES completion:^{
         
         if((self.wy_clickBlankClose == YES) && (self.wy_preferredStyle == WY_PreferredStyleAlert)) {
             
-            [alertController wy_clickBlankCloseAlert];
+            [alertController wy_clickBlankCloseAlert:^{
+                
+                [weakself wy_defaultProperty];
+            }];
         }
     }];
 }
@@ -123,7 +127,7 @@
         
         NSInteger actionIndex = [self.wy_actionTitles indexOfObject:alertAction.title];
         UIColor *actionColor = nil;
-        if((self.wy_cancelActionColor != nil) && ([self.cancelTitleAry containsObject:alertAction.title] == YES) && (actionIndex == 0)) {
+        if(((self.wy_cancelActionColor != nil) && ([self.cancelTitleAry containsObject:alertAction.title] == YES) && ((actionIndex == 0) || (actionIndex == (self.wy_actionTitles.count-1))))) {
             
             actionColor = self.wy_cancelActionColor;
         }else {
@@ -140,6 +144,22 @@
             [alertAction setValue:actionColor forKey:@"titleTextColor"];
         }
     }
+}
+
+- (void)wy_defaultProperty {
+    
+    self.wy_preferredStyle = WY_PreferredStyleAlert;
+    self.wy_clickBlankClose = NO;
+    self.wy_alertTitleColor = nil;
+    self.wy_alertMessageColor = nil;
+    self.wy_actionTitleColors = nil;
+    self.wy_cancelActionColor = nil;
+    self.wy_otherActionColor = nil;
+    self.wy_alertTitleFont = nil;
+    self.wy_alertMessageFont = nil;
+    self.wy_alertTitle = @"";
+    self.wy_alertMessage = @"";
+    self.wy_actionTitles = @[];
 }
 
 - (void)setWy_preferredStyle:(WY_PreferredStyle)wy_preferredStyle {

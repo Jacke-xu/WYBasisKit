@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIAlertController (WY_Extension)
 
 /// 点击空白处关闭弹窗
-- (void)wy_clickBlankCloseAlert;
+- (void)wy_clickBlankCloseAlert:(void(^__nullable)(void))completion;
 
 @end
 

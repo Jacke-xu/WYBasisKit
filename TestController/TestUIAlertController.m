@@ -50,8 +50,8 @@
     self.wy_otherActionColor = [UIColor blackColor];
     self.wy_actionTitleColors = @[[NSNull class],[UIColor blueColor],[UIColor purpleColor]];
     
-    NSString *title = @"标题";
-    NSString *message = @"消息";
+    NSString *title = nil;
+    NSString *message = nil;
     NSArray *actionTitleOne = @[@"按钮0"];
     NSArray *actionTitleTwo = @[@"按钮0",@"按钮1"];
     NSArray *actionTitleThree = @[@"取消",@"按钮1",@"按钮2"];
@@ -60,7 +60,6 @@
     
 //    [self wy_showAlertControllerWithAlertTitle:title alertMessage:message];
 
-    wy_weakSelf(self);
 //    [self wy_showAlertControllerWithMessage:message actionTitles:actionTitleOne handler:^(UIAlertAction * _Nonnull alertAction, NSInteger actionIndex) {
 //
 //        NSLog(@"alertAction.title = %@\nactionIndex = %ld",alertAction.title,actionIndex);
