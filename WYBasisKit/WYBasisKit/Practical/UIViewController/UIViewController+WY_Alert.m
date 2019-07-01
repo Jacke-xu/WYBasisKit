@@ -55,12 +55,12 @@
         }
         UIAlertAction *alertAction = [UIAlertAction actionWithTitle:[NSString wy_emptyStr:actionTitle] style:alertActionStyle handler:^(UIAlertAction * _Nonnull action) {
             
-            // 弹窗关闭时将各属性恢复成默认
-            [self wy_defaultProperty];
             if(handler) {
                 
                 handler(action,[actionTitles indexOfObject:action.title]);
             }
+            // 弹窗关闭时将各属性恢复成默认
+            [self wy_defaultProperty];
         }];
         [self wy_modifyAlertControllerActionTitleStyle:alertController alertAction:alertAction];
         [alertController addAction:alertAction];
@@ -149,7 +149,7 @@
 - (void)wy_defaultProperty {
     
     self.wy_preferredStyle = WY_PreferredStyleAlert;
-    self.wy_clickBlankClose = NO;
+    self.wy_clickBlankClose = YES;
     self.wy_alertTitleColor = nil;
     self.wy_alertMessageColor = nil;
     self.wy_actionTitleColors = nil;
@@ -157,9 +157,9 @@
     self.wy_otherActionColor = nil;
     self.wy_alertTitleFont = nil;
     self.wy_alertMessageFont = nil;
-    self.wy_alertTitle = @"";
-    self.wy_alertMessage = @"";
-    self.wy_actionTitles = @[];
+    [self setValue:nil forKey:NSStringFromSelector(@selector(wy_alertTitle))];
+    [self setValue:nil forKey:NSStringFromSelector(@selector(wy_alertMessage))];
+    [self setValue:nil forKey:NSStringFromSelector(@selector(wy_actionTitles))];
     self.cancelTitleAry = @[@"取消",@"知道了",@"朕知道了"];
 }
 
@@ -175,12 +175,13 @@
 
 - (void)setWy_clickBlankClose:(BOOL)wy_clickBlankClose {
     
+    wy_clickBlankClose = !wy_clickBlankClose;
     objc_setAssociatedObject(self, @selector(wy_clickBlankClose), @(wy_clickBlankClose), OBJC_ASSOCIATION_ASSIGN);
 }
 
 - (BOOL)wy_clickBlankClose {
     
-    return [objc_getAssociatedObject(self, _cmd) boolValue];
+    return ![objc_getAssociatedObject(self, _cmd) boolValue];
 }
 
 - (void)setWy_alertTitleColor:(UIColor *)wy_alertTitleColor {

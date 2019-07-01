@@ -23,7 +23,7 @@ typedef NS_ENUM(NSInteger, WY_PreferredStyle) {
 /// 设置弹窗提醒模式 默认UIAlertControllerStyleAlert
 @property (nonatomic, assign) WY_PreferredStyle wy_preferredStyle;
 
-/// 是否需要点击空白处关闭弹窗 默认NO
+/// styleAlert时是否需要点击空白处关闭弹窗 默认YES
 @property (nonatomic, assign) BOOL wy_clickBlankClose;
 
 /// 设置AlertController标题颜色

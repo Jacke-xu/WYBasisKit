@@ -41,7 +41,7 @@
     if(sender.tag < 2) {
         self.wy_preferredStyle = sender.tag;
     }
-    self.wy_clickBlankClose = YES;
+    //self.wy_clickBlankClose = NO;
     self.wy_alertTitleColor = [UIColor orangeColor];
     self.wy_alertTitleFont = [UIFont boldSystemFontOfSize:30];
     self.wy_alertMessageColor = [UIColor greenColor];
@@ -50,8 +50,8 @@
     self.wy_otherActionColor = [UIColor blackColor];
     self.wy_actionTitleColors = @[[NSNull class],[UIColor blueColor],[UIColor purpleColor]];
     
-    NSString *title = nil;
-    NSString *message = nil;
+    NSString *title = @"标题";
+    NSString *message = @"消息";
     NSArray *actionTitleOne = @[@"按钮0"];
     NSArray *actionTitleTwo = @[@"按钮0",@"按钮1"];
     NSArray *actionTitleThree = @[@"取消",@"按钮1",@"按钮2"];
@@ -64,11 +64,16 @@
 //
 //        NSLog(@"alertAction.title = %@\nactionIndex = %ld",alertAction.title,actionIndex);
 //    }];
-
-    [self wy_showAlertControllerWithAlertTitle:title alertMessage:message actionTitles:actionTitleThree handler:^(UIAlertAction * _Nonnull alertAction, NSInteger actionIndex) {
+    [self wy_showAlertControllerWithAlertTitle:title alertMessage:message actionTitles:@[actionTitleTwo,actionTitleThree,actionTitleOne][sender.tag] handler:^(UIAlertAction * _Nonnull alertAction, NSInteger actionIndex) {
         
         NSLog(@"alertAction.title = %@\nactionIndex = %ld",alertAction.title,actionIndex);
+        NSLog(@"title = %@  message = %@  actions = %@",self.wy_alertTitle,self.wy_alertMessage,self.wy_actionTitles);
     }];
+}
+
+- (void)dealloc {
+    
+    NSLog(@"控制器已释放");
 }
 
 /*
