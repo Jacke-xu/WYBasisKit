@@ -271,7 +271,9 @@
 
 - (NSArray *)cancelTitleAry {
     
-    return objc_getAssociatedObject(self, _cmd);
+    NSArray *ary = objc_getAssociatedObject(self, _cmd);
+    if((ary == nil) || (ary.count <= 0)) {ary = @[@"取消",@"知道了",@"朕知道了"];}
+    return ary;
 }
 
 - (void)setWy_cancelActionColor:(UIColor *)wy_cancelActionColor {
