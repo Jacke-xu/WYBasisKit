@@ -8,6 +8,7 @@
 
 #import "TestUIAlertController.h"
 #import "UIViewController+WY_Alert.h"
+#import "NSMutableAttributedString+WY_Extension.h"
 
 @interface TestUIAlertController ()
 
@@ -47,7 +48,7 @@
     self.wy_alertMessageColor = [UIColor greenColor];
     self.wy_alertMessageFont = [UIFont systemFontOfSize:18];
     self.wy_cancelActionColor = [UIColor orangeColor];
-    self.wy_otherActionColor = [UIColor blackColor];
+    self.wy_otherActionColor = [UIColor purpleColor];
     self.wy_actionTitleColors = @[[NSNull class],[UIColor blueColor],[UIColor purpleColor]];
     
     NSString *title = @"标题";
@@ -65,10 +66,29 @@
 //        NSLog(@"alertAction.title = %@\nactionIndex = %ld",alertAction.title,actionIndex);
 //    }];
     [self wy_showAlertControllerWithAlertTitle:title alertMessage:message actionTitles:@[actionTitleTwo,actionTitleThree,actionTitleOne][sender.tag] handler:^(UIAlertAction * _Nonnull alertAction, NSInteger actionIndex) {
-        
+
         NSLog(@"alertAction.title = %@\nactionIndex = %ld",alertAction.title,actionIndex);
         NSLog(@"title = %@  message = %@  actions = %@",self.wy_alertTitle,self.wy_alertMessage,self.wy_actionTitles);
     }];
+    
+//    NSMutableAttributedString *attributedTitle = [NSMutableAttributedString wy_attributeWithStr:title];
+//    NSArray *colorsOfRanges = @[@{[UIColor greenColor]:@"标"},@{[UIColor blueColor]:@"题"}];
+//    NSArray *fontsOfRanges = @[@{[UIFont boldSystemFontOfSize:20]:@"标"},@{[UIFont boldSystemFontOfSize:10]:@"题"}];
+//    [attributedTitle wy_fontsOfRanges:fontsOfRanges];
+//    [attributedTitle wy_colorsOfRanges:colorsOfRanges];
+//
+//    NSMutableAttributedString *attributedMessage = [NSMutableAttributedString wy_attributeWithStr:message];
+//    NSArray *mecolorsOfRanges = @[@{[UIColor blackColor]:@"消"},@{[UIColor orangeColor]:@"息"}];
+//    NSArray *mefontsOfRanges = @[@{[UIFont systemFontOfSize:20]:@"消"},@{[UIFont systemFontOfSize:15]:@"息"}];
+//    [attributedMessage wy_setWordsSpacing:10 string:attributedMessage.string];
+//    [attributedMessage wy_addUnderlineWithString:attributedMessage.string];
+//    [attributedMessage wy_fontsOfRanges:mefontsOfRanges];
+//    [attributedMessage wy_colorsOfRanges:mecolorsOfRanges];
+//
+//    [self wy_showAlertControllerWithAlertAttributedTitle:attributedTitle alertMessage:attributedMessage actionTitles:actionTitleTwo handler:^(UIAlertAction * _Nonnull alertAction, NSInteger actionIndex) {
+//        NSLog(@"alertAction.title = %@\nactionIndex = %ld",alertAction.title,actionIndex);
+//        NSLog(@"title = %@  message = %@  actions = %@",self.wy_alertTitle,self.wy_alertMessage,self.wy_actionTitles);
+//    }];
 }
 
 - (void)dealloc {

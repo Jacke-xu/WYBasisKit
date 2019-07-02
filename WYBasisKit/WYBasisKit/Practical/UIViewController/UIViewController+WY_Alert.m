@@ -78,6 +78,69 @@
     }];
 }
 
+- (void)wy_showAlertControllerWithAttributedMessage:(NSAttributedString *_Nullable)alertMessage {
+    
+    [self wy_showAlertControllerWithAlertAttributedTitle:nil alertMessage:alertMessage];
+}
+
+- (void)wy_showAlertControllerWithAttributedMessage:(NSAttributedString *_Nullable)alertMessage
+                                       actionTitles:(NSArray <NSString *>*_Nullable)actionTitles
+                                            handler:(void(^__nullable)(UIAlertAction *alertAction, NSInteger actionIndex))handler {
+    
+    [self wy_showAlertControllerWithAlertAttributedTitle:nil alertMessage:alertMessage actionTitles:actionTitles handler:handler];
+}
+
+- (void)wy_showAlertControllerWithAlertAttributedTitle:(NSAttributedString *_Nullable)alertTitle
+                                          alertMessage:(NSAttributedString *_Nullable)alertMessage {
+    
+    [self wy_showAlertControllerWithAlertAttributedTitle:alertTitle alertMessage:alertMessage actionTitles:nil handler:nil];
+}
+
+- (void)wy_showAlertControllerWithAlertAttributedTitle:(NSAttributedString *_Nullable)alertTitle
+                                          alertMessage:(NSAttributedString *_Nullable)alertMessage
+                                          actionTitles:(NSArray <NSString *>*_Nullable)actionTitles
+                                               handler:(void(^__nullable)(UIAlertAction *alertAction, NSInteger actionIndex))handler {
+    
+    [self setValue:[NSString wy_emptyStr:alertTitle.string] forKey:NSStringFromSelector(@selector(wy_alertTitle))];
+    [self setValue:[NSString wy_emptyStr:alertMessage.string] forKey:NSStringFromSelector(@selector(wy_alertMessage))];
+    [self setValue:actionTitles forKey:NSStringFromSelector(@selector(wy_actionTitles))];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:([NSString wy_emptyStr:alertTitle.string].length > 0) ? alertTitle.string : nil  message:([NSString wy_emptyStr:alertMessage.string].length > 0) ? alertMessage.string : nil preferredStyle:(self.wy_preferredStyle == WY_PreferredStyleAlert) ? UIAlertControllerStyleAlert : UIAlertControllerStyleActionSheet];
+    
+    [alertController setValue:alertTitle forKey:@"attributedTitle"];
+    [alertController setValue:alertMessage forKey:@"attributedMessage"];
+    for (NSString *actionTitle in actionTitles) {
+        
+        UIAlertActionStyle alertActionStyle = UIAlertActionStyleDefault;
+        if((self.wy_preferredStyle == WY_PreferredStyleActionSheet) && (([actionTitles indexOfObject:actionTitle] == 0) || ([actionTitles indexOfObject:actionTitle] == (actionTitles.count-1))) && ([self.cancelTitleAry containsObject:actionTitle] == YES)) {
+            
+            alertActionStyle = UIAlertActionStyleCancel;
+        }
+        UIAlertAction *alertAction = [UIAlertAction actionWithTitle:[NSString wy_emptyStr:actionTitle] style:alertActionStyle handler:^(UIAlertAction * _Nonnull action) {
+            
+            if(handler) {
+                
+                handler(action,[actionTitles indexOfObject:action.title]);
+            }
+            // 弹窗关闭时将各属性恢复成默认
+            [self wy_defaultProperty];
+        }];
+        [self wy_modifyAlertControllerActionTitleStyle:alertController alertAction:alertAction];
+        [alertController addAction:alertAction];
+    }
+    wy_weakSelf(self);
+    [self presentViewController:alertController animated:YES completion:^{
+        
+        if((self.wy_clickBlankClose == YES) && (self.wy_preferredStyle == WY_PreferredStyleAlert)) {
+            
+            [alertController wy_clickBlankCloseAlert:^{
+                
+                [weakself wy_defaultProperty];
+            }];
+        }
+    }];
+}
+
 - (void)wy_modifyAlertControllerStyle:(UIAlertController *)alertController {
     
     if([NSString wy_emptyStr:alertController.title].length > 0) {

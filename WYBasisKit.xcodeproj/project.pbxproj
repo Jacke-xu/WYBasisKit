@@ -350,10 +350,10 @@
 		1F226F4F20F59ACC00129AB6 /* UIViewController */ = {
 			isa = PBXGroup;
 			children = (
-				1F59A64F20D8E5B80055AAB4 /* UIViewController+WY_Extension.h */,
-				1F59A65020D8E5B80055AAB4 /* UIViewController+WY_Extension.m */,
 				F21BC91922C4C36C0081A589 /* UIViewController+WY_Alert.h */,
 				F21BC91A22C4C36C0081A589 /* UIViewController+WY_Alert.m */,
+				1F59A64F20D8E5B80055AAB4 /* UIViewController+WY_Extension.h */,
+				1F59A65020D8E5B80055AAB4 /* UIViewController+WY_Extension.m */,
 				F2EBBA5522C5C3EF009234EF /* UIAlertController+WY_Extension.h */,
 				F2EBBA5622C5C3EF009234EF /* UIAlertController+WY_Extension.m */,
 			);

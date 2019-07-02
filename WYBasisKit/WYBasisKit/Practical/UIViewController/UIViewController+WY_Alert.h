@@ -58,6 +58,7 @@ typedef NS_ENUM(NSInteger, WY_PreferredStyle) {
 
 - (void)wy_showAlertControllerWithMessage:(NSString *_Nullable)alertMessage;
 
+
 - (void)wy_showAlertControllerWithMessage:(NSString *_Nullable)alertMessage
                              actionTitles:(NSArray <NSString *>*_Nullable)actionTitles
                                   handler:(void(^__nullable)(UIAlertAction *alertAction, NSInteger actionIndex))handler;
@@ -67,6 +68,20 @@ typedef NS_ENUM(NSInteger, WY_PreferredStyle) {
 
 - (void)wy_showAlertControllerWithAlertTitle:(NSString *_Nullable)alertTitle
                                 alertMessage:(NSString *_Nullable)alertMessage
+                                actionTitles:(NSArray <NSString *>*_Nullable)actionTitles
+                                     handler:(void(^__nullable)(UIAlertAction *alertAction, NSInteger actionIndex))handler;
+
+- (void)wy_showAlertControllerWithAttributedMessage:(NSAttributedString *_Nullable)alertMessage;
+
+- (void)wy_showAlertControllerWithAttributedMessage:(NSAttributedString *_Nullable)alertMessage
+                                       actionTitles:(NSArray <NSString *>*_Nullable)actionTitles
+                                            handler:(void(^__nullable)(UIAlertAction *alertAction, NSInteger actionIndex))handler;
+
+- (void)wy_showAlertControllerWithAlertAttributedTitle:(NSAttributedString *_Nullable)alertTitle
+                                          alertMessage:(NSAttributedString *_Nullable)alertMessage;
+
+- (void)wy_showAlertControllerWithAlertAttributedTitle:(NSAttributedString *_Nullable)alertTitle
+                                alertMessage:(NSAttributedString *_Nullable)alertMessage
                                 actionTitles:(NSArray <NSString *>*_Nullable)actionTitles
                                      handler:(void(^__nullable)(UIAlertAction *alertAction, NSInteger actionIndex))handler;
 
