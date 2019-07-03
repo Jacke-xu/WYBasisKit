@@ -17,6 +17,7 @@
 #import "TestUserAvatarViewController.h"
 #import "TestPagingViewController.h"
 #import "TestUIAlertController.h"
+#import "NSString+WY_Extension.h"
 
 @interface MainViewController ()<UITableViewDelegate,UITableViewDataSource>
 

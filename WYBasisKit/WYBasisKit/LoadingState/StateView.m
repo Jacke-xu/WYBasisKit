@@ -179,7 +179,7 @@ static StateView *_stateView = nil;
             
             windowWidth = windowWidth+_stateView.label.font.lineHeight*2;
             //计算lable的显示行数
-            CGFloat showLine = [_stateView.label.text wy_textShowLinesWithControlWidth:windowWidth - (labelLeft*2) font:_stateView.label.font lineSpacing:0];
+            CGFloat showLine = [_stateView.label.text wy_textShowLinesWithControlWidth:windowWidth - (labelLeft*2) font:_stateView.label.font lineSpacing:0].count;
             if(showLine > 3) {
                 
                 windowWidth = windowWidth+_stateView.label.font.lineHeight*3;
