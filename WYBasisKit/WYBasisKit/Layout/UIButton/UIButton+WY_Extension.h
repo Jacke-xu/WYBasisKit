@@ -42,6 +42,26 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIImage *wy_sImage;
 
 
+/** 按钮默认状态背景图片 */
+@property (nonatomic, strong) UIImage *wy_bg_nImage;
+
+/** 按钮高亮状态背景图片 */
+@property (nonatomic, strong) UIImage *wy_bg_hImage;
+
+/** 按钮选中状态背景图片 */
+@property (nonatomic, strong) UIImage *wy_bg_sImage;
+
+
+/** 按钮默认状态背景颜色(内部会转换成对应颜色的图片) */
+@property (nonatomic, strong) UIColor *wy_bg_nImageColor;
+
+/** 按钮高亮状态背景颜色(内部会转换成对应颜色的图片) */
+@property (nonatomic, strong) UIColor *wy_bg_hImageColor;
+
+/** 按钮选中状态背景颜色(内部会转换成对应颜色的图片) */
+@property (nonatomic, strong) UIColor *wy_bg_sImageColor;
+
+
 /** 设置按钮字号 */
 @property (nonatomic, strong) UIFont *wy_titleFont;
 

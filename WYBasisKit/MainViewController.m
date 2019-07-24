@@ -36,9 +36,9 @@
     //设置标题字号
     self.navigationController.wy_titleFont = [UIFont boldSystemFontOfSize:30];
     //设置导航栏背景图
-    self.navigationController.wy_barBackgroundImage = [UIImage imageNamed:@"test"];
+    //self.navigationController.wy_barBackgroundImage = [UIImage imageNamed:@"test"];
     //设置导航栏背景颜色(设置了背景图就不用设置背景颜色了)
-    //self.navigationController.barBackgroundColor = [UIColor greenColor];
+    self.navigationController.wy_barBackgroundColor = [UIColor greenColor];
     //设置导航栏返回按钮图片
     self.navigationController.wy_barReturnButtonImage = [UIImage imageNamed:@"返回按钮"];
     //设置导航栏返回按钮文字颜色

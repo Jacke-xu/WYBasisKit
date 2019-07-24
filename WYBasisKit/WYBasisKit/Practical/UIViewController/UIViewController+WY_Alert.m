@@ -14,6 +14,8 @@
 
 @property (nonatomic, strong) NSArray *cancelTitleAry;
 
+@property (nonatomic, strong) UIWindow *alertWindow;
+
 @end
 
 @implementation UIViewController (WY_Alert)
@@ -55,18 +57,19 @@
         }
         UIAlertAction *alertAction = [UIAlertAction actionWithTitle:[NSString wy_emptyStr:actionTitle] style:alertActionStyle handler:^(UIAlertAction * _Nonnull action) {
             
+            // 弹窗关闭时将各属性恢复成默认
+            [self wy_defaultProperty];
+            
             if(handler) {
                 
                 handler(action,[actionTitles indexOfObject:action.title]);
             }
-            // 弹窗关闭时将各属性恢复成默认
-            [self wy_defaultProperty];
         }];
         [self wy_modifyAlertControllerActionTitleStyle:alertController alertAction:alertAction];
         [alertController addAction:alertAction];
     }
     wy_weakSelf(self);
-    [self presentViewController:alertController animated:YES completion:^{
+    [self.alertWindow.rootViewController presentViewController:alertController animated:YES completion:^{
         
         if((self.wy_clickBlankClose == YES) && (self.wy_preferredStyle == WY_PreferredStyleAlert)) {
             
@@ -118,18 +121,19 @@
         }
         UIAlertAction *alertAction = [UIAlertAction actionWithTitle:[NSString wy_emptyStr:actionTitle] style:alertActionStyle handler:^(UIAlertAction * _Nonnull action) {
             
+            // 弹窗关闭时将各属性恢复成默认
+            [self wy_defaultProperty];
+            
             if(handler) {
                 
                 handler(action,[actionTitles indexOfObject:action.title]);
             }
-            // 弹窗关闭时将各属性恢复成默认
-            [self wy_defaultProperty];
         }];
         [self wy_modifyAlertControllerActionTitleStyle:alertController alertAction:alertAction];
         [alertController addAction:alertAction];
     }
     wy_weakSelf(self);
-    [self presentViewController:alertController animated:YES completion:^{
+    [self.alertWindow.rootViewController presentViewController:alertController animated:YES completion:^{
         
         if((self.wy_clickBlankClose == YES) && (self.wy_preferredStyle == WY_PreferredStyleAlert)) {
             
@@ -210,6 +214,8 @@
 }
 
 - (void)wy_defaultProperty {
+    
+    [[UIApplication sharedApplication].delegate.window makeKeyAndVisible];
     
     self.wy_preferredStyle = WY_PreferredStyleAlert;
     self.wy_clickBlankClose = YES;
@@ -357,6 +363,23 @@
 - (UIColor *)wy_otherActionColor {
     
     return objc_getAssociatedObject(self, _cmd);
+}
+
+- (UIWindow *)alertWindow {
+    
+    UIWindow *showWindow = objc_getAssociatedObject(self, @selector(alertWindow));
+    
+    if(showWindow == nil) {
+        
+        showWindow = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+        showWindow.rootViewController = [[UIViewController alloc]init];
+        
+        objc_setAssociatedObject(self, @selector(alertWindow), showWindow, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    
+    [showWindow makeKeyAndVisible];
+    
+    return showWindow;
 }
 
 @end

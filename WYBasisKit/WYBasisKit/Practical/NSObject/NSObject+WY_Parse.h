@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
- 判断两个对象是否相等(仅适用于简单对比)
+ 判断两个对象是否相等(仅适用于简单对比，内部有模型、字典、数组等可能对比会有误差)
 
  @param firstObj 第一个需要对比的模型
  @param secondObj 第二个需要对比的模型

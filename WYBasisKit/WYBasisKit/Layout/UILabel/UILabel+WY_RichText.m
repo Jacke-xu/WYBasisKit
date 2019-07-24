@@ -191,7 +191,7 @@
     
     if (self.attributedText.length > range.length) {
         
-        UIFont *font ;
+        UIFont *font = nil;
         
         if ([self.attributedText attribute:NSFontAttributeName atIndex:0 effectiveRange:nil]) {
             
@@ -204,11 +204,17 @@
             font = [UIFont systemFontOfSize:17];
         }
         
+        CGFloat lineSpace = 0.0f;
+        if ([self.attributedText attribute:NSParagraphStyleAttributeName atIndex:0 effectiveRange:nil]) {
+            
+            lineSpace = [[[self.attributedText attribute:NSParagraphStyleAttributeName atIndex:0 effectiveRange:nil] valueForKey:@"_lineSpacing"] floatValue];
+        }
+        
         CGPathRelease(Path);
         
         Path = CGPathCreateMutable();
         
-        CGPathAddRect(Path, NULL, CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height + font.lineHeight));
+        CGPathAddRect(Path, NULL, CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height + font.lineHeight - lineSpace));
         
         frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), Path, NULL);
     }
