@@ -17,18 +17,6 @@
     return [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@",str]];
 }
 
-- (void)setWy_paragraphStyle:(NSMutableParagraphStyle *)wy_paragraphStyle {
-    
-    if(wy_paragraphStyle == nil) {wy_paragraphStyle = [NSMutableParagraphStyle wy_paragraphStyle];}
-    objc_setAssociatedObject(self, &@selector(wy_paragraphStyle), wy_paragraphStyle, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (NSMutableParagraphStyle *)wy_paragraphStyle {
-    
-    NSMutableParagraphStyle *obj = objc_getAssociatedObject(self, &@selector(wy_paragraphStyle));
-    return obj;
-}
-
 - (void)wy_colorsOfRanges:(NSArray<NSDictionary *> *)colorsOfRanges {
     
     if(colorsOfRanges == nil) return;
@@ -71,9 +59,9 @@
 
 - (void)wy_setLineSpacing:(CGFloat)lineSpacing string:(NSString *)string {
     
-    if(self.wy_paragraphStyle == nil) {self.wy_paragraphStyle = [NSMutableParagraphStyle wy_paragraphStyle];}
-    [self.wy_paragraphStyle setLineSpacing:lineSpacing];
-    [self addAttribute:NSParagraphStyleAttributeName value:self.wy_paragraphStyle range:[[NSString stringWithFormat:@"%@",self.string] rangeOfString:[NSString stringWithFormat:@"%@",string]]];
+    NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle wy_paragraphStyle];
+    [paragraphStyle setLineSpacing:lineSpacing];
+    [self addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:[[NSString stringWithFormat:@"%@",self.string] rangeOfString:[NSString stringWithFormat:@"%@",string]]];
 }
 
 - (void)wy_setWordsSpacing:(CGFloat)wordsSpacing string:(NSString *)string {
