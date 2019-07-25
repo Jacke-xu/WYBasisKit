@@ -18,6 +18,7 @@
 #import "TestPagingViewController.h"
 #import "TestUIAlertController.h"
 #import "NSString+WY_Extension.h"
+#import "UITableViewCell+WY_Extension.h"
 
 @interface MainViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -78,11 +79,12 @@
     
     static NSString *cellIndentifier = @"UITableViewCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
-    
     if(cell == nil)
     {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIndentifier];
-        [tableView wy_cellCutOffLineFromZeroPoint:cell];
+         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        [cell wy_cellCutOffLineFromZeroPoint];
+        cell.wy_rightArrowImage = [UIImage imageNamed:@"jiantou"];
     }
     cell.backgroundColor = [UIColor whiteColor];
     cell.textLabel.text = [self section][indexPath.row];

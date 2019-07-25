@@ -75,6 +75,7 @@
 		F21BC91B22C4C36C0081A589 /* UIViewController+WY_Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = F21BC91A22C4C36C0081A589 /* UIViewController+WY_Alert.m */; };
 		F23DE2152272CF9B0065F38C /* NSMutableParagraphStyle+WY_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F23DE2132272CF9A0065F38C /* NSMutableParagraphStyle+WY_Extension.m */; };
 		F23DE2182272CFA80065F38C /* NSMutableAttributedString+WY_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F23DE2162272CFA80065F38C /* NSMutableAttributedString+WY_Extension.m */; };
+		F298289422E9A99700368E51 /* UITableViewCell+WY_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F298289322E9A99700368E51 /* UITableViewCell+WY_Extension.m */; };
 		F2EBBA5122C5B292009234EF /* TestUIAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2EBBA5022C5B292009234EF /* TestUIAlertController.m */; };
 		F2EBBA5722C5C3EF009234EF /* UIAlertController+WY_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F2EBBA5622C5C3EF009234EF /* UIAlertController+WY_Extension.m */; };
 /* End PBXBuildFile section */
@@ -217,6 +218,8 @@
 		F23DE2142272CF9A0065F38C /* NSMutableParagraphStyle+WY_Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableParagraphStyle+WY_Extension.h"; sourceTree = "<group>"; };
 		F23DE2162272CFA80065F38C /* NSMutableAttributedString+WY_Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+WY_Extension.m"; sourceTree = "<group>"; };
 		F23DE2172272CFA80065F38C /* NSMutableAttributedString+WY_Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+WY_Extension.h"; sourceTree = "<group>"; };
+		F298289222E9A99700368E51 /* UITableViewCell+WY_Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+WY_Extension.h"; sourceTree = "<group>"; };
+		F298289322E9A99700368E51 /* UITableViewCell+WY_Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+WY_Extension.m"; sourceTree = "<group>"; };
 		F2EBBA4F22C5B292009234EF /* TestUIAlertController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestUIAlertController.h; sourceTree = "<group>"; };
 		F2EBBA5022C5B292009234EF /* TestUIAlertController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestUIAlertController.m; sourceTree = "<group>"; };
 		F2EBBA5522C5C3EF009234EF /* UIAlertController+WY_Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+WY_Extension.h"; sourceTree = "<group>"; };
@@ -632,6 +635,8 @@
 			children = (
 				1F154C5E21AD17E800D1D830 /* UITableView+WY_Extension.h */,
 				1F154C5F21AD17E800D1D830 /* UITableView+WY_Extension.m */,
+				F298289222E9A99700368E51 /* UITableViewCell+WY_Extension.h */,
+				F298289322E9A99700368E51 /* UITableViewCell+WY_Extension.m */,
 			);
 			path = UITableView;
 			sourceTree = "<group>";
@@ -957,6 +962,7 @@
 				F2EBBA5722C5C3EF009234EF /* UIAlertController+WY_Extension.m in Sources */,
 				1F154C6021AD17E800D1D830 /* UITableView+WY_Extension.m in Sources */,
 				1F1D41E220F4573F00FB65E2 /* NSString+Base64.m in Sources */,
+				F298289422E9A99700368E51 /* UITableViewCell+WY_Extension.m in Sources */,
 				F21BC91B22C4C36C0081A589 /* UIViewController+WY_Alert.m in Sources */,
 				1F1D41DF20F4570300FB65E2 /* NSData+CommonCrypto.m in Sources */,
 				1F154C5D21ACFD7B00D1D830 /* UITextView+WY_Extension.m in Sources */,

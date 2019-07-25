@@ -8,6 +8,7 @@
 
 #import "TestLoadingStateViewController.h"
 #import "UITextField+WY_Extension.h"
+#import "UITableViewCell+WY_Extension.h"
 
 @interface TestLoadingStateViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -82,7 +83,7 @@
     if(cell == nil)
     {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIndentifier];
-        [tableView wy_cellCutOffLineFromZeroPoint:cell];
+        [cell wy_cellCutOffLineFromZeroPoint];
     }
     NSArray *rowAry = [self row][indexPath.section];
     cell.textLabel.text = rowAry[indexPath.row];

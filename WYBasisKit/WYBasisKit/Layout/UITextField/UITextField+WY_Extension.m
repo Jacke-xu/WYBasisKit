@@ -33,10 +33,12 @@
 
 - (void)setWy_clearButtonImage:(UIImage *)wy_clearButtonImage {
     
+    if(wy_clearButtonImage == nil) return;
+    
     objc_setAssociatedObject(self, @selector(wy_clearButtonImage), wy_clearButtonImage, OBJC_ASSOCIATION_COPY_NONATOMIC);
     
     UIButton *clearButton = [self valueForKey:@"_clearButton"];
-    [clearButton setImage:self.wy_clearButtonImage forState:UIControlStateNormal];
+    [clearButton setImage:wy_clearButtonImage forState:UIControlStateNormal];
 }
 
 - (UIImage *)wy_clearButtonImage {

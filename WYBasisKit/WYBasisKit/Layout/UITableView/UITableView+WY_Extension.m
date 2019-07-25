@@ -28,28 +28,6 @@
     }
 }
 
-- (void)wy_cellCutOffLineFromZeroPoint:(UITableViewCell *)cell {
-    
-    if ([self respondsToSelector:@selector(setSeparatorInset:)]) {
-        
-        [self setSeparatorInset:UIEdgeInsetsMake(0,0,0,0)];
-    }
-    
-    if ([self respondsToSelector:@selector(setLayoutMargins:)]) {
-        
-        [self setLayoutMargins:UIEdgeInsetsMake(0,0,0,0)];
-    }
-    
-    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-        
-        [cell setSeparatorInset:UIEdgeInsetsZero];
-    }
-    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-        
-        [cell setLayoutMargins:UIEdgeInsetsZero];
-    }
-}
-
 - (void)wy_forbiddenSelfSizing {
     
     if([[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0) {
