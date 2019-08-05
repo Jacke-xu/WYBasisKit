@@ -42,7 +42,7 @@
     textView2.wy_placeholderStr = @"这个是添加在子view上的,设置了最大输入10个字符";
     textView2.wy_placeholderColor = [UIColor whiteColor];
     [textView2 wy_automaticFollowKeyboard:self.view];
-    textView2.wy_maximumLimit = 80;
+    textView2.wy_maximumLimit = 10;
     textView2.wy_characterLengthPrompt = YES;
     textView2.font = [UIFont systemFontOfSize:30];
     textView2.wy_placeholderFont = [UIFont systemFontOfSize:15];

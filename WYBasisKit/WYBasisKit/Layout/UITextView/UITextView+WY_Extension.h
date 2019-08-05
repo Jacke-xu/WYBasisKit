@@ -38,6 +38,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL wy_characterLengthPrompt;
 
 /**
+ *  占位文字原点位置  CGPointMake(5, 8)
+ */
+@property (nonatomic, assign) CGPoint wy_placeholderPoint;
+
+/**
  *  文本发生改变时回调
  */
 - (void)wy_textDidChange:(void(^)(NSString *textStr))handle;

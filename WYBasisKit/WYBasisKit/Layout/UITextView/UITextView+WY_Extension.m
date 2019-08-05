@@ -120,7 +120,6 @@
     [self wy_fixMessyDisplay];
     
     self.wy_height = (wy_characterLengthPrompt == YES) ? self.wy_height-25 : self.wy_height+25;
-    self.wy_charactersLengthLable.text = [NSString stringWithFormat:@"%lu/%ld\t",(unsigned long)self.text.length > (long)self.wy_maximumLimit ? (long)self.wy_maximumLimit : (unsigned long)self.text.length ,(long)self.wy_maximumLimit];
     self.wy_charactersLengthLable.hidden = !wy_characterLengthPrompt;
 }
 
@@ -128,6 +127,18 @@
     
     id obj = objc_getAssociatedObject(self, &@selector(wy_characterLengthPrompt));
     return [obj boolValue];
+}
+
+- (void)setWy_placeholderPoint:(CGPoint)wy_placeholderPoint {
+    
+    objc_setAssociatedObject(self, @selector(wy_placeholderPoint), [NSValue valueWithCGPoint:wy_placeholderPoint], OBJC_ASSOCIATION_RETAIN);
+    
+    self.wy_placeholderLable.wy_origin = wy_placeholderPoint;
+}
+
+- (CGPoint)wy_placeholderPoint {
+    
+    return [objc_getAssociatedObject(self, @selector(wy_placeholderPoint)) CGPointValue];
 }
 
 - (UILabel *)wy_placeholderLable {
@@ -165,6 +176,9 @@
         obj.backgroundColor = self.backgroundColor;
         obj.textAlignment = NSTextAlignmentRight;
         obj.userInteractionEnabled = YES;
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showTextView)];
+        [obj addGestureRecognizer:tap];
         
         objc_setAssociatedObject(self, @selector(wy_charactersLengthLable), obj, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         
@@ -271,6 +285,9 @@
     
     if(self.wy_characterLengthPrompt == YES) {
         
+        self.wy_charactersLengthLable.text = [NSString stringWithFormat:@"%lu/%ld\t",(unsigned long)self.text.length > (long)self.wy_maximumLimit ? (long)self.wy_maximumLimit : (unsigned long)self.text.length ,(long)self.wy_maximumLimit];
+        self.wy_charactersLengthLable.hidden = NO;
+        
         self.wy_charactersLengthLable.layer.borderWidth = self.layer.borderWidth;
         self.wy_charactersLengthLable.layer.borderColor = self.layer.borderColor;
         if(self.wy_charactersLengthLable.superview == nil) {
@@ -279,21 +296,16 @@
     }
 }
 
+- (void)showTextView {
+    
+    [self becomeFirstResponder];
+}
+
 - (void)dealloc {
     
     if(self.wy_addNoti == YES) {
         
         [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextViewTextDidChangeNotification object:nil];
-    }
-    if(self.wy_havePlaceholderLable == YES) {
-        
-        [self.wy_placeholderLable removeFromSuperview];
-        self.wy_placeholderLable = nil;
-    }
-    if(self.wy_haveCharactersLengthLable == YES) {
-        
-        [self.wy_charactersLengthLable removeFromSuperview];
-        self.wy_charactersLengthLable = nil;
     }
 }
 
