@@ -176,27 +176,27 @@
     self.clipsToBounds = YES;
 }
 
-- (void)wy_leftAlignment {
+- (void)wy_leftAlign {
     
     self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
 }
 
-- (void)wy_centerAlignment {
+- (void)wy_centerAlign {
     
     self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
 }
 
-- (void)wy_rightAlignment {
+- (void)wy_rightAlign {
     
     self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
 }
 
-- (void)wy_topAlignment {
+- (void)wy_topAlign {
     
     self.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
 }
 
-- (void)wy_bottomAlignment {
+- (void)wy_bottomAlign {
     
     self.contentVerticalAlignment = UIControlContentVerticalAlignmentBottom;
 }

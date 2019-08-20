@@ -69,6 +69,19 @@
     return [objc_getAssociatedObject(self, _cmd) integerValue];
 }
 
+- (void)setWy_allowCopyPaste:(BOOL)wy_allowCopyPaste {
+    
+    wy_allowCopyPaste = !wy_allowCopyPaste;
+    
+    objc_setAssociatedObject(self, @selector(wy_allowCopyPaste), [NSNumber numberWithBool:wy_allowCopyPaste], OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (BOOL)wy_allowCopyPaste {
+    
+    BOOL obj = ![objc_getAssociatedObject(self, _cmd) boolValue];
+    return obj;
+}
+
 - (void)setWy_textHandle:(void (^)(NSString *))wy_textHandle {
     
     objc_setAssociatedObject(self, @selector(wy_textHandle), wy_textHandle, OBJC_ASSOCIATION_COPY_NONATOMIC);
@@ -145,6 +158,23 @@
     self.wy_lastTextStr = self.text;
     
     return self.text;
+}
+
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
+    
+    // 禁止剪切
+    if (action == @selector(cut:)) return self.wy_allowCopyPaste;
+    
+    // 禁止粘贴
+    if (action == @selector(paste:)) return self.wy_allowCopyPaste;
+    
+    // 禁止选择
+    if (action == @selector(select:)) return self.wy_allowCopyPaste;
+    
+    // 禁止全选
+    if (action == @selector(selectAll:)) return self.wy_allowCopyPaste;
+    
+    return [super canPerformAction:action withSender:sender];
 }
 
 - (void)dealloc {

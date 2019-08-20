@@ -223,7 +223,7 @@ static StateView *_stateView = nil;
         lab.wy_left = 5+_stateView.layer.cornerRadius;
         lab.font = [UIFont boldSystemFontOfSize:16];
         lab.numberOfLines = 4;
-        [lab wy_centerAlignment];
+        [lab wy_centerAlign];
         lab.textColor = [UIColor whiteColor];
         
         [_stateView addSubview:lab];

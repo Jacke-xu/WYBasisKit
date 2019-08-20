@@ -71,19 +71,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /** 设置按钮左对齐 */
-- (void)wy_leftAlignment;
+- (void)wy_leftAlign;
 
 /** 设置按钮中心对齐 */
-- (void)wy_centerAlignment;
+- (void)wy_centerAlign;
 
 /** 设置按钮右对齐 */
-- (void)wy_rightAlignment;
+- (void)wy_rightAlign;
 
 /** 设置按钮上对齐 */
-- (void)wy_topAlignment;
+- (void)wy_topAlign;
 
 /** 设置按钮下对齐 */
-- (void)wy_bottomAlignment;
+- (void)wy_bottomAlign;
 
 
 /** 初始化frame及点击事件 */

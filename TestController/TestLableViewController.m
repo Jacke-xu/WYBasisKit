@@ -82,7 +82,7 @@
     [attributedString2 addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(19, 38)];
     [attributedString2 addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(63, 8)];
 
-    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(10, label1.wy_bottom+50, self.view.bounds.size.width - 20, 80)];
+    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(10, label1.wy_bottom+50, self.view.bounds.size.width - 20, 180)];
     label2.backgroundColor = [UIColor greenColor];
     label2.numberOfLines = 3;
     label2.attributedText = attributedString2;

@@ -33,11 +33,11 @@
     return UIEdgeInsetsMake([textInsets[0] floatValue], [textInsets[1] floatValue], [textInsets[2] floatValue], [textInsets[3] floatValue]);
 }
 
-- (void)wy_leftAlignment {self.textAlignment = NSTextAlignmentLeft;}
+- (void)wy_leftAlign {self.textAlignment = NSTextAlignmentLeft;}
 
-- (void)wy_centerAlignment {self.textAlignment = NSTextAlignmentCenter;}
+- (void)wy_centerAlign {self.textAlignment = NSTextAlignmentCenter;}
 
-- (void)wy_rightAlignment {self.textAlignment = NSTextAlignmentRight;}
+- (void)wy_rightAlign {self.textAlignment = NSTextAlignmentRight;}
 
 + (UILabel *)wy_createLabWithFrame:(CGRect)frame textColor:(UIColor *)textColor font:(UIFont *)font {
     
