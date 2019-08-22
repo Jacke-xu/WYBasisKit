@@ -114,7 +114,11 @@
     
     _bar_selectedIndex = bar_selectedIndex;
     
-    [self buttonItemClick:[(UIButton *)self viewWithTag:buttonTagBegin+_bar_selectedIndex]];
+    UIButton *sender = [(UIButton *)self viewWithTag:buttonTagBegin+_bar_selectedIndex];
+    
+    if(sender == nil) return;
+    
+    [self buttonItemClick:sender];
 }
 
 - (void)wy_updateDefaultProperty {
