@@ -112,8 +112,40 @@ NS_ASSUME_NONNULL_BEGIN
 /// 分页栏标题选中字号 默认粗体17号；
 @property (nonatomic, assign) UIFont *bar_title_selectedFont;
 
-/// 初始选中第几项  默认0
+/// 初始选中第几项(也可后期根据情况设置滚动到第几项)  默认0
 @property (nonatomic, assign) NSInteger bar_selectedIndex;
+
+/// 徽章值填充色 默认系统红色
+@property (nonatomic, strong) UIColor *bar_badgeValueFillColor;
+
+/// 徽章值文字颜色 默认系统白色
+@property (nonatomic, strong) UIColor *bar_badgeValueTextColor;
+
+/// 徽章值文字字号 默认系统9号字
+@property (nonatomic, strong) UIFont *bar_badgeValueTextFont;
+
+/// 徽章值文字边界距离 默认UIEdgeInsetsMake(0, 0, 0, 0)
+@property (nonatomic, assign) UIEdgeInsets bar_badgeValueInsets;
+
+/// 徽章值原点距离文字按钮的偏移量  默认相对于文字按钮右上角居中(x为正，y为负)
+@property (nonatomic, assign) CGPoint bar_badgeValueOffset;
+
+
+/**
+ 设置徽章值的显示或隐藏
+
+ @param show 是否需要显示或者隐藏某个徽章值
+ @param index 需要显示或者隐藏的徽章值的下标位置
+ */
+
+/**
+ 设置徽章值的显示或隐藏
+
+ @param show 是否需要显示或者隐藏某个徽章值
+ @param value 需要显示的徽章,只能是图片或文字(设置隐藏时可以传空)
+ @param index 需要显示或者隐藏的徽章值的下标位置
+ */
+- (void)wy_showBadge:(BOOL)show value:(id)value atIndex:(NSInteger)index;
 
 @end
 
