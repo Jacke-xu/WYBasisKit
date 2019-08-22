@@ -257,6 +257,7 @@
         badgeView.wy_textInsets = _bar_badgeValueInsets;
         badgeView.textAlignment = NSTextAlignmentCenter;
         badgeView.clipsToBounds = YES;
+        badgeView.tag = badgeTagBegin+index;
         [button.superview addSubview:badgeView];
     }
     badgeView.hidden = !show;

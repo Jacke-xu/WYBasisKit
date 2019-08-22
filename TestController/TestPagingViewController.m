@@ -42,6 +42,13 @@
     [self.view addSubview:pagingView];
     pagingView.bar_badgeValueOffset = CGPointMake(5, 0);
     [pagingView wy_showBadge:YES value:@"1" atIndex:2];
+    
+    [pagingView wy_scrollPagingToIndex:^(NSInteger pagingIndex) {
+        
+//        if(pagingIndex == 2) {
+//            [pagingView wy_showBadge:NO value:@"" atIndex:2];
+//        }
+    }];
 }
 
 /*
