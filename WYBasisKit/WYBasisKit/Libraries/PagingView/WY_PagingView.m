@@ -252,6 +252,9 @@
     
     UILabel *badgeView = [self viewWithTag:badgeTagBegin+index];
     UIButton *button = [self viewWithTag:buttonTagBegin+index];
+    
+    if(button == nil) return;
+    
     if(badgeView == nil) {
         
         badgeView = [[UILabel alloc]init];

@@ -35,6 +35,9 @@
 /** 设置字间距 */
 - (void)wy_setWordsSpacing:(CGFloat)wordsSpacing string:(NSString *)string;
 
+/** 设置文字方向 */
+- (void)wy_setAlignment:(NSTextAlignment)textAlignment;
+
 /** 添加下划线 */
 - (void)wy_addUnderlineWithString:(NSString *)string;
 

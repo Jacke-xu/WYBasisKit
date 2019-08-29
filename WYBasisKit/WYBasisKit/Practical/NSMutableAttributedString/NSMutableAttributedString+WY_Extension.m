@@ -69,6 +69,18 @@
     [self addAttribute:NSKernAttributeName value:[NSNumber numberWithFloat:wordsSpacing] range:[self.string rangeOfString:string]];
 }
 
+- (void)wy_setAlignment:(NSTextAlignment)textAlignment {
+    
+    NSMutableParagraphStyle *paragraphStyle = ([self attribute:NSParagraphStyleAttributeName atIndex:0 effectiveRange:nil]);
+    if(paragraphStyle == nil) {
+        
+        paragraphStyle = [NSMutableParagraphStyle wy_paragraphStyle];
+    }
+    paragraphStyle.alignment = textAlignment;
+    
+    [self addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, self.string.length)];
+}
+
 - (void)wy_addUnderlineWithString:(NSString *)string {
     
     [self addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:[self.string rangeOfString:string]];

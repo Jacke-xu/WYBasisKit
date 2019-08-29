@@ -26,7 +26,7 @@
 //    pagingView.bar_bg_defaultColor = [UIColor orangeColor];
 //    pagingView.bar_bg_selectedColor = [UIColor greenColor];
     NSMutableArray *vcs = [NSMutableArray arrayWithCapacity:0];
-    NSArray *titleAry = @[@"喜欢斗地主",@"弄啥呢",@"你瞅啥",@"瞅你咋的",@"再瞅个试试",@"试试就试试",@"逗比",@"青年",@"欢乐多"];
+    NSArray *titleAry = @[@"喜欢斗地主",@"弄啥呢"];
     NSMutableArray *deImages = [NSMutableArray arrayWithCapacity:0];
     NSMutableArray *slImages = [NSMutableArray arrayWithCapacity:0];
     for (int i=0; i<titleAry.count; i++) {
