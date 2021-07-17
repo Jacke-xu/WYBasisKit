@@ -61,6 +61,7 @@
 		1F60C4C721AE6D8D00288A9E /* NSArray+WY_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F60C4C621AE6D8D00288A9E /* NSArray+WY_Extension.m */; };
 		1F63AF7E22AA82AE00E965EE /* TestPagingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F63AF7D22AA82AE00E965EE /* TestPagingViewController.m */; };
 		1F725D9321B77861007F4B80 /* UITabBar+WY_Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F725D9221B77861007F4B80 /* UITabBar+WY_Badge.m */; };
+		1F9B4947256797D400F9BB17 /* launchGif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1F9B4946256797D400F9BB17 /* launchGif.gif */; };
 		1FA61C162147B09E00D62848 /* bank.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1FA61C152147B09E00D62848 /* bank.plist */; };
 		1FA61C182147B26C00D62848 /* EmojiFile in Resources */ = {isa = PBXBuildFile; fileRef = 1FA61C172147B26C00D62848 /* EmojiFile */; };
 		1FA9267620DA46A500C5D12B /* TestLableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA9267520DA46A500C5D12B /* TestLableViewController.m */; };
@@ -72,6 +73,7 @@
 		1FFBD92220BA874800305331 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FFBD92120BA874800305331 /* Assets.xcassets */; };
 		1FFBD92520BA874800305331 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FFBD92320BA874800305331 /* LaunchScreen.storyboard */; };
 		1FFBD92820BA874800305331 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFBD92720BA874800305331 /* main.m */; };
+		DC8F5ED526981A6700ED2765 /* WYProtocolManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DC8F5ED426981A6700ED2765 /* WYProtocolManager.m */; };
 		F23DE2152272CF9B0065F38C /* NSMutableParagraphStyle+WY_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F23DE2132272CF9A0065F38C /* NSMutableParagraphStyle+WY_Extension.m */; };
 		F23DE2182272CFA80065F38C /* NSMutableAttributedString+WY_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F23DE2162272CFA80065F38C /* NSMutableAttributedString+WY_Extension.m */; };
 /* End PBXBuildFile section */
@@ -188,6 +190,7 @@
 		1F63AF7D22AA82AE00E965EE /* TestPagingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestPagingViewController.m; sourceTree = "<group>"; };
 		1F725D9121B77861007F4B80 /* UITabBar+WY_Badge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITabBar+WY_Badge.h"; sourceTree = "<group>"; };
 		1F725D9221B77861007F4B80 /* UITabBar+WY_Badge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+WY_Badge.m"; sourceTree = "<group>"; };
+		1F9B4946256797D400F9BB17 /* launchGif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = launchGif.gif; sourceTree = "<group>"; };
 		1FA61C152147B09E00D62848 /* bank.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bank.plist; sourceTree = "<group>"; };
 		1FA61C172147B26C00D62848 /* EmojiFile */ = {isa = PBXFileReference; lastKnownFileType = text; path = EmojiFile; sourceTree = "<group>"; };
 		1FA9267420DA46A500C5D12B /* TestLableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestLableViewController.h; sourceTree = "<group>"; };
@@ -208,6 +211,8 @@
 		1FFBD92620BA874800305331 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FFBD92720BA874800305331 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		68A8E59B41F877FEF5AA9E31 /* Pods-WYBasisKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYBasisKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-WYBasisKit/Pods-WYBasisKit.release.xcconfig"; sourceTree = "<group>"; };
+		DC8F5ED326981A6700ED2765 /* WYProtocolManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYProtocolManager.h; sourceTree = "<group>"; };
+		DC8F5ED426981A6700ED2765 /* WYProtocolManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYProtocolManager.m; sourceTree = "<group>"; };
 		F23DE2132272CF9A0065F38C /* NSMutableParagraphStyle+WY_Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableParagraphStyle+WY_Extension.m"; sourceTree = "<group>"; };
 		F23DE2142272CF9A0065F38C /* NSMutableParagraphStyle+WY_Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableParagraphStyle+WY_Extension.h"; sourceTree = "<group>"; };
 		F23DE2162272CFA80065F38C /* NSMutableAttributedString+WY_Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+WY_Extension.m"; sourceTree = "<group>"; };
@@ -752,6 +757,7 @@
 				1FFBD92E20BA883500305331 /* WYBasisKit */,
 				1FFBD91820BA874700305331 /* AppDelegate.h */,
 				1FFBD91920BA874700305331 /* AppDelegate.m */,
+				1F9B4946256797D400F9BB17 /* launchGif.gif */,
 				1F59A64920D8A7040055AAB4 /* MainViewController.h */,
 				1F59A64A20D8A7040055AAB4 /* MainViewController.m */,
 				1FFBD92120BA874800305331 /* Assets.xcassets */,
@@ -765,6 +771,7 @@
 		1FFBD92E20BA883500305331 /* WYBasisKit */ = {
 			isa = PBXGroup;
 			children = (
+				DC8F5ED226981A3300ED2765 /* ProtocolManager */,
 				1F282FE620D3B9B700624C76 /* Layout */,
 				1F226F5620F5A2A500129AB6 /* AppleSystemService */,
 				1F28300D20D3B9B700624C76 /* BoolJudge */,
@@ -797,6 +804,15 @@
 				68A8E59B41F877FEF5AA9E31 /* Pods-WYBasisKit.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		DC8F5ED226981A3300ED2765 /* ProtocolManager */ = {
+			isa = PBXGroup;
+			children = (
+				DC8F5ED326981A6700ED2765 /* WYProtocolManager.h */,
+				DC8F5ED426981A6700ED2765 /* WYProtocolManager.m */,
+			);
+			path = ProtocolManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -861,6 +877,7 @@
 			files = (
 				1FA61C182147B26C00D62848 /* EmojiFile in Resources */,
 				1FA61C162147B09E00D62848 /* bank.plist in Resources */,
+				1F9B4947256797D400F9BB17 /* launchGif.gif in Resources */,
 				1F28303020D3B9B700624C76 /* Loading.bundle in Resources */,
 				1FFBD92520BA874800305331 /* LaunchScreen.storyboard in Resources */,
 				1FFBD92220BA874800305331 /* Assets.xcassets in Resources */,
@@ -936,6 +953,7 @@
 				1F59A64E20D8A91F0055AAB4 /* UINavigationController+WY_Extension.m in Sources */,
 				1FA9267620DA46A500C5D12B /* TestLableViewController.m in Sources */,
 				1F28305120D3B9B700624C76 /* UIView+WY_Rounded.m in Sources */,
+				DC8F5ED526981A6700ED2765 /* WYProtocolManager.m in Sources */,
 				1F154C4B21ACEFD800D1D830 /* WY_Countdown.m in Sources */,
 				1F154C6C21AD265600D1D830 /* UIImageView+WY_Extension.m in Sources */,
 				1F154C6021AD17E800D1D830 /* UITableView+WY_Extension.m in Sources */,
