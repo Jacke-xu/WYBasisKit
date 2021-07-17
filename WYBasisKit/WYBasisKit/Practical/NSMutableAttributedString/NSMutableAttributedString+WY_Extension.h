@@ -13,8 +13,6 @@
 /** 返回AttributedString属性 */
 + (NSMutableAttributedString *)wy_attributeWithStr:(NSString *)str;
 
-@property (nonatomic, strong) NSMutableParagraphStyle *wy_paragraphStyle;
-
 /**
  
  *  需要修改的字符颜色数组及量程，由字典组成  key = 颜色   value = 量程或需要修改的字符串
@@ -36,6 +34,9 @@
 
 /** 设置字间距 */
 - (void)wy_setWordsSpacing:(CGFloat)wordsSpacing string:(NSString *)string;
+
+/** 设置文字方向 */
+- (void)wy_setAlignment:(NSTextAlignment)textAlignment;
 
 /** 添加下划线 */
 - (void)wy_addUnderlineWithString:(NSString *)string;

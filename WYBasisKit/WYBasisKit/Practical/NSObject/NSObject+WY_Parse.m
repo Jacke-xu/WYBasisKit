@@ -76,4 +76,41 @@
 //此方法只有子类重写才生效
 + (NSDictionary *)wy_objectClassInArray {return nil;}
 
++ (BOOL)wy_compareObject:(NSObject *)firstObj withObject:(NSObject *)secondObj {
+    
+    if([firstObj wy_objectAllProperty].count != [secondObj  wy_objectAllProperty].count) {
+        
+        return NO;
+    }
+    NSString *firstKey = @"";
+    NSString *secondKey = @"";
+    for (int i=0; i<[firstObj wy_objectAllProperty].count; i++) {
+        
+        firstKey = [firstObj wy_objectAllProperty][i];
+        secondKey = [secondObj wy_objectAllProperty][i];
+        if(![[firstObj valueForKey:firstKey] isEqual:[secondObj valueForKey:secondKey]]) {
+            
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
+- (NSArray *)wy_objectAllProperty {
+    
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:0];
+    
+    unsigned int count;
+    objc_property_t *propertys = class_copyPropertyList([self class], &count);
+    for (int i = 0; i < count; i++) {
+        objc_property_t property = propertys[i];
+        const char *nameChar = property_getName(property);
+        NSString *nameStr = [NSString stringWithCString:nameChar encoding:NSUTF8StringEncoding];
+        [array addObject:nameStr];
+    }
+    return [array copy];
+
+}
+
 @end

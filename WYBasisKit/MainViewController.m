@@ -16,6 +16,9 @@
 #import "TestLoadingStateViewController.h"
 #import "TestUserAvatarViewController.h"
 #import "TestPagingViewController.h"
+#import "TestUIAlertController.h"
+#import "NSString+WY_Extension.h"
+#import "UITableViewCell+WY_Extension.h"
 
 @interface MainViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -34,9 +37,9 @@
     //设置标题字号
     self.navigationController.wy_titleFont = [UIFont boldSystemFontOfSize:30];
     //设置导航栏背景图
-    self.navigationController.wy_barBackgroundImage = [UIImage imageNamed:@"test"];
+    //self.navigationController.wy_barBackgroundImage = [UIImage imageNamed:@"test"];
     //设置导航栏背景颜色(设置了背景图就不用设置背景颜色了)
-    //self.navigationController.barBackgroundColor = [UIColor greenColor];
+    self.navigationController.wy_barBackgroundColor = [UIColor greenColor];
     //设置导航栏返回按钮图片
     self.navigationController.wy_barReturnButtonImage = [UIImage imageNamed:@"返回按钮"];
     //设置导航栏返回按钮文字颜色
@@ -76,11 +79,12 @@
     
     static NSString *cellIndentifier = @"UITableViewCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
-    
     if(cell == nil)
     {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIndentifier];
-        [tableView wy_cellCutOffLineFromZeroPoint:cell];
+         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        [cell wy_cellCutOffLineFromZeroPoint];
+        cell.wy_rightArrowImage = [UIImage imageNamed:@"jiantou"];
     }
     cell.backgroundColor = [UIColor whiteColor];
     cell.textLabel.text = [self section][indexPath.row];
@@ -130,13 +134,17 @@
         
         vc = [[TestPagingViewController alloc]init];
     }
+    else if (indexPath.row == 9) {
+        
+        vc = [[TestUIAlertController alloc]init];
+    }
     vc.navigationItem.title = [self section][indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (NSArray *)section {
     
-    NSArray *sectionTitleAry = @[@"WKWebView",@"UILable",@"UITextView",@"UITextField",@"UIButton",@"BoolJudge",@"LoadingState",@"userAvatar",@"pagingView"];
+    NSArray *sectionTitleAry = @[@"WKWebView",@"UILable",@"UITextView",@"UITextField",@"UIButton",@"BoolJudge",@"LoadingState",@"userAvatar",@"pagingView",@"UIAlert"];
     
     return sectionTitleAry;
 }

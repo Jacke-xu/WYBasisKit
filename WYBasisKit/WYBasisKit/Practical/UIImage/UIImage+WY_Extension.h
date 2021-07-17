@@ -204,6 +204,9 @@ typedef NS_ENUM(NSUInteger, WY_GradientType) {
  */
 + (UIImage *)wy_imageFromGradientColors:(NSArray *)colors gradientType:(WY_GradientType)gradientType imageSize:(CGSize)imageSize;
 
+/** 获取图片主体色*/
++ (UIColor *)wy_colorFromImage:(UIImage *)image;
+
 /**
  对比两张图片是否相同
  

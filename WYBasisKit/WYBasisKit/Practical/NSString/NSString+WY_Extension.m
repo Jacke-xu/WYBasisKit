@@ -11,8 +11,29 @@
 #import <ifaddrs.h>
 #import <arpa/inet.h>
 #import <sys/utsname.h>
+#import <CoreText/CoreText.h>
 
 @implementation NSString (WY_Extension)
+
++ (NSString *)wy_emptyStr:(NSString *)string {
+    
+    if(([string isKindOfClass:[NSNull class]]) || ([string isEqual:[NSNull null]]) || (string == nil) || (!string)) {
+        
+        string = @"";
+    }
+    
+    return string;
+}
+
++ (BOOL)wy_isEmptyStr:(NSString *)string {
+    
+    if(([string isKindOfClass:[NSNull class]]) || ([string isEqual:[NSNull null]]) || (string == nil) || (!string) || (string.length <= 0)) {
+        
+        return YES;
+    }
+    
+    return NO;
+}
 
 /** 获取手机号运营商 */
 + (NSString *)wy_mobilePhoneOperators:(NSString *)string {
@@ -38,16 +59,37 @@
     return retSize;
 }
 
-/** 计算显示文本需要几行 */
-- (CGFloat)wy_textShowLinesWithControlWidth:(CGFloat)controlWidth font:(UIFont *)font lineSpacing:(CGFloat)lineSpacing {
+/** 获取每行显示的文本及显示完整总共需要的行数 */
+- (NSArray *)wy_textShowLinesWithControlWidth:(CGFloat)controlWidth font:(UIFont *)font lineSpacing:(CGFloat)lineSpacing {
     
-    //计算总高度
-    CGFloat totalHeight = [self wy_boundingRectWithSize:CGSizeMake(controlWidth, 0) withFont:font lineSpacing:lineSpacing].height;
+    CTFontRef myFont = CTFontCreateWithName(( CFStringRef)([font fontName]), [font pointSize], NULL);
+    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:[NSString wy_emptyStr:self]];
+    [attStr addAttribute:(NSString *)kCTFontAttributeName value:(__bridge  id)myFont range:NSMakeRange(0, attStr.length)];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+    [paragraphStyle setLineSpacing:lineSpacing];
+    [attStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, attStr.length)];
+    CFRelease(myFont);
+    CTFramesetterRef frameSetter = CTFramesetterCreateWithAttributedString(( CFAttributedStringRef)attStr);
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathAddRect(path, NULL, CGRectMake(0,0,controlWidth,MAXFLOAT));
+    CTFrameRef frame = CTFramesetterCreateFrame(frameSetter, CFRangeMake(0, 0), path, NULL);
+    NSArray *lines = ( NSArray *)CTFrameGetLines(frame);
+    NSMutableArray *linesArray = [[NSMutableArray alloc]init];
+    for (id line in lines) {
+        CTLineRef lineRef = (__bridge  CTLineRef )line;
+        CFRange lineRange = CTLineGetStringRange(lineRef);
+        NSRange range = NSMakeRange(lineRange.location, lineRange.length);
+        NSString *lineString = [[NSString wy_emptyStr:self] substringWithRange:range];
+        CFAttributedStringSetAttribute((CFMutableAttributedStringRef)attStr, lineRange, kCTKernAttributeName, (CFTypeRef)([NSNumber numberWithFloat:0.0]));
+        CFAttributedStringSetAttribute((CFMutableAttributedStringRef)attStr, lineRange, kCTKernAttributeName, (CFTypeRef)([NSNumber numberWithInt:0.0]));
+        [linesArray addObject:lineString];
+    }
     
-    //计算每行的高度
-    CGFloat lineHeight = font.lineHeight+lineSpacing;
+    CGPathRelease(path);
+    CFRelease( frame );
+    CFRelease(frameSetter);
     
-    return totalHeight/lineHeight;
+    return (NSArray *)linesArray;
 }
 
 /** 计算显示文本到指定行数时需要的高度 */
@@ -577,15 +619,6 @@
     CFStringTransform((__bridge CFMutableStringRef)pinyin, NULL, kCFStringTransformStripCombiningMarks, NO);
     //返回最近结果
     return pinyin;
-}
-
-+ (NSString *)wy_emptyStr:(NSString *)str {
-    
-    if(([str isKindOfClass:[NSNull class]]) || ([str isEqual:[NSNull null]]) || (str == nil) || (!str)) {
-        
-        str = @"";
-    }
-    return str;
 }
 
 @end

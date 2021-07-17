@@ -12,14 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UITableView (WY_Extension)
 
+//@property (nonatomic, strong) UIImage *
+
 /** 设置tableView头部或尾部背景色 */
 - (void)wy_rendererHeaderFooterViewBackgroundColor:(UIView *)view color:(UIColor *)color;
 
 /** 设置tableView滚动时无粘性 */
 - (void)wy_scrollWithoutPasting:(UIScrollView *)scrollView height:(CGFloat)height;
-
-/** 设置tableViewCell分割线顶头 */
-- (void)wy_cellCutOffLineFromZeroPoint:(UITableViewCell *)cell;
 
 /** 禁用 Self-Sizing */
 - (void)wy_forbiddenSelfSizing;

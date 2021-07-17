@@ -21,6 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** 数字按照降序排序 */
 + (NSArray *)wy_sortDescendingNumFromArray:(NSArray *)array;
 
+/** 获取所有KVC的值 */
++ (NSArray *)wy_allKVCStrings:(id)object;
+
 @end
 
 NS_ASSUME_NONNULL_END

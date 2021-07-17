@@ -40,6 +40,23 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSDictionary *)wy_objectClassInArray;
 
+
+/**
+ 判断两个对象是否相等(仅适用于简单对比，内部有模型、字典、数组等可能对比会有误差)
+
+ @param firstObj 第一个需要对比的模型
+ @param secondObj 第二个需要对比的模型
+ @return 对比的结果
+ */
++ (BOOL)wy_compareObject:(NSObject *)firstObj withObject:(NSObject *)secondObj;
+
+
+/**
+ *  获取模型的所有属性值
+ */
+- (NSArray *)wy_objectAllProperty;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

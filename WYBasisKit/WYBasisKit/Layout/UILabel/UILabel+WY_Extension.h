@@ -15,14 +15,17 @@ NS_ASSUME_NONNULL_BEGIN
 /** 获取UILable的行高(根据UILable的字号获取的，系统默认字号：17) */
 @property (nonatomic, assign, readonly) CGFloat wy_lineHeight;
 
+/** 设置标签文本距离边框的边距 */
+@property (nonatomic, assign) UIEdgeInsets wy_textInsets;
+
 /** 设置标签左对齐 */
-- (void)wy_leftAlignment;
+- (void)wy_leftAlign;
 
 /** 设置标签中心对齐 */
-- (void)wy_centerAlignment;
+- (void)wy_centerAlign;
 
 /** 设置标签右对齐 */
-- (void)wy_rightAlignment;
+- (void)wy_rightAlign;
 
 /** 创建lable */
 + (UILabel *)wy_createLabWithFrame:(CGRect)frame textColor:(UIColor *)textColor font:(UIFont *)font;

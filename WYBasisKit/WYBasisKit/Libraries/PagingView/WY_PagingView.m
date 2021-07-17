@@ -9,6 +9,9 @@
 #import "WY_PagingView.h"
 #import "UIButton+WY_EdgeInsets.h"
 
+#define buttonTagBegin 100
+#define badgeTagBegin  1000
+
 @interface WY_PagingView ()<UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *wy_barScrollView;//buttonTitleScrollView
@@ -87,12 +90,35 @@
     _wy_useFont = (_bar_title_selectedFont.pointSize > _bar_title_defaultFont.pointSize) ? _bar_title_selectedFont : _bar_title_defaultFont;
     
     _bar_selectedIndex = 0;
+    
+    _bar_badgeValueFillColor = [UIColor redColor];
+    
+    _bar_badgeValueTextColor = [UIColor whiteColor];
+    
+    _bar_badgeValueInsets = UIEdgeInsetsZero;
+    
+    _bar_badgeValueTextFont = [UIFont systemFontOfSize:9];
+    
+    _bar_badgeValueOffset = CGPointZero;
 }
 
 - (void)setBar_Height:(CGFloat)bar_Height {
     
     _bar_Height = bar_Height;
     _bar_scrollLineTop = _bar_Height-5;
+}
+
+- (void)setBar_selectedIndex:(NSInteger)bar_selectedIndex  {
+    
+    if(bar_selectedIndex > (_wy_titleAry.count-1)) {bar_selectedIndex = 0;}
+    
+    _bar_selectedIndex = bar_selectedIndex;
+    
+    UIButton *sender = [(UIButton *)self viewWithTag:buttonTagBegin+_bar_selectedIndex];
+    
+    if(sender == nil) return;
+    
+    [self buttonItemClick:sender];
 }
 
 - (void)wy_updateDefaultProperty {
@@ -197,7 +223,7 @@
             [buttonItem wy_layouEdgeInsetsPosition:WY_ButtonPositionImageTop_titleBottom spacing:_barButton_dividingSpace];
             buttonItem.imageView.contentMode = UIViewContentModeCenter;
         }
-        buttonItem.tag = 100+i;
+        buttonItem.tag = buttonTagBegin+i;
         [buttonItem addTarget:self action:@selector(buttonItemClick:) forControlEvents:UIControlEventTouchUpInside];
         if(i == _bar_selectedIndex) {
             
@@ -205,6 +231,7 @@
             _wy_currentButtonItem = buttonItem;
         }
         [_wy_barScrollView insertSubview:buttonItem atIndex:0];
+        
         leftx += (titleStrWidth+_bar_dividingSpace);
         
         //设置scrollView的ContentSize让其滚动
@@ -221,6 +248,54 @@
     }
 }
 
+- (void)wy_showBadge:(BOOL)show value:(id)value atIndex:(NSInteger)index {
+    
+    UILabel *badgeView = [self viewWithTag:badgeTagBegin+index];
+    UIButton *button = [self viewWithTag:buttonTagBegin+index];
+    
+    if(button == nil) return;
+    
+    if(badgeView == nil) {
+        
+        badgeView = [[UILabel alloc]init];
+        badgeView.textColor = _bar_badgeValueTextColor;
+        badgeView.font = _bar_badgeValueTextFont;
+        badgeView.backgroundColor = _bar_badgeValueFillColor;
+        badgeView.wy_textInsets = _bar_badgeValueInsets;
+        badgeView.textAlignment = NSTextAlignmentCenter;
+        badgeView.clipsToBounds = YES;
+        badgeView.tag = badgeTagBegin+index;
+        [button.superview addSubview:badgeView];
+    }
+    badgeView.hidden = !show;
+    
+    CGSize badgeSize = CGSizeZero;
+    if([value isKindOfClass:[UIImage class]]) {
+        
+        UIImage *patternImage = (UIImage *)value;
+        [badgeView setBackgroundColor:[UIColor colorWithPatternImage:patternImage]];
+        badgeSize = CGSizeMake(patternImage.wy_width, patternImage.wy_height);
+        
+    }else {
+        
+        badgeView.text = (NSString *)value;
+        CGSize badgeStrSize = [badgeView.text wy_boundingRectWithSize:CGSizeMake(MAXFLOAT, badgeView.font.lineHeight) withFont:badgeView.font lineSpacing:0];
+        badgeStrSize = CGSizeMake(badgeStrSize.width+_bar_badgeValueInsets.left+_bar_badgeValueInsets.right, badgeStrSize.height+_bar_badgeValueInsets.top+_bar_badgeValueInsets.bottom);
+        CGFloat badgeStrWidth = (badgeStrSize.width<badgeStrSize.height) ? badgeStrSize.height : badgeStrSize.width;
+        badgeSize = CGSizeMake(badgeStrWidth, badgeStrSize.height);
+        if([NSString wy_isEmptyStr:badgeView.text] == YES) {
+            
+            badgeSize = CGSizeMake(_bar_badgeValueInsets.left+_bar_badgeValueInsets.right, _bar_badgeValueInsets.top+_bar_badgeValueInsets.bottom);
+        }
+        badgeView.layer.cornerRadius = badgeSize.height/2;
+    }
+    CGFloat buttonStrWidth = [button.currentTitle wy_boundingRectWithSize:CGSizeMake(MAXFLOAT, button.wy_height) withFont:button.titleLabel.font lineSpacing:0].width;
+    CGFloat badgeLeft = (button.wy_right-((button.wy_width-buttonStrWidth)/2))+_bar_badgeValueOffset.x;
+    CGFloat badgeTop = (button.wy_top+((button.wy_height-button.titleLabel.font.lineHeight)/2))-(badgeSize.height/2);
+    
+    badgeView.frame = CGRectMake(badgeLeft, badgeTop, badgeSize.width, badgeSize.height);
+}
+
 - (void)wy_scrollPagingToIndex:(void (^)(NSInteger))scrollAction {
     
     _wy_scrollAction = scrollAction;
@@ -230,9 +305,9 @@
     
     if(sender.tag != _wy_currentButtonItem.tag) {
         
-        _wy_controllerScrollView.contentOffset = CGPointMake(self.frame.size.width*(sender.tag-100), 0);
+        _wy_controllerScrollView.contentOffset = CGPointMake(self.frame.size.width*(sender.tag-buttonTagBegin), 0);
     }
-    _bar_selectedIndex = sender.tag - 100;
+    _bar_selectedIndex = sender.tag - buttonTagBegin;
     //重新赋值标签属性
     [self updateItemProperty:sender];
 }
@@ -298,7 +373,7 @@
     
     if(_wy_scrollAction) {
         
-        _wy_scrollAction(_wy_currentButtonItem.tag-100);
+        _wy_scrollAction(_wy_currentButtonItem.tag-buttonTagBegin);
     }
 }
 
@@ -308,7 +383,7 @@
     if((scrollView == _wy_controllerScrollView) && (_wy_controllerScrollView.contentOffset.x >= 0)) {
 
         CGFloat index = scrollView.contentOffset.x / wy_screenWidth;
-        UIButton *channeItem =  (UIButton *)[_wy_barScrollView viewWithTag:100+index];
+        UIButton *channeItem =  (UIButton *)[_wy_barScrollView viewWithTag:buttonTagBegin+index];
         //重新赋值标签属性
         [self updateItemProperty:channeItem];
     }

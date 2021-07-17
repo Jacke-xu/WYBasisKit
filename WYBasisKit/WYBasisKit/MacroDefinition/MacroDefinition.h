@@ -46,6 +46,12 @@
 ///屏幕高度比率
 #define wy_screenHeightRatio  (wy_screenHeight / 667.0)
 
+///屏幕宽度比率转换
+#define wy_screenWidthRatioValue(value)  (value*wy_screenWidthRatio)
+
+///屏幕高度比率转换
+#define wy_screenHeightRatioValue(value)  (value*wy_screenHeightRatio)
+
 ///cell宽
 #define wy_cellWidth       (self.bounds.size.width)
 

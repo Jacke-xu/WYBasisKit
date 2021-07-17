@@ -191,7 +191,7 @@
     
     if (self.attributedText.length > range.length) {
         
-        UIFont *font ;
+        UIFont *font = nil;
         
         if ([self.attributedText attribute:NSFontAttributeName atIndex:0 effectiveRange:nil]) {
             
@@ -222,9 +222,9 @@
     CFArrayRef lines = CTFrameGetLines(frame);
     
     if (!lines) {
-        if(frame){CFRelease(frame);}
-        if(framesetter){CFRelease(framesetter);}
-        if(Path){CGPathRelease(Path);}
+        if(frame) {CFRelease(frame);}
+        if(framesetter) {CFRelease(framesetter);}
+        if(Path) {CGPathRelease(Path);}
         return NO;
     }
     

@@ -11,7 +11,7 @@
 #import "NSMutableParagraphStyle+WY_Extension.h"
 #import "NSMutableAttributedString+WY_Extension.h"
 
-@interface TestLableViewController ()<WY_RichTextDelegate>
+@interface TestLableViewController ()<WY_RichTzextDelegate>
 
 @end
 
@@ -29,7 +29,8 @@
     //快速创建富文本属性
     NSMutableAttributedString *attribute = [NSMutableAttributedString wy_attributeWithStr:lab.text];
     //设置行间距
-    [attribute wy_setLineSpacing:5 string:lab.text];
+    [attribute wy_setLineSpacing:20 string:@"治性之道，必审己之所有余而强其所不足，盖聪明疏通者戒于太察"];
+    [attribute wy_setLineSpacing:50 string:@"勇猛刚强者戒于太暴，仁爱温良者戒于无断，湛静安舒者戒于后时"];
     //设置字间距
     [attribute wy_setWordsSpacing:20 string:@"然后中和之化应"];
 
@@ -81,7 +82,7 @@
     [attributedString2 addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(19, 38)];
     [attributedString2 addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(63, 8)];
 
-    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(10, label1.wy_bottom+50, self.view.bounds.size.width - 20, 80)];
+    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(10, label1.wy_bottom+50, self.view.bounds.size.width - 20, 180)];
     label2.backgroundColor = [UIColor greenColor];
     label2.numberOfLines = 3;
     label2.attributedText = attributedString2;
