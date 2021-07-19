@@ -100,6 +100,66 @@
     return [self imageForState:UIControlStateSelected];
 }
 
+- (void)setWy_bg_nImage:(UIImage *)wy_bg_nImage {
+    
+    [self setBackgroundImage:wy_bg_nImage forState:UIControlStateNormal];
+}
+
+- (UIImage *)wy_bg_nImage {
+    
+    return [self backgroundImageForState:UIControlStateNormal];
+}
+
+- (void)setWy_bg_hImage:(UIImage *)wy_bg_hImage {
+    
+    [self setBackgroundImage:wy_bg_hImage forState:UIControlStateHighlighted];
+}
+
+- (UIImage *)wy_bg_hImage {
+    
+    return [self backgroundImageForState:UIControlStateHighlighted];
+}
+
+- (void)setWy_bg_sImage:(UIImage *)wy_bg_sImage {
+    
+    [self setBackgroundImage:wy_bg_sImage forState:UIControlStateSelected];
+}
+
+- (UIImage *)wy_bg_sImage {
+    
+    return [self backgroundImageForState:UIControlStateSelected];
+}
+
+- (void)setWy_bg_nImageColor:(UIColor *)wy_bg_nImageColor {
+    
+    [self setBackgroundImage:[UIImage wy_createImage:wy_bg_nImageColor] forState:UIControlStateNormal];
+}
+
+- (UIColor *)wy_bg_nImageColor {
+    
+    return [UIImage wy_colorFromImage:[self backgroundImageForState:UIControlStateNormal]];
+}
+
+- (void)setWy_bg_hImageColor:(UIColor *)wy_bg_hImageColor {
+    
+    [self setBackgroundImage:[UIImage wy_createImage:wy_bg_hImageColor] forState:UIControlStateHighlighted];
+}
+
+- (UIColor *)wy_bg_hImageColor {
+    
+    return [UIImage wy_colorFromImage:[self backgroundImageForState:UIControlStateHighlighted]];
+}
+
+- (void)setWy_bg_sImageColor:(UIColor *)wy_bg_sImageColor {
+    
+    [self setBackgroundImage:[UIImage wy_createImage:wy_bg_sImageColor] forState:UIControlStateSelected];
+}
+
+- (UIColor *)wy_bg_sImageColor {
+    
+    return [UIImage wy_colorFromImage:[self backgroundImageForState:UIControlStateSelected]];
+}
+
 - (void)setWy_titleFont:(UIFont *)wy_titleFont {
     
     self.titleLabel.font = wy_titleFont;
@@ -116,27 +176,27 @@
     self.clipsToBounds = YES;
 }
 
-- (void)wy_leftAlignment {
+- (void)wy_leftAlign {
     
     self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
 }
 
-- (void)wy_centerAlignment {
+- (void)wy_centerAlign {
     
     self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
 }
 
-- (void)wy_rightAlignment {
+- (void)wy_rightAlign {
     
     self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
 }
 
-- (void)wy_topAlignment {
+- (void)wy_topAlign {
     
     self.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
 }
 
-- (void)wy_bottomAlignment {
+- (void)wy_bottomAlign {
     
     self.contentVerticalAlignment = UIControlContentVerticalAlignmentBottom;
 }

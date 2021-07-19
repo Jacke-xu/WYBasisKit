@@ -42,6 +42,26 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIImage *wy_sImage;
 
 
+/** 按钮默认状态背景图片 */
+@property (nonatomic, strong) UIImage *wy_bg_nImage;
+
+/** 按钮高亮状态背景图片 */
+@property (nonatomic, strong) UIImage *wy_bg_hImage;
+
+/** 按钮选中状态背景图片 */
+@property (nonatomic, strong) UIImage *wy_bg_sImage;
+
+
+/** 按钮默认状态背景颜色(内部会转换成对应颜色的图片) */
+@property (nonatomic, strong) UIColor *wy_bg_nImageColor;
+
+/** 按钮高亮状态背景颜色(内部会转换成对应颜色的图片) */
+@property (nonatomic, strong) UIColor *wy_bg_hImageColor;
+
+/** 按钮选中状态背景颜色(内部会转换成对应颜色的图片) */
+@property (nonatomic, strong) UIColor *wy_bg_sImageColor;
+
+
 /** 设置按钮字号 */
 @property (nonatomic, strong) UIFont *wy_titleFont;
 
@@ -51,19 +71,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /** 设置按钮左对齐 */
-- (void)wy_leftAlignment;
+- (void)wy_leftAlign;
 
 /** 设置按钮中心对齐 */
-- (void)wy_centerAlignment;
+- (void)wy_centerAlign;
 
 /** 设置按钮右对齐 */
-- (void)wy_rightAlignment;
+- (void)wy_rightAlign;
 
 /** 设置按钮上对齐 */
-- (void)wy_topAlignment;
+- (void)wy_topAlign;
 
 /** 设置按钮下对齐 */
-- (void)wy_bottomAlignment;
+- (void)wy_bottomAlign;
 
 
 /** 初始化frame及点击事件 */

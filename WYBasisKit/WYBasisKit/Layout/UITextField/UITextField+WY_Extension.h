@@ -18,9 +18,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIColor *wy_placeholderColor;
 
 /**
+ *  清除按钮图片
+ */
+@property (nonatomic, strong) UIImage *wy_clearButtonImage;
+
+/**
  *  文本最大支持多少个字符，设置后会自动根据该属性截取文本字符长度
  */
 @property (nonatomic, assign) NSInteger wy_maximumLimit;
+
+/**
+ *  是否禁止复制粘贴 默认允许
+ */
+@property (nonatomic, assign) BOOL wy_allowCopyPaste;
 
 /**
  *  文本发生改变时回调

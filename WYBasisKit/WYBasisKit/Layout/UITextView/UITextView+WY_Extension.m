@@ -13,6 +13,10 @@
 
 @property (nonatomic, assign) BOOL wy_addNoti;
 
+@property (nonatomic, assign) BOOL wy_havePlaceholderLable;
+
+@property (nonatomic, assign) BOOL wy_haveCharactersLengthLable;
+
 @property (nonatomic, copy) NSString *wy_lastTextStr;
 
 @property (nonatomic, copy) void(^wy_textHandle) (NSString *textStr);
@@ -33,6 +37,28 @@
 - (BOOL)wy_addNoti {
     
     BOOL obj = [objc_getAssociatedObject(self, &@selector(wy_addNoti)) boolValue];
+    return obj;
+}
+
+- (void)setWy_havePlaceholderLable:(BOOL)wy_havePlaceholderLable {
+    
+    objc_setAssociatedObject(self, &@selector(wy_havePlaceholderLable), [NSNumber numberWithBool:wy_havePlaceholderLable], OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (BOOL)wy_havePlaceholderLable {
+    
+    BOOL obj = [objc_getAssociatedObject(self, &@selector(wy_havePlaceholderLable)) boolValue];
+    return obj;
+}
+
+- (void)setWy_haveCharactersLengthLable:(BOOL)wy_haveCharactersLengthLable {
+    
+    objc_setAssociatedObject(self, &@selector(wy_haveCharactersLengthLable), [NSNumber numberWithBool:wy_haveCharactersLengthLable], OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (BOOL)wy_haveCharactersLengthLable {
+    
+    BOOL obj = [objc_getAssociatedObject(self, &@selector(wy_haveCharactersLengthLable)) boolValue];
     return obj;
 }
 
@@ -88,13 +114,25 @@
     return [obj integerValue];
 }
 
+- (void)setWy_allowCopyPaste:(BOOL)wy_allowCopyPaste {
+    
+    wy_allowCopyPaste = !wy_allowCopyPaste;
+    
+    objc_setAssociatedObject(self, @selector(wy_allowCopyPaste), [NSNumber numberWithBool:wy_allowCopyPaste], OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (BOOL)wy_allowCopyPaste {
+    
+    BOOL obj = ![objc_getAssociatedObject(self, _cmd) boolValue];
+    return obj;
+}
+
 - (void)setWy_characterLengthPrompt:(BOOL)wy_characterLengthPrompt {
     
     objc_setAssociatedObject(self, &@selector(wy_characterLengthPrompt), [NSNumber numberWithBool:wy_characterLengthPrompt], OBJC_ASSOCIATION_ASSIGN);
     [self wy_fixMessyDisplay];
     
     self.wy_height = (wy_characterLengthPrompt == YES) ? self.wy_height-25 : self.wy_height+25;
-    self.wy_charactersLengthLable.text = [NSString stringWithFormat:@"%lu/%ld\t",(unsigned long)self.text.length > (long)self.wy_maximumLimit ? (long)self.wy_maximumLimit : (unsigned long)self.text.length ,(long)self.wy_maximumLimit];
     self.wy_charactersLengthLable.hidden = !wy_characterLengthPrompt;
 }
 
@@ -102,6 +140,18 @@
     
     id obj = objc_getAssociatedObject(self, &@selector(wy_characterLengthPrompt));
     return [obj boolValue];
+}
+
+- (void)setWy_placeholderPoint:(CGPoint)wy_placeholderPoint {
+    
+    objc_setAssociatedObject(self, @selector(wy_placeholderPoint), [NSValue valueWithCGPoint:wy_placeholderPoint], OBJC_ASSOCIATION_RETAIN);
+    
+    self.wy_placeholderLable.wy_origin = wy_placeholderPoint;
+}
+
+- (CGPoint)wy_placeholderPoint {
+    
+    return [objc_getAssociatedObject(self, @selector(wy_placeholderPoint)) CGPointValue];
 }
 
 - (UILabel *)wy_placeholderLable {
@@ -118,6 +168,8 @@
         [self insertSubview:obj atIndex:0];
         
         objc_setAssociatedObject(self, @selector(wy_placeholderLable), obj, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        
+        self.wy_havePlaceholderLable = YES;
     }
     
     obj.font = self.wy_placeholderFont ? self.wy_placeholderFont : self.font;
@@ -138,7 +190,12 @@
         obj.textAlignment = NSTextAlignmentRight;
         obj.userInteractionEnabled = YES;
         
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showTextView)];
+        [obj addGestureRecognizer:tap];
+        
         objc_setAssociatedObject(self, @selector(wy_charactersLengthLable), obj, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        
+        self.wy_haveCharactersLengthLable = YES;
     }
     
     obj.font = self.wy_placeholderFont ? self.wy_placeholderFont : self.font;
@@ -215,8 +272,14 @@
     }
     self.wy_lastTextStr = self.text;
     
-    self.wy_placeholderLable.hidden = (self.text.length > 0) ? YES : NO;
-    self.wy_charactersLengthLable.text = [NSString stringWithFormat:@"%lu/%ld\t",(unsigned long)self.text.length > (long)self.wy_maximumLimit ? (long)self.wy_maximumLimit : (unsigned long)self.text.length ,(long)self.wy_maximumLimit];
+    if(self.wy_havePlaceholderLable == YES) {
+        
+        self.wy_placeholderLable.hidden = (self.text.length > 0) ? YES : NO;
+    }
+    if(self.wy_haveCharactersLengthLable == YES) {
+        
+        self.wy_charactersLengthLable.text = [NSString stringWithFormat:@"%lu/%ld\t",(unsigned long)self.text.length > (long)self.wy_maximumLimit ? (long)self.wy_maximumLimit : (unsigned long)self.text.length ,(long)self.wy_maximumLimit];
+    }
 }
 
 - (void)wy_addTextChangeNoti {
@@ -235,6 +298,9 @@
     
     if(self.wy_characterLengthPrompt == YES) {
         
+        self.wy_charactersLengthLable.text = [NSString stringWithFormat:@"%lu/%ld\t",(unsigned long)self.text.length > (long)self.wy_maximumLimit ? (long)self.wy_maximumLimit : (unsigned long)self.text.length ,(long)self.wy_maximumLimit];
+        self.wy_charactersLengthLable.hidden = NO;
+        
         self.wy_charactersLengthLable.layer.borderWidth = self.layer.borderWidth;
         self.wy_charactersLengthLable.layer.borderColor = self.layer.borderColor;
         if(self.wy_charactersLengthLable.superview == nil) {
@@ -243,21 +309,33 @@
     }
 }
 
+- (void)showTextView {
+    
+    [self becomeFirstResponder];
+}
+
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
+    
+    // 禁止剪切
+    if (action == @selector(cut:)) return self.wy_allowCopyPaste;
+    
+    // 禁止粘贴
+    if (action == @selector(paste:)) return self.wy_allowCopyPaste;
+    
+    // 禁止选择
+    if (action == @selector(select:)) return self.wy_allowCopyPaste;
+    
+    // 禁止全选
+    if (action == @selector(selectAll:)) return self.wy_allowCopyPaste;
+    
+    return [super canPerformAction:action withSender:sender];
+}
+
 - (void)dealloc {
     
     if(self.wy_addNoti == YES) {
         
         [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextViewTextDidChangeNotification object:nil];
-    }
-    if(self.wy_placeholderLable != nil) {
-        
-        [self.wy_placeholderLable removeFromSuperview];
-        self.wy_placeholderLable = nil;
-    }
-    if(self.wy_charactersLengthLable != nil) {
-        
-        [self.wy_charactersLengthLable removeFromSuperview];
-        self.wy_charactersLengthLable = nil;
     }
 }
 

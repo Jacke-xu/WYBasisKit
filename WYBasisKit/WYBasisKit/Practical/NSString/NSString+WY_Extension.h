@@ -11,6 +11,16 @@
 
 @interface NSString (WY_Extension)
 
+/**
+ 获取非空字符串
+ */
++ (NSString *)wy_emptyStr:(NSString *)string;
+
+/**
+ 是否是空字符串
+ */
++ (BOOL)wy_isEmptyStr:(NSString *)string;
+
 /** 获取手机号运营商 */
 + (NSString *)wy_mobilePhoneOperators:(NSString *)string;
 
@@ -38,8 +48,8 @@
 /** 返回一个计算好的字符串的高度和宽度 */
 - (CGSize)wy_boundingRectWithSize:(CGSize)size withFont:(UIFont *)font lineSpacing:(CGFloat)lineSpacing;
 
-/** 计算显示文本需要几行 */
-- (CGFloat)wy_textShowLinesWithControlWidth:(CGFloat)controlWidth font:(UIFont *)font lineSpacing:(CGFloat)lineSpacing;
+/** 获取每行显示的文本及显示完整总共需要的行数(array.count即需要的行数) */
+- (NSArray *)wy_textShowLinesWithControlWidth:(CGFloat)controlWidth font:(UIFont *)font lineSpacing:(CGFloat)lineSpacing;
 
 /** 计算显示文本到指定行数时需要的高度 */
 - (CGFloat)wy_textHeightWithSpecifyRow:(NSInteger)specifyRow font:(UIFont *)font lineSpacing:(CGFloat)lineSpacing;
@@ -142,10 +152,5 @@
  */
 + (NSString *)wy_appleDiviceType;
 
-
-/**
- 验证非空字符串
- */
-+ (NSString *)wy_emptyStr:(NSString *)str;
 
 @end
