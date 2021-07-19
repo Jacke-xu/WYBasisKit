@@ -74,6 +74,11 @@
     return objc_getAssociatedObject(self, _cmd);
 }
 
+- (void)setDelegate:(id<WY_RichTextDelegate>)delegate {
+    
+    objc_setAssociatedObject(self, @selector(delegate), delegate, OBJC_ASSOCIATION_ASSIGN);
+}
+
 -(BOOL)wy_enabledClickEffect {
     
     return [objc_getAssociatedObject(self, _cmd) boolValue];
@@ -105,11 +110,6 @@
 - (void)setWy_isClickEffect:(BOOL)wy_isClickEffect {
     
     objc_setAssociatedObject(self, @selector(wy_isClickEffect), @(wy_isClickEffect), OBJC_ASSOCIATION_ASSIGN);
-}
-
-- (void)setDelegate:(id<WY_RichTextDelegate>)delegate {
-    
-    objc_setAssociatedObject(self, @selector(delegate), delegate, OBJC_ASSOCIATION_ASSIGN);
 }
 
 #pragma mark - mainFunction
@@ -204,11 +204,17 @@
             font = [UIFont systemFontOfSize:17];
         }
         
+        CGFloat lineSpace = 0.0f;
+        if ([self.attributedText attribute:NSParagraphStyleAttributeName atIndex:0 effectiveRange:nil]) {
+            
+            lineSpace = [[[self.attributedText attribute:NSParagraphStyleAttributeName atIndex:0 effectiveRange:nil] valueForKey:@"_lineSpacing"] floatValue];
+        }
+        
         CGPathRelease(Path);
         
         Path = CGPathCreateMutable();
         
-        CGPathAddRect(Path, NULL, CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height + font.lineHeight));
+        CGPathAddRect(Path, NULL, CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height + font.lineHeight - lineSpace));
         
         frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), Path, NULL);
     }

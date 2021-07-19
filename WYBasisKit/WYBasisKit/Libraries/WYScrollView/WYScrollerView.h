@@ -10,7 +10,7 @@
 
 @interface WYScrollerView : UIView
 
-/*
+/**
  *  设置占位图
  */
 @property (nonatomic, strong) UIImage *placeholderImage;
