@@ -61,9 +61,11 @@ NS_ASSUME_NONNULL_BEGIN
 /** 按钮选中状态背景颜色(内部会转换成对应颜色的图片) */
 @property (nonatomic, strong) UIColor *wy_bg_sImageColor;
 
-
 /** 设置按钮字号 */
 @property (nonatomic, strong) UIFont *wy_titleFont;
+
+/** 根据状态设置按钮背景色 */
+- (void)wy_setBackgroundColor:(UIColor *)color state:(UIControlState)state;
 
 
 /** 按钮圆角半径 */

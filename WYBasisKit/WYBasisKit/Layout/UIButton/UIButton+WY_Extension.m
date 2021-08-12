@@ -170,6 +170,19 @@
     return self.titleLabel.font;
 }
 
+- (void)wy_setBackgroundColor:(UIColor *)color state:(UIControlState)state {
+    
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, color.CGColor);
+    CGContextFillRect(context, rect);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    [self setBackgroundImage:image forState:state];
+}
+
 - (void)wy_radius:(CGFloat)radius {
     
     self.layer.cornerRadius = radius;
