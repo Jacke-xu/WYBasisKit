@@ -1,11 +1,12 @@
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, ‘8.0’
+source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
+inhibit_all_warnings!
+platform :ios, ‘10.0’
 
 target 'WYBasisKit' do
-pod "AFNetworking"
-pod "SDWebImage"
-pod "MJRefresh"
-pod "PureCamera"
-pod "Masonry"
+pod 'AFNetworking'
+pod 'SDWebImage'
+pod 'MJRefresh'
+pod 'PureCamera'
+pod 'Masonry'
 
 end

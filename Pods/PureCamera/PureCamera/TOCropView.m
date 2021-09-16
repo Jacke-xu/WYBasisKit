@@ -885,7 +885,7 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     offset.y = MAX(-cropFrame.origin.y, offset.y);
     
     __weak typeof(self) weakSelf = self;
-    void (^translateBlock)(void) = ^{
+    void (^translateBlock)() = ^{
         typeof(self) strongSelf = weakSelf;
         
         strongSelf.scrollView.zoomScale *= scale;

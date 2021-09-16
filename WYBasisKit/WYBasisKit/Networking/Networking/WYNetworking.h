@@ -63,7 +63,7 @@ singleton_interface(WYNetworking)//单例声明
  *  @param success    请求成功回调
  *  @param failure    请求失败回调
  */
-- (void)GET:(NSString *)URLString parameters:(NSDictionary *)parameters success:(Success)success failure:(Failure)failure;
+- (void)GET:(NSString *)URLString headers:(NSDictionary *)headers parameters:(NSDictionary *)parameters success:(Success)success failure:(Failure)failure;
 
 
 /**
@@ -75,7 +75,7 @@ singleton_interface(WYNetworking)//单例声明
  *  @param success    请求成功回调
  *  @param failure    请求失败回调
  */
-- (void)GET:(NSString *)URLString parameters:(NSDictionary *)parameters progress:(Progress)progress success:(Success)success failure:(Failure)failure;
+- (void)GET:(NSString *)URLString headers:(NSDictionary *)headers parameters:(NSDictionary *)parameters progress:(Progress)progress success:(Success)success failure:(Failure)failure;
 
 
 /**
@@ -86,7 +86,7 @@ singleton_interface(WYNetworking)//单例声明
  *  @param success    请求成功回调
  *  @param failure    请求失败回调
  */
-- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters success:(Success)success failure:(Failure)failure;
+- (void)POST:(NSString *)URLString headers:(NSDictionary *)headers parameters:(NSDictionary *)parameters success:(Success)success failure:(Failure)failure;
 
 /**
  *  POST请求(有返回请求进度)
@@ -97,7 +97,7 @@ singleton_interface(WYNetworking)//单例声明
  *  @param success    请求成功回调
  *  @param failure    请求失败回调
  */
-- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters progress:(Progress)progress success:(Success)success failure:(Failure)failure;
+- (void)POST:(NSString *)URLString headers:(NSDictionary *)headers parameters:(NSDictionary *)parameters progress:(Progress)progress success:(Success)success failure:(Failure)failure;
 
 
 /**
@@ -110,7 +110,7 @@ singleton_interface(WYNetworking)//单例声明
  *  @param success      上传成功的回调
  *  @param failure      上传失败的回调
  */
-- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters fileModelArray:(NSArray <WYFileModel *>*)modelArray progress:(Progress)progress success:(Success)success failure:(Failure)failure;
+- (void)POST:(NSString *)URLString headers:(NSDictionary *)headers parameters:(NSDictionary *)parameters fileModelArray:(NSArray <WYFileModel *>*)modelArray progress:(Progress)progress success:(Success)success failure:(Failure)failure;
 
 
 /**
@@ -123,7 +123,7 @@ singleton_interface(WYNetworking)//单例声明
  *  @param success      上传成功的回调
  *  @param failure      上传失败的回调
  */
-- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters fileModel:(WYFileModel *)fileModel progress:(Progress)progress success:(Success)success failure:(Failure)failure;
+- (void)POST:(NSString *)URLString headers:(NSDictionary *)headers parameters:(NSDictionary *)parameters fileModel:(WYFileModel *)fileModel progress:(Progress)progress success:(Success)success failure:(Failure)failure;
 
 
 /**
@@ -136,7 +136,7 @@ singleton_interface(WYNetworking)//单例声明
  *  @param success          上传成功的回调
  *  @param failure          上传失败的回调
  */
-- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters urlFileModelArray:(NSArray <WYFileModel *>*)modelArray progress:(Progress)progress success:(Success)success failure:(Failure)failure;
+- (void)POST:(NSString *)URLString headers:(NSDictionary *)headers parameters:(NSDictionary *)parameters urlFileModelArray:(NSArray <WYFileModel *>*)modelArray progress:(Progress)progress success:(Success)success failure:(Failure)failure;
 
 
 /**
@@ -149,7 +149,7 @@ singleton_interface(WYNetworking)//单例声明
  *  @param success          上传成功的回调
  *  @param failure          上传失败的回调
  */
-- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters urlFileModel:(WYFileModel *)fileModel progress:(Progress)progress success:(Success)success failure:(Failure)failure;
+- (void)POST:(NSString *)URLString headers:(NSDictionary *)headers parameters:(NSDictionary *)parameters urlFileModel:(WYFileModel *)fileModel progress:(Progress)progress success:(Success)success failure:(Failure)failure;
 
 
 /**

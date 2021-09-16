@@ -30,7 +30,7 @@
 - (UIActivityIndicatorView *)loadingView
 {
     if (!_loadingView) {
-        UIActivityIndicatorView *loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:self.activityIndicatorViewStyle];
+        UIActivityIndicatorView *loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:_activityIndicatorViewStyle];
         loadingView.hidesWhenStopped = YES;
         [self addSubview:_loadingView = loadingView];
     }
@@ -42,6 +42,7 @@
 {
     _activityIndicatorViewStyle = activityIndicatorViewStyle;
     
+    [self.loadingView removeFromSuperview];
     self.loadingView = nil;
     [self setNeedsLayout];
 }
@@ -51,7 +52,14 @@
 {
     [super prepare];
     
-    self.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 130000
+    if (@available(iOS 13.0, *)) {
+        _activityIndicatorViewStyle = UIActivityIndicatorViewStyleMedium;
+        return;
+    }
+#endif
+    
+    _activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
 }
 
 - (void)placeSubviews
@@ -61,10 +69,10 @@
     // 箭头的中心点
     CGFloat arrowCenterX = self.mj_w * 0.5;
     if (!self.stateLabel.hidden) {
-        CGFloat stateWidth = self.stateLabel.mj_textWith;
+        CGFloat stateWidth = self.stateLabel.mj_textWidth;
         CGFloat timeWidth = 0.0;
         if (!self.lastUpdatedTimeLabel.hidden) {
-            timeWidth = self.lastUpdatedTimeLabel.mj_textWith;
+            timeWidth = self.lastUpdatedTimeLabel.mj_textWidth;
         }
         CGFloat textWidth = MAX(stateWidth, timeWidth);
         arrowCenterX -= textWidth / 2 + self.labelLeftInset;
@@ -95,7 +103,7 @@
         if (oldState == MJRefreshStateRefreshing) {
             self.arrowView.transform = CGAffineTransformIdentity;
             
-            [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
+            [UIView animateWithDuration:self.slowAnimationDuration animations:^{
                 self.loadingView.alpha = 0.0;
             } completion:^(BOOL finished) {
                 // 如果执行完动画发现不是idle状态，就直接返回，进入其他状态
@@ -108,14 +116,14 @@
         } else {
             [self.loadingView stopAnimating];
             self.arrowView.hidden = NO;
-            [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
+            [UIView animateWithDuration:self.fastAnimationDuration animations:^{
                 self.arrowView.transform = CGAffineTransformIdentity;
             }];
         }
     } else if (state == MJRefreshStatePulling) {
         [self.loadingView stopAnimating];
         self.arrowView.hidden = NO;
-        [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
+        [UIView animateWithDuration:self.fastAnimationDuration animations:^{
             self.arrowView.transform = CGAffineTransformMakeRotation(0.000001 - M_PI);
         }];
     } else if (state == MJRefreshStateRefreshing) {

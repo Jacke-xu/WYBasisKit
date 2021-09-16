@@ -21,21 +21,20 @@ singleton_implementation(WYNetworking)//单例实现
  *  @param success    请求成功回调
  *  @param failure    请求失败回调
  */
-- (void)GET:(NSString *)URLString parameters:(NSDictionary *)parameters success:(Success)success failure:(Failure)failure {
+- (void)GET:(NSString *)URLString headers:(NSDictionary *)headers parameters:(NSDictionary *)parameters success:(Success)success failure:(Failure)failure {
     
     [self networkMonitoring:^(BOOL hasNetwork) {if(hasNetwork == NO) {return;}}];
     
-    [[self sharedSessionManager] GET:URLString parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        if (success) {success(responseObject);}
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
-        if (failure) {failure(error);}
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    }];
+    [[self sharedSessionManager] GET:URLString parameters:parameters headers:headers progress:^(NSProgress * _Nonnull downloadProgress) {
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            
+            if (success) {success(responseObject);}
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+            
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            if (failure) {failure(error);}
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        }];
 }
 
 
@@ -48,11 +47,11 @@ singleton_implementation(WYNetworking)//单例实现
  *  @param success    请求成功回调
  *  @param failure    请求失败回调
  */
-- (void)GET:(NSString *)URLString parameters:(NSDictionary *)parameters progress:(Progress)progress success:(Success)success failure:(Failure)failure {
+- (void)GET:(NSString *)URLString headers:(NSDictionary *)headers parameters:(NSDictionary *)parameters progress:(Progress)progress success:(Success)success failure:(Failure)failure {
     
     [self networkMonitoring:^(BOOL hasNetwork) {if(hasNetwork == NO) {return;}}];
     
-    [[self sharedSessionManager] GET:URLString parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
+    [[self sharedSessionManager] GET:URLString parameters:parameters headers:headers progress:^(NSProgress * _Nonnull downloadProgress) {
         
         if(progress) {progress(downloadProgress);}
         
@@ -77,11 +76,11 @@ singleton_implementation(WYNetworking)//单例实现
  *  @param success    请求成功回调
  *  @param failure    请求失败回调
  */
-- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters success:(Success)success failure:(Failure)failure {
+- (void)POST:(NSString *)URLString headers:(NSDictionary *)headers parameters:(NSDictionary *)parameters success:(Success)success failure:(Failure)failure {
     
     [self networkMonitoring:^(BOOL hasNetwork) {if(hasNetwork == NO) {return;}}];
     
-    [[self sharedSessionManager] POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    [[self sharedSessionManager] POST:URLString parameters:parameters headers:headers progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         if (success) {success(responseObject);}
@@ -103,11 +102,11 @@ singleton_implementation(WYNetworking)//单例实现
  *  @param success    请求成功回调
  *  @param failure    请求失败回调
  */
-- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters progress:(Progress)progress success:(Success)success failure:(Failure)failure {
+- (void)POST:(NSString *)URLString headers:(NSDictionary *)headers parameters:(NSDictionary *)parameters progress:(Progress)progress success:(Success)success failure:(Failure)failure {
     
     [self networkMonitoring:^(BOOL hasNetwork) {if(hasNetwork == NO) {return;}}];
     
-    [[self sharedSessionManager] POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    [[self sharedSessionManager] POST:URLString parameters:parameters headers:headers progress:^(NSProgress * _Nonnull uploadProgress) {
         
         if(progress) {progress(uploadProgress);}
         
@@ -134,11 +133,11 @@ singleton_implementation(WYNetworking)//单例实现
  *  @param success      上传成功的回调
  *  @param failure      上传失败的回调
  */
-- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters fileModelArray:(NSArray<WYFileModel *> *)modelArray progress:(Progress)progress success:(Success)success failure:(Failure)failure {
+- (void)POST:(NSString *)URLString headers:(NSDictionary *)headers parameters:(NSDictionary *)parameters fileModelArray:(NSArray<WYFileModel *> *)modelArray progress:(Progress)progress success:(Success)success failure:(Failure)failure {
     
     [self networkMonitoring:^(BOOL hasNetwork) {if(hasNetwork == NO) {return;}}];
     
-    [[self sharedSessionManager] POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [[self sharedSessionManager] POST:URLString parameters:parameters headers:headers constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
         for (int i = 0; i < modelArray.count; i++)
         {
@@ -178,11 +177,11 @@ singleton_implementation(WYNetworking)//单例实现
  *  @param success      上传成功的回调
  *  @param failure      上传失败的回调
  */
-- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters fileModel:(WYFileModel *)fileModel progress:(Progress)progress success:(Success)success failure:(Failure)failure {
+- (void)POST:(NSString *)URLString headers:(NSDictionary *)headers parameters:(NSDictionary *)parameters fileModel:(WYFileModel *)fileModel progress:(Progress)progress success:(Success)success failure:(Failure)failure {
     
     [self networkMonitoring:^(BOOL hasNetwork) {if(hasNetwork == NO) {return;}}];
     
-    [[self sharedSessionManager] POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [[self sharedSessionManager] POST:URLString parameters:parameters headers:headers constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
         [formData appendPartWithFileData:fileModel.fileData name:fileModel.folderName fileName:fileModel.fileName mimeType:fileModel.mimeType];
         fileModel.fileData = nil;
@@ -214,11 +213,11 @@ singleton_implementation(WYNetworking)//单例实现
  *  @param success          上传成功的回调
  *  @param failure          上传失败的回调
  */
-- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters urlFileModelArray:(NSArray <WYFileModel *>*)modelArray progress:(Progress)progress success:(Success)success failure:(Failure)failure {
+- (void)POST:(NSString *)URLString headers:(NSDictionary *)headers parameters:(NSDictionary *)parameters urlFileModelArray:(NSArray <WYFileModel *>*)modelArray progress:(Progress)progress success:(Success)success failure:(Failure)failure {
     
     [self networkMonitoring:^(BOOL hasNetwork) {if(hasNetwork == NO) {return;}}];
     
-    [[self sharedSessionManager] POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [[self sharedSessionManager] POST:URLString parameters:parameters headers:headers constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
         for (int i = 0; i < modelArray.count; i++)
         {
@@ -258,11 +257,11 @@ singleton_implementation(WYNetworking)//单例实现
  *  @param success          上传成功的回调
  *  @param failure          上传失败的回调
  */
-- (void)POST:(NSString *)URLString parameters:(NSDictionary *)parameters urlFileModel:(WYFileModel *)fileModel progress:(Progress)progress success:(Success)success failure:(Failure)failure {
+- (void)POST:(NSString *)URLString headers:(NSDictionary *)headers parameters:(NSDictionary *)parameters urlFileModel:(WYFileModel *)fileModel progress:(Progress)progress success:(Success)success failure:(Failure)failure {
     
     [self networkMonitoring:^(BOOL hasNetwork) {if(hasNetwork == NO) {return;}}];
     
-    [[self sharedSessionManager] POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [[self sharedSessionManager] POST:URLString parameters:parameters headers:headers constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
         //根据本地路径获取url(相册等资源上传)
         NSURL *fileUrl = [NSURL fileURLWithPath:fileModel.fileUrl];
@@ -411,12 +410,17 @@ singleton_implementation(WYNetworking)//单例实现
     NSData *certData = [NSData dataWithContentsOfFile:certFilePath];
     NSSet *certSet = [NSSet setWithObject:certData];
     
+    /*
+     AFSSLPinningModeNone: 代表客户端无条件地信任服务器端返回的证书。
+     AFSSLPinningModePublicKey: 代表客户端会将服务器端返回的证书与本地保存的证书中，PublicKey的部分进行校验；如果正确，才继续进行。
+     AFSSLPinningModeCertificate: 代表客户端会将服务器端返回的证书和本地保存的证书中的所有内容，包括PublicKey和证书部分，全部进行校验；如果正确，才继续进行。
+     */
+    
     AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate withPinnedCertificates:certSet];
+    securityPolicy.allowInvalidCertificates = YES;//使用自建证书  默认NO
+    securityPolicy.validatesDomainName = YES;//域名验证  默认YES
     
     if(_requestWay == requestWayHttpsBothwayValidation) {
-        
-        securityPolicy.allowInvalidCertificates = YES;//使用自建证书  默认NO
-        securityPolicy.validatesDomainName = YES;//域名验证  默认YES
         
         __weak AFHTTPSessionManager *manager = [self sharedSessionManager];
         __weak typeof(self)weakSelf = self;

@@ -22,31 +22,25 @@
 
 #import "TOCropViewController.h"
 #import "TOCropView.h"
+
 #import "TOCropToolbar.h"
 #import "TOCropViewControllerTransitioning.h"
 #import "TOActivityCroppedImageProvider.h"
 #import "UIImage+CropRotate.h"
 #import "TOCroppedImageAttributes.h"
 
-typedef NS_ENUM(NSInteger, TOCropViewControllerAspectRatio) {
-    TOCropViewControllerAspectRatioOriginal,
-    TOCropViewControllerAspectRatioSquare,
-    TOCropViewControllerAspectRatio3x2,
-    TOCropViewControllerAspectRatio5x3,
-    TOCropViewControllerAspectRatio4x3,
-    TOCropViewControllerAspectRatio5x4,
-    TOCropViewControllerAspectRatio7x5,
-    TOCropViewControllerAspectRatio16x9
-};
+
 
 @interface TOCropViewController () <UIActionSheetDelegate, UIViewControllerTransitioningDelegate, TOCropViewDelegate>
+@property (nonatomic, strong) TOCropView *cropView;
 
 @property (nonatomic, readwrite) UIImage *image;
 @property (nonatomic, strong) TOCropToolbar *toolbar;
-@property (nonatomic, strong) TOCropView *cropView;
 @property (nonatomic, strong) UIView *snapshotView;
 @property (nonatomic, strong) TOCropViewControllerTransitioning *transitionController;
 @property (nonatomic, assign) BOOL inTransition;
+@property (nonatomic, assign) TOCropViewControllerAspectRatio aspectRatioStle;
+
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
@@ -67,15 +61,18 @@ typedef NS_ENUM(NSInteger, TOCropViewControllerAspectRatio) {
 
 @implementation TOCropViewController
 
-- (instancetype)initWithImage:(UIImage *)image
+- (instancetype)initWithImage:(UIImage *)image aspectRatioStle:(TOCropViewControllerAspectRatio)aspectRatioStle
 {
     self = [super init];
     if (self) {
+
         self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         self.modalPresentationStyle = UIModalPresentationFullScreen;
         
         _transitionController = [[TOCropViewControllerTransitioning alloc] init];
         _image = image;
+        self.aspectRatioStle = aspectRatioStle;
+
     }
     
     return self;
@@ -91,6 +88,11 @@ typedef NS_ENUM(NSInteger, TOCropViewControllerAspectRatio) {
     self.cropView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.cropView.delegate = self;
     [self.view addSubview:self.cropView];
+    CGSize aspectRatio = CGSizeZero;
+//    aspectRatio = CGSizeMake(1.0f, 2.0f);
+    aspectRatio = [self convertAspectRatioStyleToRatio:self.aspectRatioStle];
+
+    [self.cropView setAspectLockEnabledWithAspectRatio:aspectRatio animated:false];
     
     self.toolbar = [[TOCropToolbar alloc] initWithFrame:CGRectZero];
     self.toolbar.frame = [self frameForToolBarWithVerticalLayout:CGRectGetWidth(self.view.bounds) < CGRectGetHeight(self.view.bounds)];
@@ -253,16 +255,16 @@ typedef NS_ENUM(NSInteger, TOCropViewControllerAspectRatio) {
 #pragma mark - Aspect Ratio Handling -
 - (void)showAspectRatioDialog
 {
-    if (self.cropView.aspectLockEnabled) {
-        self.cropView.aspectLockEnabled = NO;
-        self.toolbar.clampButtonGlowing = NO;
-        return;
-    }
-    
+//    if (self.cropView.aspectLockEnabled) {
+//        self.cropView.aspectLockEnabled = NO;
+//        self.toolbar.clampButtonGlowing = NO;
+//        return;
+//    }
+//    
     //TODO: Completely overhaul this once iOS 7 support is dropped
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    BOOL verticalCropBox = self.cropView.cropBoxAspectRatioIsPortrait;
+    BOOL verticalCropBox = NO;
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                              delegate:self
                                                     cancelButtonTitle:NSLocalizedStringFromTableInBundle(@"取消",
@@ -271,16 +273,17 @@ typedef NS_ENUM(NSInteger, TOCropViewControllerAspectRatio) {
                                                                                                          nil)
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:NSLocalizedStringFromTableInBundle(@"原始",
-                                                                                                          @"TOCropViewControllerLocalizable",
-                                                                                                          [NSBundle bundleForClass:[self class]],
-                                                                                                          nil),
-                                                                      NSLocalizedStringFromTableInBundle(@"正方形",
                                                                                                          @"TOCropViewControllerLocalizable",
                                                                                                          [NSBundle bundleForClass:[self class]],
                                                                                                          nil),
-                                                                      verticalCropBox ? @"2:3" : @"3:2",
-                                                                            verticalCropBox ? @"3:4" : @"4:3",
-                                                                                    verticalCropBox ? @"9:16" : @"16:9",nil];
+                                  NSLocalizedStringFromTableInBundle(@"正方形",
+                                                                     @"TOCropViewControllerLocalizable",
+                                                                     [NSBundle bundleForClass:[self class]],
+                                                                     nil),
+                                  verticalCropBox ? @"2:1" : @"1:2",
+                                  verticalCropBox ? @"2:3" : @"3:2",
+                                  verticalCropBox ? @"3:4" : @"4:3",
+                                  verticalCropBox ? @"9:16" : @"16:9",nil];
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         [actionSheet showFromRect:self.toolbar.clampButtonFrame inView:self.toolbar animated:YES];
@@ -289,6 +292,44 @@ typedef NS_ENUM(NSInteger, TOCropViewControllerAspectRatio) {
 #pragma clang diagnostic pop
 }
 
+
+
+-(CGSize)convertAspectRatioStyleToRatio:(TOCropViewControllerAspectRatio)aspectRatioStle {
+    CGSize aspectRatio = CGSizeZero;
+
+    switch (aspectRatioStle) {
+        case TOCropViewControllerAspectRatioOriginal:
+            aspectRatio = CGSizeZero;
+            break;
+        case TOCropViewControllerAspectRatioSquare:
+            aspectRatio = CGSizeMake(1.0f, 1.0f);
+            break;
+        case TOCropViewControllerAspectRatio1x2:
+            aspectRatio = CGSizeMake(1.0f, 2.0f);
+            break;
+        case TOCropViewControllerAspectRatio3x2:
+            aspectRatio = CGSizeMake(3.0f, 2.0f);
+            break;
+        case TOCropViewControllerAspectRatio5x3:
+            aspectRatio = CGSizeMake(5.0f, 3.0f);
+            break;
+        case TOCropViewControllerAspectRatio4x3:
+            aspectRatio = CGSizeMake(4.0f, 3.0f);
+            break;
+        case TOCropViewControllerAspectRatio5x4:
+            aspectRatio = CGSizeMake(5.0f, 4.0f);
+            break;
+        case TOCropViewControllerAspectRatio7x5:
+            aspectRatio = CGSizeMake(7.0f, 5.0f);
+            break;
+        case TOCropViewControllerAspectRatio16x9:
+            aspectRatio = CGSizeMake(16.0f, 9.0f);
+            break;
+        default:
+        break;
+    }
+    return aspectRatio;
+}
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     CGSize aspectRatio = CGSizeZero;
@@ -299,6 +340,9 @@ typedef NS_ENUM(NSInteger, TOCropViewControllerAspectRatio) {
             break;
         case TOCropViewControllerAspectRatioSquare:
             aspectRatio = CGSizeMake(1.0f, 1.0f);
+            break;
+        case TOCropViewControllerAspectRatio1x2:
+            aspectRatio = CGSizeMake(1.0f, 2.0f);
             break;
         case TOCropViewControllerAspectRatio3x2:
             aspectRatio = CGSizeMake(3.0f, 2.0f);
@@ -322,12 +366,12 @@ typedef NS_ENUM(NSInteger, TOCropViewControllerAspectRatio) {
             return;
     }
     
-    if (self.cropView.cropBoxAspectRatioIsPortrait) {
-        CGFloat width = aspectRatio.width;
-        aspectRatio.width = aspectRatio.height;
-        aspectRatio.height = width;
-    }
-    
+//    if (self.cropView.cropBoxAspectRatioIsPortrait) {
+//        CGFloat width = aspectRatio.width;
+//        aspectRatio.width = aspectRatio.height;
+//        aspectRatio.height = width;
+//    }
+
     [self.cropView setAspectLockEnabledWithAspectRatio:aspectRatio animated:YES];
     self.toolbar.clampButtonGlowing = YES;
 }
@@ -480,7 +524,7 @@ typedef NS_ENUM(NSInteger, TOCropViewControllerAspectRatio) {
             }
         }
         __weak typeof(activityController) blockController = activityController;
-        #if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_8_0
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_8_0
         activityController.completionWithItemsHandler = ^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
             if (!completed)
                 return;
@@ -493,7 +537,7 @@ typedef NS_ENUM(NSInteger, TOCropViewControllerAspectRatio) {
                 blockController.completionWithItemsHandler = nil;
             }
         };
-        #else
+#else
         activityController.completionHandler = ^(NSString *activityType, BOOL completed) {
             if (!completed)
                 return;
@@ -506,7 +550,7 @@ typedef NS_ENUM(NSInteger, TOCropViewControllerAspectRatio) {
                 blockController.completionHandler = nil;
             }
         };
-        #endif
+#endif
         
         return;
     }
