@@ -380,7 +380,7 @@
     }
 }
 
-//监听滚动事件判断当前拖动到哪一个了
+// 监听滚动事件判断当前拖动到哪一个了
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
 
     if((scrollView == _wy_controllerScrollView) && (_wy_controllerScrollView.contentOffset.x >= 0)) {
