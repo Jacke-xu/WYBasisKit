@@ -7,56 +7,32 @@
 		<key>AFNetworking.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-<<<<<<< HEAD
-			<integer>2</integer>
-=======
-			<integer>5</integer>
->>>>>>> 3df1fc479b7ab0f1f9d951127fc60f1db2684018
+			<integer>1</integer>
 		</dict>
 		<key>MJRefresh.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-<<<<<<< HEAD
-			<integer>1</integer>
-=======
-			<integer>4</integer>
->>>>>>> 3df1fc479b7ab0f1f9d951127fc60f1db2684018
+			<integer>2</integer>
 		</dict>
 		<key>Masonry.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-<<<<<<< HEAD
-			<integer>4</integer>
-=======
-			<integer>3</integer>
->>>>>>> 3df1fc479b7ab0f1f9d951127fc60f1db2684018
+			<integer>5</integer>
 		</dict>
 		<key>Pods-WYBasisKit.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-<<<<<<< HEAD
-			<integer>5</integer>
-=======
-			<integer>6</integer>
->>>>>>> 3df1fc479b7ab0f1f9d951127fc60f1db2684018
+			<integer>4</integer>
 		</dict>
 		<key>PureCamera.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-<<<<<<< HEAD
-			<integer>6</integer>
-=======
-			<integer>1</integer>
->>>>>>> 3df1fc479b7ab0f1f9d951127fc60f1db2684018
+			<integer>3</integer>
 		</dict>
 		<key>SDWebImage.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-<<<<<<< HEAD
-			<integer>3</integer>
-=======
-			<integer>2</integer>
->>>>>>> 3df1fc479b7ab0f1f9d951127fc60f1db2684018
+			<integer>6</integer>
 		</dict>
 	</dict>
 </dict>

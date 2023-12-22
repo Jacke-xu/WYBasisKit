@@ -385,8 +385,9 @@
 
     if((scrollView == _wy_controllerScrollView) && (_wy_controllerScrollView.contentOffset.x >= 0)) {
 
-        CGFloat index = scrollView.contentOffset.x / wy_screenWidth;
-        UIButton *channeItem =  (UIButton *)[_wy_barScrollView viewWithTag:buttonTagBegin+index];
+        CGFloat index = roundf(scrollView.contentOffset.x / self.frame.size.width);
+        NSInteger tag = buttonTagBegin+[[NSString stringWithFormat:@"%f",index] integerValue];
+        UIButton *channeItem =  (UIButton *)[_wy_barScrollView viewWithTag:tag];
         //重新赋值标签属性
         [self updateItemProperty:channeItem];
     }
