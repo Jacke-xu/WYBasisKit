@@ -28,15 +28,15 @@
     
     UITextField *textField1 = [[UITextField alloc]initWithFrame:CGRectMake(20, 20, wy_screenWidth-40, 50)];
     textField1.placeholder = @"请输入要显示的文本";
-    textField1.wy_placeholderColor = [UIColor orangeColor];
+    //textField1.wy_placeholderColor = [UIColor orangeColor];
     textField1.backgroundColor = [UIColor greenColor];
     textField1.tag = 100;
-    [textField1 wy_automaticFollowKeyboard:self.view];
-    [textField1 wy_textDidChange:^(NSString *textStr) {
-        
-        NSLog(@"输入的文本是：%@",textStr);
-    }];
-    [textField1 wy_fixMessyDisplay];
+//    [textField1 wy_automaticFollowKeyboard:self.view];
+//    [textField1 wy_textDidChange:^(NSString *textStr) {
+//
+//        NSLog(@"输入的文本是：%@",textStr);
+//    }];
+    //[textField1 wy_fixMessyDisplay];
     [self.view addSubview:textField1];
     
     self.view.backgroundColor = [UIColor greenColor];
@@ -96,7 +96,7 @@
             break;
         }
     }
-    
+
     if(indexPath.section > 2) {
         
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
