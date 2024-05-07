@@ -40,7 +40,7 @@ typedef NSURL * _Nullable (^ _Nullable Destination)(NSURL *targetPath, NSURLResp
 typedef void (^ _Nullable DownLoadSuccess)(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath);
 
 @interface WYNetworking : NSObject
-singleton_interface(WYNetworking)//单例声明
+singletonForInterface(WYNetworking)//单例声明
 
 /**
  *  超时时间(默认10秒)

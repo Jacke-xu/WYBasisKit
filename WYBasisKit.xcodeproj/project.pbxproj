@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -873,7 +873,7 @@
 				};
 			};
 			buildConfigurationList = 1FFBD91020BA874600305331 /* Build configuration list for PBXProject "WYBasisKit" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 15.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -1151,7 +1151,7 @@
 				DEVELOPMENT_TEAM = JX362P6GEC;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/WYBasisKit/WYBasisKit/MacroDefinition/GlobalHeader.pch";
 				INFOPLIST_FILE = WYBasisKit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1171,7 +1171,7 @@
 				DEVELOPMENT_TEAM = JX362P6GEC;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/WYBasisKit/WYBasisKit/MacroDefinition/GlobalHeader.pch";
 				INFOPLIST_FILE = WYBasisKit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

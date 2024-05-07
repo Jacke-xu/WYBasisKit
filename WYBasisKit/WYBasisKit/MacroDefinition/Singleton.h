@@ -2,21 +2,21 @@
 //  Singleton.h
 //  WYBasisKit
 //
-//  Created by  jacke-xu on 2018/8/24.
-//  Copyright © 2018年 jacke-xu. All rights reserved.
+//  Created by  官人 on 2018/8/24.
+//  Copyright © 2018年 官人. All rights reserved.
 //
 
 #ifndef Singleton_h
 #define Singleton_h
 
 ///单例宏-->方便.h文件使用
-#define singleton_interface(className) \
+#define singletonForInterface(className) \
 + (instancetype)shared##className;
 
 #if __has_feature(objc_arc)
 
 ///单例宏-->方便.m文件使用
-#define singleton_implementation(className) \
+#define singletonForImplementation(className) \
 static id _instance = nil; \
 \
 + (instancetype)shared##className \

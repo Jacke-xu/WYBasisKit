@@ -11,7 +11,7 @@
 #import "WYFileModel.h"
 
 @implementation WYNetworking
-singleton_implementation(WYNetworking)//单例实现
+singletonForImplementation(WYNetworking)//单例实现
 
 /**
  *  GET请求(未返回请求进度)
