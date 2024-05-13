@@ -73,6 +73,7 @@
 		1FFBD92220BA874800305331 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FFBD92120BA874800305331 /* Assets.xcassets */; };
 		1FFBD92520BA874800305331 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FFBD92320BA874800305331 /* LaunchScreen.storyboard */; };
 		1FFBD92820BA874800305331 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FFBD92720BA874800305331 /* main.m */; };
+		6503F04D2BF1A99C0074498E /* TestCallMethodController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6503F04C2BF1A99C0074498E /* TestCallMethodController.m */; };
 		DC8F5ED526981A6700ED2765 /* WYProtocolManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DC8F5ED426981A6700ED2765 /* WYProtocolManager.m */; };
 		F21BC91B22C4C36C0081A589 /* UIViewController+WY_Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = F21BC91A22C4C36C0081A589 /* UIViewController+WY_Alert.m */; };
 		F23DE2152272CF9B0065F38C /* NSMutableParagraphStyle+WY_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F23DE2132272CF9A0065F38C /* NSMutableParagraphStyle+WY_Extension.m */; };
@@ -214,6 +215,8 @@
 		1FFBD92420BA874800305331 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1FFBD92620BA874800305331 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FFBD92720BA874800305331 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6503F04B2BF1A99C0074498E /* TestCallMethodController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestCallMethodController.h; sourceTree = "<group>"; };
+		6503F04C2BF1A99C0074498E /* TestCallMethodController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestCallMethodController.m; sourceTree = "<group>"; };
 		68A8E59B41F877FEF5AA9E31 /* Pods-WYBasisKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYBasisKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-WYBasisKit/Pods-WYBasisKit.release.xcconfig"; sourceTree = "<group>"; };
 		DC8F5ED326981A6700ED2765 /* WYProtocolManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYProtocolManager.h; sourceTree = "<group>"; };
 		DC8F5ED426981A6700ED2765 /* WYProtocolManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYProtocolManager.m; sourceTree = "<group>"; };
@@ -687,6 +690,8 @@
 				1F63AF7D22AA82AE00E965EE /* TestPagingViewController.m */,
 				F2EBBA4F22C5B292009234EF /* TestUIAlertController.h */,
 				F2EBBA5022C5B292009234EF /* TestUIAlertController.m */,
+				6503F04B2BF1A99C0074498E /* TestCallMethodController.h */,
+				6503F04C2BF1A99C0074498E /* TestCallMethodController.m */,
 			);
 			path = TestController;
 			sourceTree = "<group>";
@@ -961,6 +966,7 @@
 				1F37360A2274760000DEA8B0 /* NSDecimalNumber+WY_Extension.m in Sources */,
 				1F59A65120D8E5B80055AAB4 /* UIViewController+WY_Extension.m in Sources */,
 				1F0C653422A279FF00A2DDE6 /* WY_PagingView.m in Sources */,
+				6503F04D2BF1A99C0074498E /* TestCallMethodController.m in Sources */,
 				1F28304520D3B9B700624C76 /* WaterfallFlow.m in Sources */,
 				1F154C6621AD22CF00D1D830 /* UIButton+WY_EdgeInsets.m in Sources */,
 				1F725D9321B77861007F4B80 /* UITabBar+WY_Badge.m in Sources */,
