@@ -11,7 +11,7 @@
 
 ///单例宏-->方便.h文件使用
 #define singletonForInterface(className) \
-+ (instancetype)shared##className;
++ (instancetype)shared;
 
 #if __has_feature(objc_arc)
 
@@ -19,7 +19,7 @@
 #define singletonForImplementation(className) \
 static id _instance = nil; \
 \
-+ (instancetype)shared##className \
++ (instancetype)shared \
 { \
 static dispatch_once_t onceToken; \
 dispatch_once(&onceToken, ^{ \
@@ -57,7 +57,7 @@ return _instance; \
 #define singleton_implementation(className) \
 static id _instance = nil; \
 \
-+ (instancetype)shared##className \
++ (instancetype)shared \
 { \
 static dispatch_once_t onceToken; \
 dispatch_once(&onceToken, ^{ \
